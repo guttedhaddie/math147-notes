@@ -1,0 +1,8 @@
+/tmp/
+math147-notes.pdf
+*synctex.gz
+*synctex
+*.aux
+*.log
+*.out
+*.toc
