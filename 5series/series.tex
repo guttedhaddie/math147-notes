@@ -1,0 +1,743 @@
+\graphicspath{{5series/asy/}}
+\thispagestyle{empty}
+
+%\setcounter{section}{4}
+
+\section{Series}
+
+The discussion of series in complex analysis differs significantly from the real situation, particularly with regard to two concepts.
+\begin{itemize}
+  \item Taylor's Theorem:\quad Holomorphic functions \emph{equal} their Taylor series. This is false in real analysis where differentiable functions need not have, nor equal, a Taylor series.
+  \item Laurent Series: \emph{series} also include negative powers such as $z^{-1}+3z^{-2}+\cdots$
+\end{itemize}
+First we review the basics of sequences and infinite series (of non-negative powers). Hopefully you are familiar with all of this.
+
+\subsection{A Brief Review of Sequences and Infinite Series}
+
+
+Post real analysis, there is little specific to say regarding sequences of complex numbers. The notions of limit, convergence and sequential continuity are essentially identical in $\C$ and $\R^2$. For instance:
+
+\begin{defn}{}{}
+A sequence $(z_n)$ has limit $z\in\C$, written $\lim z_n=z$, if
+\[\forall\epsilon>0,\ \exists N\text{ such that }n>N\implies \nm{z_n-z}<\epsilon\]
+\end{defn}
+
+Writing $z_n=x_n+ iy_n$ and $z=x+iy$ in real and imaginary parts, we see that
+\[\nm{z_n-z}\le\nm{x_n-x}+\nm{y_n-y}\le 2\nm{z_n-z}\]
+from which:
+
+\begin{lemm}{}{limitcr}
+If $z_n=x_n+iy_n$, then $(z_n)$ converges if and only if both $(x_n)$ and $(y_n)$ converge, in which case
+\[\lim z_n=\lim x_n+i\lim y_n\]
+\end{lemm}
+
+\textcolor{red}{Warning!}\quad While this mostly translates to the polar representation $z_n=r_ne^{i\theta_n}$, there is a caveat: the discontinuity of $\Arg z = \Theta$ when $z$ is a non-positive real number means that $(\Theta_n)$ need not converge even if $(z_n)$ does.
+
+\begin{example}{}{}
+The sequence with $z_n=2i-\frac{1+i}n$ has limit $z=2i$: given $\epsilon>0$, let $N=\sqrt 2\epsilon$, then
+\[n>N\implies \nm{z_n-z}=\frac{\sqrt 2}n<\frac{\sqrt 2}N=\epsilon\]
+The real and imaginary parts are $x_n=-\frac 1n$ and $y_n=2-\frac 1n$ which clearly converge to $x=0$ and $y=2$ respectively. In polar co-ordinates things are also as expected
+\begin{gather*}
+\lim r_n=\lim\sqrt{\frac{1+(2n-1)^2}{n^2}}=\lim\frac 2n\sqrt{n^2-n}=2\\
+\lim\Theta_n=\lim\left(\pi\tan^{-1}\frac{(2n-1)/n}{-1/n}\right) =\pi+\tan^{-1}(1-2n)=\frac\pi 2
+\end{gather*}
+Since $z_n$ lies in the second quadrant and $z=2i$, we never get near the non-negative real axis where $\Theta_n$ is discontinuous.
+\end{example}
+
+\begin{defn}{Infinite Series}{}
+Given a sequence\footnote{For brevity, assume the initial term is $z_0$: nothing prevents the initial term being $z_{n_0}$ for any natural number $n_0$.} $(z_n)$, its sequence of \emph{partial sums} $(s_n)$ is
+\[s_n=\sum_{k=0}^nz_k=z_0+\cdots +z_n\]
+The \emph{infinite series} $\sum z_n:= \lim s_n$ is said to converge (diverge) if the sequence $(s_n)$ converges (diverges).\smallbreak
+%If $\sum z_n$ is convergent, then the sequence of \emph{remainders} is defined by $\rho_n= \sum z_n- s_n$.\smallbreak
+The series \emph{converges absolutely} if $\sum \nm{z_n}$ converges.\smallbreak
+The series \emph{converges conditionally} if it converges but not absolutely.
+\end{defn}
+
+\begin{thm}{Basic Series Facts}{seriesrc}
+Let $\sum z_n$ and $\sum w_n$ be series of complex numbers.
+\begin{enumerate}\itemsep0pt
+  \item If $z_n=x_n+iy_n$, then $\sum z_n$ converges if and only if $\sum x_n$ and $\sum y_n$ both converge, in which case
+  \[\sum z_n=\sum x_n+i\sum y_n\]
+  \item If $a\in\C$, and $\sum z_n$ and $\sum w_n$ converge, then $\sum az_n+w_n$ converges, in which case
+  \[\sum az_n+w_n=a\sum z_n+\sum w_n\]
+  \item ($n^\text{th}$ term/divergence test)\quad If $\sum z_n$ converges, then $\lim z_n=0$.
+  \item The (real!) comparison, ratio and root tests apply to the series $\sum\nm{z_n}$.
+  \item Absolute convergence implies convergence: moreover $\nm{\sum z_n}\le\sum\nm{z_n}$.
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+\begin{enumerate}\itemsep0pt
+  \item This is immediate from Lemma \ref{lemm:limitcr}.
+  \item[2,]\negthickspace 3. \ These follow from 1 and the corresponding results for the real series $\sum x_n,\sum y_n$.
+  \setcounter{enumi}{3}
+  \item This requires no proof: $\sum \nm{z_n}$ is a series of non-negative real numbers.
+  \item Since $\sum\nm{z_n}$ is a convergent series of non-negative terms and $\nm{x_n}\le\nm{z_n}$, the comparison test proves that $\sum x_n$ is absolutely convergent and thus convergent.
+  Since $\sum y_n$ converges similarly, part 1 shows that $\sum z_n$ converges.\par
+  Finally, apply the triangle inequality \smash[t]{$\nm{\sum\limits_{k=0}^m z_k}\le\sum\limits_{k=0}^m\nm{z_k}\le\sum\limits_{n=0}^\infty\nm{z_n}$} and take limits as $m\to\infty$.\qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{exercises*}
+\hangindent\leftmargini
+\textup{1.} \ Use the $\epsilon$-$N$ definition to prove that $\lim\frac{2+in}n= i$.
+\begin{enumerate}\setcounter{enumi}{1}
+  \item Give a rigorous proof of \ref{lemm:limitcr}. Sketch a proof of the corresponding statement for the polar representation whenever $\lim z_n$ is non-zero and not a negative real number.
+  
+  \item Explicitly prove part 2 of Theorem \ref{thm:seriesrc}.
+  
+  \item Fix $\theta\in (-\pi,\pi]$. Prove that the sequence defined by $z_n =e^{in\theta}$ converges if and only if $\theta = 0$.
+  
+  \item Use the $\epsilon$-$N$ definition to prove that $\lim\sqrt{i+\frac 1n}=\frac{1+i}{\sqrt 2}=\sqrt i$ where we use the principal value.%\par
+  %(\emph{Hint: The usual trick $\sqrt a-\sqrt b=\frac{a-b}{\sqrt a+\sqrt b}$ works, but be careful with complex conjugates!})
+\end{enumerate}
+\end{exercises*}
+ 
+\goodbreak
+
+
+
+\subsection{Power Series, Taylor Series and Taylor's Theorem}
+
+We first make the identical definition to that in real analysis.
+
+
+\begin{defn}{}{}
+A \emph{power series} centered at $z_0\in\C$ is a function of the form
+\[f(z)=\sum_{n=0}^\infty a_n(z-z_0)^n\]
+A function $f:D\to\C$ is \emph{analytic} if every $z_0\in D$ has an open neighborhood on which $f(z)$ equals a power series centered at $z_0$. That is,
+\[\forall z_0\in D,\exists\delta>0,(a_n)\text{ such that }\nm{z-z_0}<\delta\implies f(z)=\smash[t]{\sum_{n=0}^\infty} a_n(z-z_0)^n\]
+To be analytic at a point $z_0$ is to be analytic on some open neighborhood of $z_0$.
+\end{defn}
+The goal of the next two sections is the establishment of a key observation:
+\[\tcbhighmath{\text{A function is analytic if and only if it is holomorphic (differentiable)}}
+\]
+
+Here is the canonical example of a power series.
+
+\begin{example}{}{geomseries}
+(Geometric series)\quad By the $n\th$ term test, the power series $\sum\limits z^n$ diverges if $\nm z\ge 1$. Otherwise, inside the unit circle $\nm z<1$ we have $z^{n+1}\to 0$, and so
+\[s_n-zs_n=1-z^{n+1}\implies s_n=\frac{1-z^{n+1}}{1-z} \implies \sum\limits_{n=0}^\infty z^n =\lim\frac{1-z^{n+1}}{1-z}=\frac 1{1-z}\]
+Now let $z_0\neq 1$; by substituting $z\mapsto\frac{z-z_0}{1-z_0}$ in the above, observe that
+\[\frac 1{1-z} =\frac 1{1-z_0}\cdot \frac 1{1-\frac{z-z_0}{1-z_0}}=\frac 1{1-z_0}\sum_{n=0}^\infty \left(\frac{z-z_0}{1-z_0}\right)^n =\sum_{n=0}^\infty \frac 1{(1-z_0)^{n+1}}(z-z_0)^n\]
+provided $\nm{z-z_0}<\nm{1-z_0}$. It follows that $f(z)=\frac 1{1-z}$ is analytic on its domain $\C\setminus\{1\}$.
+\end{example}
+
+Note how the geometric series converges on a \emph{disk.} As the next result shows, this is the case for \emph{every} power series, analogous to the concept of the interval/radius of convergence in real analysis.
+
+
+\begin{thm}[lower separated=false, sidebyside, sidebyside align=top seam, sidebyside gap=0pt, righthand width=0.25\linewidth]{}{absconv}
+Consider a power series $f(z)=\sum a_n(z-z_0)^n$.
+\begin{enumerate}
+	\item If $f$ converges at a point $z_1\neq z_0$, then it is absolutely convergent at every point $\textcolor{red}{z}$ satisfying $\nm{z-z_0}<\nm{z_1-z_0}$.
+	\item Define $R_0:=\sup\left\{\nm{z-z_0}: f(z) \text{ converges}\right\}$.\par
+	Then $f(z)$ converges absolutely whenever $\nm{z-z_0}<R_0$ and diverges whenever $\nm{z-z_0}>R_0$.
+\end{enumerate}
+\tcblower
+\flushright\includegraphics[scale=0.85]{conv}
+\end{thm}
+
+\begin{proof}
+\begin{enumerate}\itemsep2pt
+  \item By the $n\th$ term test, the sequence $(a_n(z_1-z_0)^n)$ converges (to 0) and is therefore bounded by some $M\in\R^+$. Thus
+	\[\nm{a_n}\nm{z-z_0}^n =\nm{a_n}\nm{z_1-z_0}^n\left(\frac{\nm{z-z_0}}{\nm{z_1-z_0}}\right)^n \le Mr^n\quad\text{where}\quad r=\frac{\nm{z-z_0}}{\nm{z_1-z_0}}<1\]
+	Since $\sum Mr^n$ converges, we conclude (comparison test) that $\sum\nm{a_n}\nm{z-z_0}^n$ converges.
+	\item By standard properties of the supremum, if $\nm{z-z_0}<R_0$, then $\exists z_1$ such that $f(z_1)$ converges and $\nm{z-z_0}<\nm{z_1-z_0}$: now apply part (a). The remaining part is an exercise.\qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{defn}{}{}
+The value $R_0$ in the theorem is the \emph{radius of convergence} of the power series.
+\begin{itemize}\itemsep2pt
+  \item If $R_0=\infty$, the series is (absolutely) convergent on $\C$;
+  \item If $R_0=0$, the series converges only when $z=z_0$;
+  \item Otherwise, we have a \emph{disk of convergence} with radius $R_0\in\R^+$ centered at $z_0$. The \emph{circle of convergence} is the boundary circle of this disk.
+\end{itemize}
+\end{defn}
+\goodbreak
+
+As in real analysis:
+\begin{enumerate}
+  \item If $R_0\in\R^+$, we have to test separately for convergence/divergence on the circle of convergence. A key technique for doing this is \emph{Abel's Test} (see Exercise \ref{exs:abeltest}).
+  \item\label{obs:dist} We could use the ratio/root tests to explicitly compute: $R_0=\liminf\nm{a_n}^{-1/n}$, etc. This is mostly redundant since, as we'll see later, the radius of convergence is usually easier to spot as the distance from $z_0$ to the nearest point at which $f$ fails to be differentiable.
+\end{enumerate}
+
+Before computing further examples, we first revisit a familiar definition and observe a startling difference between the real and complex case.
+
+\begin{defn}{}{}
+If a function $f(z)$ is infinitely differentiable at $z_0$, then its \emph{Taylor series} is the power series
+\[\sum_{n=0}^\infty a_n(z-z_0)^n= \sum_{n=0}^\infty \frac{f^{(n)}(z_0)}{n!}(z-z_0)^n\]
+The \emph{Taylor coefficients} are $a_n=\frac{f^{(n)}(z_0)}{n!}$. A \emph{Maclaurin series} is a Taylor series with $z_0=0$.
+\end{defn}
+
+\begin{tcolorbox}[exstyle,lower separated=false, sidebyside, sidebyside align=top seam, sidebyside gap=0pt, righthand width=0.26\linewidth]
+We continue Example \ref{ex:geomseries}. On the disk $\nm z<1$, the function $f(z)=\frac 1{1-z}$ has 
+  	\[f^{(n)}(z)=\frac{n!}{(1-z)^{n+1}}\implies \sum\limits_{n=0}^\infty\frac{f^{(n)}(0)}{n!}z^n =\sum\limits_{n=0}^\infty z^n\overset{\text{!!}}{=}f(z)\]
+  	The Maclaurin series is therefore the geometric power series representation of $f(z)$ on the open disk $\nm z<1$! %In accordance with the above observation \ref{obs:dist}, its radius of convergence $R_0=1$ is the distance from the center 0 to the nearest point $z=1$ at which $f$ fails to be differentiable.
+  	In fact this situation is completely general\ldots
+\tcblower
+  \flushright\includegraphics{taylorex1}
+\end{tcolorbox}
+\goodbreak
+
+\begin{thm}{Taylor's Theorem}{taylor}
+If $f(z)$ is holomorphic on a disk $\nm{z-z_0}<R$, then it equals its Taylor series on that disk.
+\end{thm}
+
+This is a \emph{very} strong statement in comparison to real analysis, where there exist infinitely differentiable functions which do not equal their Taylor series (see Exercise \ref{ex:maczero}).\smallbreak
+Clearly $R$ cannot be larger than the radius of convergence $R_0$ of the Taylor series. If $f$ is entire, then the result holds for all positive $R$ and the series has radius of convergence is infinity.
+
+\begin{examples}{}{}
+Further familiar examples translate over from real analysis.
+\begin{enumerate}
+  %\begin{minipage}[t]{0.7\linewidth}\vspace{-5pt}
+%   	\item On the open disk $\nm z<1$, the function $f(z)=\frac 1{1-z}$ has 
+%   	\[f^{(n)}(z)=\frac{n!}{(1-z)^{n+1}}\implies \frac 1{1-z}=\sum\limits_{n=0}^\infty\frac{f^{(n)}(0)}{n!}z^n =\sum\limits_{n=0}^\infty z^n\]
+%   	The Maclaurin series is therefore the geometric series of Example \ref{ex:geomseries}; its radius of convergence is plainly $R_0=1$. In accordance with the above observation \ref{obs:dist}, this is the distance from the center 0 to the nearest point $z=1$ at which $f$ fails to be differentiable.
+%   \end{minipage}\begin{minipage}[t]{0.3\linewidth}\vspace{-15pt}
+%   \flushright\includegraphics{taylorex1}
+%   \end{minipage}
+% 
+%   
+  \item Since $f(z)=e^z$ is entire and $f^{(n)}(0)=1$ for all $n$, we see that
+  \[e^z=\sum\limits_{n=0}^\infty\frac{z^n}{n!}\quad\text{for all }z\in\C\]
+  
+  \item $f(z)=\sin z$ is entire with $f^{(2n)}(z)=(-1)^n\sin z$ and $f^{(2n+1)}(z)=(-1)^n\cos z$. Its Maclaurin series is therefore
+  \[\sin z=\sum\limits_{n=0}^\infty\frac{(-1)^n}{(2n+1)!}z^{2n+1}\quad\text{for all }z\in\C\]
+  \goodbreak
+  
+  \begin{minipage}[t]{0.7\linewidth}\vspace{0pt}
+		\item $f(z)=\Log z$ is holomorphic on the open disk $\nm{z-i}<1$.\smallbreak
+		Whenever $n\ge 1$, we have
+		\[f^{(n)}(i)=\at{\frac{(-1)^{n-1}(n-1)!}{z^{n}}}{z=i}=-i^n(n-1)!\]
+		and we obtain the Taylor series
+  	\[\Log z=\Log i-\sum_{n=1}^\infty \frac{i^n}{n}(z-i)^n =\frac{\pi i}2-\sum_{n=1}^\infty \frac{(iz+1)^n}n\]
+  \end{minipage}\begin{minipage}[t]{0.3\linewidth}\vspace{0pt}
+  \flushright\includegraphics{taylorex2}
+  \end{minipage}\medbreak
+  
+	Convergence when $\nm{z-i}<1$ can be directly verified using the comparison test:
+	\[\nm{z-i}=r<1\implies\frac{\nm{z-i}^n}n\le r^n\implies \sum\frac{i^n(z-i)^n}n\text{ converges absolutely}\]
+	At $z=0$, we recognize the divergent harmonic series $\sum \frac 1n$: the radius of convergence is $R_0=1$. Exercise \ref{exs:abeltest} shows that the series converges everywhere else on the boundary circle $\nm{z-i}=1$.
+  \end{enumerate}
+\end{examples}
+
+We'll see the proof in a moment, but first observe that if $f:D\to\C$ is holomorphic, then, for every $z_0\in D$ it is holomorphic on some disk $\nm{z-z_0}<R$; by Taylor's theorem $f(z)$ equals its Taylor series on this disk and we've therefore proved half of our key observation.
+
+\begin{cor}{}{}
+Every holomorphic function is analytic.
+\end{cor}
+
+We'll obtain the converse in the next section.
+\goodbreak
+
+Why is Taylor's Theorem so much more specific in complex analysis? The answer is that we have available a very powerful tool, namely Cauchy's integral formula.
+
+\begin{proof}[Proof of Taylor's Theorem]
+By relabelling $\tilde f(z)=f(z-z_0)$, it is enough to prove when $z_0=0$, that is for Maclaurin series.\par
+\begin{minipage}[t]{0.7\linewidth}\vspace{-2pt}
+Let $w$ be given where $\nm w<R$. By Example \ref{ex:geomseries}, if $z\neq 0$,
+\[
+\frac 1z\sum_{k=0}^{n-1}\left(\frac wz\right)^k=\frac{1-\left(\frac wz\right)^n}{z(1-\frac wz)} =\frac 1{z-w}-\frac 1{z-w}\left(\frac wz\right)^n\tag{$\ast$}
+\]
+Choose any circle $C_r$ centered at the origin with radius $r\in(\nm w,R)$. Since both $0$ and $w$ lie inside $C_r$, we may apply Cauchy's integral formula \emph{twice}:
+\end{minipage}\begin{minipage}[t]{0.3\linewidth}\vspace{-2pt}
+\flushright\includegraphics{taylor}
+\end{minipage}\par
+\vspace{-10pt}
+\begin{align*}
+f(w)&=\frac 1{2\pi i}\oint_{C_r}\frac{f(z)}{z-w}\dz\tag{Cauchy for $C_r$ around $w$}\\
+	&=\sum_{k=0}^{n-1}\frac{w^k}{2\pi i}\oint_{C_r}\frac{f(z)}{z^{k+1}}\,\dz +\frac{w^n}{2\pi i}\oint_{C_r}\frac{f(z)}{z^n(z-w)}\,\dz\tag{subsititute for $\frac 1{z-w}$ using $(\ast)$}\\
+ &=\sum_{k=0}^{n-1} \frac{f^{(k)}(0)}{k!}w^k +\frac{w^n}{2\pi i}\oint_{C_r}\frac{f(z)}{z^n(z-w)}\,\dz\tag{Cauchy for $C_r$ around $0$}
+\end{align*}
+All that remains is to control the final integral. Since $f$ is holomorphic on $C_r$, it is bounded by some $M\in\R^+$. Moreover, for $z\in C_r$ we have $\nm{z-w}\ge =\nm{\nm z-\nm w}= r-\nm w$. Thus
+\begin{align*}
+\nm{f(w)-\sum_{k=0}^{n-1} \frac{f^{(k)}(0)}{k!}w^k} &= \frac{\nm w^n}{2\pi}\nm{\oint_{C_r}\frac{f(z)}{z^n(z-w)}\,\dz}\\
+&\le\frac{\nm w^nM\cdot 2\pi r}{2\pi r^n(r-\nm w)} =\frac{Mr}{(r-\nm w)}\left(\frac{\nm w}r\right)^n %\tag*{\qedhere}
+\end{align*}
+This last plainly converges to zero since $\nm w<r$. Otherwise said
+\[f(w)=\lim_{n\to\infty}\sum_{k=0}^{n-1} \frac{f^{(k)}(0)}{k!}w^k =\sum_{n=0}^{\infty} \frac{f^{(n)}(0)}{n!}w^n\]
+so that $f(z)$ equals its Maclaurin series whenever $\nm z<R$.
+\end{proof}
+\clearpage
+
+
+\begin{exercises*}
+\hangindent\doubleind
+\textup{1.} \ (a) \ Compute the Maclaurin series of $\cos z$ directly from the definition.
+\begin{enumerate}\setcounter{enumi}{1}
+  \item[]\begin{enumerate}\setcounter{enumii}{1}
+    \item Evaluate the Taylor series of $\sin z$ about $z_0=\frac\pi 2$ and confirm that it equals your answer to part (a) when $z$ is replaced with $z-\frac\pi 2$.
+  \end{enumerate} 
+  
+  \item Consider $f(z)=\frac 1z$. For any $z_0\neq 0$, find the Taylor series of $f(z)$ about $z_0$. What is its disk of convergence?
+    
+  \item Finish the proof of Theorem \ref{thm:absconv}. Suppose $\nm{z-z_0}>R_0$. Prove that $f(z)$ diverges.
+  
+  
+  \item\label{exs:abeltest} The alternating series test was often useful in real analysis to decide convergence at the endpoints of an interval of convergence. Here is a generalization to the complex situation.\smallbreak
+   Consider the power series $\sum a_nz^n$ where $(a_n)$ is a \emph{real} sequence such that
+    \[a_n\ge 0,\quad a_{n+1}\le a_n,\quad \lim_{n\to\infty}a_n=0\]
+  \begin{enumerate}
+    \item Write $s_n(z)=\sum\limits_{k=0}^na_kz^k$ for the partial sum and prove that
+    \[(1-z)s_n(z)=a_0-a_nz^{n+1}+\sum_{k=1}^n(a_k-a_{k-1})z^k\]
+    
+    \item Prove \emph{Abel's Test}: $\sum a_nz^n$ converges everywhere on the \emph{closed} unit disk $\nm z\le 1$, \emph{except perhaps} when $z=1$.\par
+    (\emph{Hint: show that $\sum(a_k-a_{k-1})z^k$ converges absolutely by comparison with a telescoping series})
+    
+    \item Verify that $\Log z=\frac{\pi i}2-\sum\limits_{n=1}^\infty \frac{(iz+1)^n}n$ converges whenever $\nm{z-i}=1$, except when $z=0$.
+    
+    \item Prove that the real series $\sum\frac{\cos n\theta}n$ converges except when $\theta$ is divisible by $2\pi$. For what values of $\theta$ does the series $\sum\frac{\sin n\theta}n$ converge?
+    
+    \item Find all values of $z$ for which the series $\sum \frac{1+i}{(n+i)(4+3i)^n}(z-1+2i)^n$ converges and sketch the disk of convergence.\par
+    (\emph{Hint: let $w=\frac{z-1+2i}{4+3i}$})
+  \end{enumerate}
+    
+  \item\label{ex:maczero} Consider the function
+  \[f(z)=\begin{cases}
+  e^{-1/z^2}&\text{if }z\neq 0\\
+  0&\text{if }z=0
+  \end{cases}\]
+  When $z\in\R$ this provides the classic example of an infinitely differentiable function whose Maclaurin series (being identically zero) does not equal the original function except at the origin. When $z\in\C$, why $f(z)$ does not contradict Taylor's Theorem.
+  
+  \item Why do we need to introduce $r$ in part 1 of the proof of Theorem \ref{thm:absconv}? That is, explain why can't we use the comparison test to say
+  \[\nm{a_n}\nm{z-z_0}^n<\nm{a_n}\nm{z_1-z_0}^n\implies \sum\nm{a_n}\nm{z-z_0}^n\text{ converges}\]
+
+\end{enumerate}
+\end{exercises*}
+\clearpage
+
+
+
+\subsection{Uniform Convergence: Continuity, Integrability and Differentiability}\label{sec:unifconv}
+
+As in real analysis, we want to establish the following useful facts:
+\begin{enumerate}
+  \item Representations are unique: if two power series are equal, their coefficients are equal.
+  \item Power series are continuous, indeed differentiable, inside their disk of convergence.
+  \item Power series may be differentiated and integrated term-by-term.
+\end{enumerate}
+
+The arguments are intertwined. Since these are often similar, even identical, to the real case, we will be brief and postpone all examples until the end. The critical ingredient is uniform convergence.
+
+\begin{defn}{}{}
+Suppose $f(z)=\sum a_n(z-z_0)^n$ is a power series with $n\th$ partial sum $s_n(z)$ and remainder $\rho_n(z) = f(z) - s_n(z)$. We say that the series \emph{converges uniformly} on a domain $D$ if
+\[\forall\epsilon>0,\ \exists N\text{ such that }n>N,\ z\in D\implies \nm{\rho_n(z)}<\epsilon\]
+\end{defn}
+
+\emph{Uniformity} means that $N=N(\epsilon)$ is independent of the location $z\in D$. If $N=N(\epsilon,z)$ is permitted to depend on $z$, we'd refer to the convergence as \emph{pointwise.}
+
+\begin{thm}{}{unifconv}
+Suppose $R_0$ is the radius of convergence of a power series about $z_0$. If $R_1<R_0$, then the series converges uniformly on the closed disk $\nm{z-z_0}\le R_1$.
+\end{thm}
+
+\begin{proof}
+As preparation, suppose $z_1$ satisfies $\nm{z_1-z_0}=R_1$. Since $R_1<R_0$, the series converges absolutely at $z_1$ (Theorem \ref{thm:absconv}). Denote the $n\th$ remainder of this absolutely convergent series by\par
+\begin{minipage}[t]{0.7\linewidth}\vspace{-10pt}
+\[\sigma_n=\sum_{k=n+1}^\infty\nm{a_k}\nm{z_1-z_0}^k =\sum_{k=n+1}^\infty\nm{a_k}R_1^k\]
+Now let $\epsilon>0$ be given. Since the above series converges, we have $\lim\limits_{n\to\infty}\sigma_n=0$:
+\[\exists N\text{ such that }n>N\implies \sigma_n<\epsilon\tag{$\ast$}\]
+By the comparison test, if $z$ satisfies $\nm{z-z_0}\le R_1$, then
+\end{minipage}\begin{minipage}[t]{0.3\linewidth}\vspace{0pt}
+\flushright\includegraphics[scale=1]{uniform}
+\end{minipage}\par\vspace{-4pt}
+\begin{align*}
+\nm{\rho_n(z)}&=\nm{\sum_{k=n+1}^\infty a_k(z-z_0)^k} \le \sum_{k=n+1}^\infty\nm{a_k}\nm{z-z_0}^k \\
+&\le \sum_{k=n+1}^\infty\nm{a_k}\nm{z_1-z_0}^k=\sigma_n <\epsilon\tag*{\qedhere}
+\end{align*}
+\end{proof}
+
+Note where the uniformity comes from: we were able to choose $N$ depending only\footnote{It looks as if $N$ might also depend on our choice of $z_1$ in the first line. However, any suitable $z_1$ has the same value for $\nm{z_1-z_0}=R_1$ and thus produces the same sequence $(\sigma_n)$: it is from the convergence of this sequence that we get $N$.} on $\epsilon$, not $z$.\smallbreak
+That $R_1$ is \emph{strictly less} than the radius of convergence $R_0$ is important. In Exercise \ref{ex:notuniform}, we'll see that the convergence of a power series need not be uniform on the full disk of convergence.
+\goodbreak
+
+\begin{thm}{Continuity}{seriescont}
+Suppose $f(z)=\sum a_n(z-z_0)^n$ has radius of convergence $R_0$. Then $f(z)$ is continuous whenever $z$ is interior to the disk of convergence: $\nm{z-z_0}<R_0$.
+\end{thm}
+
+This is identical to the famous $\frac\epsilon 3$-proof seen in real analysis.
+\begin{proof}
+Fix $w$ and $R_1$ such that $\nm{w-z_0}<R_1<R_0$. Let $\epsilon>0$ be given. Observe:\par
+\begin{minipage}[t]{0.7\linewidth}\vspace{0pt}
+\begin{itemize}
+	\item Uniform convergence whenever $\nm{z-z_0}\le R_1$:
+	\[\exists N\text{ such that }n>N\implies \nm{\rho_n(z)}<\frac\epsilon 3\text{ and }\nm{\rho_n(w)}<\frac\epsilon 3\]
+  \item Openness and continuity ($s_n$ is a polynomial!): for any $n>N$,
+  \[\exists\delta>0\text{ such that } \nm{z-w}<\delta\implies
+  \begin{cases}
+  \nm{z-z_0}<R_1\\
+	\nm{s_n(z)-s_n(w)}<\frac\epsilon 3
+  \end{cases}\]
+\end{itemize}
+\end{minipage}\begin{minipage}[t]{0.3\linewidth}\vspace{-10pt}
+\flushright\includegraphics{cont}
+\end{minipage}\smallbreak
+Now put it together to see that $f(z)$ is continuous at $w$: for any $n>N$,
+\begin{align*}
+\nm{z-w}<\delta\implies \nm{f(z)-f(w)}&=\nm{f(z)-s_n(z)+s_n(z)-s_n(w)+s_n(w)-f(w)}\\
+&\le \nm{\rho_n(z)}+\nm{s_n(z)-s_n(w)}+\nm{\rho_n(w)}<\epsilon\tag*{\qedhere}
+\end{align*}
+\end{proof}
+
+Our treatment now splits from that in real analysis. Since power series are continuous, we may define \emph{contour integrals.} The remaining results follow from a general version of term-by-term integration.
+
+\begin{thm}[lower separated=false, sidebyside, sidebyside align=top seam, sidebyside gap=0pt, righthand width=0.23\linewidth]{}{inttermbyterm}
+Let $f(z)=\sum a_n(z-z_0)^n$ have radius of convergence $R_0$, and $C$ be a contour interior to the disk of convergence: $z\in C\implies \nm{z-z_0}<R_0$.\smallbreak
+If $g(z)$ is continuous on $C$, then
+\[\int_Cg(z)f(z)\,\dz=\sum_{n=0}^\infty a_n\int_C g(z)(z-z_0)^n\,\dz\]
+\tcblower
+\flushright\includegraphics{cont2}
+\end{thm}
+
+\begin{proof}
+The integral $\int_C g(z)f(z)\,\dz$ exists since $f,g$ are continuous on $C$. Since $C$ is a compact set:
+\begin{itemize}
+  \item $C$ lies inside some closed disk $\nm{z-z_0}\le R_1<R_0$ on which the series $f(z)$ converges uniformly.
+  \item $g(z)$ is bounded on $C$ by some $M\in\R^+$.
+\end{itemize}
+  Let $C$ have length $L$ and let $\epsilon>0$ be given. Since $f(z)$ converges uniformly when $\nm{z-z_0}\le R_1$,
+\[\exists N\text{ such that }n>N\implies \nm{\rho_n(z)}<\frac\epsilon{ML}\]
+Now take integrals and moduli
+% \[g(z)f(z)-\sum_{k=0}^n a_kg(z)(z-z_0)^k\,\dz =g(z)\rho_n(z)\]
+to see that
+\[n>N\implies \nm{\int_Cg(z)f(z)\,\dz-\sum_{k=0}^n a_k\int_C g(z)(z-z_0)^k\,\dz} =\nm{\int_C g(z)\rho_n(z)\,\dz}<\epsilon \tag*{\qedhere}\]
+\end{proof}
+\goodbreak
+
+
+Everything we want now follows by choosing specific functions $g(z)$.
+
+\begin{cor}{}{contintdiff}
+Suppose $f(z)=\sum a_n(z-z_0)^n$ is a power series with radius of convergence $R_0>0$.
+\begin{enumerate}
+  \item (Term-by-term integration)\quad Let $g(z)=1$ to see that
+  \[\int_Cf(z)\,\dz=\sum_{n=0}^\infty a_n\int_C (z-z_0)^n\,\dz =\sum_{n=0}^\infty\frac{a_n}{n+1}(z-z_0)^{n+1}\bigg|_{C(\text{start})}^{C(\text{end})}\]
+  
+  \item (Holomorphicity)\quad $\oint_Cf(z)\,\dz=0$ for every simple closed contour, whence $f(z)$ is holomorphic inside the circle of convergence. In particular, every analytic function is holomorphic.
+  
+	\begin{minipage}[t]{0.71\linewidth}\vspace{0pt}
+  \item (Term-by-term differentiation)\quad Given $\nm{w-z_0}<R_0$, let $g(z)=\frac 1{2\pi i(z-w)^2}$ and apply Cauchy's integral formula on a small circle around $w$:
+  \begin{align*}
+  f'(w)&=\frac 1{2\pi i}\oint_C\frac{f(z)}{(z-w)^2}\,\dz =\sum \frac{a_n}{2\pi i}\oint\frac{(z-z_0)^n}{(z-w)^2}\,\dz\\
+  &=\sum a_n\diffat{z}{z=w}(z-z_0)^n =\sum a_nn(z-z_0)^{n-1}
+  \end{align*}
+	\end{minipage}\begin{minipage}[t]{0.29\linewidth}\vspace{-5pt}
+	\flushright\includegraphics[scale=0.85]{diff}
+	\end{minipage}
+	
+	\item (Unique representation)\quad The power series is the Taylor series of $f(z)$: that is, $a_n=\frac{f^{(n)}(z_0)}{n!}$.
+\end{enumerate}
+\end{cor}
+
+Exercise \ref{ex:uniquetaylor} considers part 4 and its implications. Since analytic and holomorphic are now equivalent, we'll retire the latter for the rest of the course. 
+
+\begin{examples}{}{}
+By uniqueness of representation, we can compute Taylor/Maclaurin series \emph{algebraically}: if a function equals a series, that's the one we want regardless of how we found it!
+\begin{enumerate}
+  \item $f(z)=z^3e^{z^2}=z^3$ \scalebox{0.9}{$\displaystyle\sum\limits_{n=0}^\infty\frac{(z^2)^n}{n!}$}\,$\mathrel{=}$\,\scalebox{0.9}{$\displaystyle\sum\limits_{n=0}^\infty\frac{z^{2n+3}}{n!}$} is the Maclaurin series of $f(z)$. Since the radius of convergence is infinite, the function equals its Maclaurin series everywhere on $\C$.
+  
+  \item The function $f(z)=\begin{cases}
+  \frac{\sin z}z&\text{if }z\neq 0\\
+  1&\text{if }z=0
+  \end{cases}\ $ is entire since it equals the series $\sum\limits_{n=0}^\infty\frac{(-1)^n}{(2n+1)!}z^{2n}$.
+  
+  \begin{minipage}[t]{0.7\linewidth}\vspace{0pt}
+  \item We find the Maclaurin series of $f(z)=\frac 1{z^4+16i}$ algebraically:
+  \[f(z)=\frac 1{16i\left(1-\frac{z^4}{-16i}\right)} =\frac 1{16i}\sum_{n=0}^\infty\left(\frac{z^4}{-16i}\right)^n =\sum_{n=0}^\infty\frac{i^{n-1}}{16^{n+1}}z^{4n}\]
+  This converges whenever $\nm{\frac{z^4}{-16i}}<1\iff \nm z<2$, equalling the distance from the center to the \textcolor{Green}{nearest point(s)} that $f(z)$ fails to be analytic. If $C$ is the straight line from $z=0$ to $z=1+i$, then
+  \end{minipage}\begin{minipage}[t]{0.3\linewidth}\vspace{0pt}
+  \flushright\includegraphics{taylorex3}
+  \end{minipage}\par  
+  \[\int_Cf(z)\,\dz=\sum_{n=0}^\infty\frac{i^{n-1}}{16^{n+1}}\int_Cz^{4n}\,\dz =\sum_{n=0}^\infty\frac{i^{n-1}(1+i)^{4n+1}}{16^{n+1}(4n+1)} =\sum_{n=0}^\infty\frac{1-i}{16(4n+1)}\left(\frac{-i}{4}\right)^n\] 
+\end{enumerate}
+\end{examples}
+
+\goodbreak
+
+\begin{exercises*}\hangindent\leftmargini
+\textup{1.} \ Find a power series representation and the radius of convergence:
+\begin{enumerate}\setcounter{enumi}{1}
+  \item[]\begin{enumerate}
+    \item $f(z)=\dfrac z{4-z}$ about $z_0=0$;
+    \item $f(z)=z\sin z^2$ about $z_0=0$;
+    \item $f(z)=\cosh 3z$ about $z_0=\dfrac{i\pi}9$
+	\end{enumerate}
+	
+	\item \emph{Without computing derivatives}, find the Taylor series for $f(z)=\frac 1z$ about $z_0\neq 0$. By differentiating term-by-term, find the Taylor series of $\frac 1{z^2}$ about $z_0$.
+	
+	\item By expressing it as a Maclaurin series, show that the following function is entire:
+	\[f(z)=\begin{cases} 
+	\frac 1{z^2}(1-\cos z)&\text{if }z\neq 0\\
+	\frac 12&\text{if }z=0
+	\end{cases}\]
+	
+	\item\begin{enumerate}
+	  \item By integrating the Taylor series for $z^{-1}$ about $z_0=1$, prove that 
+	  \[\Log z=\sum_{n=1}^\infty\frac{(-1)^{n+1}}n(z-1)^n\quad\text{whenever }\nm{z-1}<1\]
+	  \item Prove that the following function is analytic on the domain $0<\nm z$, \ $\Arg z\in(-\pi,\pi)$:
+	  \[f(z)=\begin{cases} 
+		\frac{\Log z}{z-1}&\text{if }z\neq 1\\
+		1&\text{if }z=1
+		\end{cases}\]
+	\end{enumerate}
+	
+	\item Consider the Maclaurin series $f(z)=\sum_{n=0}^\infty (-1)^nz^{2n}$ on the disk $\nm z<1$. Show that $h(z)=\frac 1{z^2+1}$ is the analytic continuation of $f(z)$ to $\C\setminus\{i,-i\}$. 
+	
+	\item\label{ex:uniquetaylor}\begin{enumerate}
+	  \item Prove part 4 of Corollary \ref{cor:contintdiff}: if $f(z)= \sum a_n(z-z_0)^n$, prove that $f^{(m)}(z_0)=m!a_m$ so that the series really is the Taylor series of $f(z)$.\par
+		(\emph{Hint: let $g(z) =\frac{m!}{2\pi i(z-z_0)^{m+1}}$ in Theorem \ref{thm:inttermbyterm}})
+		\item Explain carefully why every power series defines an analytic function.\par
+  (\emph{Think carefully about the definitions and what we've proved in the last two sections!})
+	\end{enumerate}
+	
+	\item\label{ex:raddistnonanalytic} Suppose that the series $\sum a_n(z-z_0)^n$ has radius of convergence $R_0$ and that $f(z)=\sum a_n(z-z_0)^n$ whenever $\nm{z-z_0}<R_0$. Prove that
+	\[R_0=\inf\{\nm{\hat z-z_0}:f(z)\text{ non-analytic or undefined at $\hat z$}\}\]
+	(\emph{$R_0$ is essentially the distance from $z_0$ to the nearest point at which $f(z)$ is non-analytic})
+	
+	\item\label{ex:notuniform} (Hard) \ Consider $f(z)=\frac 1{1-z}=\sum\limits_{n=0}^\infty z^n$ on $\nm z<1$.
+	\begin{enumerate}
+	  \item Let $R_1<1$. Explicitly check uniform convergence when $\nm z\le R_1$. That is, given $\epsilon>0$, find an explicit $N$ such that
+	  \[n>N\implies \nm{\rho_n(z)}=\biggl|f(z)-\sum_{k=0}^nz^k\biggr|<\epsilon\text{ whenever }\nm z\le R_1\]
+	  \item Prove that $f(z)$ is \emph{not} uniformly convergent on $\nm z<1$.\par
+	  (\emph{Hint: Let $\epsilon=1$ and try to get a contradiction\ldots})
+	\end{enumerate}
+\end{enumerate}
+\end{exercises*}\clearpage
+
+
+\subsection{Laurent Series}
+
+While Taylor series are undeniably useful, they also have key weaknesses, particularly with regard to their domains being \emph{disks.} We motivate a more general construction with an example.
+
+\begin{example}{}{laurentmotiv}
+$f(z)=\frac 1{z(2-z)}$ can be written as a Taylor series centered at $z=1$:\par
+\begin{minipage}[t]{0.7\linewidth}\vspace{-10pt}
+\[f(z)=\frac 1{1-(z-1)^2} =\sum_{n=0}^\infty (z-1)^{2n}\quad\text{whenever \ \textcolor{Green}{$\nm{z-1}<1$}}\]
+However, the most interesting aspects of $f(z)$ involve its behavior near the points $z=0,2$. Because of their disk-domains, we can't use Taylor series to loop around these points.\smallbreak
+As an alternative, expand $\frac 1{2-z}$ in a power series centered at 0:
+\end{minipage}\begin{minipage}[t]{0.3\linewidth}\vspace{-10pt}
+\flushright\includegraphics{laurent}
+\end{minipage}\par\vspace{-10pt}
+\[f(z)=\frac 1{2z(1-\frac{z}{2})}=\frac 1{2z}\sum_{n=0}^\infty\left(\frac z2\right)^n =\sum_{n=-1}^\infty\frac{z^n}{2^{n+2}} =\frac 1{2z}+\frac 14+\frac z8+\frac{z^2}{16}+\cdots\]
+By construction, this second series is valid on the \textcolor{blue}{punctured disk $0<\nm z<2$}. The larger domain, particularly the fact that it encircles the origin, provides an obvious advantage over the Taylor series. 
+\end{example}
+
+\begin{defn}[lower separated=false, sidebyside, sidebyside align=top seam, sidebyside gap=0pt, righthand width=0.25\linewidth]{}{laurent}
+Let $R_1<R_2$ and suppose $f(z)$ is analytic on the \textcolor{Green}{\emph{annulus}} $R_1<\nm{z-z_0}<R_2$. Its \emph{Laurent series} about $z_0$ is the expression\footnote{If you prefer, write $\sum\limits_{n=0}^\infty a_n(z-z_0)^n+\sum\limits_{n=1}^\infty \frac{b_n}{(z-z_0)^n}$ where $b_n=\frac 1{2\pi i}\oint_C(z-z_0)^{n-1}f(z)\,\dz$.}
+\[\sum_{n=-\infty}^\infty a_n(z-z_0)^n\ \text{ where }\ a_n=\frac 1{2\pi i}\oint_C\frac{f(z)}{(z-z_0)^{n+1}}\,\dz\]
+and \textcolor{red}{$C$} is a simple closed contour encircling $z_0$ within the annulus.
+\tcblower
+\flushright\includegraphics{laurent2}
+\end{defn}
+
+\begin{itemize}
+  \item As in Example \ref{ex:laurentmotiv}, the inner radius can be $R_1=0$ and the domain a punctured disk. As with Taylor series, the outer radius can be infinite.\par
+  \begin{minipage}[t]{0.73\linewidth}\vspace{0pt}
+	\item The coefficients $a_n$ are independent of the choice of contour $C$.\smallbreak
+	To see this, suppose $D$ is another simple closed curve encircling $z_0$, and choose a circle $E$ outside both $C$ and $D$. Since $\frac{f(z)}{(z-z_0)^{n+1}}$ is analytic on the annulus, two applications of Cauchy--Goursat yield
+  \[\oint_{\textcolor{red}{C}}\frac{f(z)}{(z-z_0)^{n+1}}\,\dz=\oint_{\textcolor{purple}{E}}\frac{f(z)}{(z-z_0)^{n+1}}\,\dz=\oint_{\textcolor{blue}{D}}\frac{f(z)}{(z-z_0)^{n+1}}\,\dz\]
+	\end{minipage}\begin{minipage}[t]{0.27\linewidth}\vspace{-5pt}
+	\flushright\includegraphics{laurent3}
+	\end{minipage}\par
+  
+  \item If $f(z)$ is analytic on the \emph{disk} $\nm{z-z_0}<R_2$, then the Laurent series equals the Taylor series:
+\begin{itemize}
+  \item $n\ge 0\implies a_n=\frac{f^{(n)}(z_0)}{n!}$ \ by Cauchy's integral formula;
+  \item $n<0\implies a_n=0$ \ by Cauchy--Goursat.
+\end{itemize}
+\end{itemize}
+
+It is usually difficult to compute a Laurent series directly using the definition, since it requires infinitely many contour integrals! Thankfully, as we'll see shortly, all the standard facts regarding Taylor series translate to this new situation. In particular, if $f(z)=\sum a_n(z-z_0)^n$, then the series is the Laurent series of $f(z)$ (Corollary \ref{cor:laurenttidy}). This makes computing examples much easier!
+
+
+\begin{examples}{}{laurenteasyex}
+\hangindent\leftmargini
+\textup{1.} \ Whenever $\textcolor{blue}{\nm z<1}$ we have the Taylor series\par
+\begin{enumerate}\setcounter{enumi}{1}
+  \begin{minipage}[t]{0.73\linewidth}\vspace{-13pt}
+  \item[]\[\frac 1{z-i}=\frac 1{-i(1-\frac zi)}=i\sum_{n=0}^\infty(-iz)^n=i+z-iz^2-z^3+iz^4+\cdots\]
+When $\textcolor{Green}{\nm z>1}$, we have the Laurent series
+\[\frac 1{z-i}=\frac z{(1-\frac iz)}=\sum_{n=0}^\infty i^nz^{-n-1}=\frac iz-\frac 1{z^2}-\frac i{z^3}+\frac 1{z^4}+\cdots\]
+
+	\item Whenever $\textcolor{orange}{1<\nm z<2}$ we have a Laurent series
+	\begin{align*}
+	\frac 3{(2-z)(1+z)}&=\frac 1{2-z}+\frac 1{1+z}=\frac 1{2(1-\frac z2)}+\frac 1{z(1+\frac 1z)} \\
+	&=\frac 12\sum_{n=0}^\infty\left(\frac z2\right)^n+\frac 1z\sum_{m=0}^\infty(-z)^{-m}\\
+	&=\cdots +z^{-3}-z^{-2}+z^{-1}+\frac 12+\frac 14z+\frac 18z^2+\cdots
+	\end{align*}
+	\end{minipage}\begin{minipage}[t]{0.27\linewidth}\vspace{-20pt}
+	\flushright\includegraphics{laurent5}\bigbreak
+	\includegraphics{laurent6}
+	\end{minipage}\par	
+	
+  \item Since $e^z$ has Maclaurin series $\sum \frac{z^n}{n!}$ valid on the entire complex plane, we obtain the Laurent series expansion
+  \[e^{\frac 1z}=\sum_{n=0}^\infty\frac{z^{-n}}{n!}=1+\frac 1z+\frac 1{2z^2}+\frac 1{6z^3}+\cdots\]
+  on the punctured plane $z\neq 0$. Explicitly evaluating the integrals $a_n=\frac 1{2\pi i}\oint_C\frac{e^{1/z}}{z^{n+1}}\,\dz$ would be extremely irritating!
+  
+  \item Again using Maclaurin series, we obtain another Laurent series valid on the punctured plane $z\neq 0$:
+  \begin{align*}
+  \frac 1{z^7}\sin z^2=\sum_{n=0}^\infty\frac{(-1)^n}{(2n+1)!}z^{4n-5} =z^{-5}-\frac 16z^{-1}+\frac 1{120}z^3-\frac 1{5040}z^7+\cdots
+  \end{align*}
+  
+  \item Multiplying term-by-term, and since we need \emph{both} Maclaurin series to be valid, we obtain a Laurent series valid on the punctured disk $0<\nm z<1$:
+  \begin{align*}
+  \frac 1{z(z-1)(z-2i)}&=\frac 1z\left(\sum_{n=0}^\infty (-1)^nz^n\right)\left(\sum_{m=0}^\infty\left(\frac i2\right)^mz^m\right)\\
+  &=\frac 1z\left(1-z+z^2-z^3+\cdots\right)\left(1+\frac i2z-\frac 14z^2-\frac i8z^3+\cdots\right)\\
+  &=\frac 1z+\left(-1+\frac i2\right)+\left(\frac 34-\frac i2\right)z+\left(-\frac 34+\frac{3i}8\right)z^2+\cdots
+  \end{align*}
+\end{enumerate}
+\end{examples}
+\goodbreak
+
+\boldsubsubsection{Theory time!}
+
+Having seen a few examples, we should properly state and prove the main properties of Laurent series. These are very similar to the corresponding arguments for Taylor series; mostly it is an issue of keeping track of two series at once.
+
+\begin{thm}{Laurent's Theorem}{}
+An analytic function on an open annulus equals its Laurent series.
+\end{thm}
+
+\begin{proof}
+By a simple translation, it is enough to prove when $z_0=0$. Let $w$ in the annulus be given.\par
+\begin{minipage}[t]{0.7\linewidth}\vspace{0pt}
+Since the annulus is open, we may choose three non-overlapping circles $\alpha,\beta,\gamma$ with radii $R_\alpha,R_\beta,R_\gamma$ as in the picture:
+\begin{itemize}
+  \item $\gamma$ a \textcolor{Green}{small circle} centered at $w$ inside the annulus;
+  \item $\alpha,\beta$ centered at 0, \textcolor{red}{$\alpha$ inside} and \textcolor{orange}{$\beta$ outside} $w$. 
+\end{itemize}
+Since $\frac{f(z)}{z-w}$ is analytic on the region inside $\beta$ with interior boundaries $\alpha$ and $\gamma$, Cauchy--Goursat says that
+\end{minipage}\begin{minipage}[t]{0.3\linewidth}\vspace{-5pt}
+\flushright\includegraphics{laurent4}
+\end{minipage}\par
+\[\left(\oint_\beta-\oint_\alpha-\oint_\gamma\right)\frac{f(z)}{z-w}\,\dz=0\implies f(w)=\frac 1{2\pi i}\oint_\gamma\frac{f(z)}{z-w}\,\dz =\frac 1{2\pi i}\left(\oint_\beta-\oint_\alpha\right)\frac{f(z)}{z-w}\,\dz\]
+As in the proof of Taylor's theorem, we expand
+\[\frac 1{z-w}=\frac 1z\sum_{k=0}^{n-1}\left(\frac wz\right)^k +\frac 1{z-w}\left(\frac wz\right)^n =-\frac 1w\sum_{k=1}^{n}\left(\frac zw\right)^{k-1} +\frac 1{z-w}\left(\frac zw\right)^n\]
+and use this to attack the two integrals:
+\begin{gather*}
+\frac 1{2\pi i}\oint_\beta\frac{f(z)}{z-w}\,\dz =\sum_{k=0}^{n-1}\underbrace{\frac{w^k}{2\pi i}\oint_\beta \frac{f(z)}{z^{k+1}}\,\dz}_{a_kw^k} +\frac{w^n}{2\pi i}\oint_\beta \frac{f(z)}{z^n(z-w)}\,\dz\\
+% &\implies  \frac 1{2\pi i}\oint_\beta\frac{f(z)}{z-w}\,\dz-\sum_{k=0}^{n-1}a_kw^k =\frac{w^n}{2\pi i}\oint_\beta \frac{f(z)}{z^n(z-w)}\,\dz
+% \\
+% \implies \nm{\frac 1{2\pi i}\oint_\beta\frac{f(z)}{z-w}\,\dz-\sum_{k=0}^{n-1}a_kw^k}\le \frac{MR_\beta}{R_\gamma}\left(\frac{\nm w}{R_\beta}\right)^n \xrightarrow[n\to\infty]{} 0
+\frac{-1}{2\pi i}\oint_\alpha\frac{f(z)}{z-w}\,\dz =\sum_{k=1}^{n}\underbrace{\frac 1{2\pi iw^k}\oint_\alpha z^{k-1}f(z)\,\dz}_{a_{-k}w^{-k}} -\frac 1{2\pi iw^n}\oint_\alpha \frac{z^nf(z)}{z-w}\,\dz
+\end{gather*}
+Since $f(z)$ is continuous on the closed bounded annulus between $\alpha,\beta$, it has an upper bound $M$. Moreover, whenever $z\in\alpha\cup\beta$, we have $\nm{z-w}>R_\gamma$. The triangle inequality finishes things off:
+% \[\nm{\frac{-1}{2\pi i}\oint_\alpha\frac{f(z)}{z-w}\,\dz-\sum_{k=1}^n a_{-k}w^{-k}}=\frac 1{2\pi iw^n}\oint_\alpha \frac{z^nf(z)}{z-w}\,\dz\]
+% \[\nm{\frac{-1}{2\pi i}\oint_\alpha\frac{f(z)}{z-w}\,\dz-\sum_{k=1}^n a_{-k}w^{-k}}\le \frac{MR_\alpha}{R_\gamma}\left(\frac{R_\alpha}{\nm w}\right)^n \xrightarrow[n\to\infty]{} 0\]
+
+% \begin{align*}
+% \frac{-1}{2\pi i}\oint_\alpha\frac{f(z)}{z-w}\,\dz &=\sum_{k=1}^{n}\frac 1{2\pi iw^k}\oint_\alpha z^{k-1}f(z)\,\dz -\frac 1{2\pi iw^n}\oint_\alpha \frac{z^nf(z)}{z-w}\,\dz =\sum_{k=1}^{n}a_{-k}w^{-k}+\frac 1{w^n}\oint_\alpha \frac{z^nf(z)}{z-w}\,\dz\\
+% \implies \nm{\frac{-1}{2\pi i}\oint_\alpha\frac{f(z)}{z-w}\,\dz-\sum_{k=1}^n a_{-k}w^{-k}}\le \frac{MR_\alpha}{R_\gamma}\left(\frac{R_\alpha}{\nm w}\right)^n \xrightarrow[n\to\infty]{} 0
+% \end{align*}
+% We observe that
+\begin{align*}
+\nm{f(w)-\sum_{k=-n}^{n-1}a_kw^k}& =\nm{\frac 1{2\pi i}\left(\oint_\beta-\oint_\alpha\right)\frac{f(z)}{z-w}\,\dz-\sum_{k=-n}^{n-1}a_kw^k}\\
+&\le \nm{\frac{w^n}{2\pi i}\oint_\beta \frac{f(z)}{z^n(z-w)}\,\dz}+\nm{\frac 1{2\pi iw^n}\oint_\alpha \frac{z^nf(z)}{z-w}\,\dz}\\
+&\le\frac{MR_\beta}{R_\gamma}\left(\frac{\nm w}{R_\beta}\right)^n +\frac{MR_\alpha}{R_\gamma}\left(\frac{R_\alpha}{\nm w}\right)^n \xrightarrow[n\to\infty]{} 0\tag*{\qedhere}
+\end{align*}
+\end{proof}
+\goodbreak
+
+By substituting $w=(z-z_0)^{-1}$ in a series of negative powers
+\[\sum\limits_{n=-\infty}^{-1} a_n(z-z_0)^n=\sum\limits_{n=1}^\infty a_{-n}w^n\]
+and applying Theorems \ref{thm:absconv}, \ref{thm:unifconv} and \ref{thm:seriescont} to the power series in $w$, we may conclude:
+
+\begin{cor}{}{}
+Given a Laurent series $f(z)=\sum\limits_{n=-\infty}^\infty a_n(z-z_0)^n$, define
+\[R_1=\inf\{\nm{z-z_0}:f(z)\text{ converges}\},\qquad R_2=\sup\{\nm{z-z_0}:f(z)\text{ converges}\}\]
+Then:
+\begin{enumerate}
+  \item The series converges absolutely on the annulus $R_1<\nm{z-z_0}<R_2$ to a continuous function.
+  \item The convergence is uniform on any closed sub-annulus.
+\end{enumerate}
+\end{cor}
+
+\begin{defn}{}{}
+The annulus $R_1<\nm{z-z_0}<R_2$ is the (open) \emph{annulus of convergence} of the Laurent series. As with power series, convergence on the boundary circles must be checked separately.
+\end{defn}
+
+We also obtain the analogues of Theorem \ref{thm:inttermbyterm} and Corollary \ref{cor:contintdiff}: some details are in the exercises.
+
+\begin{cor}{}{laurenttidy}
+Suppose $f(z)=\sum\limits_{n=-\infty}^\infty a_n(z-z_0)^n$ has annulus of convergence $R_1<\nm{z-z_0}<R_2$.
+\begin{enumerate}\itemsep0pt
+  \item (Term-by-term Integration)\quad If $g(z)$ is continuous on a contour $C$ lying inside the annulus, then
+  \[\int_C g(z)f(z)\,\dz=\sum_{n=-\infty}^\infty a_n\int_Cg(z)(z-z_0)^n\,\dz\]
+  In particular, $f(z)$ may be integrated term-by-term along $C$.
+ 
+ 	\item (Analyticity/Derivatives)\quad $f(z)$ is analytic on the annulus and $f'(z)=\sum\limits_{n=-\infty}^\infty a_nn(z-z_0)^{n-1}$
+  	
+  \item (Uniqueness)\quad $\sum\limits_{n=-\infty}^\infty a_n(z-z_0)^n$ is the Laurent series of $f(z)$.
+\end{enumerate}
+\end{cor}
+
+Now all the abstraction is out of the way, we can more easily compute Laurent series and Examples \ref{ex:laurenteasyex} are all valid. Here are a couple more.
+
+\begin{examples}{}{}
+\hangindent\leftmargini
+\textup{1.} \ In accordance with part 2 of Corollary \ref{cor:laurenttidy},
+	\[\diff ze^{1/z}=\diff z\sum_{n=0}^\infty\frac{z^{-n}}{n!} =\sum_{n=1}^\infty\frac{-z^{-1-n}}{(n-1)!} =-\frac 1{z^2}\sum_{n=1}^\infty\frac{z^{-(n-1)}}{(n-1)!} =-\frac 1{z^2}\sum_{n=0}^\infty\frac{z^{-n}}{n!} =-\frac 1{z^2}e^{1/z}\]
+\begin{enumerate}\setcounter{enumi}{1}
+	\item To compute the integral $\oint_C\frac 1{z^5}\sin z^2\,\dz$ on a simple closed contour encircling the origin, we use the Laurent series and observe that all but one of the integrals evaluates to zero:
+	\[\oint_C\frac 1{z^7}\sin z^2\,\dz =\sum_{n=0}^\infty\oint_C\frac{(-1)^n}{(2n+1)!}z^{4n-5}\,\dz =\oint_C\frac{(-1)^1}{(2+1)!}z^{4-5} =-\frac 13\pi i\]
+\end{enumerate}
+\end{examples}
+\goodbreak
+
+\begin{exercises*}\hangindent\leftmargini
+\textup{1.} \ Using Definition \ref{defn:laurent}, directly compute the Laurent series of $f(z)=\frac 1{z(2-z)}$ on the punctured disk $0<\nm z<2$ and verify that you obtain the series in  Example \ref{ex:laurentmotiv}. 
+%First observe that $f(z)$ is analytic on the punctured disk $0<\nm z<2$. Let $C$ be the unit circle centered at zero and compute:
+% 	\[a_n=\frac 1{2\pi i}\oint_C\frac{f(z)}{z^{n+1}}\,\dz =\frac 1{2\pi i}\oint_C\frac{1}{z^{n+2}(2-z)}\,\dz\]
+% 	There are two cases:
+% \begin{enumerate}\setcounter{enumi}{1}
+%   \item[]\begin{itemize}
+% 		\item If $n\le -2$, then $\displaystyle a_n=\frac 1{2\pi i}\oint_C\frac{z^{-2-n}}{2-z}\,\dz =0$ since the integrand is analytic on and within $C$;
+% 		\item If $n\ge -1$, Cauchy's integral formula tells us that
+% 		\[a_n=\frac 1{(n+1)!}\diffat[^{n+1}]{z^{n+1}}{z=0}(2-z)^{-1} = \frac{(n+1)!}{(n+1)!}(2-z)^{-2-n}\bigg|_{z=0} =\frac 1{2^{n+2}}\]
+% 	\end{itemize}
+% 	The Laurent series of $f(z)$ is therefore as claimed: $\displaystyle \sum_{n=-1}^\infty\frac{z^n}{2^{n+2}}$
+
+
+\begin{enumerate}\setcounter{enumi}{1}
+  \item Find a Laurent series representation for each function. Also find $\oint_Cf(z)\,\dz$ where $C$ is a simple closed curve in the given domain encircling the origin.
+  \begin{enumerate}
+    \item $f(z)=\frac 3{z^2}e^{2z}$ whenever $\nm z>0$;
+    
+    \item $f(z)=\cos\frac iz$ whenever $\nm z>0$;
+    
+    \item $f(z)=\frac 1{1+z^3}$ when $1<\nm z$ \ (\emph{Hint: let $w=z^{-1}$}).
+  \end{enumerate}
+  
+  \item On each domain, find a Laurent series about $z_0=0$ for the function
+  \[f(z)=\frac{1}{z(z-2i)}=\frac i2\left(\frac 1z-\frac 1{z-2i}\right)\]
+  \begin{enumerate}
+    \item $D_1=\{z:0<\nm z<2\}$;
+		
+		\item $D_2=\{z:\nm z>2\}$ \ (\emph{again let $w=z^{-1}$}).
+	\end{enumerate}
+	
+	\item Repeat the previous question for
+  \[f(z)=\frac{1-2i}{(z-1)(z-2i)}=\frac 1{z-1}-\frac 1{z-2i}\]
+  Also find $\oint_Cf(z)\,\dz$ where $C$ is a simple closed curve in the given domain encircling the origin.
+  \begin{enumerate}
+    \item $D_1=\{z:0<\nm z<1\}$ \ (\emph{this is a Taylor series});
+    
+    \item $D_2=\{z:1<\nm{z}<2\}$;
+		
+		\item $D_3=\{z:\nm z>2\}$.
+	\end{enumerate}
+
+	\item Show that when $0<\nm{z-1}<2$,  we have
+	\[\frac z{(z-1)(z-3)}=-\frac 1{2(z-1)}-3\sum_{n=0}^\infty\frac{(z-1)^n}{2^{n+2}}\]
+	
+	\item Let $a$ be complex number. Show that
+	\[\frac a{z-a}=\sum_{n=1}^\infty\frac{a^n}{z^n}\quad\text{whenever }\nm a<\nm z\]
+	
+  \item Suppose $f(z)=\sum a_n(z-z_0)^n$ is a series satisfying the hypotheses of Corollary \ref{cor:laurenttidy}.
+  \begin{enumerate}
+    \item Suppose part 1 has been proved. Explain why the function $f(z)-a_{-1}(z-z_0)^{-1}$ is analytic on the annulus. Hence conclude that $f(z)$ is analytic on the annulus.\par
+    (\emph{This is different to Corollary \ref{cor:contintdiff} since $a_{-1}(z-z_0)^{-1}$ has no anti-derivative on the annulus!})
+    \item In order to mimic the proof of Corollary \ref{cor:contintdiff} to show that $f(z)$ is differentiable term-by-term, what properties must the curve $C$ have?
+    \item Prove part 3 \ (\emph{recall Exercise \hyperref[ex:uniquetaylor]{\ref*{sec:unifconv}.\ref*{ex:uniquetaylor}} - the same hint works!}).
+	\end{enumerate}
+\end{enumerate}
+\end{exercises*}

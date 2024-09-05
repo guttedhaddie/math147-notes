@@ -1,19 +1,26 @@
-%%This is a very basic article template.
-%%There is just one section and two subsections.
-\documentclass{article}
+\documentclass[11pt]{article}
+
+\input{preamble-packages}
+\input{preamble-commands}
+
+\includeonly{
+1complex/complex,
+%2holom/holom,
+% 3functions/functions,
+% 4integrals/integrals,
+% 5series/series,
+% 6residues/residues,
+}
 
 \begin{document}
 
-
-\section{Title}
-
-\subsection{Subtitle}
-
-Plain text.
-
-\subsection{Another subtitle}
-
-More plain text.
+%\pagenumbering{arabic}
+\include{1complex/complex}
+\include{2holom/holom}
+\include{3functions/functions}
+\include{4integrals/integrals}
+\include{5series/series}
+\include{6residues/residues}
 
 
 \end{document}
