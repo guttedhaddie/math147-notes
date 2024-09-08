@@ -1,308 +1,366 @@
 \graphicspath{{2holom/asy/}}
 \thispagestyle{empty}
 
-%\setcounter{section}{1}
-
 \section{Holomorphic Functions}\label{chap:holom}
 
-In this chapter we discuss functions of a complex variable and what it means for such to be \emph{differentiable.} This turns out to be much more subtle and restrictive than in real analysis.
+In this chapter we discuss functions of a complex variable and what it means for such to be \emph{differentiable.} This turns out to be more subtle and restrictive than in real analysis.
 
 \subsection{Functions of a Complex Variable}\label{sec:func}%(\S\,12--14)}
 
-A function $f:D\subseteq\C\to\C$ may be defined in the obvious manner, using a \emph{rule.}
+As in real analysis, it is common to express a function via a rule/formula.
 
 \begin{example}{}{}
-Define $f:\C\to\C$ by $f(z)=z^3-z$. This evaluates as expected; e.g.
-\[f(2+i)=(2+i)^3-(2+i)=2^3+3\cdot 2^2i+3\cdot 2i^2+i^3-2-i=10i\]
+	Define $f:\C\to\C$ by $f(z)=z^3-z$. Evaluating is straightforward: e.g.
+	\[
+		f(2+i) =(2+i)^3-(2+i) =2^3+3\cdot 2^2i+3\cdot 2i^2+i^3-2-i=10i
+	\]
 \end{example}
 
-%An immediate difficulty is that you cannot easily \emph{graph} such a function!\medbreak
-
-As in real analysis, it is common to express a function simply using a rule: its \emph{implied domain} is the largest possible set $D\subseteq \C$ on which the rule is defined.
+The \emph{implied domain} of a rule is the largest possible set $D\subseteq \C$ on which the rule is defined.
 
 \begin{example}{}{functiontypes}
-$f(z)=\frac 1{z^2+9}$ has implied domain $D=\C\setminus\{\pm 3i\}$.\smallbreak
-The function may also be expressed in two other common ways.\smallbreak
-\emph{Real and imaginary parts}: Write $f(z)=u(x,y)+iv(x,y)$ where $u,v:D\to\R$. In this case,
-  \[f(z)=\frac 1{(x+iy)^2+9}=\frac 1{x^2-y^2+9+2ixy}=\frac{x^2-y^2+9}{(x^2-y^2+9)^2+4x^2y^2} +i \frac{-2xy}{(x^2-y^2+9)^2+4x^2y^2}\]
-\emph{Polar form}: Write $z=re^{i\theta}$ to obtain
-  \[f(z)=\frac 1{r^2e^{2i\theta}+9}\]
+	$f(z)=\frac 1{z^2+9}$ has implied domain $D=\C\setminus\{\pm 3i\}$. Complex functions can be represented in \emph{polar form} by substituting $z=re^{i\theta}$:
+	\[
+		f(z)=\frac 1{r^2e^{2i\theta}+9}
+	\]
+	It is also common to separate the \emph{real and imaginary parts} by writing $f(z)=u(x,y)+iv(x,y)$ where $u,v:D\to\R$. In this case,
+	\[
+		f(z) =\frac 1{(x+iy)^2+9} =\frac 1{x^2-y^2+9+2ixy} =\frac{x^2-y^2+9}{(x^2-y^2+9)^2+4x^2y^2} +i \frac{-2xy}{(x^2-y^2+9)^2+4x^2y^2}
+	\]
+	These approaches may be combined by writing $u,v$ as functions of $r,\theta$.
 \end{example}
-Depending on the function, each of these approaches might have certain advantages or disadvantages. You might also wish to combine the approaches: for instance writing $u,v$ as functions of $r,\theta$.
+
+The major initial challenge presented by functions of a complex variable is that of \emph{visualization}. Since $\C$ has two real dimensions, graphing a function $f:\C\to\C$ requires \emph{four real dimensions}! Since we cannot see four dimensions at once, any visualization we obtain will only be partial. To see this at work, we consider a simple function in some detail.
+
+\begin{example}{}{}
+  To help understand $f(z)=z^2$, we start by computing the various forms described above:\par
+	\begin{minipage}[t]{0.66\linewidth}\vspace{-10pt}
+		\begin{align*}
+			f(z) &=z^2 =x^2-y^2+2ixy\\
+			&=r^2e^{2i\theta} =r^2\cos 2\theta + ir^2\sin 2\theta
+		\end{align*}
+		While we cannot graph the entire function (don't even think about a parabola!), we can visualize its real and imaginary parts
+		\[
+			u(x,y)=x^2-y^2,\qquad v(x,y)=2xy
+		\]
+		as graphs of functions $\R^2\to\R$. Both are \emph{saddle surfaces}, which may be analyzed using the standard tools of multivariable calculus. For instance, the \emph{level curves} $u=$ constant and $v=$ constant are \emph{hyperbolæ.} You might find this easier using the polar forms of $u,v$.
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{0.33\linewidth}\vspace{0pt}
+		\flushright\includegraphics{functions-zsq}
+	\end{minipage}
+	\goodbreak
+	
+	%Away from the origin, $f(\pm z)=z^2$ shows that $f$ is a \emph{two-to-one} function.
+	The polar form allows us to think about the what $f$ does to the argument:
+	\[
+		f(z)=r^2e^{2i\theta}\implies \arg f(z)=2\arg z
+	\]
+	Given a \textcolor{Green}{sector} between arguments $\theta$ and $\phi$, the function \emph{doubles} this to the \textcolor{blue}{sector} between $2\theta$ and $2\phi$. This can also be visualized pathwise. If $z$ traces a \textcolor{Green}{path} which once encircles the origin, then the \textcolor{blue}{path} traced by $z^2$ orbits the origin \emph{twice}. The colored dots on the two paths correspond under $\textcolor{Green}{z}\mapsto \textcolor{blue}{z^2}$.
+	\begin{center}
+		\includegraphics{functions-zsq2}
+		\qquad\qquad
+		\includegraphics{functions-zsq3}
+	\end{center}
+\end{example}
+
+	Similar behavior occurs with higher powers. For instance, $z\mapsto z^3$ maps a single loop round the origin to a \emph{triple} loop. %; away from the origin we have a \emph{three-to-one} function. 
+	By contrast, the principal square root function $\sqrt z=\sqrt r\polar{i\theta}2$ \emph{halves} the principal argument: $\Arg\sqrt z\in (-\frac\pi 2,\frac\pi 2]$. In the fractional-exponent language of Section \ref{sec:roots},
+	\[
+		z\mapsto z^{1/2} =\{\sqrt r\polar{i\theta}2,-\sqrt r\polar{i\theta}2\}
+	\]
+	This is sometimes called a \emph{two-valued} function---we'll return to such objects in Chapter \ref{chap:functions}.
 
 
-\begin{examples}{}{}
-We consider the function $f(z)=z^2$ and some relations in more detail.\par
-\begin{minipage}[t]{0.65\linewidth}\vspace{0pt}
-First we write $f$ in the three standard forms of Example \ref{ex:functiontypes},
-\[f(z)=z^2=x^2-y^2+2ixy =r^2e^{2i\theta}\]
-We cannot straightforwardly \emph{graph} $f(z)=z^2$ (don't think about a parabola!). However, we can visualize the real and imaginary parts
-\[u(x,y)=x^2-y^2,\qquad v(x,y)=2xy\]
-as graphs of functions $\R^2\to\R$. Both are \emph{saddle surfaces} and can be analyzed using the standard tools of multivariable calculus. For instance, the \emph{level curves} $u=$ constant and $v=$ constant are \emph{hyperbolæ.}
-\end{minipage}\begin{minipage}[t]{0.34\linewidth}\vspace{0pt}
-\flushright\includegraphics{functions-zsq}
-\end{minipage}
-\goodbreak
+\boldsubsubsection{2D geometry with complex numbers}\phantomsection\label{pg:2dgeom}
 
-\begin{minipage}[t]{0.67\linewidth}\vspace{0pt}
-Now consider the polar form and what it means for the argument:
-\[f(z)=r^2e^{2i\theta}\implies \arg(z^2)=2\arg z\]
-This can be visualized by considering sectors of the plane: the \textcolor{Green}{sector} between arguments $\theta$ and $\phi$ is \emph{doubled} in angle to the \textcolor{blue}{sector} between $2\theta$ and $2\phi$.\smallbreak
-Away from the origin, $f(\pm z)=z^2$ shows that $f$ is a \emph{two-to-one} function: $f$ maps the sector with $\arg z\in[0,\pi)$ onto the entire plane.\smallbreak
-We can also visualize this pathwise. If $z$ traces a \textcolor{Green}{path} around the origin, $z^2$ traces a new \textcolor{blue}{path} \emph{twice} round the origin! The colored dots on the two paths correspond under $\textcolor{Green}{z}\mapsto \textcolor{blue}{z^2}$.\smallbreak
-Similar behavior occurs with higher powers. For instance, $z\mapsto z^3$ maps a single loop round the origin to a \emph{triple} loop; away from the origin we have a \emph{three-to-one} function. The function $z\mapsto z^n$ is an \emph{$n$-to-one} map.\smallbreak
-By contrast, the principal square root function $\sqrt z=\sqrt r\polar{i\theta}2$ \emph{halves} the principal argument $\theta=\Arg z$, from which $\arg\sqrt z\in (-\frac\pi 2,\frac\pi 2]$. Written instead using fractional exponent notation, we see that
-\[z\mapsto z^{1/2}=\{\sqrt r\polar{i\theta}2,-\sqrt r\polar{i\theta}2\}\]
-is a \emph{two-valued} function.
-\end{minipage}\begin{minipage}[t]{0.33\linewidth}\vspace{0pt}
-\flushright\includegraphics{functions-zsq2}\\
-\includegraphics{functions-zsq3}
-\end{minipage}
-\end{examples}
-
-\boldsubsubsection{Basic 2D geometry with complex numbers}\phantomsection\label{pg:2dgeom}
-
-Complex functions can be used to describe the primary geometric transformations of the plane.
+Complex functions easily describe the basic geometric transformations of the plane.
 \begin{description}
-\item[Translation] If $w$ is constant, the function $f(z)=z+w$ translates the plane, shifting the origin to $w$.
-\item[Scaling] If $R\in\R$ is constant, the function $f(z)=Rz$ scales the complex plane, inflating the distance from the origin.
-\item[Rotation] Given $\phi$, the function $f(z)=e^{i\phi}z$ rotates the complex plane by $\phi$ radians counter-clockwise around the origin. The easy way to see this is to write the function in polar form itself:
-\[f(z)=f(re^{i\theta})=e^{i\phi}re^{i\theta}=re^{i(\theta+\phi)}\]
-\item[Reflection] Complex conjugation $f(z)=\cl z=x-iy$ reflects the complex plane in the horizontal axis. Combining with rotation, we can produce the reflection in any line through the origin. To reflect in the line through 0 and $w$ with $\Arg w=\phi$;
-\begin{enumerate}
-  \item Rotate the plane by $-\phi$: \ $z\mapsto e^{-i\phi}z$
-  \item Reflect in the real axis: \ $z\mapsto \cl{e^{-i\phi}z}=e^{i\phi}\cl z$
-  \item Rotate the plane back by $\phi$: \ the result is the function $f(z)=e^{2i\phi}\cl z$
-\end{enumerate}
+	\item[Translation] If $w$ is constant, the function $f(z)=z+w$ translates the plane, shifting the origin to $w$.
+	\item[Scaling] If $R>0$ is a real constant, the function $f(z)=Rz$ scales/stretches the complex plane relative to the origin.
+	\item[Rotation] Given $\phi\in\R$, the function $f(z)=e^{i\phi}z$ rotates the plane by $\phi$ radians counter-clockwise around the origin. This is easy to see in polar form:
+	\[
+		f(z)=f(re^{i\theta})=e^{i\phi}re^{i\theta}=re^{i(\theta+\phi)}
+	\]
+	\item[Reflection] Complex conjugation $f(z)=\cl z=x-iy$ reflects the plane in the horizontal axis.
 \end{description}
-Combining these functions allows one to rotate around any point and reflect across any line.
+
+By composing such functions, we can describe arbitrary rotations, reflections and scalings relative to any points/lines.
+
+
 
 \begin{examples}{}{analyticpg2}
-\hangindent\leftmargini
-\textup{1.}\ The function $f(z)=\polar{i\pi}3(z-2i)+2i$ rotates the complex plane by $\frac\pi 3$ radians around the point $2i$.
-\begin{enumerate}\setcounter{enumi}{1}
-  \item\label{ex:reflect2} We compute the function that reflects across the line joining $\alpha=2+i$ and $\beta=4+3i$.\smallbreak
-  Since $\beta-\alpha=2+2i$ has argument $\phi=\frac\pi 4$, we combine reflection across the line making $\phi$ through the origin with translation by $\alpha$ (translate by $-\alpha$, reflect, translate back by $\alpha$):
-  \begin{align*}
-  f(z)&=e^{2i\phi}(\cl{z-\alpha})+\alpha =\polar{i\pi}2(\cl{z-2-i})+2+i=i(\cl z-2+i)+2+i\\
-  &=i\cl z+1-i
-  \end{align*}
-  As a sanity check, you should verify that $f(\alpha)=\alpha$ and $f(\beta)=\beta$: why?
-\end{enumerate}
+	\exstart We construct rotation by $\frac\pi 3=\ang{60}$ counter-clockwise about $2i$ in three stages:
+	\begin{enumerate}\setcounter{enumi}{1}
+	  \item[]\begin{enumerate}
+	  	\item Translate $2i$ to the origin: \ $z\mapsto z-2i$
+	  	\item Rotate by $\frac\pi 3$ about the origin: \ $z\mapsto e^{\frac{i\pi}3}(z-2i)$
+	  	\item Translate the origin back to $2i$: \ $z\mapsto f(z) =\polar{i\pi}3(z-2i)+2i$
+		\end{enumerate}
+	  
+		\item We may similarly produce any reflection. To reflect in the line through 0 and $w$ with $\Arg w=\phi$;
+		\begin{enumerate}
+		  \item Rotate the plane by $-\phi$: \ $z\mapsto e^{-i\phi}z$
+		  \item Reflect in the real axis: \ $z\mapsto \cl{e^{-i\phi}z}=e^{i\phi}\cl z$
+		  \item Rotate the plane back by $\phi$: \ $z\mapsto f(z)=e^{2i\phi}\cl z$
+		\end{enumerate}
+	  
+	  \item\label{ex:reflect2} We compute the function that reflects across the line joining $\alpha=2+i$ and $\beta=4+3i$.\smallbreak
+	  Since $\beta-\alpha=2+2i$ has argument $\phi=\frac\pi 4$, we combine reflection across the line making $\phi$ through the origin with translation by $\alpha$ (translate by $-\alpha$, reflect, translate back by $\alpha$):
+	  \begin{align*}
+		  f(z)&=e^{2i\phi}(\cl{z-\alpha})+\alpha =\polar{i\pi}2(\cl{z-2-i})+2+i=i(\cl z-2+i)+2+i\\
+		  &=i\cl z+1-i
+	  \end{align*}
+	  As a sanity check, you should verify explicitly that $f(\alpha)=\alpha$ and $f(\beta)=\beta$: why?
+	\end{enumerate}
 \end{examples}
 
+
 \begin{exercises*}
-\hangindent\leftmargini
-\textup{1.}\ For each function, describe its implied domain (page \pageref{sec:func}).
-\begin{enumerate}\setcounter{enumi}{1}
-  \item[]\begin{enumerate}
-    \item $\displaystyle f(z)=\frac 1{4+z^2}$\qquad
-    (b) \ $\displaystyle f(z)=\frac{z-1}{e^z-1}$\qquad
-    (c) $\displaystyle f(z)=\frac{z^2+z+1}{z^4-1}$
-  \end{enumerate}
-  
-  \item Write the function in terms of its real and imaginary parts: $f(z)=u(x,y)+iv(x,y)$.
-  \begin{enumerate}
-  	\item $\displaystyle f(z)=z^3-4z^2+2$\qquad
-    (b) \ $\displaystyle f(z)=\frac{z^2}{1-\cl z}$\qquad
-    (c) $\displaystyle f(z)=e^{\cl z}$
-  \end{enumerate}
-  
-  \item Write the function $\displaystyle f(z)=\frac 1{\nm z^2}\cl z$ in polar form.
-  
-  \item Find an expression for the function which reflects across the vertical line through the point $\alpha=-1$.
-  
-  \item For Example \hyperref[ex:reflect2]{\ref*{ex:analyticpg2}\ref*{ex:reflect2}} evaluate the function $\displaystyle g(z)=e^{2i\phi}(\cl{z-\beta})+\beta$. Why are you not surprised by the result?
-  
-  \item Let $\phi=\tan^{-1}\frac 34$. Find the result (in rectangular co-ordinates) of rotating $z=-2+i$ counter-clockwise by $\phi$ radians around the origin.\\
-  (\emph{Hint: consider a 3:4:5 triangle!})
-  
-  \item Prove, using the expressions on page \pageref{pg:2dgeom}, that the composition of two reflections is a rotation, and that the composition of a rotation and a reflection is a reflection.
-\end{enumerate}
+	\exstart For each function, describe its implied domain (page \pageref{sec:func}).
+	\begin{enumerate}\setcounter{enumi}{1}
+	  \item[]\begin{enumerate}
+	    \item $\displaystyle f(z)=\frac 1{4+z^2}$\qquad
+	    (b) \ $\displaystyle f(z)=\frac{z-1}{e^z-1}$\qquad
+	    (c) $\displaystyle f(z)=\frac{z^2+z+1}{z^4-1}$
+	  \end{enumerate}
+	  
+	  \item Write the function in terms of its real and imaginary parts: $f(z)=u(x,y)+iv(x,y)$.
+	  \begin{enumerate}
+	  	\item $\displaystyle f(z)=z^3-4z^2+2$\qquad
+	    (b) \ $\displaystyle f(z)=\frac{z^2}{1-\cl z}$\qquad
+	    (c) $\displaystyle f(z)=e^{\cl z}$
+	  \end{enumerate}
+	  
+	  \item Write the function $\displaystyle f(z)=\frac 1{\nm z^2}\cl z$ in polar form.
+	  
+	  \item Find an expression for the function which reflects across the vertical line through $\alpha=-1$.
+	  
+	  \item In Example \ref*{ex:analyticpg2}.\ref{ex:reflect2}, evaluate the function $\displaystyle g(z)=e^{2i\phi}(\cl{z-\beta})+\beta$. Why are you not surprised by the result?
+	  
+	  \item Let $\phi=\tan^{-1}\frac 34$. Find the result (in rectangular co-ordinates) of rotating $z=-2+i$ counter-clockwise by $\phi$ radians around the origin.\par
+	  (\emph{Hint: consider a 3:4:5 triangle!})
+	  
+	  \item Prove, using the expressions on page \pageref{pg:2dgeom}, that the composition of two reflections is a rotation, and that the composition of a rotation and a reflection is a reflection.
+	\end{enumerate}
 \end{exercises*}
 \clearpage
 
+
+
 \subsection{Open sets, Limits and Continuity}
 
-Before we can differentiate, we need to understand limits and continuity. Much of this section should be treated as a reference, where we review without proof several preliminaries which are identical to (multivariable) real analysis.
+Before we can differentiate, we need to understand limits and continuity. We start by reviewing several preliminaries without proof. Almost all of this is identical to (multivariable) real analysis.
 
 \begin{defn}{Sequences and Limits}{}{}
-Let $(z_n)=(z_1,z_2,\ldots)$ be a \emph{sequence} of complex numbers.
-\begin{enumerate}\itemsep2pt
-  \item $(z_n)$ \emph{converges} to $z_0$, and we write \smash[b]{$\lim\limits_{n\to \infty}z_n=z_0$} or simply $z_n\to z_0$, if
-	\[\forall \epsilon>0,\ \exists N\text{ such that }n>N\implies \nm{z_n-z_0}<\epsilon\]
-	
-	\item $(z_n)$ is \emph{Cauchy} if
-	\[\forall \epsilon>0,\ \exists N\text{ such that }m,n>N\implies \nm{z_m-z_n}<\epsilon\]
-\end{enumerate}
+	Let $(z_n)=(z_1,z_2,\ldots)$ be a \emph{sequence} of complex numbers.
+	\begin{enumerate}\itemsep2pt
+	  \item $(z_n)$ \emph{converges} to $z_0$, and we write \smash[b]{$\lim\limits_{n\to \infty}z_n=z_0$} or simply $z_n\to z_0$, if
+		\[
+			\forall \epsilon>0,\ \exists N\text{ such that }n>N\implies \nm{z_n-z_0}<\epsilon
+		\]
+		
+		\item $(z_n)$ is a \emph{Cauchy sequence} if
+		\[
+			\forall \epsilon>0,\ \exists N\text{ such that }m,n>N\implies \nm{z_m-z_n}<\epsilon
+		\]
+	\end{enumerate}
 \end{defn}
 
 \begin{thm}{}{}
-\hangindent\leftmargini
-\textup{1.} \ Cauchy completeness: $(z_n)$ converges if and only if it is Cauchy.
-\begin{enumerate}\setcounter{enumi}{1}
-  \item Bolzano--Weierstraß: If $(z_n)$ is bounded, then it has a convergent subsequence.
-\end{enumerate}
+	\exstart Cauchy completeness: $(z_n)$ converges if and only if it is Cauchy.
+	\begin{enumerate}\setcounter{enumi}{1}
+	  \item Bolzano--Weierstraß: If $(z_n)$ is bounded, then it has a convergent subsequence.
+	\end{enumerate}
 \end{thm}
 
 \begin{defn}{Disks, Sets and Neighborhoods}{disks}
-The \emph{\textcolor{Green}{open disk}} (or \emph{$\delta$-ball}) centered at $z_0\in\C$ with radius $\delta$ is the set\par
-\begin{minipage}[t]{0.65\linewidth}\vspace{-12pt}
-\[B_\delta(z_0)=\{z\in\C:\nm{z-z_0}<\delta\}\]
-The \emph{punctured open disk} centered at $z_0$ with radius $\delta$ is the set
-\[\{z\in\C:0<\nm{z-z_0}<\delta\}\]
-Let $D\subseteq \C$ be a subset.
-\end{minipage}\hfill\begin{minipage}[t]{0.3\linewidth}\vspace{-16pt}
-\centering\includegraphics{functions-open}\\
-An open neighborhood of $z_0$
-\end{minipage}\par
-\begin{itemize}\itemsep2pt
-	\item $D$ is \emph{open} if every point is \emph{interior}: at every point we can center an open disk $B_\delta(z_0)\subseteq D$:
-	\[\forall z_0\in D, \ \exists \delta>0\text{ such that } \nm{z-z_0}<\delta\implies z\in D\]
-	\vspace{-20pt}
-	\item $D$ is a \emph{neighborhood} of $z_0$ if it contains some $B_\delta(z_0)$. A neighborhood can, but need not be, open. A \emph{punctured neighborhood} instead contains a punctured disk.
-	\item $D$ is \emph{closed} if its complement $\C\setminus K$ is open.
-\end{itemize}
+	The \emph{\textcolor{Green}{open disk}} (or \emph{$\delta$-ball}) centered at $z_0\in\C$ with radius $\delta$ is the set\par
+	\begin{minipage}[t]{0.65\linewidth}\vspace{-12pt}
+		\[
+			B_\delta(z_0)=\{z\in\C:\nm{z-z_0}<\delta\}
+		\]
+		For the \emph{punctured open disk}, remove the central point $z_0$:
+		\[
+			\{z\in\C:0<\nm{z-z_0}<\delta\}
+		\]
+		Let $D\subseteq \C$ be a subset.
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{0.3\linewidth}\vspace{-16pt}
+		\centering\includegraphics{functions-open}\\
+		An open neighborhood of $z_0$
+	\end{minipage}
+	\par\vspace{-5pt}
+	\begin{itemize}\itemsep2pt
+		\item $D$ is \emph{open} if every point is \emph{interior}: at every point we can center an open disk $B_\delta(z_0)\subseteq D$:
+		\[
+			\forall z_0\in D, \ \exists \delta>0\text{ such that } \nm{z-z_0}<\delta\implies z\in D
+		\]
+		%\vspace{-20pt}
+		\item $D$ is a \emph{neighborhood} of $z_0$ if it contains some $B_\delta(z_0)$. A neighborhood can, but need not, be open. A \emph{punctured neighborhood} instead contains a punctured disk.
+		\item $D$ is \emph{closed} if its complement $\C\setminus D$ is open.
+	\end{itemize}
 \end{defn}
 
 \begin{thm}{}{}
-$K$ is closed if and only if every Cauchy sequence $(z_n)\subseteq K$ has its limit in $K$.
+	$K$ is closed if and only if every Cauchy sequence $(z_n)\subseteq K$ has its limit in $K$.
 \end{thm}
-\goodbreak
 
-We define continuity of functions in the usual way.
+%We define continuity of functions in the usual way.
 
 \begin{defn}{Continuity}{contdef}
-Let $f:D\to\C$ and $z_0\in D$. We say that $f$ is \emph{continuous at $z_0$} if
-\[\forall \text{ sequences } (z_n)\subseteq D\text{ with }z_n\to z_0\text{ we have }f(z_n)\to f(z_0)\]
-$f$ is \emph{continuous} (on $D$) if it is continuous at all points $z_0\in D$.
+	Let $f:D\to\C$ and $z_0\in D$. We say that $f$ is \emph{continuous at $z_0$} if
+	\[
+		\forall \text{ sequences } (z_n)\subseteq D\text{ with }z_n\to z_0\text{ we have }f(z_n)\to f(z_0)
+	\]
+	$f$ is \emph{continuous} (on $D$) if it is continuous at all points $z_0\in D$.
 \end{defn}
+
 \goodbreak
 
-As in real analysis, it is helpful to relate this to limits of functions.
+As in real analysis, it is helpful to relate continuity to limits of functions.
 
 \begin{defn}{Limits of Functions}{limit}
-Let $f:D\to\C$, where $D$ contains an open punctured neighborhood of $z_0$. We say that $w_0$ is the \emph{limit of $f$ as $z$ approaches $z_0$} and write $\lim\limits_{z\to z_0}f(z)=w_0$, if
-\[\forall \epsilon>0,\ \exists \delta>0\text{ such that } 0<\nm{z-z_0}<\delta\implies \nm{f(z)-w_0}<\epsilon\]
+	Let $f:D\to\C$, where $D$ contains an open punctured neighborhood of $z_0$. We say that $w_0$ is the \emph{limit of $f$ as $z$ approaches $z_0$} and write $\lim\limits_{z\to z_0}f(z)=w_0$, if
+	\[
+		\forall \epsilon>0,\ \exists \delta>0\text{ such that } 0<\nm{z-z_0}<\delta\implies \nm{f(z)-w_0}<\epsilon
+	\]
 \end{defn}
 
 \begin{thm}{}{}
-If $z_0$ is an \emph{interior} point to $D$, then $f:D\to\C$ is continuous at $z_0$ if and only if
-\[\lim\limits_{z\to z_0}f(z)=f(z_0)\]
+	Let $z_0$ be an \emph{interior} point of $D$. Then $f:D\to\C$ is continuous at $z_0$ if and only if
+	\[
+		\lim\limits_{z\to z_0}f(z)=f(z_0)
+	\]
 \end{thm}
 
 Otherwise said, for any $\epsilon$-ball $B_\epsilon\bigl(f(z_0)\bigr)$, there exists a $\delta$-ball $B_\delta(z_0)$ such that $f\bigl(B_\delta(z_0)\bigr)\subseteq B_\epsilon\bigl(f(z_0)\bigr)$.
+\smallbreak
 
 
 We won't spend much time on calculations since these tend to proceed similarly to real analysis.
 
 \begin{example}{}{}
-We show that $f(z)=z^2$ is continuous by proving that $\lim\limits_{z\to z_0}z^2=z_0^2$ for all $z_0\in\C$.\smallbreak
-Let $z_0\in\C$ and $\epsilon>0$ be given. Define $\delta=\min\{1,\frac\epsilon{1+2\nm{z_0}}\}$. By the triangle-inequality,
-\[
-\nm{z-z_0}<\delta\implies \nm{z+z_0}=\nm{z-z_0+2z_0}\le \nm{z-z_0}+2\nm{z_0}<\delta+2\nm{z_0}\le 1+2\nm{z_0}
-\]
-from which
-\[
-\nm{z-z_0}<\delta\implies \nm{z^2-z_0^2}=\nm{z-z_0}\nm{z+z_0}<\delta(1+2\nm{z_0})\le \epsilon
-\]
-The picture below should help you visualize this. Given the \textcolor{blue}{$\epsilon$-ball} centered at $w_0=z_0^2$, we've described how to choose $\delta>0$ so that the punctured \textcolor{Green}{$\delta$-ball} centered at $z_0$ is mapped to a \textcolor{Green}{region} \emph{inside} the original \textcolor{blue}{$\epsilon$-ball.}
-\begin{center}
-\includegraphics{limits-zsq}
-\end{center}
-The picture illustrates the case when
-\[z_0=\frac 12\polar{3\pi i}4=\frac 1{2\sqrt 2}(-1+i),\quad w_0=-\frac i4,\quad \epsilon=\frac 52\quad\text{and}\quad \delta=\min\left\{1,\tfrac{5/2}{1+2\cdot\frac 12}\right\}=1\]
+	We show that $f(z)=z^2$ is continuous (on $\C$) by proving that $\lim\limits_{z\to z_0}z^2=z_0^2$ for all $z_0$.\smallbreak
+	Let $z_0\in\C$ and $\epsilon>0$ be given. Define $\delta=\min\{1,\frac\epsilon{1+2\nm{z_0}}\}$. By the triangle-inequality,
+	\[
+		\nm{z-z_0}<\delta\implies \nm{z+z_0}=\nm{z-z_0+2z_0}\le \nm{z-z_0}+2\nm{z_0}<\delta+2\nm{z_0}\le 1+2\nm{z_0}
+	\]
+	from which
+	\[
+		\nm{z-z_0}<\delta\implies \nm{z^2-z_0^2}=\nm{z-z_0}\nm{z+z_0}<\delta(1+2\nm{z_0})\le \epsilon
+	\]
+	The picture below should help you visualize things. Given an \textcolor{blue}{$\epsilon$-ball} centered at $w_0=z_0^2$, we've described how to choose $\delta>0$ so that $f$ maps the \textcolor{Green}{$\delta$-ball} centered at $z_0$ to a \textcolor{Green}{region} \emph{inside} the original \textcolor{blue}{$\epsilon$-ball.}
+	\begin{center}
+		\includegraphics{limits-zsq}
+	\end{center}
+	The picture illustrates the case when
+	\[
+		z_0=\frac 12\polar{3\pi i}4=\frac 1{2\sqrt 2}(-1+i),\quad w_0=-\frac i4,\quad \epsilon=\frac 52\quad\text{and}\quad \delta=\min\left\{1,\tfrac{5/2}{1+2\cdot\frac 12}\right\}=1
+	\]
 \end{example}
 \goodbreak
 
 
 \begin{thm}{Basic Limit Results}{basiclimit}
-Throughout, let $f,g:D\to\C$ be functions and $z_0=x_0+iy_0$ be a point satisfying the assumptions of Definition \ref{defn:limit}.
+Let $f,g:D\to\C$ be functions and $z_0=x_0+iy_0$ be a point satisfying the assumptions of Definition \ref{defn:limit}.
 \begin{enumerate}
   \item Limits are unique: If $w_0$ and $\widetilde{w_0}$ satisfy Definition \ref{defn:limit}, then $\widetilde{w_0}=w_0$.
   \item\label{thmbaslim2} If $f(z)=u(x,y)+iv(x,y)$ and $w_0=u_0+iv_0$, then
-  \[\lim_{z\to z_0}f(z)=w_0\iff \lim_{(x,y)\to (x_0,y_0)}\hspace*{-10pt} u(x,y)=u_0\quad \text{and}\quad \lim_{(x,y)\to (x_0,y_0)}\hspace*{-10pt} v(x,y)=v_0\]
+  \[
+  	\lim_{z\to z_0}f(z)=w_0\iff \lim_{(x,y)\to (x_0,y_0)}\hspace*{-10pt} u(x,y)=u_0\quad \text{and}\quad \lim_{(x,y)\to (x_0,y_0)}\hspace*{-10pt} v(x,y)=v_0
+  \]
   In particular $\lim\limits_{z\to z_0}\cl z=\cl{z_0}$
   \item Suppose $\lim\limits_{z\to z_0}f(z)=w_0$ and $\lim\limits_{z\to z_0}g(z)=w_1$:
   \begin{enumerate}
-    \item For any $a,b\in\C$, $\lim\limits_{z\to z_0}(af(z)+bg(z))=aw_0+bw_1$
-    \item $\lim\limits_{z\to z_0}(f(z)g(z))=w_0w_1$
+    \item For any $a,b\in\C$, $\lim\limits_{z\to z_0}\bigl( af(z)+bg(z)\bigr)=aw_0+bw_1$
+    \item $\lim\limits_{z\to z_0}\bigl(f(z)g(z)\bigr)=w_0w_1$
     \item $\lim\limits_{z\to z_0}\frac{f(z)}{g(z)}=\frac{w_0}{w_1}$, provided $w_1\neq 0$ and $g(z)\neq 0$ on a punctured neighbourhood of $z_0$.
     \item If $h$ is a function such that $\lim\limits_{w\to w_0}h(w)=w_2$, then $\lim\limits_{z\to z_0}h(f(z))=w_2$
 	\end{enumerate}
 \end{enumerate}
 \end{thm}
 
-Most of the above should feel familiar, and all should be intuitive. Parts 2 \& 3 have obvious corollaries for continuous functions. For instance:
-\begin{quote}
-$f$ is continuous if and only if its real and imaginary parts $u,v:D\to\R$ are also. 
-\end{quote}
-Several of the properties in part 3 follow from part 2 by considering real and imaginary parts and the limit laws for functions $\R^2\to\R$. For instance write $f(z)=u_1+iv_1$ and $g(z)=u_2+iv_2$, then
-\[\lim\limits_{z\to z_0}(f(z)g(z))=\lim\limits_{z\to z_0}(u_1u_2-v_1v_2+i(u_1v_2+v_1u_2))=w_0w_1\]
+The basic limit laws should feel familiar and intuitive; indeed analogues of most should have been proved in real analysis. Parts 2 \& 3 have obvious corollaries for continuous functions. For instance:
+
+\begin{cor}{}{}
+	$f:D\subseteq\C\to\C$ is continuous if and only if its real and imaginary parts $u,v:D\to\R$ are also continuous. 
+\end{cor}
+
+Several pieces of part 3 follow from part 2 by considering real and imaginary parts and the limit laws for functions $\R^2\to\R$. For instance, write $f(z)=u_1+iv_1$ and $g(z)=u_2+iv_2$, then
+\[
+	\lim\limits_{z\to z_0}\bigl(f(z)g(z)\bigr) =\lim\limits_{z\to z_0}\bigl(u_1u_2-v_1v_2+i(u_1v_2+v_1u_2)\bigr) =w_0w_1
+\]
 
 \begin{examples}{}{}
-\hangindent\leftmargini
-\textup{1.}\ $\lim\limits_{z\to 1+3i}z^2-i\cl z =(1+3i)^2-i\cl{1+3i} =1+6i-9-i(1-3i)=-11+5i$.
-\begin{enumerate}\setcounter{enumi}{1}
-  \item Every polynomial function is continuous on $\C$.
-  \item Every rational function $f(z)=\frac{p(z)}{q(z)}$ where $p,q$ are polynomials, is continuous on its implied domain $\{z:q(z)\neq 0\}$.
-  \item Since the exponential, cosine and sine are continuous on $\R$, we see that the exponential function
-  \[\exp(z)=e^z=e^xe^{iy}=e^x\cos y+ie^x\sin y\]
-  is continuous on $\C$.
-\end{enumerate}
+	\exstart $\lim\limits_{z\to 1+3i}(z^2-i\cl z) =(1+3i)^2-i\bigl(\cl{1+3i}\bigr) =1+6i-9-i(1-3i)=-11+5i$.
+	\begin{enumerate}\setcounter{enumi}{1}
+	  \item Every polynomial function is continuous on $\C$.
+	  \item Every rational function $f(z)=\frac{p(z)}{q(z)}$ (where $p,q$ are polynomials), is continuous on its implied domain $D=\{z:q(z)\neq 0\}$.
+	  \item The exponential function
+	  \[
+	  	\exp(z)=e^z=e^xe^{iy}=e^x\cos y+ie^x\sin y
+	  \]
+	  is continuous on $\C$, since the exponential, cosine and sine are continuous on $\R$.
+	\end{enumerate}
 \end{examples}
 
 \vfil\goodbreak
 
+
 \boldsubsubsection{Limits and the Point at Infinity}
 
-The treatment of infinity in complex analysis is very different to that in (single-variable) real analysis, where there are \emph{two} infinities ($\pm\infty$), one for each \emph{direction.} The convention in complex analysis is to have only one: that is, the sequences $z_n=n$ and $w_n=in$ diverge to the \emph{same} infinity.
+In (single-variable) real analysis there are \emph{two} infinities ($\pm\infty$). In complex analysis, the convention is to have only one: for instance, the sequences $z_n=n$ and $w_n=in$ both diverge to the \emph{same} infinity.
 
 \begin{defn}{}{rsphere}
-The \emph{extended complex plane} or \emph{Riemann sphere} is the set $\cl\C=\C\cup\{\infty\}$ where the symbol $\infty$ denotes the \emph{point at infinity.}\smallbreak
-A \emph{neighborhood} of $\infty$ is any set containing an \emph{open disk} at $\infty$; a subset of the form
-\[\{\infty\}\cup\{z\in\C:\nm{z}>M\}\]
-We extend the notion of limit to the point at infinity.
-\begin{enumerate}
-  \item $\lim\limits_{z\to z_0}f(z)=\infty$ means: $\forall M>0$, $\exists \delta>0$ such that $0<\nm{z-z_0}<\delta \implies \nm{f(z)}>M$
-  \item $\lim\limits_{z\to \infty}f(z)=w_0$ means: $\forall \epsilon>0$, $\exists N>0$ such that $\nm{z}>N \implies \nm{f(z)-w_0}<\epsilon$
-  \item $\lim\limits_{z\to\infty}f(z)=\infty$ means: $\forall M>0$, $\exists N>0$ such that $\nm{z}>N\implies \nm{f(z)}>M$
-\end{enumerate}
+	The \emph{extended complex plane} (\emph{Riemann sphere}) is the set $\cl\C=\C\cup\{\infty\}$ where $\infty$ denotes the \emph{point at infinity.} The concepts of neighborhood, openness and limit extend to the point at infinity:
+	\begin{enumerate}
+	  \item A \emph{neighborhood} of $\infty$ is any set containing an \emph{open disk} at $\infty$; a subset of the form
+		\[
+			\{\infty\}\cup\{z\in\C:\nm{z}>M\}
+		\]
+	  \item $\lim\limits_{z\to z_0}f(z)=\infty$ means: $\forall M>0$, $\exists \delta>0$ such that $0<\nm{z-z_0}<\delta \implies \nm{f(z)}>M$
+	  \item $\lim\limits_{z\to \infty}f(z)=w_0$ means: $\forall \epsilon>0$, $\exists N>0$ such that $\nm{z}>N \implies \nm{f(z)-w_0}<\epsilon$
+	  \item $\lim\limits_{z\to\infty}f(z)=\infty$ means: $\forall M>0$, $\exists N>0$ such that $\nm{z}>N\implies \nm{f(z)}>M$
+	\end{enumerate}
 \end{defn}
 
 \begin{example}{}{}
-We verify that $\lim\limits_{z\to -3i}\frac{z^2}{z+3i}=\infty$.\smallbreak
-Let $M>0$ be given and define $\delta=\min\{1,\frac 4{M}\}$. Then
-  	\begin{align*}
+	We verify that $\lim\limits_{z\to -3i}\frac{z^2}{z+3i}=\infty$. Let $M>0$ be given and define $\delta=\min\{1,\frac 4{M}\}$. Then
+  \begin{align*}
   	0<\nm{z+3i}<\delta&\implies \nm z\ge \nm{3i}-\nm{z+3i}>3-\delta\ge 2\\
   	&\implies\nm{\frac{z^2}{z+3i}} > \frac{4}{\delta} \ge M
-  	\end{align*}
+  \end{align*}
 \end{example}
 
 
-The intuitive relationships between functions, limits, zero and infinity feel like the dubious claims $\frac 1\infty=0$ and $\frac 10=\infty$!
+The relationship between limits, zero and infinity feel like the dubious claims $\frac 1\infty=0$ and $\frac 10=\infty$!
 
 \begin{thm}{}{infty}
-Provided all limits make sense, Theorem \ref{thm:basiclimit} also applies to limits involving infinity. Moreover, we have th additional relationships:
-\begin{enumerate}
-  \item $\lim\limits_{z\to z_0}f(z)=\infty \iff \lim\limits_{z\to z_0}\frac 1{f(z)}=0$
-  \item $\lim\limits_{z\to\infty}f(z)=w_0 \iff \lim\limits_{z\to 0}f\left(\frac 1z\right)=w_0$
-  \item $\lim\limits_{z\to \infty}f(z)=\infty \iff \lim\limits_{z\to 0}\frac 1{f(1/z)}=0$
-\end{enumerate}
+	Provided all limits make sense, Theorem \ref{thm:basiclimit} also applies to limits involving infinity. Moreover, we have the additional relationships:
+	\begin{enumerate}
+	  \item $\lim\limits_{z\to z_0}f(z)=\infty \iff \lim\limits_{z\to z_0}\frac 1{f(z)}=0$ \qquad\qquad 2.\ \ $\lim\limits_{z\to\infty}f(z)=w_0 \iff \lim\limits_{z\to 0}f\left(\frac 1z\right)=w_0$
+	  \setcounter{enumi}{2}
+	  \item $\lim\limits_{z\to \infty}f(z)=\infty \iff \lim\limits_{z\to 0}\frac 1{f(1/z)}=0$
+	\end{enumerate}
 \end{thm}
 
 \begin{proof}[Sketch Proof]
-Suppose $\lim\limits_{z\to\infty}f(z)=w_0$. Simply let $\delta=\frac 1N$ to see that
-\[\forall \epsilon>0,\exists \delta>0\text{ such that }0<\tfrac 1z<\delta \implies \nm{f(\tfrac 1z)-w_0}<\epsilon\]
-The other five results are similar.
-\end{proof}\goodbreak
+	Suppose $\lim\limits_{z\to\infty}f(z)=w_0$. Let $\delta=\frac 1N$ to see that
+	\[
+		\forall \epsilon>0,\exists \delta>0\text{ such that }0<\tfrac 1z<\delta \implies \nm{f(\tfrac 1z)-w_0}<\epsilon
+	\]
+	The other five results are similar.
+\end{proof}
+
 
 \begin{example}{}{}
-Consider $f(z)=\frac{5iz+1}{3z-2i}$. Plainly 
+	Consider $f(z)=\frac{5iz+1}{3z-2i}$. Plainly 
   \begin{gather*}
-  \lim_{z\to\frac 23i}\frac 1{f(z)}=\lim_{z\to\frac 23i}\frac{3z-2i}{5iz+1}=0\implies \lim_{z\to\frac 23i}f(z)=\infty\\
-  \lim_{z\to\infty}f(z)= \lim_{z\to\infty}\frac{5i+1/z}{3-2i/z} = \frac{5i+\lim\frac 1z}{3-2i\lim\frac 1z}=\frac 53i
-  \end{gather*}
+  	\lim_{z\to\frac 23i}\frac 1{f(z)}=\lim_{z\to\frac 23i}\frac{3z-2i}{5iz+1}=0\implies \lim_{z\to\frac 23i}f(z)=\infty\\
+  	\lim_{z\to\infty}f(z)= \lim_{z\to\infty}\frac{5i+1/z}{3-2i/z} = \frac{5i+\lim\frac 1z}{3-2i\lim\frac 1z}=\frac 53i
+  \end{gather*}\goodbreak
 % The function $f(z)=\frac 1z$ is a continuous bijection $f:\cl\C\to\cl\C$ satisfying $f(0)=\infty$ and $f(\infty)=0$: indeed it is its own inverse! We can show directly that $f$ is continuous at zero: given $M>0$, let $\delta=\frac 1M$ to see that
 % \[\nm{z-0}<\delta\implies \nm z<\frac 1M\implies \nm{f(z)}=\frac 1{\nm z}>M\]
 % whence $\lim\limits_{z\to 0}f(z)=\infty=f(0)$.
@@ -311,133 +369,139 @@ Consider $f(z)=\frac{5iz+1}{3z-2i}$. Plainly
 %   \[\lim_{z\to\frac 23i}f(z)=\infty\quad\text{and}\quad \lim_{z\to\infty}f(z)= \lim_{z\to\infty}\frac{5i+1/z}{3-2i/z}=\frac 53i\]
 %   we can consider $f$ as a function $f:\cl\C\to\cl\C$ satisfying $f\left(\frac 23i\right)=\infty$ and $f(\infty)=\frac 53i$. 
 % \end{enumerate}
-In view of these calculations, the function is really a map $f:\cl\C\to\cl\C$ of the Riemann sphere to itself:
-\[f(z):=\begin{cases}
-\frac{5iz+1}{3z-2i}&\text{if }z\neq \frac 23i,\infty\\
-\infty&\text{if }z=\frac 23i\\
-\frac 53i&\text{if }z=\infty
-\end{cases}\]
-In fact $f$ is a continuous bijection (exercise)!
+Because of these calculations, it is common to view $f$ as a continuous bijection $f:\cl\C\to\cl\C$ of the Riemann sphere with itself (exercise):
+\[
+	f(z):=
+	\begin{cases}
+		\frac{5iz+1}{3z-2i}&\text{if }z\neq \frac 23i,\infty\\
+		\infty&\text{if }z=\frac 23i\\
+		\frac 53i&\text{if }z=\infty
+	\end{cases}
+\]
 \end{example}
 
-For us, the Riemann sphere is merely a fun diversion. Unless indicated otherwise, all sets should be assumed to be subsets of the (\emph{finite}) complex plane.\footnote{Computations of limits involving infinity are examinable, but the Riemann sphere and its interpretation are not.} The Riemann sphere gets its name because $\cl\C$ can be visualized as a \textcolor{blue}{sphere $S^2$} where $\infty$ plays the role of the north pole. The rest of the sphere is identified bijectively with the \textcolor{Green}{equatorial plane $\C$} via \href{https://en.wikipedia.org/wiki/Stereographic_projection}{\emph{stereographic projection}} $\pi:S^2\to\cl\C$: in the picture, the image of $P\in S^2$ is the intersection $\pi(P)$ of $\C$ with the line through $P$ and $N=\pi^{-1}(\infty)$.
+\begin{aside}{\bf Aside (non-examinable)}{}
+	The Riemann sphere is merely a fun diversion for us. Unless indicated otherwise, all sets should be assumed to be subsets of the (\emph{finite}) complex plane.\par
+	\begin{minipage}[t]{0.49\linewidth}\vspace{-5pt}
+		The Riemann sphere is so-named because it can be visualized as a \textcolor{blue}{sphere $S^2$}, with $\infty$ playing the role of the north pole. The rest of the sphere is identified bijectively with the \textcolor{Green}{equatorial plane $\C$} via \href{https://en.wikipedia.org/wiki/Stereographic_projection}{\emph{stereographic projection}} $\pi:S^2\to\cl\C$. In the picture, the image of $P\in S^2$ is the intersection $\pi(P)$ of $\C$ with the line through $P$ and $N=\pi^{-1}(\infty)$.
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{0.5\linewidth}\vspace{0pt}
+		\flushright%\includegraphics{complex-stereo+0_0}
+		\href{https://www.math.uci.edu/~ndonalds/math147/complex-stereo.html}{\includegraphics{complex-stereo}}
+	\end{minipage}
+\end{aside}
 
-%\href{https://www.math.uci.edu/~ndonalds/math147/complex-stereo.html}{\includegraphics[scale=1.6]{complex-stereo}}
-\begin{center}
-\href{https://www.math.uci.edu/~ndonalds/math147/complex-stereo.html}{\includegraphics[scale=0.85]{complex-stereo+0_0}}
-\end{center}
-
-% \begin{minipage}[t]{0.5\linewidth}\vspace{0pt}
-% The \emph{Riemann sphere} gets its name because $\cl\C$ can be visualized as a \textcolor{blue}{sphere} with $\infty$ playing the role of the north pole. The `finite' portion of the sphere is identified bijectively with the \textcolor{Green}{equatorial plane} via the \href{https://en.wikipedia.org/wiki/Stereographic_projection}{\emph{stereographic projection}} $\pi:S^2\to\cl\C$: the image of $P$ is the intersection of the equatorial plane with the line through $P$ and $N=\pi^{-1}(\infty)$.
-% \end{minipage}\begin{minipage}[t]{0.5\linewidth}\vspace{0pt}
-% \flushright%\includegraphics{complex-stereo+0_0}
-% \href{https://www.math.uci.edu/~ndonalds/math147/complex-stereo.html}{\includegraphics{complex-stereo}}
-% \end{minipage}\smallbreak
  
 \boldsubsubsection{Compactness, Path-Connectedness \& Continuity}
 
-We finish with two further properties we might wish our domains to have.
+We finish with two further desirable properties of domains.
 
-\begin{defn}[lower separated=false, sidebyside, sidebyside align=top seam, sidebyside gap=0pt, righthand width=0.35\linewidth]{}{}
-We say that a subset $K\subseteq\C$ is:
-\begin{itemize}
-  \item \emph{Compact} if it is closed and bounded.
-  \item \emph{Path-connected} if any two points can be joined by a path lying entirely within $K$: more precisely,
-  \begin{gather*}
-  \forall p,q\in K,\ \exists \text{ continuous }z:[0,1]\to K\text{ such that }
-  z(0)=p \text{ and }z(1)=q
-  \end{gather*}
-\end{itemize} 
-\tcblower
-\flushright\includegraphics{limits-topology}
+\begin{defn}{}{}
+	\exstart A subset $K\subseteq\C$ is \emph{compact} if it is closed and bounded.
+	\begin{enumerate}\setcounter{enumi}{1}
+	  \begin{minipage}[t]{0.6\linewidth}\vspace{0pt}
+	  	\item $K\subseteq\C$ is \emph{path-connected} if any two points can be joined by a path lying entirely within $K$: more precisely, $\forall p,q\in K$,
+	  	\[
+	  		\exists z:[0,1]\to K \text{ continuous } \text{ with }
+	  z(0)=p \text{ and }z(1)=q
+	  	\]
+	  \end{minipage} 
+	  \begin{minipage}[t]{0.39\linewidth}\vspace{-12pt}
+			\flushright\includegraphics[scale=1]{limits-topology}
+	  \end{minipage} 
+	\end{enumerate} 
 \end{defn}
-\goodbreak
 
-What you should be familiar with are the analogues of these ideas in real analysis.
-Compactness generalizes the idea of a closed bounded interval: a compact subset of $\R$ is a union of finitely many closed bounded intervals. Path-connectedness generalizes the notion of an interval; that a set consists of only one piece.\footnote{Path-connectedness is more useful to us than the related concept of \emph{connectedness}: both convey the idea that a set consists of only one piece (or \emph{component}). For open sets, and for typical domains of functions in this course, connectedness and path-connectedness mean the same thing.} In view of this, we translate over two familiar results from real analysis:
-\begin{description}
-\item[\normalfont\emph{Extreme Value Theorem}] A continuous function on a closed bounded interval is bounded and attains its bounds.
-\item[\normalfont\emph{Interval preservation}] A continuous function maps intervals to intervals. Essentially this is the intermediate value theorem.
-\end{description}
+These concepts generalize notions of intervals from single-variable real analysis. In view of this, we translate two familiar results, essentially the \emph{extreme} and \emph{intermediate value theorems} of real analysis.
 
 \begin{thm}{}{compactconnected}
-Suppose $f:K\to\C$ is continuous.
-\begin{enumerate}
-  \item If $K$ is compact, so is the image $f(K)$.
-  \item If $K$ is path-connected, so is $f(K)$.
-\end{enumerate}
+	Suppose $f:K\to\C$ is continuous.
+	\begin{enumerate}
+  	\item If $K$ is compact, so is the image $f(K)$.
+  	\item If $K$ is path-connected, so is $f(K)$.
+	\end{enumerate}
 \end{thm}
 
 \begin{proof}{}{}
-\begin{enumerate}
-  \item The trick is to consider the \emph{real-valued} function $\nm{f}$.
-\begin{itemize}
-  \item Let $M=\sup\{\nm{f(z)}:z\in K\}$. Since $\nm f$ is real-valued, $\exists (z_n)\subseteq K$ such that $\nm{f(z_n)}\to M$.
-  \item $K$ is bounded; the Bolzano--Weierstraß theorem says $(z_n)$ has a convergent subsequence $(z_{n_k})$ with limit $z_0$.
-  \item $K$ is closed; thus $z_0\in K$ and $f(z_0)$ is defined.
-  \item $f$ is continuous; thus $f(z_{n_k})\to f(z_0)$, necessarily $M=f(z_0)$ is finite and so $f(K)$ is bounded.
-  \item The closure of $f(K)$ is a short exercise.
-  %Now suppose $(w_n)$ is a sequence in $K$ such that $(f(w_n))$ is convergent in $\C$. The compactness of $K$ says $\exists (w_{n_k})$ convergent to $w\in K$. The continuity of $f$ says that $f(w_{n_k})\to f(w)$. $f(K)$ is therefore closed.
-\end{itemize}
-The same argument works even if $K$ is a subset of the real numbers.
-	\item This is also an exercise.\qedhere %Suppose $f(p),f(q)\in f(K)$ and let $z:[0,1]\to K$ be a path from $p$ to $q$. Then  $w(t):=f(z(t))$ defines a path from $f(p)$ to $f(q)$ in $f(K)$.
-\end{enumerate}
+	\begin{enumerate}
+	  \item Consider the \emph{real-valued} function $\nm{f}$ and apply the same argument from real analysis:
+		\begin{itemize}
+		  \item Let $M=\sup\{\nm{f(z)}:z\in K\}$. Then $\exists (z_n)\subseteq K$ such that $\lim\nm{f(z_n)} =M$.
+		  \item $K$ is bounded; Bolzano--Weierstraß says $(z_n)$ has a convergent subsequence $(z_{n_k})$.
+		  \item Let $z_0=\lim z_{n_k}$. Since $K$ is closed, we have $z_0\in K$, whence $f(z_0)$ is defined.
+		  \item $f$ continuous $\Longrightarrow\lim f(z_{n_k})= f(z_0)$; thus $M=f(z_0)$ is finite and $f(K)$ is bounded.
+		  \item The closure of $f(K)$ is a short exercise.
+		  %Now suppose $(w_n)$ is a sequence in $K$ such that $(f(w_n))$ is convergent in $\C$. The compactness of $K$ says $\exists (w_{n_k})$ convergent to $w\in K$. The continuity of $f$ says that $f(w_{n_k})\to f(w)$. $f(K)$ is therefore closed.
+		\end{itemize}
+		\item This is also an exercise.\qedhere %Suppose $f(p),f(q)\in f(K)$ and let $z:[0,1]\to K$ be a path from $p$ to $q$. Then  $w(t):=f(z(t))$ defines a path from $f(p)$ to $f(q)$ in $f(K)$.
+	\end{enumerate}
 \end{proof}
 
-We'll also have reason to use one final fact about compactness, which we again state without proof.
+\goodbreak
+
+Later on we'll need one final fact about compactness, which we again state without proof.
 
 \begin{thm}{}{opencover}
-Let $K$ be compact and suppose that we have a collection of open sets $U_j$ for which $K\subseteq \bigcup\limits_{j\in I} U_j$. Then there exists a \emph{finite subset} $J\subseteq I$ such that $K\subseteq \bigcup\limits_{j\in J} U_j$.
+	Let $K$ be compact and suppose that a collection of open sets $U_j$ satisfies $K\subseteq \smash[b]{\bigcup\limits_{j\in I} U_j}$.\par
+	Then there exists a \underline{finite} subset $J\subseteq I$ such that $K\subseteq \bigcup\limits_{j\in J} U_j$.
 \end{thm}
 
-This is usually said as ``every open cover has a finite subcover.'' In topology, this statement is typically taken as the \emph{definition} of compactness. That this is equivalent to being closed and bounded in $\C$ (or indeed any Euclidean space) is the famous Heine--Borel Theorem. The full details of this, and a thorough discussion of (path-)connectedness, are properly subjects for a course in topology.
-
-\clearpage
+This is usually said ``Every open cover has a finite subcover,'' and is taken, in topology, as the definition of compactness. That this is equivalent to being closed and bounded in $\C$ (or any Euclidean space) is the famous Heine--Borel Theorem.
 
 
 \begin{exercises*}{}{}
-\hangindent\leftmargini
-\textup{1.}\ Use the $\epsilon$--$\delta$ definition (\ref{defn:limit}) to prove the following.
-\begin{enumerate}\setcounter{enumi}{1}
-  \item[]\begin{enumerate}
-  	\item $\displaystyle\lim\limits_{z\to z_0}\cl z=\cl{z_0}$\qquad
-  	(b) \ $\displaystyle\lim\limits_{z\to 0}\frac{\cl z^2}z=0$\qquad
-  	(c) \ $\displaystyle\lim\limits_{z\to 2}\frac 1{z-i}=\frac 1{2-i}$\qquad
-  	(d) \ $\displaystyle\lim\limits_{z\to z_0}z^3=z_0^3$
-  \end{enumerate}
-  
-  \item Show that the function $f(z)=\left(\dfrac z{\cl z}\right)^2$ has value 1 at all non-zero points on the real and imaginary axes, but that it has the value $-1$ at all non-zero points on the line $y=x$. Hence explain why $\lim\limits_{z\to 0}f(z)$ does not exist.
-  
-  \item Prove part 3(c) of Theorem \ref{thm:basiclimit}.
-  
-  \item Suppose $\lim\limits_{z\to z_0}f(z)=w_0$. Prove that $\lim\limits_{z\to z_0}\nm{f(z)}=\nm{w_0}$.
-   
-  \item Use Definition \ref{defn:rsphere} to prove part of Theorem \ref{thm:infty}: $\lim\limits_{z\to z_0}f(z)=\infty \implies \lim\limits_{z\to z_0}\frac 1{f(z)}=0$.
-  
-  \item Use Definition \ref{defn:rsphere} to prove that
-  \begin{enumerate}
-    \item $\displaystyle\lim\limits_{z\to 2i}\frac{iz-1}{z-2i}=\infty$ \qquad (b) \ $\displaystyle\lim\limits_{z\to\infty}\frac{iz-1}{z-2i}=i$.
-  \end{enumerate}
-  
- 	\item\begin{enumerate}
-    \item Show that $f(z)=\dfrac{5iz+1}{3z-2i}$ defines a bijection of the Riemann sphere.\\
-  	(\emph{Hint: let $w=f(z)$ and solve for $z\ldots$})
-  	\item More generally, for any complex numbers $\alpha,\beta,\gamma,\delta$, consider the function $f(z)=\dfrac{\alpha z+\beta}{\gamma z+\delta}$. Prove that this defines a bijection of the Riemann sphere if and only if $\alpha\delta-\beta\gamma\neq 0$. How does this discussion relate to the $2\times 2$ matrix $\begin{smatrix}\alpha&\beta\\\gamma&\delta\end{smatrix}$?
-  \end{enumerate}
-  
-  \item We complete the proof of Theorem \ref{thm:compactconnected}. Suppose $f:K\to\C$ is continuous.
-  \begin{enumerate}
-    \item Let $K\subseteq \C$ be compact. Suppose $(w_n)\subseteq K$ is a sequence such that $(f(w_n))$ is convergent in $\C$. Show that there exists a convergent subsequence $(w_{n_k})$ and use it to show that $\lim f(w_n)\in f(K)$. Hence conclude that $f(K)$ is closed.
-    % such that $f(w_{n_k})$ Use the Bolzano--Weierstrass theorem  The compactness of $K$ says $\exists (w_{n_k})$ convergent to $w\in K$. The continuity of $f$ says that $f(w_{n_k})\to f(w)$. $f(K)$ is therefore closed.
-		\item Suppose $K$ is path-connected. If $f(p),f(q)\in f(K)$, show that $\exists w:[0,1]\to f(K)$ such that $w(0)=f(p)$ and $w(1)=f(q)$. Hence conclude that $f(K)$ is path-connected.
-		% and let $z:[0,1]\to K$ be a path from $p$ to $q$. Then  $w(t):=f(z(t))$ defines a path from $f(p)$ to $f(q)$ in $f(K)$.
-  \end{enumerate}
-\end{enumerate}
+	\exstart Use the $\epsilon$--$\delta$ definition (\ref{defn:limit}) to prove the following.
+	\begin{enumerate}\setcounter{enumi}{1}
+	  \item[]\begin{enumerate}
+	  	\item $\displaystyle\lim\limits_{z\to z_0}\cl z=\cl{z_0}$\qquad
+	  	(b) \ $\displaystyle\lim\limits_{z\to 0}\frac{\cl z^2}z=0$\qquad
+	  	(c) \ $\displaystyle\lim\limits_{z\to 2}\frac 1{z-i}=\frac 1{2-i}$\qquad
+	  	(d) \ $\displaystyle\lim\limits_{z\to z_0}z^3=z_0^3$
+	  \end{enumerate}
+	  
+	  
+	  \item Show that the function $f(z)=\left(\dfrac z{\cl z}\right)^2$ ($\cl z$ in the denominator!) has value 1 at all non-zero points on the real and imaginary axes, and $-1$ at all non-zero points on the line $y=x$. Hence explain why $\lim\limits_{z\to 0}f(z)$ does not exist.
+	  
+	  
+	  \item Prove part 3(c) of Theorem \ref{thm:basiclimit}.
+	  
+	  
+	  \item Suppose $\lim\limits_{z\to z_0}f(z)=w_0$. Prove that $\lim\limits_{z\to z_0}\nm{f(z)}=\nm{w_0}$.
+	   
+	   
+	  \item Use Definition \ref{defn:rsphere} to prove part of Theorem \ref{thm:infty}: $\lim\limits_{z\to z_0}f(z)=\infty \implies \lim\limits_{z\to z_0}\frac 1{f(z)}=0$.
+	  
+	  
+	  \item Use Definition \ref{defn:rsphere} to prove that
+	  \begin{enumerate}
+	    \item $\displaystyle\lim\limits_{z\to 2i}\frac{iz-1}{z-2i}=\infty$ \qquad (b) \ $\displaystyle\lim\limits_{z\to\infty}\frac{iz-1}{z-2i}=i$.
+	  \end{enumerate}
+	  
+	  
+	 	\item\begin{enumerate}
+	    \item Show that $f(z)=\dfrac{5iz+1}{3z-2i}$ defines a bijection of the Riemann sphere $f:\cl\C\to\cl\C$.\par
+	  	(\emph{Hint: let $w=f(z)$ and solve for $z\ldots$})
+	  	
+	  	\item More generally, given complex numbers $\alpha,\beta,\gamma,\delta$, consider $f(z)=\dfrac{\alpha z+\beta}{\gamma z+\delta}$.\par
+	  	Prove that this defines a bijection of the Riemann sphere if and only if $\alpha\delta-\beta\gamma\neq 0$. How does this discussion relate to the $2\times 2$ matrix $\begin{smatrix}\alpha&\beta\\\gamma&\delta\end{smatrix}$?
+	  \end{enumerate}
+	  
+	  
+	  \item We complete the proof of Theorem \ref{thm:compactconnected}. Suppose $f:K\subseteq\C\to\C$ is continuous.
+	  \begin{enumerate}
+	    \item Let $K$ be compact. Suppose $(w_n)\subseteq K$ is a sequence such that $\bigl(f(w_n)\bigr)$ is convergent in $\C$. Explain why there exists a convergent subsequence $(w_{n_k})$, and use it to show that $\lim f(w_n)\in f(K)$. Hence conclude that $f(K)$ is closed.
+	    % such that $f(w_{n_k})$ Use the Bolzano--Weierstrass theorem  The compactness of $K$ says $\exists (w_{n_k})$ convergent to $w\in K$. The continuity of $f$ says that $f(w_{n_k})\to f(w)$. $f(K)$ is therefore closed.
+			\item Suppose $K$ is path-connected. If $f(p),f(q)\in f(K)$, show that $\exists w:[0,1]\to f(K)$ continuous such that $w(0)=f(p)$ and $w(1)=f(q)$. Hence conclude that $f(K)$ is path-connected.
+			% and let $z:[0,1]\to K$ be a path from $p$ to $q$. Then  $w(t):=f(z(t))$ defines a path from $f(p)$ to $f(q)$ in $f(K)$.
+	  \end{enumerate}
+	\end{enumerate}
 \end{exercises*}
 
 \clearpage
 
-\subsection[Derivatives \& the Cauchy--Riemann Equations]{Derivatives \& the Cauchy--Riemann Equations}% (\S\,19-23)
+
+\subsection{Derivatives \& the Cauchy--Riemann Equations}% (\S\,19-23)
 
 Differentiation is where complex analysis shows significant differences from real analysis, though it won't appears so at first, since the definition of derivative is exactly what you are used to.
 
