@@ -23,6 +23,6 @@ fill(K,blue+opacity(0.2));
 
 draw(Label("$\textcolor{red}{f=g} \implies \textcolor{blue}{f=g}$"),p--q,red);
 
-label("$D$",(-0.3,1),blue);
+label("$E$",(-0.3,1),blue);
 dot(p);
 dot(q);

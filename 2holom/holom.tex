@@ -122,28 +122,35 @@ By composing such functions, we can describe arbitrary rotations, reflections an
 	  \item[]\begin{enumerate}
 	    \item $\displaystyle f(z)=\frac 1{4+z^2}$\qquad
 	    (b) \ $\displaystyle f(z)=\frac{z-1}{e^z-1}$\qquad
-	    (c) $\displaystyle f(z)=\frac{z^2+z+1}{z^4-1}$
+	    (c) \ $\displaystyle f(z)=\frac{z^2+z+1}{z^4-1}$
 	  \end{enumerate}
+	  
 	  
 	  \item Write the function in terms of its real and imaginary parts: $f(z)=u(x,y)+iv(x,y)$.
 	  \begin{enumerate}
 	  	\item $\displaystyle f(z)=z^3-4z^2+2$\qquad
 	    (b) \ $\displaystyle f(z)=\frac{z^2}{1-\cl z}$\qquad
-	    (c) $\displaystyle f(z)=e^{\cl z}$
+	    (c) \ $\displaystyle f(z)=e^{\cl z}$
 	  \end{enumerate}
+	  
 	  
 	  \item Write the function $\displaystyle f(z)=\frac 1{\nm z^2}\cl z$ in polar form.
 	  
+	  
 	  \item Find an expression for the function which reflects across the vertical line through $\alpha=-1$.
 	  
+	  
 	  \item In Example \ref*{ex:analyticpg2}.\ref{ex:reflect2}, evaluate the function $\displaystyle g(z)=e^{2i\phi}(\cl{z-\beta})+\beta$. Why are you not surprised by the result?
+	  
 	  
 	  \item Let $\phi=\tan^{-1}\frac 34$. Find the result (in rectangular co-ordinates) of rotating $z=-2+i$ counter-clockwise by $\phi$ radians around the origin.\par
 	  (\emph{Hint: consider a 3:4:5 triangle!})
 	  
+	  
 	  \item Prove, using the expressions on page \pageref{pg:2dgeom}, that the composition of two reflections is a rotation, and that the composition of a rotation and a reflection is a reflection.
 	\end{enumerate}
 \end{exercises*}
+
 \clearpage
 
 
@@ -382,13 +389,13 @@ Because of these calculations, it is common to view $f$ as a continuous bijectio
 
 \begin{aside}{\bf Aside (non-examinable)}{}
 	The Riemann sphere is merely a fun diversion for us. Unless indicated otherwise, all sets should be assumed to be subsets of the (\emph{finite}) complex plane.\par
-	\begin{minipage}[t]{0.49\linewidth}\vspace{-5pt}
-		The Riemann sphere is so-named because it can be visualized as a \textcolor{blue}{sphere $S^2$}, with $\infty$ playing the role of the north pole. The rest of the sphere is identified bijectively with the \textcolor{Green}{equatorial plane $\C$} via \href{https://en.wikipedia.org/wiki/Stereographic_projection}{\emph{stereographic projection}} $\pi:S^2\to\cl\C$. In the picture, the image of $P\in S^2$ is the intersection $\pi(P)$ of $\C$ with the line through $P$ and $N=\pi^{-1}(\infty)$.
+	\begin{minipage}[t]{0.54\linewidth}\vspace{-5pt}
+		The Riemann sphere can be visualized as a \textcolor{blue}{sphere $S^2$}, with $\infty$ playing the role of the north pole. The rest of the sphere is identified bijectively with the \textcolor{Green}{equatorial plane $\C$} via \href{https://en.wikipedia.org/wiki/Stereographic_projection}{\emph{stereographic projection}} $\pi:S^2\to\cl\C$. In the picture, the image of $P\in S^2$ is the intersection $\pi(P)$ of $\C$ with the line through $P$ and $N=\pi^{-1}(\infty)$.
 	\end{minipage}
 	\hfill
-	\begin{minipage}[t]{0.5\linewidth}\vspace{0pt}
+	\begin{minipage}[t]{0.45\linewidth}\vspace{-4pt}
 		\flushright%\includegraphics{complex-stereo+0_0}
-		\href{https://www.math.uci.edu/~ndonalds/math147/complex-stereo.html}{\includegraphics{complex-stereo}}
+		\href{https://www.math.uci.edu/~ndonalds/math147/complex-stereo.html}{\includegraphics[scale=0.9]{complex-stereo}}
 	\end{minipage}
 \end{aside}
 
@@ -400,18 +407,23 @@ We finish with two further desirable properties of domains.
 \begin{defn}{}{}
 	\exstart A subset $K\subseteq\C$ is \emph{compact} if it is closed and bounded.
 	\begin{enumerate}\setcounter{enumi}{1}
-	  \begin{minipage}[t]{0.6\linewidth}\vspace{0pt}
-	  	\item $K\subseteq\C$ is \emph{path-connected} if any two points can be joined by a path lying entirely within $K$: more precisely, $\forall p,q\in K$,
+	  \begin{minipage}[t]{0.61\linewidth}\vspace{-5pt}
+	  	\item $K\subseteq\C$ is \emph{(path-)connected}\footnotemark{} if any two points can be joined by a path lying within $K$: more precisely, $\forall p,q\in K$,
 	  	\[
 	  		\exists z:[0,1]\to K \text{ continuous } \text{ with }
 	  z(0)=p \text{ and }z(1)=q
 	  	\]
-	  \end{minipage} 
-	  \begin{minipage}[t]{0.39\linewidth}\vspace{-12pt}
-			\flushright\includegraphics[scale=1]{limits-topology}
+	  \end{minipage}
+	  \hfill 
+	  \begin{minipage}[t]{0.38\linewidth}\vspace{-20pt}
+			\flushright\includegraphics{limits-topology}
 	  \end{minipage} 
 	\end{enumerate} 
 \end{defn}
+
+\footnotetext{Loosely speaking, a connected set consists of one `lump.' For topologists: almost all our domains of interest will be open, so there is no benefit to distinguishing between connectedness and path-connectedness.}
+
+\goodbreak
 
 These concepts generalize notions of intervals from single-variable real analysis. In view of this, we translate two familiar results, essentially the \emph{extreme} and \emph{intermediate value theorems} of real analysis.
 
@@ -426,15 +438,14 @@ These concepts generalize notions of intervals from single-variable real analysi
 \begin{proof}{}{}
 	\begin{enumerate}
 	  \item Consider the \emph{real-valued} function $\nm{f}$ and apply the same argument from real analysis:
-		\begin{itemize}
+		\begin{itemize}\itemsep0pt
 		  \item Let $M=\sup\{\nm{f(z)}:z\in K\}$. Then $\exists (z_n)\subseteq K$ such that $\lim\nm{f(z_n)} =M$.
 		  \item $K$ is bounded; Bolzano--Weierstraß says $(z_n)$ has a convergent subsequence $(z_{n_k})$.
 		  \item Let $z_0=\lim z_{n_k}$. Since $K$ is closed, we have $z_0\in K$, whence $f(z_0)$ is defined.
 		  \item $f$ continuous $\Longrightarrow\lim f(z_{n_k})= f(z_0)$; thus $M=f(z_0)$ is finite and $f(K)$ is bounded.
 		  \item The closure of $f(K)$ is a short exercise.
-		  %Now suppose $(w_n)$ is a sequence in $K$ such that $(f(w_n))$ is convergent in $\C$. The compactness of $K$ says $\exists (w_{n_k})$ convergent to $w\in K$. The continuity of $f$ says that $f(w_{n_k})\to f(w)$. $f(K)$ is therefore closed.
 		\end{itemize}
-		\item This is also an exercise.\qedhere %Suppose $f(p),f(q)\in f(K)$ and let $z:[0,1]\to K$ be a path from $p$ to $q$. Then  $w(t):=f(z(t))$ defines a path from $f(p)$ to $f(q)$ in $f(K)$.
+		\item This is also an exercise.\qedhere
 	\end{enumerate}
 \end{proof}
 
@@ -447,7 +458,9 @@ Later on we'll need one final fact about compactness, which we again state witho
 	Then there exists a \underline{finite} subset $J\subseteq I$ such that $K\subseteq \bigcup\limits_{j\in J} U_j$.
 \end{thm}
 
-This is usually said ``Every open cover has a finite subcover,'' and is taken, in topology, as the definition of compactness. That this is equivalent to being closed and bounded in $\C$ (or any Euclidean space) is the famous Heine--Borel Theorem.
+This is usually said ``Every open cover has a finite subcover,'' and is taken, in topology, as the definition of compactness. That this is equivalent to being closed and bounded in $\C$ (or any Euclidean space) is the famous Heine--Borel Theorem.\smallbreak
+
+The upshot of this sections is that continuity and limits are essentially the same in both real and complex analysis. Differentiation, however, is another beast entirely\ldots
 
 
 \begin{exercises*}{}{}
@@ -501,38 +514,49 @@ This is usually said ``Every open cover has a finite subcover,'' and is taken, i
 \clearpage
 
 
+
 \subsection{Derivatives \& the Cauchy--Riemann Equations}% (\S\,19-23)
 
-Differentiation is where complex analysis shows significant differences from real analysis, though it won't appears so at first, since the definition of derivative is exactly what you are used to.
+Differentiation is where complex analysis starts to produce interesting and novel results. It won't appear so initially, since the definition of derivative is exactly as you've previously encountered.
 
 \begin{defn}{}{deriv}
-Let $f:D\to\C$ be a complex function and $z_0$ an \emph{interior} point of $D$. We say that $f$ is \emph{differentiable at $z_0$} if the following limit exists.
-\[\lim_{z\to z_0}\frac{f(z)-f(z_0)}{z-z_0}\]
-We call this limit the \emph{derivative} of $f$ at $z_0$ and denote it by $f'(z_0)$. If $f$ is differentiable everywhere\footnote{Such \emph{holomorphic} functions are the main topic of the course: we'll consider them more properly in the next section. Necessarily, $D$ must be an open set if $f$ is to be holomorphic (think about the definition of the limit!).} on $D$ then the derivative is a function; $f'(z)$ or $\diff[f]{z}$. 
+	Let $f:D\to\C$ be a complex function and $z_0$ an \emph{interior} point of $D$. We say that $f$ is \emph{differentiable at $z_0$} if the following limit exists:
+	\[
+		\lim_{z\to z_0}\frac{f(z)-f(z_0)}{z-z_0}
+	\]
+	We call this limit the \emph{derivative} of $f$ at $z_0$ and denote it $f'(z_0)$. If $f$ is differentiable everywhere\footnotemark{} on $D$ then the derivative is itself a function, written $f'(z)$ or $\diff[f]{z}$. 
 \end{defn}
 
-As with limits, we quickly consider an easy example and record the basic facts.
+\footnotetext{Such \emph{holomorphic} functions are the main topic of the course: we'll consider them more properly in the next section. Necessarily, $D$ must be an open set if $f$ is to be holomorphic (think about the definition of the limit!).}
+
 
 \begin{example}{}{}
-The function $f(z)=z^2$ is everywhere differentiable,\footnote{Remember that when taking limits, we only compute on a punctured disk $0<\nm{z-z_0}<\delta$, hence the \textcolor{red}{red} equality.}
-  \[\lim_{z\to z_0}\frac{f(z)-f(z_0)}{z-z_0}= \lim_{z\to z_0}\frac{z^2-z_0^2}{z-z_0} =\lim_{z\to z_0}\frac{(z-z_0)(z+z_0)}{z-z_0} \textcolor{red}{\,=\,} \lim_{z\to z_0}z+z_0=2z_0\]
+	The function $f(z)=z^2$ is everywhere differentiable,
+  \[
+  	\lim_{z\to z_0}\frac{f(z)-f(z_0)}{z-z_0} =\lim_{z\to z_0}\frac{z^2-z_0^2}{z-z_0} =\lim_{z\to z_0}\frac{(z-z_0)(z+z_0)}{z-z_0} \mathrel{\textcolor{red}{=}} \lim_{z\to z_0}(z+z_0) =2z_0
+  \]
+	The \textcolor{red}{red} equality follows because we only compute on the punctured disk $0<\nm{z-z_0}<\delta$ when taking limits (Definition \ref{defn:rsphere}).
 \end{example}
 
-The basic rules of differentiation are identical those in real analysis and can be proved similarly. We state them for reference.
+
+The basic rules of differentiation are identical those in real analysis and can be proved similarly.
 
 \begin{thm}{}{derivrules}
-Suppose $f$ and $g$ are differentiable (either at a point $z_0$ or as functions).
-\begin{enumerate}
-  \item (Linearity)\quad For any constants $a,b\in\C$, $\displaystyle\diff z(af(z)+bg(z))=af'(z)+bg'(z)$
-  \item (Power Law)\quad For any $n\in\N_0$, $\displaystyle\diff zz^n=nz^{n-1}$
-  \item (Product rule)\quad $\displaystyle\diff z(f(z)g(z))=f'(z)g(z)+f(z)g'(z)$
-  \item (Quotient Rule)\quad If $g(z)\neq 0$, then $\displaystyle\diff z\frac{f(z)}{g(z)}=\frac{f'(z)g(z)-f(z)g'(z)}{[g(z)]^2}$
-  \item (Chain Rule)\quad If $h$ is differentiable at $g(z_0)$, then $h\circ g$ is differentiable at $z_0$ and
-  \[(h\circ g)'(z_0)=h'\bigl(g(z_0)\bigr)g'(z_0)\]
-\end{enumerate}
+	Suppose $f$ and $g$ are differentiable (either at a point $z_0$ or as functions).
+	\begin{enumerate}
+	  \item (Linearity)\quad For any constants $a,b\in\C$, $\displaystyle\diff z\bigl(af(z)+bg(z)\bigr)=af'(z)+bg'(z)$
+	  \item (Power Law)\quad For any $n\in\N_0$, $\displaystyle\diff zz^n=nz^{n-1}$
+	  \item (Product rule)\quad $\displaystyle\diff z\bigl(f(z)g(z)\bigr)=f'(z)g(z)+f(z)g'(z)$
+	  \item (Quotient Rule)\quad If $g(z)\neq 0$, then $\displaystyle\diff z\frac{f(z)}{g(z)}=\frac{f'(z)g(z)-f(z)g'(z)}{[g(z)]^2}$
+	  \item (Chain Rule)\quad If $h$ is differentiable at $g(z_0)$, then $h\circ g$ is differentiable at $z_0$ and
+	  \[
+	  	(h\circ g)'(z_0)=h'\bigl(g(z_0)\bigr)g'(z_0)
+	  \]
+	\end{enumerate}
 \end{thm}
 
-We immediately see that all polynomials and rational function are differentiable. Indeed we can easily compute familiar examples without caring whether we are in $\R$ or $\C$!
+We immediately see that all polynomials and rational functions are differentiable. Familiar examples behave the same regardless of whether we are in $\R$ or $\C$!
+
 \begin{example}{}{}
   $\displaystyle\diff z\frac{3(z^2-2)^5+z^2}{z^3+1} = \frac{[30z(z^2-2)^4+2z)](z^3+1) -3z^2[3(z^2-2)^5+z^2]}{(z^3+1)^2}$
 \end{example}
@@ -543,369 +567,413 @@ We immediately see that all polynomials and rational function are differentiable
 \boldsubsubsection{The Cauchy--Riemann Equations}
 
 
-Thus far, differentiation seems uncontroversial. Here is example that might change your mind\ldots
+Differentiation thus far seems uncontroversial; here is an example that might change your mind\ldots
 
-\begin{example}{}{}
-Consider the complex conjugate function $f(z)=\cl z$. We attempt to compute the limit
-  \[\lim\limits_{z\to z_0}\frac{f(z)-f(z_0)}{z-z_0}=  \lim\limits_{(x,y)\to(x_0,y_0)} \frac{x-iy-x_0+iy_0}{x+iy-x_0-iy_0} = \lim\limits_{(\Delta x,\Delta y)\to (0,0)} \frac{\Delta x-i\Delta y}{\Delta x+i\Delta y}\]
-  
+\begin{example}{}{crconj}
+	Consider  $f(z)=\cl z$ at a generic point $z_0=x_0+iy_0$, and the difference quotient
+  \[
+   	\frac{f(z)-f(z_0)}{z-z_0}=  \frac{x-iy-x_0+iy_0}{x+iy-x_0-iy_0} = \frac{\Delta x-i\Delta y}{\Delta x+i\Delta y} \tag{where $\Delta x=x-x_0$ and $\Delta y=y-y_0$}
+  \]
   \begin{minipage}[t]{0.7\linewidth}\vspace{0pt}
-  For $f'(z)$ to exist, we must obtain the same value \emph{regardless of how $(\Delta x,\Delta y)\to (0,0)$.} There are two obvious ways to take the limit:
-  \begin{itemize}
-  \item[]\normalfont\emph{\textcolor{blue}{Horizontally}}\quad $\displaystyle\Delta y=0\implies \frac{f(z)-f(z_0)}{z-z_0} =1$
-  \item[]\normalfont\emph{\textcolor{Green}{Vertically}}\quad $\displaystyle\Delta x=0\implies \frac{f(z)-f(z_0)}{z-z_0} =-1$
-  \end{itemize}
-  \end{minipage}\begin{minipage}[t]{0.3\linewidth}\vspace{-5pt}
+	  For $f'(z)$ to exist, we must obtain the same limit \emph{regardless of how $(\Delta x,\Delta y)\to (0,0)$} (equivalent to $z\to z_0$). There are two obvious ways to take the limit:
+	  \begin{itemize}
+		  \item[]\normalfont\emph{\textcolor{blue}{Horizontally}}\quad $\displaystyle \frac{f(z)-f(z_0)}{z-z_0} =\frac{\Delta x}{\Delta x}=1$
+		  \item[]\normalfont\emph{\textcolor{Green}{Vertically}}\quad $\displaystyle\frac{f(z)-f(z_0)}{z-z_0} =\frac{-i\Delta y}{i\Delta y}=-1$
+	  \end{itemize}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.29\linewidth}\vspace{-15pt}
   \flushright\includegraphics{diff-cr}  
-  \end{minipage}\par
-  The quotient takes different values depending on how $(\Delta x,\Delta y)\to(0,0)$. We conclude that $f'(z_0)$ \emph{does not exist,} and that the function $f(z)=\cl z$ is not differentiable anywhere!
+  \end{minipage}
+  \smallbreak
+  The quotient plainly takes different values depending on how $(\Delta x,\Delta y)\to(0,0)$. We conclude that $f'(z_0)$ \emph{does not exist,} and that the function $f(z)=\cl z$ is \emph{nowhere differentiable}!
 \end{example}
 
-If the example doesn't surprise you, read it again. There is barely a simpler complex-valued function than the complex conjugate, yet this is not differentiable! We now extend the approach to consider (non-)differentiability more generally.\smallbreak
-
-Let $f(z)=u(x,y)+iv(x,y)$ be written in terms of its real and imaginary parts. As before, we write $z=x+iy$, $z_0=x_0+iy_0$ and denote the differences by
-\[\Delta z=z-z_0=\Delta x+i\Delta y =(x-x_0)+i(y-y_0)\]
-We attempt to evaluate the limit of the difference quotient
-\[\lim\limits_{z\to z_0}\frac{f(z)-f(z_0)}{z-z_0}= \lim\limits_{(\Delta x,\Delta y)\to (0,0)}\frac{u(x,y)-u(x_0,y_0)+i(v(x,y)-v(x_0,y_0)}{\Delta x+i\Delta y}\]
-If this exists, then we \emph{must} have the same result when evaluating along straight lines  approaching $z_0$ both horizontally and vertically:
+The approach extends to general functions. We attempt to differentiate $f(z)=u(x,y)+iv(x,y)$ (written in real and imaginary parts) at a generic point $z_0=x_0+iy_0$:
+\[
+	\lim\limits_{z\to z_0}\frac{f(z)-f(z_0)}{z-z_0}= \lim\limits_{(\Delta x,\Delta y)\to (0,0)}\frac{u(x,y)-u(x_0,y_0)+i(v(x,y)-v(x_0,y_0)}{\Delta x+i\Delta y}
+\]
+\emph{If this limit exists,} the same result must be obtained when evaluating along paths approaching $z_0$ horizontally and vertically. This results in a key relationship between the partial derivatives of $u,v$.
 \begin{description}
-\item[\normalfont\emph{Horizontally}]\quad We have $\Delta y=0$ and so the limit becomes
-\[\lim_{\Delta x\to 0}\frac{u(x,y_0)-u(x_0,y_0)+i(v(x,y_0)-v(x_0,y_0)}{\Delta x} =\left(\partials[u]{x}+i\partials[v]{x}\right)(x_0,y_0)\]
-where we see the \emph{partial derivatives} of the functions $u$ and $v$.
-\item[\normalfont\emph{Vertically}]\quad We have $\Delta x=0$, from which
-\[\lim_{\Delta y\to 0}\frac{u(x_0,y)-u(x_0,y_0)+i(v(x_0,y)-v(x_0,y_0)}{i\Delta y} =\frac 1i\left(\partials[u]{y}+i\partials[v]{y}\right)(x_0,y_0)\]
+	\item[\normalfont\emph{\textcolor{blue}{Horizontally}}]\quad We have $\Delta y=0$ ($y=y_0$), so the limit becomes
+	\[
+		\lim_{\Delta x\to 0} \frac{u(x,y_0)-u(x_0,y_0)+i(v(x,y_0)-v(x_0,y_0)}{\Delta x} =\left(\partials[u]{x}+i\partials[v]{x}\right)(x_0,y_0)
+	\]
+	%where we see the \emph{partial derivatives} of the functions $u$ and $v$.
+	\item[\normalfont\emph{\textcolor{Green}{Vertically}}]\quad We have $\Delta x=0$ ($x=x_0$), from which
+	\[
+		\lim_{\Delta y\to 0} \frac{u(x_0,y)-u(x_0,y_0)+i(v(x_0,y)-v(x_0,y_0)}{i\Delta y} =\frac 1i\left(\partials[u]{y}+i\partials[v]{y}\right)(x_0,y_0)
+	\]
 \end{description}
-If $f'(z)$ exists, then these limits are equal (to $f'(z)$ itself). We have therefore proved:
+%If $f'(z)$ exists, then these limits are necessarily equal (to $f'(z)$ itself!). We have proved a key result:
 
 \begin{thm}{Cauchy--Riemann equations}{cauchyriemann}
-If $f(z)$ is complex-differentiable, then the real and imaginary parts of $f$ satisfy the \emph{Cauchy--Riemann equations}
-\[\partials[u]{x}=\partials[v]{y}\qquad \partials[u]{y}=-\partials[v]{x} \qquad\text{ equivalently}\quad u_x=v_y,\quad u_y=-v_x\]
-In such a situation, we can write
-\[f'(z)=u_x+iv_x =v_y-iu_y\]
+	Write $f(z)=u+iv$ in its real and imaginary parts.
+	\begin{enumerate}
+	  \item If $f(z)$ is complex-differentiable, then $u,v$ satisfy the \emph{Cauchy--Riemann equations}
+		\[
+			\partials[u]{x}=\partials[v]{y} \quad\text{and}\quad \partials[u]{y}=-\partials[v]{x} \tag{equivalently $u_x=v_y$ and $u_y=-v_x$}
+		\]
+	  \item Conversely, if $u,v$ have partial derivatives on a neighborhood of $z_0$, which are continuous and satisfy the Cauchy--Riemann equations at $z_0$, then $f$ is complex-differentiable at $z_0$.
+	\end{enumerate}
+	In either situation, we may write $f'(z)=u_x+iv_x =v_y-iu_y$.
 \end{thm}
+We proved part 1 above. For a sketch of the almost-converse (part 2), see Exercise \ref{exs:crconv}.
+\goodbreak
+
 
 \begin{examples}{}{crlots}
-\hangindent\leftmargini
-\textup{1.}\ $f(z)=\cl z=x-iy$ has $u(x,y)=x$ and $v(x,y)=-y$. We quickly see that
-  \[u_x=1\neq -1=v_y,\qquad u_y=0=v_x\]
-  Since $u,v$ do not satisfy the Cauchy--Riemann equations anywhere (not both of them simultaneously!), $f$ fails to be differentiable anywhere.
-\begin{enumerate}\setcounter{enumi}{1}
-  \item\label{exs:modnotdiff} $f(z)=\nm z=\sqrt{x^2+y^2}$ has $u=\sqrt{x^2+y^2}$ and $v=0$. The Cauchy--Riemann equations are
-  \[u_x=\frac{x}{\sqrt{x^2+y^2}}=0=v_y,\quad u_y=\frac{y}{\sqrt{x^2+y^2}}=0=-v_x\]
-  These equations are satisfied nowhere, and so $f(z)$ is nowhere differentiable.\footnote{Note that $u=\sqrt{x^2+y^2}$ isn't even differentiable at $(x,y)=(0,0)$.}
-  \item $f(z)=z^2=x^2-y^2+2ixy$ has $u(x,y)=x^2-y^2$ and $v(x,y)=2xy$. We check
-  \[u_x=2x=v_y,\qquad u_y=-2y=-v_x\]
-  As expected, $u,v$ satisfy the Cauchy--Riemann equations. Moreover,
-  \[f'(z)=2z=2x+2iy =u_x+iv_x =v_y-iu_y\]
+\exstart (Example \ref{ex:crconj})\lstsp $f(z)=\cl z=x-iy$ has $u(x,y)=x$ and $v(x,y)=-y$, whence
+  \[
+  	u_x=1\neq -1=v_y \quad\text{and}\quad u_y=0=v_x
+  \]
+  Since $u,v$ do not satisfy the Cauchy--Riemann equations, $f$ fails to be differentiable anywhere.
   
-  \item\label{ex:cr3} $\displaystyle f(z)=\frac z{2+\nm z^2}=\frac x{2+x^2+y^2}+\frac{iy}{2+x^2+y^2}$. We compute
-  \begin{gather*}
-  u_x=\frac{2-x^2+y^2}{(2+x^2+y^2)^2} \qquad v_y=\frac{2+x^2-y^2}{(2+x^2+y^2)^2}\\
-  u_y=\frac{-2xy}{(2+x^2+y^2)^2} \qquad -v_x=\frac{2xy}{(2+x^2+y^2)^2}
-  \end{gather*}
-  The Cauchy--Riemann equations are satisfied if and only if $xy=0=x^2-y^2$, which is if and only if $x=y=0$. We conclude that $f$ is not differentiable at any non-zero $z\in\C$.\smallbreak
-  Note that the Cauchy--Riemann equations only provide a \emph{necessary} condition for differentiability. We do not (yet!) have a sufficient condition. However, we can easily check that this function is differentiable at $z=0$, straight from the definition of derivative and the continuity of $\nm z$:
-  \[f'(0)=\lim_{z\to 0}\frac{f(z)-f(0)}{z-0}=\lim_{z\to 0}\frac 1{2+\nm z^2}=\frac 12\]
-  The function $f$ is therefore differentiable at precisely one point.
-\end{enumerate}
+	\begin{enumerate}\setcounter{enumi}{1}
+	  \item\label{exs:modnotdiff} $f(z)=\nm z=\sqrt{x^2+y^2}$ has $u=\sqrt{x^2+y^2}$ and $v=0$. Away from $z_0=0$, the Cauchy--Riemann equations are
+	  \[
+	  	u_x=\frac{x}{\sqrt{x^2+y^2}}=0=v_y,\quad u_y=\frac{y}{\sqrt{x^2+y^2}}=0=-v_x
+	  \]
+	  These equations are satisfied nowhere ($u,v$ are not differentiable at $z_0=0$), whence $f(z)$ is nowhere differentiable.
+	  
+	  \item $f(z)=z^2=x^2-y^2+2ixy$ has $u(x,y)=x^2-y^2$ and $v(x,y)=2xy$. We check
+	  \[
+	  	u_x=2x=v_y,\qquad u_y=-2y=-v_x
+	  \]
+	  As expected, $u,v$ satisfy the Cauchy--Riemann equations. Moreover,
+	  \[
+	  	f'(z)=2z=2x+2iy =u_x+iv_x =v_y-iu_y
+	  \]
+	  
+	  \item\label{ex:cr3} Consider $\displaystyle f(z)=\frac z{2+\nm z^2}=\frac x{2+x^2+y^2}+\frac{iy}{2+x^2+y^2}$. We compute
+	  \begin{gather*}
+	  	u_x=\frac{2-x^2+y^2}{(2+x^2+y^2)^2} \qquad v_y=\frac{2+x^2-y^2}{(2+x^2+y^2)^2}\\
+	  	u_y=\frac{-2xy}{(2+x^2+y^2)^2} \qquad -v_x=\frac{2xy}{(2+x^2+y^2)^2}
+	  \end{gather*}
+	  The Cauchy--Riemann equations are satisfied if and only if $xy=0=x^2-y^2$, which is if and only if $x=y=0$. We conclude that $f$ is not differentiable at any non-zero $z\in\C$.\smallbreak
+	  Since the partial derivatives of $u,v$ are continuous, the converse of the Cauchy--Riemann theorem says that $f$ is differentiable at $z=0$: indeed
+  	\[
+  		f'(0)=u_x(0,0)+iv_x(0,0)=\frac 12
+  	\]
+	  We can alternatively check that this straight from the definition of derivative:
+	  \[f'(0)=\lim_{z\to 0}\frac{f(z)-f(0)}{z-0}=\lim_{z\to 0}\frac 1{2+\nm z^2}=\frac 12\]
+	  The function $f$ is therefore differentiable at precisely one point.
+	  
+		\item\label{ex:crexex2} The complex exponential function is everywhere differentiable: indeed
+  	\[
+  		f(z)=e^z=e^x\cos y+ie^x\sin y
+  	\]
+  	satisfies
+  	\[
+  		u_x=e^x\cos y=v_y,\qquad u_y=-e^x\sin x=-v_x
+  	\]
+  	where these are certainly continuous on $\C$. As expected,
+  	\[
+  		f'(z)=u_x+iv_x=e^x\cos y+ie^x\sin y =e^z
+  	\]
+	\end{enumerate}
 \end{examples}
 
-\vfil\goodbreak
-
-\boldsubsubsection{A Sufficient Condition for Differentiability?}
-
-Since Theorem \ref{thm:cauchyriemann} only provides a necessary condition for differentiability, is is most useful in the contrapositive form:
-\begin{quote}
-Cauchy--Riemann not satisfied $\implies f$ not differentiable 
-\end{quote}
-We'd like this to be bidirectional, so that the Cauchy--Riemann equations become a sufficient condition for differentiability. This is indeed possible, with one small caveat\ldots\smallbreak
-
-Suppose a complex function $f(z)=u(x,y)+iv(x,y)$ has partial derivatives on an open neighborhood $D$ of a point $z_0=x_0+iy_0$. Also suppose $f$ satisfies the Cauchy--Riemann equations and that the partial derivatives $u_x=v_y$ and $u_y=-v_x$ are \emph{continuous} at $z_0$. The rough idea is to use the linear approximation: for $z\in D$,
-\begin{gather*}
-\begin{aligned}
-f(z)-f(z_0)&\approx f_x(x_0,y_0)\Delta x+f_y(x_0,y_0)\Delta y\\
-% &=(u_x(x_0,y_0)+iv_x(x_0,y_0))\Delta x+(u_y(x_0,y_0)+iv_y(x_0,y_0))\Delta y\\
-% &=(u_x(x_0,y_0)+iv_x(x_0,y_0))\Delta x+(-v_x(x_0,y_0)+iu_x(x_0,y_0))\Delta y\\
-% &=(u_x(x_0,y_0)+iv_x(x_0,y_0))(\Delta x+i\Delta y)\\
-&=(u_x+iv_x)\Delta x+(u_y+iv_y)\Delta y\\
-&=(u_x+iv_x)\Delta x+(-v_x+iu_x)\Delta y\\
-&=(u_x+iv_x)(\Delta x+i\Delta y) =(u_x+iv_x)\Delta z
-\end{aligned}\\
-\implies \frac{f(z)-f(z_0)}{z-z_0}\approx u_x(x_0,y_0)+iv_x(x_0,y_0) 
-\end{gather*}
-The continuity of the partial derivatives at $(x_0,y_0)$ means that the approximation approaches equality as $\Delta z\to 0$. We omit the complete proof since there are too many details. The upshot is a near converse to Theorem \ref{thm:cauchyriemann}.
-
-\begin{thm}{}{cauchyriemann2}
-Let $u,v$ have partial derivatives on a neighbourhood of $z_0=x_0+iy_0$. Assume $f=u+iv$ satisfies the Cauchy--Riemann equations and has continuous partial derivatives at $z_0$. Then $f$ is differentiable at $z_0$ and
-\[f'(z_0)=u_x(x_0,y_0)+iv_x(x_0,v_0)\]
-\end{thm}
-
-\begin{examples}{}{crmoremore}
-\hangindent\leftmargini
-\textup{1.}\ Revisiting Example \hyperref[ex:cr3]{\ref*{ex:crlots}.\ref*{ex:cr3}}, we see that $f(z)=\frac z{2+\nm z^2}$ has partial derivatives everywhere; these are continuous and satisfy Cauchy--Riemann at $z=0$, whence $f$ is differentiable there. Moreover 
-  \[f'(0)=u_x(0,0)+iv_x(0,0)=\frac 12\]
-\begin{enumerate}\setcounter{enumi}{1}
-  \item\label{ex:crexex2} The exponential function is differentiable everywhere: indeed
-  \[f(z)=e^z=e^x\cos y+ie^x\sin y\]
-  satisfies
-  \[u_x=e^x\cos y=v_y,\qquad u_y=-e^x\sin x=-v_x\]
-  where these are certainly continuous on $\C$. Moreover, as expected,
-  \[f'(z)=u_x+iv_x=e^x\cos y+ie^x\sin y =e^z\]
-\end{enumerate}
-\end{examples}
-
+\goodbreak
 
 
 \begin{exercises*}{}
-\hangindent\leftmargini
-\textup{1.}\ Use Theorem \ref{thm:derivrules} to find the derivatives of the following functions:
-\begin{enumerate}\setcounter{enumi}{1}
-  \item[]\begin{enumerate}
-  	\item $\displaystyle f(z)=\frac 1{z^2+2z}$\qquad
-    (b) $\displaystyle f(z)=(z^3+2iz+1)^7$\qquad
-    (c) $\displaystyle f(z)=\frac{(3z^2-i)^3}{(iz^3+4)^2}$
-  \end{enumerate}
-  
-  \item Use the limit definition of the derivative to compute the derivative of the functions:
-  \begin{enumerate}
-  	\item $\displaystyle f(z)=3z^3-iz^2$\qquad
-    (b) $\displaystyle f(z)=\frac 1{z^2}$
-  \end{enumerate}
-  
-  \item Give a proof of the quotient rule, directly using the definition of the derivative.
-  
-  \item Use the quotient rule to prove the power law for negative integer exponents: that is
-  \[\forall n\in\N,\quad \diff zz^{-n}=-nz^{-n-1}\]
-  
-  \item Suppose $f(z_0)=g(z_0)=0$ and that $f'(z_0)$ and $g'(z_0)$ exists, where $g'(z_0)\neq 0$. Use the definition of the derivative to show that
-  \[\lim_{z\to z_0}\frac{f(z)}{g(z)}=\frac{f'(z_0)}{g'(z_0)}\]
-  
-  \item Prove that the functions $f(z)=\Re z$ and $g(z)=\Im z$ are not differentiable anywhere.
-  
-  \item Exactly as in Example \hyperref[ex:crexex2]{\ref*{ex:crmoremore}.\ref*{ex:crexex2}}, prove that $\displaystyle \diff ze^{kz} =ke^{kz}$ for any complex constant $k$.
-  
-  \item Consider the Cauchy--Riemann equations for the following functions: what can you conclude, if anything?
-  \begin{enumerate}
-  	\item $\displaystyle f(z)= \frac{1}{\cl z-i}$\qquad
-    (b) $\displaystyle f(z)=z^3-\frac 2z$\qquad
-    (c) $\displaystyle f(z)=(\nm z^2+z)^2$
-  \end{enumerate}
-  
-  \item Write a complex function $f(z)=f(z,\cl z)$ as a function of $z$ and $\cl z$. For example,
-  \[f(z)=\nm z^2=z\cl z\]
-  Noting that $\displaystyle x=\frac 12(z+\cl z)$ and $\displaystyle y=\frac 1{2i}(z-\cl z)$, use the chain rule
-  \[\partials[f]{\cl z}=\partials[f]{x}\partials[x]{\cl z}+\partials[f]{y}\partials[y]{\cl z}\]
-  to prove that $f$ satisfies the Cauchy--Riemann equations if and only if $\displaystyle \partials[f]{\cl z}=0$.\smallbreak
-  Hence give a quick proof that $f(z)=z\cl z^2$ is not differentiable when $z\neq 0$. 
-\end{enumerate}
+	\exstart Use Theorem \ref{thm:derivrules} to find the derivatives of the following functions:
+	\begin{enumerate}\setcounter{enumi}{1}
+	  \item[]\begin{enumerate}
+	  	\item $\displaystyle f(z)=\frac 1{z^2+2z}$\qquad
+	    (b) \ $\displaystyle f(z)=(z^3+2iz+1)^7$\qquad
+	    (c) \ $\displaystyle f(z)=\frac{(3z^2-i)^3}{(iz^3+4)^2}$
+	  \end{enumerate}
+	  
+	  
+	  \item Use the limit definition of the derivative to compute the derivative of the functions:
+	  \begin{enumerate}
+	  	\item $\displaystyle f(z)=3z^3-iz^2$\qquad
+	    (b) \ $\displaystyle f(z)=\frac 1{z^2}$
+	  \end{enumerate}
+	  
+	  
+	  \item Give a proof of the quotient rule, directly using the definition of the derivative.
+	  
+	  
+	  \item Use the quotient rule to prove the power law for negative integer exponents:
+	  \[
+	  	\forall n\in\N,\quad \diff zz^{-n}=-nz^{-n-1}
+	  \]
+	  
+	  
+	  \item (\emph{L'Hôpital's rule})\lstsp Suppose $f(z_0)=g(z_0)=0$, and that $f'(z_0)$ and $g'(z_0)\neq 0$ both exist. Use the definition of the derivative to prove that
+	  \[
+	  	\lim_{z\to z_0}\frac{f(z)}{g(z)}=\frac{f'(z_0)}{g'(z_0)}
+	  \]
+	  
+	  
+	  \item Prove that $f(z)=\Re z$ and $g(z)=\Im z$ are not differentiable anywhere.
+	  
+	  
+	  \item By writing $z=re^{i\theta}$ in polar form, verify directly that $f(z)=\nm z=\sqrt{x^2+y^2}$ is not differentiable at $z_0=0$.
+	  
+	  
+	  \item What, if anything, do the Cauchy--Riemann equations allow you to conclude for the following?
+	  \begin{enumerate}
+	  	\item $\displaystyle f(z)=(z+i)^2$\qquad 
+	  	(b) \ $\displaystyle f(z)= \frac{1}{\cl z-i}$\qquad
+	    (c) \ $\displaystyle f(z)=z^3-\frac 2z$\qquad
+	    (d) \ $\displaystyle f(z)=\bigl(\nm z^2+z\bigr)^2$
+	  \end{enumerate}
+	  
+	  
+	  \item As in Example \ref*{ex:crlots}.\ref{ex:crexex2}, prove that $\displaystyle \diff ze^{kz} =ke^{kz}$ for any complex constant $k=a+ib$.
+	  
+	  
+	  \item Write a complex function $f(z)=f(z,\cl z)$ as a function of $z$ and $\cl z$. For example,
+	  \[
+	  	f(z)=\nm z^2=z\cl z
+	  \]
+	  Noting that $\displaystyle x=\frac 12(z+\cl z)$ and $\displaystyle y=\frac 1{2i}(z-\cl z)$, use the chain rule
+	  \[
+			\partials[f]{\cl z}=\partials[f]{x}\partials[x]{\cl z}+\partials[f]{y}\partials[y]{\cl z}
+		\]
+	  to prove that $f$ satisfies the Cauchy--Riemann equations if and only if $\displaystyle \partials[f]{\cl z}=0$.\smallbreak
+	  Hence give a quick proof that $f(z)=z\cl z^2$ is not differentiable when $z\neq 0$.
+	  
+	  
+	  \item\label{exs:crconv} Suppose $f(z)=u+iv$ satisfies the Cauchy--Riemann equations at $z_0=x_0+iy_0$. Use the multi-variable linear approximation
+	  \[
+	  	f(z)\approx f(z_0)+f_x(x_0,y_0)\Delta x+f_y(x_0,y_0)\Delta y
+	  \]
+	  to prove that $\frac{f(z)-f(z_0)}{z-z_0}\approx u_x(x_0,y_0)+iv_x(x_0,y_0)$ whenever $z\neq z_0$.\par
+		(The existence/continuity assumptions in Theorem \ref{thm:cauchyriemann}, part 2, guarantee that this approximation becomes equality in the limit, though a rigorous proof requires significant work)
+	\end{enumerate}
 \end{exercises*}
 
 \clearpage
 
 
-\subsection[Holomorphic and Harmonic Functions]{Holomorphic and Harmonic Functions}\label{subsec:analytic}% (\S\,24--28)
 
-We tend to be most interested in functions which are differentiable on their whole domain.
+\subsection{Holomorphic and Harmonic Functions}\label{subsec:analytic}% (\S\,24--28)
+
+We tend to be most interested in functions which are everywhere differentiable.
 
 \begin{defn}{}{}
-Let $f:D\to\C$ be a function where $D$ is open.
-\begin{itemize}
-  \item If $f$ is differentiable at every point of $D$ we say that it is \emph{holomorphic} (or \emph{analytic}\footnote{We'll use these terms interchangeably though strictly they have different definitions: analyticity being related to power series representations. A major part of the course involves showing that these definitions are equivalent.}) on $D$.
-  \item We say that $f$ is \emph{holomorphic at $z_0\in D$} if it differentiable (holomorphic) on some open set containing $z_0$.
-  \item An \emph{entire function} is a holomorphic function $f:\C\to\C$ (domain $=\C$).
-\end{itemize}
+	We say that $f:D\to\C$ is:
+	\begin{itemize}
+	  \item \emph{Holomorphic} (or \emph{analytic}\footnotemark) on $D$ if it is differentiable at all points $z_0\in D$ (necessarily $D$ is open!).
+	  \item \emph{Holomorphic at $z_0\in D$} if it is differentiable (holomorphic) on some neighborhood of $z_0$.
+	  \item \emph{Entire} if it is holomorphic with domain $D=\C$.
+	\end{itemize}
 \end{defn}
 
+\footnotetext{We'll use holomorphic/analytic interchangeably though the formal definition of analytic depends on power series. A major part of the course involves showing that these definitions are equivalent.}
+
 \begin{examples}{}{}
-\hangindent\leftmargini
-\textup{1.}\ The function $f(z)=e^{4z}$ is entire, as is every polynomial.
-\begin{enumerate}\setcounter{enumi}{1}
-  \item The function $f(z)=\dfrac{iz}{z^2+4}$ is holomorphic on its implied domain $\dom f=\C\setminus\{\pm 2i\}$; indeed, by the quotient rule
-  \[f'(z)=\frac{i(z^2+4)-2iz^2}{(z^2+4)^2} =\frac{i(4-z^2)}{(z^2+4)^2}\]
-\end{enumerate}
+	\exstart The exponential function $f(z)=e^{4z}$ is entire, as is every polynomial.
+	\begin{enumerate}\setcounter{enumi}{1}
+	  \item The rational function $f(z)=\frac{iz}{z^2+4}$ is holomorphic on its implied domain $\C\setminus\{\pm 2i\}$. Indeed, by the quotient rule,
+	  \[
+	  	f'(z)=\frac{i(z^2+4)-2iz^2}{(z^2+4)^2} =\frac{i(4-z^2)}{(z^2+4)^2}
+	  \]
+	\end{enumerate}
 \end{examples}
 
 
-Our first major result should seem very familiar.
+Our first general result should seem very familiar.
 
 \begin{thm}{}{derivzeroconst}
-If $f'(z)=0$ on a (path-)connected open domain $D$, then $f(z)$ is constant.  
+	If $f'(z)=0$ on a (path-)connected open domain $D$, then $f(z)$ is constant.  
 \end{thm}
 
-The set-up relies on Theorems \ref{thm:compactconnected} and \ref{thm:opencover}, though the calculation should be compared to that in real analysis, which also uses the mean value theorem.
+The first part of the proof relies on Theorems \ref{thm:compactconnected} and \ref{thm:opencover}. The calculation in the second half should be compared to the corresponding argument in real analysis which also uses the mean value theorem.
 
-\begin{tcolorbox}[proofstyle]
-\begin{minipage}[t]{0.6\linewidth}\vspace{0pt}
-Choose any $p,q\in D$ and join these with a \textcolor{red}{path}.\par Since $D$ is open, at each point of the path we can choose an \textcolor{Green}{open square} lying within $D$ centered on the path.\par
-The path is compact, whence it may be covered by finitely many boxes. A \textcolor{purple}{zigzag path} consisting of finitely many horizontal and vertical segments may now be described within these boxes.\smallbreak
-Since $f'(z)=u_x+iv_x=v_y-iu_y=0$, we see that all four partial derivatives are zero.
-\end{minipage}\begin{minipage}[t]{0.4\linewidth}\vspace{0pt}
-\flushright\includegraphics{analytic-topology}
-\end{minipage}\medbreak
-For each horizontal segment ($x_1\le x\le x_2$, $y$ fixed), we apply the mean value theorem to the functions $x\mapsto u(x,y)$ and $x\mapsto v(x,y)$. We therefore have $\widehat x,\widetilde x\in (x_1,x_2)$ with
-\[\frac{u(x_2,y)-u(x_1,y)}{x_2-x_1}=u_x(\widehat x,y)=0\quad\text{and}\quad \frac{v(x_2,y)-v(x_1,y)}{x_2-x_1}=v_x(\widetilde x,y)=0\]
-whence $u$ and $v$, and thus $f(z)$, are constant along any horizontal segment.\smallbreak
-The same holds along any vertical segment, this time after utilizing the fact that $u_y=v_y=0$.\smallbreak
- We conclude that $f(q)=f(p)$: since $p,q$ were arbitrary points of $D$, $f$ is constant.\hfill\qedsymbol
-\end{tcolorbox}
-\goodbreak
-
-% \begin{proof}
-% Any two points in $D$ may be joined via a path comprising finitely many horizontal and vertical segments.\par
-% \begin{minipage}[t]{0.6\linewidth}\vspace{0pt}
-% Since $f'(z)=u_x+iv_x=u_y-iv_y=0$, we see that all four partial derivatives are zero.\\
-% For a horizontal segment ($x_1\le x\le x_2$, $y$ fixed), the mean value theorem says $\exists \hat x\in (x_1,x_2)$ with
-% \[u(x_2,y)-u(x_1,y)=(x_2-x_1)u_x(\hat x,y)=0\]
-% whence $u$ is constant along any horizontal segment. The same holds for $v$, and similarly for both along any vertical segment.
-% \end{minipage}\begin{minipage}[t]{0.4\linewidth}\vspace{0pt}
-% \flushright\includegraphics{analytic-topology}
-% \end{minipage}\par
-% We conclude that $u,v$ take the same values at any two points in $D$.
-% \end{proof}
-
+\begin{proof}
+	Choose any $p,q\in D$ and join them with a \textcolor{red}{path}.\par 
+	\begin{minipage}[t]{0.6\linewidth}\vspace{-7pt}
+		Since $D$ is open, at each point of the path we can choose an \textcolor{Green}{open box} lying within $D$ centered on the path.\par
+		The path is compact, so it may be covered by finitely many boxes. A \textcolor{purple}{zigzag path} consisting of finitely many horizontal and vertical segments may now be described within these boxes.\smallbreak
+		Since $f'(z)=u_x+iv_x=v_y-iu_y=0$, we see that all four partial derivatives are zero.
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{0.39\linewidth}\vspace{-10pt}
+		\flushright\includegraphics{analytic-topology}
+	\end{minipage}\medbreak
+	For each horizontal segment of the \textcolor{purple}{zigzag path} ($x_1\le x\le x_2$, $y$ constant), apply the mean value theorem to the functions $x\mapsto u(x,y)$ and $x\mapsto v(x,y)$ to obtain $\widehat x,\widetilde x\in (x_1,x_2)$ with
+	\[
+		\frac{u(x_2,y)-u(x_1,y)}{x_2-x_1}=u_x(\widehat x,y)=0\quad\text{and}\quad \frac{v(x_2,y)-v(x_1,y)}{x_2-x_1}=v_x(\widetilde x,y)=0
+	\]
+	It follows that $u$ and $v$, and thus $f(z)$, are constant along any horizontal segment.\smallbreak
+	The same holds along any vertical segment, this time after utilizing $u_y=v_y=0$.\smallbreak
+	We conclude that $f(q)=f(p)$. Since $p,q$ were arbitrary points of $D$, $f$ is constant.
+\end{proof}
 
 
 \begin{cor}{}{modimpliesconst}
-If $f(z)$ is holomorphic and $\nm{f(z)}$ is constant, then $f(z)$ is constant. 
+	If $f(z)$ is holomorphic with constant modulus $k=\nm{f(z)}$, then $f(z)$ is constant. 
 \end{cor}
 
-This is essentially trivial in the real case: think about why! In the complex case, we need a proof.
+This is essentially trivial in the real case---think about why! The complex case needs a proof.
 
 \begin{proof}
-Clearly $\nm{f(z)}^2=f(z)\cl{f(z)}=k$ is constant. If $k=0$, we are done. Otherwise, $\cl{f(z)}=\frac k{f(z)}$ is holomorphic (quotient rule!). Write $f(z)=u+iv$, whence $\cl{f(z)}=u-iv$, and consider the Cauchy--Riemann equations for \emph{both}:
-\[u_x=v_y,\qquad u_y=-v_x,\qquad u_x=-v_y,\qquad u_y=v_x\]
-We conclude that all partial derivatives are zero: $f'(z)=0$ and so $f$ is constant.
+	Plainly $k^2=\nm{f(z)}^2=f(z)\cl{f(z)}$ is constant. If $k=0$, we are done. Otherwise, $\cl{f(z)}=\frac{k^2}{f(z)}$ is holomorphic (quotient rule!). Write $f(z)=u+iv$, whence $\cl{f(z)}=u-iv$, and consider the Cauchy--Riemann equations for \emph{both}:
+	\[
+		u_x=v_y,\qquad u_y=-v_x,\qquad u_x=-v_y,\qquad u_y=v_x
+	\]
+	All partial derivatives are therefore zero: $f'(z)=0$ and so $f$ is constant.
 \end{proof}
 
-We now come to a significant contrast with the real case. 
+The next result is worth stating now, since it provides a significant contrast with the real case. We'll prove it later once we've developed contour integration.
 
 \begin{thm}{}{holoinfdiff}
-If $f(z)=u+iv$ is holomorphic, then $f$ is \emph{infinitely differentiable.} Otherwise said:
-\begin{itemize}
-  \item $f^{(n)}(z)$ exists and is continuous for all $n\in\N$.
-  \item $u$ and $v$ have continuous partial derivatives of all orders.
-\end{itemize} 
+	If $f(z)=u+iv$ is holomorphic, then $f$ is \emph{\bfseries infinitely differentiable.} Otherwise said:
+	\begin{itemize}
+	  \item $f^{(n)}(z)$ exists and is continuous for all $n\in\N$.
+	  \item $u$ and $v$ have continuous partial derivatives of all orders.
+	\end{itemize} 
 \end{thm}
 
-In real analysis, even functions which are differentiable everywhere need not be \emph{twice} differentiable, let alone infinitely so (Exercise \ref{exs:realoncediff}). We'll prove this important result later in the course once we've developed some integration theory.
+In real analysis, functions which are everywhere differentiable need not even be \emph{twice} differentiable, let alone infinitely so (Exercise \ref{exs:realoncediff}).
+
 
 \boldinline{Harmonic Functions}
 
-We may now consider what happens with the \emph{second} partial derivatives of a holomorphic function:
-\[u_{xx}=\partials xu_x\overset{CR1}{=}\partials xv_y =v_{yx}\overset{(\ast)}{=}v_{xy}=\partials yv_x\overset{CR2}{=}-\partials yu_y=-u_{yy}\]
+The \emph{second} partial derivatives of a holomorphic function satisfy a famous partial differential equation:
+\[
+	u_{xx}=\partials xu_x\overset{CR1}{=}\partials xv_y =v_{yx}\overset{(\ast)}{=}v_{xy}=\partials yv_x\overset{CR2}{=}-\partials yu_y=-u_{yy}
+\]
 Equality of the mixed partial derivatives $(\ast)$ follows because all derivatives are continuous (Theorem \ref{thm:holoinfdiff} and Clairaut's Theorem). The same equation holds for $v$. We conclude:
 
 \begin{cor}{}{}
-If $f=u+iv$ is holomorphic, then $u$ and $v$ are \emph{harmonic functions}; solutions to \emph{Laplace's equation}
-\[\nabla^2u=u_{xx}+u_{yy}=0\]
+	If $f=u+iv$ is holomorphic, then $u$ and $v$ are \emph{harmonic functions}; solutions to \emph{Laplace's equation}
+	\[
+		\nabla^2u=u_{xx}+u_{yy}=0
+	\]
 \end{cor}
 
-Laplace's equation is one of the most important partial differential equations, and is widely used throughout mathematics and physics.
+Laplace's equation is one of the most widely applied PDEs, used throughout mathematics and physics.
 
 \begin{example}{}{}
-$f(z)=\frac 1z=\frac{x-iy}{x^2+y^2}$ is holomorphic on $\C\setminus\{0\}$; its real and imaginary parts are therefore harmonic away from the origin. Indeed,
-\begin{align*}
-u_{xx}+u_{yy}&=\left(\partials[^2]{x^2}+\partials[^2]{y^2}\right)\frac x{x^2+y^2} =\partials x\frac{y^2-x^2}{(x^2+y^2)^2}-\partials y\frac{2xy}{(x^2+y^2)^2}\\
-&=\frac{-2x(x^2+y^2)-4x(y^2-x^2)}{(x^2+y^2)^3}-\frac{2x(x^2+y^2)-8xy^2}{(x^2+y^2)^3} =0
-\end{align*}
+	$f(z)=\frac 1z=\frac{x-iy}{x^2+y^2}$ is holomorphic on $\C\setminus\{0\}$; its real and imaginary parts are therefore harmonic away from the origin. Indeed,
+	\begin{align*}
+		u_{xx}+u_{yy}&=\left(\partials[^2]{x^2}+\partials[^2]{y^2}\right)\frac x{x^2+y^2}
+		=\partials x\frac{y^2-x^2}{(x^2+y^2)^2}-\partials y\frac{2xy}{(x^2+y^2)^2}\\
+		&=\frac{-2x(x^2+y^2)-4x(y^2-x^2)}{(x^2+y^2)^3}-\frac{2x(x^2+y^2)-8xy^2}{(x^2+y^2)^3}
+		=0
+	\end{align*}
 \end{example}
 \goodbreak
 
 \boldinline{Analytic Continuations}
 
-Though we cannot yet prove it, now is a good time to introduce another surprising property of holomorphic/analytic functions. Since this result will be seen to depend on power series, we'll stick to using the term \emph{analytic} here. 
+We finish this introduction to holomorphic functions with another surprising result whose proof will have to wait (this time for the theory of residues).
 
 \begin{thm}[lower separated=false, sidebyside, sidebyside align=top seam, sidebyside gap=0pt, righthand width=0.38\linewidth]{}{analyticcont}
-Suppose that $f$ and $g$ are analytic functions on an open connected domain $D$ and assume that \textcolor{red}{$f(z)=g(z)$} on some \textcolor{red}{path} contained in $D$.\smallbreak
-Then \textcolor{blue}{$f(z)=g(z)$} throughout $D$.
-\tcblower
-\flushright\includegraphics{analytic-topology2}
+	Suppose $f$ and $g$ are holomorphic functions on an open connected domain $E$ and assume that \textcolor{red}{$f(z)=g(z)$} on some \textcolor{red}{path} contained in $E$.\smallbreak
+	Then \textcolor{blue}{$f(z)=g(z)$} throughout $E$.
+	\tcblower
+	\flushright\includegraphics{analytic-topology2}
 \end{thm}
 
-This is highly counter-intuitive; you need only know the values of an analytic function on a tiny path to know the full function on its whole (connected) domain! This leads to a new concept.
+This is highly counter-intuitive; you need only know the values of a holomorphic function on a tiny path to know the full function on its whole (connected) domain! This leads to a new concept.
 
 \begin{defn}[lower separated=false, sidebyside, sidebyside align=top seam, sidebyside gap=0pt, righthand width=0.38\linewidth]{}{}
-Let $D\subseteq E$ be open connected domains and $g:E\to \C$ an analytic function. Let $f:D\to\C$ be the restriction of $g$ to $D$; that is $f(z)=g(z)$ on $D$.\smallbreak
-We call $g$ \emph{the analytic continuation} of $f$ to $E$.\tcblower
-\flushright\includegraphics{analytic-topology3}
+	Let $D\subseteq E$ be open connected domains and $g:E\to \C$ holomorphic. Let $f:D\to\C$ be the restriction of $g$ to $D$; that is $f(z)=g(z)$ on $D$.\smallbreak
+	We call $g$ the \emph{analytic continuation} of $f$ to $E$.\tcblower
+	\flushright\includegraphics{analytic-topology3}
 \end{defn}
 
-By Theorem \ref{thm:analyticcont}, the analytic continuation of $f$ to $E$ must be unique. There are, however, some subtleties, which we explore a little in the next example:
+By Theorem \ref{thm:analyticcont}, the analytic continuation of $f$ to $E$ is unique. There are, however, some subtleties, which we explore a little in the next example:
 \begin{itemize}\itemsep2pt
-  \item Given $f$ analytic on $D$ and $D\subseteq E$, an analytic continuation is not guaranteed to exist.
+  \item Given $f$ analytic on $D$, an analytic continuation to $E\supseteq D$ is not guaranteed to exist.
   \item The choice of extended domain $E$ \emph{really} matters.
 \end{itemize}
 
 \begin{example}{}{sqrtzanalcont}
-Consider the principal square root $f(z)=\sqrt z=\sqrt r\polar{i\theta}2$ with domain $D$ the first quadrant. In Exercise \ref{exs:sqrtzdiff}, we'll see that $f$ is differentiable on $D$.\smallbreak
-Consider two analytic continuations of $f$: in both cases we use the same formula $z\mapsto\sqrt r\polar{i\theta}2$ and we distinguish the point $w=\polarn{3\pi i}4=\polar{5\pi i}4$ for comparison.\par
-\begin{minipage}[t]{0.59\linewidth}\vspace{-5pt}
-Let $G=\C\setminus\{-x:x\in\R^+_0\}$ be the plane omitting the \emph{non-positive real axis} and let
-\[g:G\to\C:z\mapsto \sqrt r\polar{i\theta}2,\quad \theta=\Arg z\in(-\pi,\pi)\]
-The codomain of $g$ is the right half-plane and $g(w)=\polarn{3\pi i}8$ lies in the \emph{fourth quadrant.}\medbreak
-Let $H=\C\setminus\{-iy:y\in\R^+_0\}$ omit the \emph{non-positive imaginary axis} and let
-\[h:H\to\C:z\mapsto \sqrt r\polar{i\theta}2,\quad \theta=\arg z\in(-\tfrac\pi 2,\tfrac{3\pi}2)\]
-This time the codomain of $h$ is the upper-right half-plane; moreover $h(w)=\polar{5\pi i}8=-g(w)$ lies in the \emph{second quadrant.}
-\end{minipage}\begin{minipage}[t]{0.41\linewidth}\vspace{-15pt}
-\flushright\includegraphics{analytic-cont1}\\
-\includegraphics{analytic-cont2}
-\end{minipage}\smallbreak
-We have two analytic continuations of $f$ which disagree on the intersection of their domains!\smallbreak
-It can moreover be seen that the omissions chosen for $G,H$ are necessary: there is no analytic continuation of $f$ to the punctured plane $\C\setminus\{0\}$, or indeed to any domain in which it is possible to loop completely around the origin. We shall return to this topic later\ldots
+	Let $f(z)=\sqrt z=\sqrt r\polar{i\theta}2$ be the principal square root whose domain $D$ is the \textcolor{Green}{first quadrant}. Exercise \ref{exs:sqrtzdiff} verifies that $f$ is holomorphic on $D$.\par
+	The pictures describe \emph{two} analytic continuations of $f$: in both cases the point $w=\polarn{3\pi i}4=\polar{5\pi i}4$ is used for comparison.\par
+	\begin{minipage}[t]{0.61\linewidth}\vspace{-5pt}
+		\begin{enumerate}
+		  \item Let $G$ be the \textcolor{blue}{plane omitting the non-positive real axis} and define
+			\[
+				g:G\to\C:z\mapsto \sqrt r\polar{i\theta}2,\quad \theta=\Arg z\in(-\pi,\pi)
+			\]
+			The codomain of $g$ is the \textcolor{blue}{right half-plane}. Observe that $g(w)=\polarn{3\pi i}8$ lies in the \emph{fourth quadrant.}
+			\item	Let $H$ be the \textcolor{orange}{plane omitting the non-positive imaginary axis} and define
+			\[
+				h:H\to\C:z\mapsto \sqrt r\polar{i\theta}2,\quad \theta=\arg z\in(-\tfrac\pi 2,\tfrac{3\pi}2)
+			\]
+			The codomain of $h$ is the \textcolor{orange}{upper-right half-plane}. Moreover $h(w)=\polar{5\pi i}8=-g(w)$ lies in the \emph{second quadrant.}
+		\end{enumerate}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{0.38\linewidth}\vspace{-15pt}
+		\flushright\includegraphics[scale=0.95]{analytic-cont1}\\
+		\includegraphics[scale=0.95]{analytic-cont2}
+	\end{minipage}
+	\medbreak
+	The two analytic continuations of $f$ disagree on the intersection of their domains!\smallbreak
+	In fact the omissions chosen for $G,H$ are necessary: there is no analytic continuation of $f$ to the punctured plane $\C\setminus\{0\}$, or indeed to any domain in which it is possible to loop completely around the origin. We shall return to this topic in Chapter \ref{chap:functions}\ldots
 \end{example}
+
 \goodbreak
 
-% \subsubsection*{The Cauchy--Riemann Equations in Polar Co-ordinates}
-% 
-% Recall that $z=x+iy=re^{i\theta}$, where $x=r\cos\theta$ and $y=r\sin\theta$, we may apply the chain rule to see that
-% \[u_r=u_xx_r+u_yy_r =u_x\cos\theta-u_y\sin\theta \qquad u_\theta=u_xx_\theta+u_yy_\theta =-u_xr\sin\theta +u_yr\cos\theta\]
-% with similar expressions for $v_x,v_y$. Comparing to Theorems \ref{thm:cauchyriemann} and \ref{thm:cauchyriemann2}, we quickly obtain the corresponding results in polar co-ordinates:
 
-\vfill\goodbreak
 
 \begin{exercises*}{}
-\hangindent\leftmargini
-\textup{1.}\ Suppose $g'(z)=h'(z)$  on an open connected domain $D$. Prove that $h(z)=g(z)+c$ for some constant $c\in\C$.\vspace{-5pt}
-\begin{enumerate}\setcounter{enumi}{1}
-  \item[](\emph{Equivalently: if $g(z)$ and $h(z)$ are anti-derivatives of $f(z)$ on an open connected domain $D$ then $g(z)-h(z)$ is constant on $D$.})
-  
-  \item Check explicitly that $u=e^{nx}\cos ny$ and $v=e^{nx}\sin ny$ are harmonic functions for any $n\in\Z$.
-  
-  \item Prove or disprove: if $u,v:D\to\R$ are harmonic functions on an open set $D\subseteq\R^2$, then $f(z):=u(x,y)+iv(x,y)$ is holomorphic.
-  
-  \item\label{exs:realoncediff} Define $f:\R\to\R$ by
-	\[f(x)=x\nm x=\begin{cases}
-		x^2&\text{if }x\ge 0\\
-		-x^2&\text{if }x<0
-		\end{cases}\]
-		Show that $f$ is differentiable, but not \emph{twice} differentiable.\par
-		(\emph{Such properties are impossible for complex functions})
-% 		\footnote{Perhaps this isn't such a surprise: as we saw in Example \hyperref[exs:modnotdiff]{\ref*{ex:crlots}.\ref*{exs:modnotdiff}}, corresponding functions of the complex numbers (using the modulus) aren't differentiable at all!}
-  
-  \item\label{exs:crpolar} Suppose $f(z)=u+iv$ and write $z=x+iy=re^{i\theta}$ in polar form.
-  \begin{enumerate}
-    \item Use the chain rule applied to the polar co-ordinate relations
-  	\[x=r\cos\theta,\qquad y=r\sin\theta\]
-  	to compute the partial derivatives $u_r,u_\theta,v_r$ and $v_\theta$.
-  	\item Deduce the polar form of the Cauchy--Riemann equations:
-		\[ru_r=v_\theta\qquad u_\theta=-rv_r,\qquad f'(z)=e^{-i\theta}(u_r+iv_r) =\frac{-i}{z}(u_\theta+iv_\theta)\]
-	\end{enumerate}
-	
-	\item Prove the polar form of Laplace's equation:
-	\[r^2u_{rr}+ru_r+u_{\theta\theta}=0\]
+	\exstart Suppose $g'(z)=h'(z)$  on an open connected domain $D$. Prove that $h(z)=g(z)+c$ for some constant $c\in\C$.\vspace{-5pt}
+	\begin{enumerate}\setcounter{enumi}{1}
+	  \item[]\emph{Equivalently: if $g(z)$ and $h(z)$ are anti-derivatives of $f(z)$, then $g(z)-h(z)$ is constant}
+	  
+	  
+	  \item Verify that $u=e^{nx}\cos ny$ and $v=e^{nx}\sin ny$ are harmonic functions for any $n\in\Z$.
+	  
+	  
+	  \item Prove or disprove: if $u,v:D\to\R$ are harmonic functions on an open set $D\subseteq\R^2$, then $f(z):=u(x,y)+iv(x,y)$ is holomorphic.
+	  
+	  
+	  \item\label{exs:realoncediff} Define $f:\R\to\R$ by
+		\[
+			f(x)=x\nm x=
+			\begin{cases}
+				x^2&\text{if }x\ge 0\\
+				-x^2&\text{if }x<0
+			\end{cases}
+		\]
+		Show that $f$ is differentiable, but not \emph{twice} so (\emph{an impossible property for complex functions}).
+
+	  
+	  \item\label{exs:crpolar} Suppose $f(z)=u+iv$ and write $z=x+iy=re^{i\theta}$ in polar form.
+	  \begin{enumerate}
+	    \item Use the chain rule applied to the polar co-ordinate relations $x=r\cos\theta$, $y=r\sin\theta$ to compute the partial derivatives $u_r,u_\theta,v_r,v_\theta$ in terms of $u_x,u_y,v_x,v_y$.
+	    
+	  	\item Deduce the polar form of the Cauchy--Riemann equations:
+			\[
+				ru_r=v_\theta\qquad u_\theta=-rv_r,\qquad f'(z)=e^{-i\theta}(u_r+iv_r) =\frac{-i}{z}(u_\theta+iv_\theta)
+			\]
+		\end{enumerate}
 		
-	\item Show that $u=r^n\cos n\theta$ is a harmonic function for any $n\in\N$: find \emph{two} ways to show that this is true!
-	
-	
-	\item Suppose $f:\C\to\C$ is an entire function such that $f(iy)=-iy^3$ whenever $z=iy$ lies on the imaginary axis. What is the value $f(2)$? Explain your answer.
-	
-	\item The function $f(z)=\frac 1z$ is analytic on $\C\setminus\{0\}$. Explain why there is no analytic continuation of $f$ that is analytic at $z=0$.
-	
-	\item\label{exs:sqrtzdiff}
-	\begin{enumerate}
-	  \item Use Exercise \ref{exs:crpolar} to prove that $f(z)=\sqrt z=\sqrt r\polar{i\theta}2$ is analytic on the first quadrant, and find $f'(z)$. Moreover, explain why the functions $g, h$ in  Example \ref{ex:sqrtzanalcont} are analytic and therefore analytic continuations of $f$.
-	  \item Prove that there exists no analytic continuation of $g$ to any set larger than $G$.\\
-		(\emph{Hint: suppose the extended domain contains $-r\in\R^-$. Now use the fact that an analytic continuation must be continuous at $-r\ldots$})
+		
+		\item Prove the polar form of Laplace's equation:
+		\[
+			r^2u_{rr}+ru_r+u_{\theta\theta}=0
+		\]
+			
+			
+		\item Show that $u=r^n\cos n\theta$ is a harmonic function for any $n\in\N$: find \emph{two} ways to show that this is true!
+		
+		
+		\item Suppose $f:\C\to\C$ is an entire function such that $f(iy)=-iy^3$ whenever $z=iy$ lies on the imaginary axis. What is the value $f(2)$? Explain your answer.\par
+		(\emph{Hint: Think about analytic continuations})
+		
+		
+		\item The function $f(z)=\frac 1z$ is holomorphic on $\C\setminus\{0\}$. Explain why there is no analytic continuation of $f$ that is holomorphic at $z=0$.
+		
+		
+		\item\label{exs:sqrtzdiff}
+		\begin{enumerate}
+		  \item Use Exercise \ref{exs:crpolar} to prove that $f(z)=\sqrt z=\sqrt r\polar{i\theta}2$ is holomorphic on the first quadrant and find $f'(z)$. Moreover, explain why the functions $g,h$ in Example \ref{ex:sqrtzanalcont} are holomorphic and therefore both analytic continuations of $f$.
+		  
+		  \item Prove that there exists no analytic continuation of $g$ to any set larger than $G$.\par
+			(\emph{Hint: suppose the extended domain contains $-r\in\R^-$. Now use the fact that an analytic continuation must be continuous at $-r\ldots$})
+		\end{enumerate}
 	\end{enumerate}
-\end{enumerate}
 \end{exercises*}
