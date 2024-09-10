@@ -116,7 +116,7 @@ By composing such functions, we can describe arbitrary rotations, reflections an
 \end{examples}
 
 
-\begin{exercises*}
+\begin{exercises}
 	\exstart For each function, describe its implied domain (page \pageref{sec:func}).
 	\begin{enumerate}\setcounter{enumi}{1}
 	  \item[]\begin{enumerate}
@@ -149,7 +149,7 @@ By composing such functions, we can describe arbitrary rotations, reflections an
 	  
 	  \item Prove, using the expressions on page \pageref{pg:2dgeom}, that the composition of two reflections is a rotation, and that the composition of a rotation and a reflection is a reflection.
 	\end{enumerate}
-\end{exercises*}
+\end{exercises}
 
 \clearpage
 
@@ -463,7 +463,7 @@ This is usually said ``Every open cover has a finite subcover,'' and is taken, i
 The upshot of this sections is that continuity and limits are essentially the same in both real and complex analysis. Differentiation, however, is another beast entirely\ldots
 
 
-\begin{exercises*}{}{}
+\begin{exercises}{}{}
 	\exstart Use the $\epsilon$--$\delta$ definition (\ref{defn:limit}) to prove the following.
 	\begin{enumerate}\setcounter{enumi}{1}
 	  \item[]\begin{enumerate}
@@ -504,12 +504,11 @@ The upshot of this sections is that continuity and limits are essentially the sa
 	  \item We complete the proof of Theorem \ref{thm:compactconnected}. Suppose $f:K\subseteq\C\to\C$ is continuous.
 	  \begin{enumerate}
 	    \item Let $K$ be compact. Suppose $(w_n)\subseteq K$ is a sequence such that $\bigl(f(w_n)\bigr)$ is convergent in $\C$. Explain why there exists a convergent subsequence $(w_{n_k})$, and use it to show that $\lim f(w_n)\in f(K)$. Hence conclude that $f(K)$ is closed.
-	    % such that $f(w_{n_k})$ Use the Bolzano--Weierstrass theorem  The compactness of $K$ says $\exists (w_{n_k})$ convergent to $w\in K$. The continuity of $f$ says that $f(w_{n_k})\to f(w)$. $f(K)$ is therefore closed.
+	    
 			\item Suppose $K$ is path-connected. If $f(p),f(q)\in f(K)$, show that $\exists w:[0,1]\to f(K)$ continuous such that $w(0)=f(p)$ and $w(1)=f(q)$. Hence conclude that $f(K)$ is path-connected.
-			% and let $z:[0,1]\to K$ be a path from $p$ to $q$. Then  $w(t):=f(z(t))$ defines a path from $f(p)$ to $f(q)$ in $f(K)$.
 	  \end{enumerate}
 	\end{enumerate}
-\end{exercises*}
+\end{exercises}
 
 \clearpage
 
@@ -677,7 +676,7 @@ We proved part 1 above. For a sketch of the almost-converse (part 2), see Exerci
 \goodbreak
 
 
-\begin{exercises*}{}
+\begin{exercises}{}
 	\exstart Use Theorem \ref{thm:derivrules} to find the derivatives of the following functions:
 	\begin{enumerate}\setcounter{enumi}{1}
 	  \item[]\begin{enumerate}
@@ -746,7 +745,7 @@ We proved part 1 above. For a sketch of the almost-converse (part 2), see Exerci
 	  to prove that $\frac{f(z)-f(z_0)}{z-z_0}\approx u_x(x_0,y_0)+iv_x(x_0,y_0)$ whenever $z\neq z_0$.\par
 		(The existence/continuity assumptions in Theorem \ref{thm:cauchyriemann}, part 2, guarantee that this approximation becomes equality in the limit, though a rigorous proof requires significant work)
 	\end{enumerate}
-\end{exercises*}
+\end{exercises}
 
 \clearpage
 
@@ -849,7 +848,7 @@ Equality of the mixed partial derivatives $(\ast)$ follows because all derivativ
 	\]
 \end{cor}
 
-Laplace's equation is one of the most widely applied PDEs, used throughout mathematics and physics.
+Laplace's equation is one of the most widely applied PDEs in mathematics and physics.
 
 \begin{example}{}{}
 	$f(z)=\frac 1z=\frac{x-iy}{x^2+y^2}$ is holomorphic on $\C\setminus\{0\}$; its real and imaginary parts are therefore harmonic away from the origin. Indeed,
@@ -918,7 +917,7 @@ By Theorem \ref{thm:analyticcont}, the analytic continuation of $f$ to $E$ is un
 
 
 
-\begin{exercises*}{}
+\begin{exercises}{}
 	\exstart Suppose $g'(z)=h'(z)$  on an open connected domain $D$. Prove that $h(z)=g(z)+c$ for some constant $c\in\C$.\vspace{-5pt}
 	\begin{enumerate}\setcounter{enumi}{1}
 	  \item[]\emph{Equivalently: if $g(z)$ and $h(z)$ are anti-derivatives of $f(z)$, then $g(z)-h(z)$ is constant}
@@ -976,4 +975,4 @@ By Theorem \ref{thm:analyticcont}, the analytic continuation of $f$ to $E$ is un
 			(\emph{Hint: suppose the extended domain contains $-r\in\R^-$. Now use the fact that an analytic continuation must be continuous at $-r\ldots$})
 		\end{enumerate}
 	\end{enumerate}
-\end{exercises*}
+\end{exercises}
