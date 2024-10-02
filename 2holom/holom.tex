@@ -155,14 +155,51 @@ By composing such functions, we can describe arbitrary rotations, reflections an
 
 
 
-\subsection{Open sets, Limits and Continuity}
+\subsection{Open sets, Limits and Continuity}\label{sec:opensets}
 
-Before we can differentiate, we need to understand limits and continuity. We start by reviewing several preliminaries without proof. Almost all of this is identical to (multivariable) real analysis.
+Limits and continuity are similar to real analysis, so we omit most proofs. If you're only familiar with \emph{single-variable} real analysis, note how our first definition generalizes the notion of an open interval.
+
+
+\begin{defn}{Disks and Neighborhoods}{disks}
+	Given $\delta>0$ and $z_0\in\C$, the \emph{\textcolor{Green}{open disk}} (or \emph{$\delta$-ball}) centered at $z_0\in\C$ with radius $\delta$ is the set\par
+	\begin{minipage}[t]{0.7\linewidth}\vspace{-15pt}
+		\[
+			B_\delta(z_0)=\{z\in\C:\nm{z-z_0}<\delta\}
+		\]
+		Remove the central point $z_0$ for the corresponding \emph{punctured open disk}:
+		\[
+			\{z\in\C:0<\nm{z-z_0}<\delta\}
+		\]
+		Now let $D\subseteq\C$ be a subset.
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{0.29\linewidth}\vspace{-16pt}
+		\centering%
+		\includegraphics[scale=0.95]{functions-open}\\
+		An \textcolor{blue}{open neighborhood} of $z_0$
+	\end{minipage}
+	\par\vspace{-5pt}
+	\begin{itemize}\itemsep0pt
+		\item $D$ is \emph{open} if every point is \emph{interior}: at every $z_0\in D$ we may center some open disk $B_\delta(z_0)\subseteq D$:
+		\[
+			\forall z_0\in D, \ \exists \delta>0\text{ such that } \nm{z-z_0}<\delta\implies z\in D
+		\]\vspace{-18pt}
+		\item $D$ is a \emph{neighborhood} of $z_0$ if it contains some $B_\delta(z_0)$. A neighborhood can, but need not, be open. A \emph{punctured neighborhood} instead contains a punctured disk.
+		\item $D$ is \emph{closed} if its complement $\C\setminus D$ is open.
+	\end{itemize}
+\end{defn}
+
+\begin{example}[lower separated=false, sidebyside, sidebyside align=top seam, sidebyside gap=0pt, righthand width=0.3\linewidth]{}{easyopen}
+	The punctured plane $D=\C\setminus\{2+i\}$ is an open set. For instance, given $z_0\in D$, let $\delta=\frac 12\nm{z_0-2-i}$, then $\textcolor{Green}{B_\delta(z_0)}\subset D$.
+	\tcblower
+	\flushright
+	\includegraphics[scale=0.95]{limits-punctured}
+\end{example}
 
 \begin{defn}{Sequences and Limits}{}{}
 	Let $(z_n)=(z_1,z_2,\ldots)$ be a \emph{sequence} of complex numbers.
-	\begin{enumerate}\itemsep2pt
-	  \item $(z_n)$ \emph{converges} to $z_0$, and we write \smash[b]{$\lim\limits_{n\to \infty}z_n=z_0$} or simply $z_n\to z_0$, if
+	\begin{enumerate}\itemsep0pt
+	  \item $(z_n)$ \emph{converges} to $z_0\in\C$, and we write \smash[b]{$\lim\limits_{n\to \infty}z_n=z_0$} or simply $z_n\to z_0$, if
 		\[
 			\forall \epsilon>0,\ \exists N\text{ such that }n>N\implies \nm{z_n-z_0}<\epsilon
 		\]
@@ -174,59 +211,33 @@ Before we can differentiate, we need to understand limits and continuity. We sta
 	\end{enumerate}
 \end{defn}
 
-\begin{thm}{}{}
-	\exstart Cauchy completeness: $(z_n)$ converges if and only if it is Cauchy.
-	\begin{enumerate}\setcounter{enumi}{1}
+Indeed $(z_n)=(x_n+iy_n)$ is convergent/Cauchy if and only if its real and imaginary parts are also, as follows from two straightforward inequalities:
+\[
+	\max\{\nm{x_n-x_0},\nm{y_n-y_0} \} \le \nm{z_n-z_0} \le \nm{x_n-x_0}+\nm{y_n-y_0}
+\]
+
+
+\begin{thm}{}{compbolzano}
+	\exstart Cauchy completeness: $(z_n)$ converges if and only if it is Cauchy.\vspace{-2pt}
+	\begin{enumerate}\setcounter{enumi}{1}\itemsep1pt
 	  \item Bolzano--Weierstraß: If $(z_n)$ is bounded, then it has a convergent subsequence.
+	  \item\label{thm:closedlimit3} $D\subseteq\C$ is closed if and only if every Cauchy sequence $(z_n)\subseteq D$ has its limit in $D$.
 	\end{enumerate}
 \end{thm}
 
-\begin{defn}{Disks, Sets and Neighborhoods}{disks}
-	The \emph{\textcolor{Green}{open disk}} (or \emph{$\delta$-ball}) centered at $z_0\in\C$ with radius $\delta$ is the set\par
-	\begin{minipage}[t]{0.65\linewidth}\vspace{-12pt}
-		\[
-			B_\delta(z_0)=\{z\in\C:\nm{z-z_0}<\delta\}
-		\]
-		For the \emph{punctured open disk}, remove the central point $z_0$:
-		\[
-			\{z\in\C:0<\nm{z-z_0}<\delta\}
-		\]
-		Let $D\subseteq \C$ be a subset.
-	\end{minipage}
-	\hfill
-	\begin{minipage}[t]{0.3\linewidth}\vspace{-16pt}
-		\centering\includegraphics{functions-open}\\
-		An open neighborhood of $z_0$
-	\end{minipage}
-	\par\vspace{-5pt}
-	\begin{itemize}\itemsep2pt
-		\item $D$ is \emph{open} if every point is \emph{interior}: at every point we can center an open disk $B_\delta(z_0)\subseteq D$:
-		\[
-			\forall z_0\in D, \ \exists \delta>0\text{ such that } \nm{z-z_0}<\delta\implies z\in D
-		\]
-		%\vspace{-20pt}
-		\item $D$ is a \emph{neighborhood} of $z_0$ if it contains some $B_\delta(z_0)$. A neighborhood can, but need not, be open. A \emph{punctured neighborhood} instead contains a punctured disk.
-		\item $D$ is \emph{closed} if its complement $\C\setminus D$ is open.
-	\end{itemize}
-\end{defn}
+\goodbreak
 
-\begin{thm}{}{}
-	$K$ is closed if and only if every Cauchy sequence $(z_n)\subseteq K$ has its limit in $K$.
-\end{thm}
-
-%We define continuity of functions in the usual way.
 
 \begin{defn}{Continuity}{contdef}
 	Let $f:D\to\C$ and $z_0\in D$. We say that $f$ is \emph{continuous at $z_0$} if
 	\[
-		\forall \text{ sequences } (z_n)\subseteq D\text{ with }z_n\to z_0\text{ we have }f(z_n)\to f(z_0)
+		\text{For all sequences } (z_n)\subseteq D\text{ with }\lim z_n=z_0\text{ we have }\lim f(z_n) = f(z_0)
 	\]
 	$f$ is \emph{continuous} (on $D$) if it is continuous at all points $z_0\in D$.
 \end{defn}
 
-\goodbreak
 
-As in real analysis, it is helpful to relate continuity to limits of functions.
+Rather than using sequences, we'll typically consider continuity via limits of functions, exactly as in real analysis.
 
 \begin{defn}{Limits of Functions}{limit}
 	Let $f:D\to\C$, where $D$ contains an open punctured neighborhood of $z_0$. We say that $w_0$ is the \emph{limit of $f$ as $z$ approaches $z_0$} and write $\lim\limits_{z\to z_0}f(z)=w_0$, if
@@ -243,24 +254,20 @@ As in real analysis, it is helpful to relate continuity to limits of functions.
 \end{thm}
 
 Otherwise said, for any $\epsilon$-ball $B_\epsilon\bigl(f(z_0)\bigr)$, there exists a $\delta$-ball $B_\delta(z_0)$ such that $f\bigl(B_\delta(z_0)\bigr)\subseteq B_\epsilon\bigl(f(z_0)\bigr)$.
-\smallbreak
+\medbreak
 
 
-We won't spend much time on calculations since these tend to proceed similarly to real analysis.
 
 \begin{example}{}{}
-	We show that $f(z)=z^2$ is continuous (on $\C$) by proving that $\lim\limits_{z\to z_0}z^2=z_0^2$ for all $z_0$.\smallbreak
+	Calculations tend to proceed similarly to real analysis. For instance, we show that $f(z)=z^2$ is continuous (on $\C$) by proving that $\lim\limits_{z\to z_0}z^2=z_0^2$ for all $z_0$.\smallbreak
 	Let $z_0\in\C$ and $\epsilon>0$ be given. Define $\delta=\min\{1,\frac\epsilon{1+2\nm{z_0}}\}$. By the triangle-inequality,
-	\[
-		\nm{z-z_0}<\delta\implies \nm{z+z_0}=\nm{z-z_0+2z_0}\le \nm{z-z_0}+2\nm{z_0}<\delta+2\nm{z_0}\le 1+2\nm{z_0}
-	\]
-	from which
-	\[
-		\nm{z-z_0}<\delta\implies \nm{z^2-z_0^2}=\nm{z-z_0}\nm{z+z_0}<\delta(1+2\nm{z_0})\le \epsilon
-	\]
-	The picture below should help you visualize things. Given an \textcolor{blue}{$\epsilon$-ball} centered at $w_0=z_0^2$, we've described how to choose $\delta>0$ so that $f$ maps the \textcolor{Green}{$\delta$-ball} centered at $z_0$ to a \textcolor{Green}{region} \emph{inside} the original \textcolor{blue}{$\epsilon$-ball.}
+	\begin{align*}
+		\nm{z-z_0}<\delta&\implies \nm{z+z_0}=\nm{z-z_0+2z_0}\le \nm{z-z_0}+2\nm{z_0}<\delta+2\nm{z_0}\le 1+2\nm{z_0}\\
+		&\implies \nm{z^2-z_0^2}=\nm{z-z_0}\nm{z+z_0}<\delta(1+2\nm{z_0})\le \epsilon
+	\end{align*}
+	The picture should help: given an \textcolor{blue}{$\epsilon$-ball} centered at $w_0=z_0^2$, we've described how to choose $\delta>0$ so that $f$ maps the \textcolor{Green}{$\delta$-ball} centered at $z_0$ to a \textcolor{Green}{region} \emph{inside} the original \textcolor{blue}{$\epsilon$-ball.}
 	\begin{center}
-		\includegraphics{limits-zsq}
+		\includegraphics[scale=0.85]{limits-zsq}
 	\end{center}
 	The picture illustrates the case when
 	\[
@@ -421,7 +428,7 @@ We finish with two further desirable properties of domains.
 	\end{enumerate} 
 \end{defn}
 
-\footnotetext{Loosely speaking, a connected set consists of one `lump.' For topologists: almost all our domains of interest will be open, so there is no benefit to distinguishing between connectedness and path-connectedness.}
+\footnotetext{Loosely speaking, a connected set consists of one `lump.' For topologists: almost all domains of interest in these notes will be open, so there is no benefit to distinguishing between connectedness and path-connectedness.}
 
 \goodbreak
 
@@ -441,7 +448,7 @@ These concepts generalize notions of intervals from single-variable real analysi
 		\begin{itemize}\itemsep0pt
 		  \item Let $M=\sup\{\nm{f(z)}:z\in K\}$. Then $\exists (z_n)\subseteq K$ such that $\lim\nm{f(z_n)} =M$.
 		  \item $K$ is bounded; Bolzano--Weierstraß says $(z_n)$ has a convergent subsequence $(z_{n_k})$.
-		  \item Let $z_0=\lim z_{n_k}$. Since $K$ is closed, we have $z_0\in K$, whence $f(z_0)$ is defined.
+		  \item Let $z_0=\lim z_{n_k}$. Since $K$ is closed we have $z_0\in K$ (Theorem \ref*{thm:compbolzano}.\ref{thm:closedlimit3}), whence $f(z_0)$ is defined.
 		  \item $f$ continuous $\Longrightarrow\lim f(z_{n_k})= f(z_0)$; thus $M=f(z_0)$ is finite and $f(K)$ is bounded.
 		  \item The closure of $f(K)$ is a short exercise.
 		\end{itemize}
@@ -473,6 +480,8 @@ The upshot of this sections is that continuity and limits are essentially the sa
 	  	(d) \ $\displaystyle\lim\limits_{z\to z_0}z^3=z_0^3$
 	  \end{enumerate}
 	  
+	  
+	  \item As in Example \ref{ex:easyopen}, prove that the doubly-punctured plane $D:=\C\setminus\{2i,-2i\}$ is open.
 	  
 	  \item Show that the function $f(z)=\left(\dfrac z{\cl z}\right)^2$ ($\cl z$ in the denominator!) has value 1 at all non-zero points on the real and imaginary axes, and $-1$ at all non-zero points on the line $y=x$. Hence explain why $\lim\limits_{z\to 0}f(z)$ does not exist.
 	  
