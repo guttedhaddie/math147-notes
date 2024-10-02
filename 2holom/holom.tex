@@ -157,7 +157,7 @@ By composing such functions, we can describe arbitrary rotations, reflections an
 
 \subsection{Open sets, Limits and Continuity}\label{sec:opensets}
 
-Limits and continuity are similar to real analysis, so we omit most proofs. If you're only familiar with \emph{single-variable} real analysis, note how our first definition generalizes the notion of an open interval.
+Since limits and continuity behave similarly to real analysis, this section is mostly for reference and we omit most proofs. If you're only familiar with \emph{single-variable} real analysis, note how our first definition generalizes the notion of an open interval.
 
 
 \begin{defn}{Disks and Neighborhoods}{disks}
@@ -180,17 +180,18 @@ Limits and continuity are similar to real analysis, so we omit most proofs. If y
 	\end{minipage}
 	\par\vspace{-5pt}
 	\begin{itemize}\itemsep0pt
-		\item $D$ is \emph{open} if every point is \emph{interior}: at every $z_0\in D$ we may center some open disk $B_\delta(z_0)\subseteq D$:
+		\item $D$ is \emph{open} if every point is \emph{interior}: at every $z_0\in D$ we may center some open disk $B_\delta(z_0)\subseteq D$:\vspace{-2pt}
 		\[
 			\forall z_0\in D, \ \exists \delta>0\text{ such that } \nm{z-z_0}<\delta\implies z\in D
-		\]\vspace{-18pt}
+		\]\vspace{-20pt}
 		\item $D$ is a \emph{neighborhood} of $z_0$ if it contains some $B_\delta(z_0)$. A neighborhood can, but need not, be open. A \emph{punctured neighborhood} instead contains a punctured disk.
 		\item $D$ is \emph{closed} if its complement $\C\setminus D$ is open.
 	\end{itemize}
 \end{defn}
 
 \begin{example}[lower separated=false, sidebyside, sidebyside align=top seam, sidebyside gap=0pt, righthand width=0.3\linewidth]{}{easyopen}
-	The punctured plane $D=\C\setminus\{2+i\}$ is an open set. For instance, given $z_0\in D$, let $\delta=\frac 12\nm{z_0-2-i}$, then $\textcolor{Green}{B_\delta(z_0)}\subset D$.
+	The punctured plane $D=\C\setminus\{2+i\}$ is an open set. For instance, given $z_0\in D$, let $\delta=\frac 12\nm{z_0-2-i}$, then $\textcolor{Green}{B_\delta(z_0)}\subset D$.\par
+	(The $\frac 12$ is superfluous, since the disk $B_\delta(z_0)$ does not contain its boundary, it just makes for a clearer picture.)
 	\tcblower
 	\flushright
 	\includegraphics[scale=0.95]{limits-punctured}
@@ -199,12 +200,13 @@ Limits and continuity are similar to real analysis, so we omit most proofs. If y
 \begin{defn}{Sequences and Limits}{}{}
 	Let $(z_n)=(z_1,z_2,\ldots)$ be a \emph{sequence} of complex numbers.
 	\begin{enumerate}\itemsep0pt
-	  \item $(z_n)$ \emph{converges} to $z_0\in\C$, and we write \smash[b]{$\lim\limits_{n\to \infty}z_n=z_0$} or simply $z_n\to z_0$, if
+	  \item $(z_n)$ \emph{converges} to $z_0\in\C$, and we write \smash[b]{$\lim\limits_{n\to \infty}z_n=z_0$} or simply $z_n\to z_0$, if\vspace{-2pt}
 		\[
 			\forall \epsilon>0,\ \exists N\text{ such that }n>N\implies \nm{z_n-z_0}<\epsilon
 		\]
+		\vspace{-20pt}
 		
-		\item $(z_n)$ is a \emph{Cauchy sequence} if
+		\item $(z_n)$ is a \emph{Cauchy sequence} if\vspace{-2pt}
 		\[
 			\forall \epsilon>0,\ \exists N\text{ such that }m,n>N\implies \nm{z_m-z_n}<\epsilon
 		\]
@@ -237,7 +239,7 @@ Indeed $(z_n)=(x_n+iy_n)$ is convergent/Cauchy if and only if its real and imagi
 \end{defn}
 
 
-Rather than using sequences, we'll typically consider continuity via limits of functions, exactly as in real analysis.
+Rather than using sequences, we'll typically consider continuity via limits of functions.
 
 \begin{defn}{Limits of Functions}{limit}
 	Let $f:D\to\C$, where $D$ contains an open punctured neighborhood of $z_0$. We say that $w_0$ is the \emph{limit of $f$ as $z$ approaches $z_0$} and write $\lim\limits_{z\to z_0}f(z)=w_0$, if
@@ -328,7 +330,7 @@ Several pieces of part 3 follow from part 2 by considering real and imaginary pa
 In (single-variable) real analysis there are \emph{two} infinities ($\pm\infty$). In complex analysis, the convention is to have only one: for instance, the sequences $z_n=n$ and $w_n=in$ both diverge to the \emph{same} infinity.
 
 \begin{defn}{}{rsphere}
-	The \emph{extended complex plane} (\emph{Riemann sphere}) is the set $\cl\C=\C\cup\{\infty\}$ where $\infty$ denotes the \emph{point at infinity.} The concepts of neighborhood, openness and limit extend to the point at infinity:
+	The \emph{extended complex plane} (\emph{Riemann sphere}) is the set $\cl\C=\C\cup\{\infty\}$ where $\infty$ denotes the \emph{point at infinity.} The concepts of \emph{neighborhood, openness} and \emph{limit} extend naturally:
 	\begin{enumerate}
 	  \item A \emph{neighborhood} of $\infty$ is any set containing an \emph{open disk} at $\infty$; a subset of the form
 		\[
@@ -340,12 +342,13 @@ In (single-variable) real analysis there are \emph{two} infinities ($\pm\infty$)
 	\end{enumerate}
 \end{defn}
 
+These limits have the same interpretation as Definition \ref{defn:limit}: $z$ `close to' $z_0$ means $f(z)$ is `close to' $w_0$. The difficulty is merely about the meaning of `close to $\infty$.' 
+
 \begin{example}{}{}
-	We verify that $\lim\limits_{z\to -3i}\frac{z^2}{z+3i}=\infty$. Let $M>0$ be given and define $\delta=\min\{1,\frac 4{M}\}$. Then
-  \begin{align*}
-  	0<\nm{z+3i}<\delta&\implies \nm z\ge \nm{3i}-\nm{z+3i}>3-\delta\ge 2\\
-  	&\implies\nm{\frac{z^2}{z+3i}} > \frac{4}{\delta} \ge M
-  \end{align*}
+	We verify that $\smash{\lim\limits_{z\to -3i}}\,\frac{z^2}{z+3i}=\infty$. Let $M>0$ be given and define $\delta=\min\{1,\frac 4{M}\}$. Then
+  \[
+  	0<\nm{z+3i}<\delta \implies \nm z\overset{\triangle}{\ge} \nm{3i}-\nm{z+3i}>3-\delta\ge 2 \implies \nm{\frac{z^2}{z+3i} > \frac{4}{\delta}} \ge M
+  \]
 \end{example}
 
 
@@ -361,11 +364,12 @@ The relationship between limits, zero and infinity feel like the dubious claims 
 \end{thm}
 
 \begin{proof}[Sketch Proof]
-	Suppose $\lim\limits_{z\to\infty}f(z)=w_0$. Let $\delta=\frac 1N$ to see that
+	All six results are similar; we prove only the first.\smallbreak 
+	Suppose $\smash{\lim\limits_{z\to\infty}f(z)=w_0}$. Let $\delta=\frac 1N$ to see that
 	\[
-		\forall \epsilon>0,\exists \delta>0\text{ such that }0<\tfrac 1z<\delta \implies \nm{f(\tfrac 1z)-w_0}<\epsilon
+		\forall \epsilon>0,\exists \delta>0\text{ such that }0<\tfrac 1z<\delta \implies \nm{f(\tfrac 1z)-w_0}<\epsilon \tag*{\qedhere}
 	\]
-	The other five results are similar.
+	%The other five results are similar.
 \end{proof}
 
 
@@ -467,13 +471,15 @@ Later on we'll need one final fact about compactness, which we again state witho
 
 This is usually said ``Every open cover has a finite subcover,'' and is taken, in topology, as the definition of compactness. That this is equivalent to being closed and bounded in $\C$ (or any Euclidean space) is the famous Heine--Borel Theorem.\smallbreak
 
-The upshot of this sections is that continuity and limits are essentially the same in both real and complex analysis. Differentiation, however, is another beast entirely\ldots
+The upshot of this section is that continuity and limits are essentially the same in both real and complex analysis and behave as you should expect. Differentiation, however, is another beast entirely\ldots
 
 
 \begin{exercises}{}{}
-	\exstart Use the $\epsilon$--$\delta$ definition (\ref{defn:limit}) to prove the following.
+	\exstart As in Example \ref{ex:easyopen}, prove that the doubly-punctured plane $D:=\C\setminus\{1,-2i\}$ is an open set. State a function whose implied domain is this set.
+
 	\begin{enumerate}\setcounter{enumi}{1}
-	  \item[]\begin{enumerate}
+	  \item Use the $\epsilon$--$\delta$ definition (\ref{defn:limit}) to prove the following.
+	  \begin{enumerate}
 	  	\item $\displaystyle\lim\limits_{z\to z_0}\cl z=\cl{z_0}$\qquad
 	  	(b) \ $\displaystyle\lim\limits_{z\to 0}\frac{\cl z^2}z=0$\qquad
 	  	(c) \ $\displaystyle\lim\limits_{z\to 2}\frac 1{z-i}=\frac 1{2-i}$\qquad
@@ -481,9 +487,7 @@ The upshot of this sections is that continuity and limits are essentially the sa
 	  \end{enumerate}
 	  
 	  
-	  \item As in Example \ref{ex:easyopen}, prove that the doubly-punctured plane $D:=\C\setminus\{2i,-2i\}$ is open.
-	  
-	  \item Show that the function $f(z)=\left(\dfrac z{\cl z}\right)^2$ ($\cl z$ in the denominator!) has value 1 at all non-zero points on the real and imaginary axes, and $-1$ at all non-zero points on the line $y=x$. Hence explain why $\lim\limits_{z\to 0}f(z)$ does not exist.
+	  \item Show that $f(z)=\left(\dfrac z{\cl z}\right)^2$ (denominator $\cl z$!) equals 1 at all non-zero points on the real and imaginary axes, and $-1$ at all non-zero points on the line $y=x$. Explain why $\lim\limits_{z\to 0}f(z)$ doesn't exist.
 	  
 	  
 	  \item Prove part 3(c) of Theorem \ref{thm:basiclimit}.
