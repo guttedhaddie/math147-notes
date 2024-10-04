@@ -242,11 +242,13 @@ Indeed $(z_n)=(x_n+iy_n)$ is convergent/Cauchy if and only if its real and imagi
 Rather than using sequences, we'll typically consider continuity via limits of functions.
 
 \begin{defn}{Limits of Functions}{limit}
-	Let $f:D\to\C$, where $D$ contains an open punctured neighborhood of $z_0$. We say that $w_0$ is the \emph{limit of $f$ as $z$ approaches $z_0$} and write $\lim\limits_{z\to z_0}f(z)=w_0$, if
+	Let $f:D\to\C$, where $D$ contains an open punctured neighborhood of $z_0$. We say that $w_0$ is the \emph{limit of $f$ as $z$ approaches $z_0$}, written $\lim\limits_{z\to z_0}f(z)=w_0$, if
 	\[
 		\forall \epsilon>0,\ \exists \delta>0\text{ such that } 0<\nm{z-z_0}<\delta\implies \nm{f(z)-w_0}<\epsilon
 	\]
 \end{defn}
+
+Otherwise said, given an $\epsilon$-ball centered at $w_0$, there is a $\delta$-ball $B_\delta(z_0)$ such that $f\bigl(B_\delta(z_0)\bigr)\subseteq B_\epsilon (w_0)$. Equivalently, $\forall (z_n)\subseteq D\setminus\{z_0\}$, $\lim z_n=z_0\Longrightarrow \lim f(z_n)=w_0$. This is almost continuity!
 
 \begin{thm}{}{}
 	Let $z_0$ be an \emph{interior} point of $D$. Then $f:D\to\C$ is continuous at $z_0$ if and only if
@@ -255,7 +257,7 @@ Rather than using sequences, we'll typically consider continuity via limits of f
 	\]
 \end{thm}
 
-Otherwise said, for any $\epsilon$-ball $B_\epsilon\bigl(f(z_0)\bigr)$, there exists a $\delta$-ball $B_\delta(z_0)$ such that $f\bigl(B_\delta(z_0)\bigr)\subseteq B_\epsilon\bigl(f(z_0)\bigr)$.
+% Otherwise said, for any $\epsilon$-ball $B_\epsilon\bigl(f(z_0)\bigr)$, there exists a $\delta$-ball $B_\delta(z_0)$ such that $f\bigl(B_\delta(z_0)\bigr)\subseteq B_\epsilon\bigl(f(z_0)\bigr)$.
 \medbreak
 
 
@@ -342,7 +344,7 @@ In (single-variable) real analysis there are \emph{two} infinities ($\pm\infty$)
 	\end{enumerate}
 \end{defn}
 
-These limits have the same interpretation as Definition \ref{defn:limit}: $z$ `close to' $z_0$ means $f(z)$ is `close to' $w_0$. The difficulty is merely about the meaning of `close to $\infty$.' 
+These limits have the same interpretation as Definition \ref{defn:limit}: `$z$ close to $z_0$' implies `$f(z)$ close to $w_0$.' The difficulty is merely about the meaning of `close to $\infty$' when $z_0$ or $w_0$ is the point at infinity. 
 
 \begin{example}{}{}
 	We verify that $\smash{\lim\limits_{z\to -3i}}\,\frac{z^2}{z+3i}=\infty$. Let $M>0$ be given and define $\delta=\min\{1,\frac 4{M}\}$. Then
@@ -357,19 +359,17 @@ The relationship between limits, zero and infinity feel like the dubious claims 
 \begin{thm}{}{infty}
 	Provided all limits make sense, Theorem \ref{thm:basiclimit} also applies to limits involving infinity. Moreover, we have the additional relationships:
 	\begin{enumerate}
-	  \item $\lim\limits_{z\to z_0}f(z)=\infty \iff \lim\limits_{z\to z_0}\frac 1{f(z)}=0$ \qquad\qquad 2.\ \ $\lim\limits_{z\to\infty}f(z)=w_0 \iff \lim\limits_{z\to 0}f\left(\frac 1z\right)=w_0$
+	  \item $\lim\limits_{z\to z_0}f(z)=\infty \iff \lim\limits_{z\to z_0}\frac 1{f(z)}=0$ \qquad\qquad 2.\ \ $\lim\limits_{z\to\infty}f(z)=w_0 \iff \lim\limits_{\zeta\to 0}f\left(\frac 1{\zeta}\right)=w_0$
 	  \setcounter{enumi}{2}
-	  \item $\lim\limits_{z\to \infty}f(z)=\infty \iff \lim\limits_{z\to 0}\frac 1{f(1/z)}=0$
+	  \item $\lim\limits_{z\to \infty}f(z)=\infty \iff \lim\limits_{\zeta\to 0}\frac 1{f(1/\zeta)}=0$
 	\end{enumerate}
 \end{thm}
 
 \begin{proof}[Sketch Proof]
-	All six results are similar; we prove only the first.\smallbreak 
-	Suppose $\smash{\lim\limits_{z\to\infty}f(z)=w_0}$. Let $\delta=\frac 1N$ to see that
+	All six results are similar; we prove only the $\Rightarrow$ direction of the second. Suppose $\epsilon>0$ is given. Then $N$ exists according to Definition \ref{defn:rsphere} (part 3). Let $\delta=\frac 1N$ and $\zeta=\frac 1z$, then
 	\[
-		\forall \epsilon>0,\exists \delta>0\text{ such that }0<\tfrac 1z<\delta \implies \nm{f(\tfrac 1z)-w_0}<\epsilon \tag*{\qedhere}
+		\forall \epsilon>0,\exists \delta>0\text{ such that }0< \nm \zeta<\delta \implies \nm z =\tfrac 1{\nm\zeta}>N\implies \nm{f(\tfrac 1\zeta)-w_0}=\nm{f(z)-w_0}<\epsilon \tag*{\qedhere}
 	\]
-	%The other five results are similar.
 \end{proof}
 
 
