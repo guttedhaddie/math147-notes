@@ -611,18 +611,16 @@ The approach extends to general functions. We attempt to differentiate $f(z)=u(x
 	\[
 		\lim_{\Delta x\to 0} \frac{u(x,y_0)-u(x_0,y_0)+i(v(x,y_0)-v(x_0,y_0)}{\Delta x} =\left(\partials[u]{x}+i\partials[v]{x}\right)(x_0,y_0)
 	\]
-	%where we see the \emph{partial derivatives} of the functions $u$ and $v$.
 	\item[\normalfont\emph{\textcolor{Green}{Vertically}}]\quad We have $\Delta x=0$ ($x=x_0$), from which
 	\[
 		\lim_{\Delta y\to 0} \frac{u(x_0,y)-u(x_0,y_0)+i(v(x_0,y)-v(x_0,y_0)}{i\Delta y} =\frac 1i\left(\partials[u]{y}+i\partials[v]{y}\right)(x_0,y_0)
 	\]
 \end{description}
-%If $f'(z)$ exists, then these limits are necessarily equal (to $f'(z)$ itself!). We have proved a key result:
 
 \begin{thm}{Cauchy--Riemann equations}{cauchyriemann}
 	Write $f(z)=u+iv$ in its real and imaginary parts.
 	\begin{enumerate}
-	  \item If $f(z)$ is complex-differentiable, then $u,v$ satisfy the \emph{Cauchy--Riemann equations}
+	  \item If $f$ is complex-differentiable at $z_0$, then $u,v$ satisfy the \emph{Cauchy--Riemann equations} at $z_0$:
 		\[
 			\partials[u]{x}=\partials[v]{y} \quad\text{and}\quad \partials[u]{y}=-\partials[v]{x} \tag{equivalently $u_x=v_y$ and $u_y=-v_x$}
 		\]
@@ -631,6 +629,9 @@ The approach extends to general functions. We attempt to differentiate $f(z)=u(x
 	In either situation, we may write $f'(z)=u_x+iv_x =v_y-iu_y$.
 \end{thm}
 We proved part 1 above. For a sketch of the almost-converse (part 2), see Exercise \ref{exs:crconv}.
+
+%These aren't quite converses. For instance it is possible for a complex function to be differentiable at a single point but $u,v$ not to have cont partials there.
+
 \goodbreak
 
 
@@ -756,7 +757,7 @@ We proved part 1 above. For a sketch of the almost-converse (part 2), see Exerci
 	  	f(z)\approx f(z_0)+f_x(x_0,y_0)\Delta x+f_y(x_0,y_0)\Delta y
 	  \]
 	  to prove that $\frac{f(z)-f(z_0)}{z-z_0}\approx u_x(x_0,y_0)+iv_x(x_0,y_0)$ whenever $z\neq z_0$.\par
-		(The existence/continuity assumptions in Theorem \ref{thm:cauchyriemann}, part 2, guarantee that this approximation becomes equality in the limit, though a rigorous proof requires significant work)
+		(The existence/continuity assumptions in Theorem \ref{thm:cauchyriemann}, part 2, guarantee that this approximation becomes equality in the limit, though a rigorous proof requires more work)
 	\end{enumerate}
 \end{exercises}
 
