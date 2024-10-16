@@ -1,7 +1,17 @@
-if(settings.render < 0) settings.render=4;
-settings.outformat="";
-settings.prc=true;
-settings.inlineimage=true;
+settings.tex="pdflatex";
+
+//OpenGL (default) - no opacity
+
+//PNG - no opacity
+//if(!settings.multipleView) settings.batchView=false;
+//settings.render=4;settings.outformat="png";
+
+//HTML - opacity fine
+//settings.outformat="html";
+
+//PDF
+if(!settings.multipleView) settings.batchView=false;
+settings.render=4;settings.outformat="pdf";
 
 texpreamble("\usepackage{amsmath}
 \usepackage{amsthm,amssymb}
@@ -14,10 +24,10 @@ import graph3;
 import solids;
 
 //html website
-size(0,180);
+//size(0,180);
 
 //pdf embed
-//size(230);
+size(230);
 
 currentprojection=orthographic(4,-2,1);
 pen colorb=blue+opacity(0.3);
@@ -41,11 +51,11 @@ dot(Label("$P$",black),Q,Q,red);
 dot(Label("$\pi(P)$",black),pro(Q),-Z,red);
 
 //pdf embed
-//dot(Label("$N$",black),Z,Z,red);
+dot(Label("$N$",black),Z,Z,red);
 
 
 //htmlwebsite
-
+/*
 draw(Z--PPP,dashed);
 draw(PPP--S(PP),Arrow3(Relative(0.5)));
 dot(Label("$\pi^{-1}(z)$",black),S(PP),S(PP),red);
@@ -54,7 +64,7 @@ draw(Z--(-Z),dashed);
 dot(Label("$\pi^{-1}(0)$",black),-Z,-Z,red);
 dot(Label("$0$",black),(0,0,0),red);
 dot(Label("$N=\pi^{-1}(\infty)$",black),Z,Z,red);
-
+*/
 
 draw(surface(scale(3)*unitcircle),green+opacity(0.3));
 draw(unitcircle3);

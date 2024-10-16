@@ -1,4 +1,3 @@
-settings.prc=false;
 settings.outformat="pdf";
 
 texpreamble("\usepackage{amsmath}
@@ -7,8 +6,6 @@ texpreamble("\usepackage{amsmath}
 \usepackage[svgnames]{xcolor}
 ");
 import graph;
-
-
 
 size(380);
 

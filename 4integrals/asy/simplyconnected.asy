@@ -1,4 +1,3 @@
-settings.prc=false;
 settings.outformat="pdf";
 
 texpreamble("\usepackage{amsmath}
@@ -19,7 +18,7 @@ path k=shift((2,1.6))*xscale(2.8)*yscale(2.1)*unitcircle;
 
 fill(k,lightblue+opacity(0.5));
 fill(l,orange+opacity(0.7));
-draw(Label("$C$",red),l,red+linewidth(1),Arrow(Relative(0.2)));
+draw(Label("$C$",red),l,red+linewidth(1),Arrow(Relative(0.2),size=8));
 //label("$C$",(2.3,2.1),heavygreen);
-label("$D$",(0.7,3),blue);
+label("$D$",(0.7,2.8),blue);
 //label("interior of $C$",(1.7,1.1));

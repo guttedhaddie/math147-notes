@@ -1,5 +1,4 @@
 settings.outformat="pdf";
-settings.prc=false;
 
 texpreamble("\usepackage{amsmath}
 \usepackage{amsthm,amssymb}
