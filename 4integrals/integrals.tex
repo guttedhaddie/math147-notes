@@ -281,10 +281,10 @@ If a function is multi-valued, we must specify a \emph{branch} before integratin
 				\int_{C_1}z^{1/2}\,\dz=\int_{-\pi}^\pi i\polar{3it}2\,\dt =\frac 23\polar{3it}2\Big|_{-\pi}^{\pi} =\frac 23(\polar{3\pi i}2-\polarn{3\pi i}2)=-\frac{4i}3
 			\]
 		
-			\item Find $\int_{C_2}z^i\,\dz$ over the semi-circle shown using $\operatorname{P.V.}z^i$.\smallbreak
-			Let $z(t)=\polar\pi 2 e^{it}$ where $t\in[0,\pi]$. Since
+			\item Find $\int_{C_2}z^i\,\dz$ over the unit semi-circle shown using $\operatorname{P.V.}z^i$.\smallbreak
+			Let $z(t)=e^{it}$ where $t\in[0,\pi]$. Since
 			\[
-				z^iz'=e^{i\Log z}z'=\exp\left(i(\tfrac\pi 2+it)\right)\polar\pi 2ie^{it}=-\polar\pi 2e^{(-1+i)t}
+				z^iz'=e^{i\Log z}z'=\exp\left(i(it)\right)ie^{it}=ie^{(i-1)t}
 			\]
 			is continuous when $0\le t\le \pi$, we have
 		\end{minipage}
@@ -294,7 +294,7 @@ If a function is multi-valued, we must specify a \emph{branch} before integratin
 			\includegraphics{contour-branch3}
 		\end{minipage}
 		\[
-			\int_{C_2}z^i\,\dz=\int_0^\pi -\polar\pi 2e^{(-1+i)t}\,\dt =\frac{\polar\pi 2}{1-i}\left(e^{(-1+i)\pi}-1\right) =-\frac{1+i}{2}(\polar\pi 2+\polarn\pi 2)
+			\int_{C_2}z^i\,\dz=\int_0^\pi ie^{(i-1)t}\,\dt =\frac{i}{i-1}\bigl(e^{(i-1)\pi}-1\bigr) =\frac{i-1}{2}\bigl(1+e^{-\pi}\bigr)
 		\]
 	\end{enumerate}
 \end{examples}
@@ -902,7 +902,7 @@ The power of this result lies in how it allows us to \emph{compare} integrals ar
 	  	\begin{minipage}[t]{0.6\linewidth}\vspace{0pt}
 	    	\item If the origin is \emph{inside}  $C$, then there is some minimum distance $d$ of $C$ to the origin. Choose any circle $C_r$ with radius $r<d$ centered at the origin. Since $f$ is holomorphic on the region $D$ between and including $C$ and $C_r$, we conclude that
 				\[
-					\oint_C\frac 1z\,\dz=\oint_{C_r}\frac 1z\,\dz =\int_0^{2\pi}\frac 1{re^{i\theta}}ri e^{i\theta}\,\dth=2\pi i
+					\oint_C\frac 1z\,\dz=\oint_{C_r}\frac 1z\,\dz =\int_0^{2\pi}\frac 1{re^{it}}ri e^{it}\,\dth=2\pi i
 				\]
 	  	\end{minipage}
 	  	\hfill

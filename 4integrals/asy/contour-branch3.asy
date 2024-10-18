@@ -4,11 +4,6 @@ texpreamble("\usepackage{amsmath}
 \usepackage{amsthm,amssymb}
 \usepackage{mathpazo}
 \usepackage[svgnames]{xcolor}
-\usepackage{textcomp}
-
-\def\vv{\mathbf v}
-\def\vw{\mathbf w}
-\def\twovec#1#2{\begin{pmatrix}#1\\#2\end{pmatrix}}
 ");
 import graph;
 
@@ -16,9 +11,6 @@ import graph;
 size(140);
 
 real al=180;
-
-real ep=20;
-
 real R=1.03;
 
 path b=box((-R,-R),(R,R));
@@ -44,8 +36,8 @@ label("$C_2$",dir(60),dir(60),heavygreen);
 xaxis(-1.1R,1.1R,red);
 yaxis(0,1.03R,red);
 
-xtick(Label("$e^{\pi/2}$",align=S),1,S,red);
-xtick(Label("$-e^{\pi/2}$",align=S),-1,S,red);
+xtick(Label("1",align=S),1,S,red);
+xtick(Label("$-1$",align=S),-1,S,red);
 xtick(Label("$0$",align=S),0,S,red);
 dot((-1,0),heavygreen);
 dot((1,0),heavygreen);
