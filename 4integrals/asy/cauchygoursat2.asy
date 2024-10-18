@@ -9,7 +9,7 @@ texpreamble("\usepackage{amsmath}
 import graph;
 
 
-size(120);
+size(115);
 
 real R=1.1;
 real r=0.5;

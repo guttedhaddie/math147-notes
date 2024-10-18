@@ -18,11 +18,11 @@ draw(Label("$C$",Relative(0.4)),p,Arrow(Relative(0.4)));
 
 real r=0.7;
 unfill(scale(r)*unitcircle);
-draw(Label("$C_r$",Relative(0.15)),scale(r)*unitcircle,heavygreen,Arrow(Relative(0.15)));
+draw(Label("$C_r$",Relative(0.15)),scale(r)*unitcircle,red,Arrow(Relative(0.15)));
 
 draw(Label("$r$",align=NE),(0,0)--r*dir(145),dashed);
-draw(scale(0.8)*unitcircle,orange+dashed);
-draw("$\delta$",(0,0)--0.8dir(-10),dashed+orange);
+draw(scale(0.8)*unitcircle,heavygreen+dashed);
+draw("$\delta$",(0,0)--0.8dir(-10),dashed+heavygreen);
 
 label("$D$",(1,1.4));
 dot("$z_0$",(0,0),SW);

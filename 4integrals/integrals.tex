@@ -758,23 +758,7 @@ While an explicit computation of arc-length is usually impractical, it is straig
 			
 		\item Evaluate $\int_{-1}^1z^{2-i}\,\dz$ where $z^{2-i}$ is the principal branch, and the integral is over any contour which, apart from its endpoints, lies above the real axis.
 		
-		
-	  \item\label{exs:1-zsq}\begin{enumerate}
-	    \item Find an anti-derivative of $\frac 1{1-z^2}$ on the domain $D=\C$ except for the real axis where $\nm z\ge 1$. Evaluate $\int_0^{1+2i}\frac 1{1-z^2}\,\dz$ along any curve in $D$.
-		
-			\begin{minipage}[t]{0.77\linewidth}\vspace{0pt}
-	    	\item (Hard)\lstsp Prove directly that $\oint_{C_r}\frac 1{1-z^2}\,\dz =-i\pi$ where $C_r$ is the circle of radius $r<2$ centered at $z=1$.\par
-	   	 	(\emph{Hint: use the anti-derivative and the circle starting and finishing on the branch cut at $z=1+r$})
-	    
-	    	\item Evaluate $\int_0^{1+2i}\frac 1{1-z^2}\,\dz$ along a curve $C_2$ looping to the \emph{right} of $z=1$ as shown in the picture. Compare your answer with parts (a) and (b).
-			\end{minipage}
-			\hfill
-			\begin{minipage}[t]{0.22\linewidth}\vspace{0pt}
-				\flushright\includegraphics{ftc-4}
-			\end{minipage}
-	  \end{enumerate}
-	  
-	  
+			  
 	  \item Let $C$ be the arc of the circle $\nm z=2$ from $z=2$ to $2i$. Without evaluating the integral, show that
 	  \begin{enumerate}
 	  	\item $\displaystyle\nm{\int_C\frac{z+4}{z^3-1}\,\dz}\le \frac{6\pi}7$\qquad (b)\ \ $\displaystyle\nm{\int_C\frac{\dz}{z^2-1}}\le \frac{\pi}3$
@@ -795,7 +779,34 @@ While an explicit computation of arc-length is usually impractical, it is straig
 		\[
 			\nm{\oint_{C_R}\frac{\Log z}{z^2}\,\dz} <2\pi\left(\frac{\pi +\ln R}R\right)
 		\]
-		and thus prove that $\lim\limits_{R\to\infty}\oint_{C_R}\frac{\Log z}{z^2}\,\dz=0$.
+		and thus conclude that $\lim\limits_{R\to\infty}\oint_{C_R}\frac{\Log z}{z^2}\,\dz=0$.
+		
+		
+	  \item\label{exs:1-zsq} (Hard)\lstsp We continue and expand Example \ref*{ex:estimates}.\ref{ex:estimates3}. Let $f(z)=\smash[b]{\frac 1{z^2-1}}$. 
+	  \begin{enumerate}
+	    \begin{minipage}[t]{0.7\linewidth}\vspace{-5pt}
+	    	\item Explain why $F(z)=\frac 12\bigl(\Log(1-z)-\Log(1+z)\bigr)$ is an anti-derivative of $f(z)$ on the domain $D=\C\setminus\ell$ where $\ell$ consists of the two segments of the real axis where $\nm z\ge 1$.\smallbreak
+	    Use $F(z)$ to evaluate $\int_0^{1+2i}f(z)\,\dz$ along \textcolor{blue}{any curve} in $D$.
+	    \end{minipage}
+	    \hfill
+	    \begin{minipage}[t]{0.29\linewidth}\vspace{-25pt}
+				\flushright\includegraphics{ftc-6}
+	    \end{minipage}
+	    \par
+
+		
+			\begin{minipage}[t]{0.77\linewidth}\vspace{0pt}
+	    	\item Show that $\oint_{C_r}f(z)\,\dz =i\pi$ where \textcolor{Green}{$C_r$ is a circle} of radius $r<2$ centered at $z=1$.\par
+	   	 	(\emph{Hint: parametrize $z(t)=1+re^{it}$ where $-\pi<t<\pi$ and use $F(z)$})
+	    
+	    	\item Evaluate $\int_{C_2} f(z)\,\dz$ along a curve \textcolor{Purple}{$C_2$ passing to the \emph{right} of $z=1$} as in the picture. Compare your answer with parts (a) and (b).\par
+	    	(\emph{Hint: you need a \textbf{different} branch of the log for one of the terms in $F(z)$})
+			\end{minipage}
+			\hfill
+			\begin{minipage}[t]{0.22\linewidth}\vspace{0pt}
+				\flushright\includegraphics{ftc-4}
+			\end{minipage}
+	  \end{enumerate}
 		
 	\end{enumerate}
 \end{exercises}
@@ -869,18 +880,18 @@ The power of this result lies in how it allows us to \emph{compare} integrals ar
 \end{cor}
 
 \begin{examples}{}{cauchygoursatexs}
-	\exstart (Example \ref*{ex:estimates}.\ref{ex:estimates3}, cont.)\lstsp The function $f(z)=\frac 1{z^2-1}$
+	\exstart (Example \ref*{ex:estimates}.\ref{ex:estimates3}, cont.)\lstsp The function
 	\begin{enumerate}\setcounter{enumi}{1}
-	  \begin{minipage}[t]{0.73\linewidth}\vspace{-15pt}
+	  \begin{minipage}[t]{0.75\linewidth}\vspace{-17pt}
 			\item[]
 			\[
 				f(z)=\frac 1{z^2-1}
 			\]
 			is holomorphic \textcolor{blue}{on and between} any two circles $C_{r}$ centered at $z=1$ with radius $r<2$. Cauchy--Goursat thus confirms part of the conclusion of Exercise \ref*{sec:ftc}.\ref{exs:1-zsq}, that $\oint_{C_r}\frac 1{z^2-1}\,\dz$ is \emph{independent of the radius} $r$.\smallbreak
-			We will shortly develop another method to explicitly evaluate this integral.
+			We will shortly develop a better method to evaluate this integral.
 		\end{minipage}
 		\hfill
-		\begin{minipage}[t]{0.26\linewidth}\vspace{-18pt}
+		\begin{minipage}[t]{0.24\linewidth}\vspace{-20pt}
 		  \flushright\includegraphics[scale=0.95]{cauchygoursat2}
 		\end{minipage}
 
@@ -989,16 +1000,11 @@ The power of this result lies in how it allows us to \emph{compare} integrals ar
 \begin{examples}{}{intformula}
 	We can use the integral formula to evaluate certain integrals that would be difficult if not impossible to evaluate by parametrization.
 	\begin{enumerate}
-	  \item For the last time, recall Example \ref*{ex:estimates}.\ref{ex:estimates3}. Applying the integral formula to $f(z)=\frac{2\pi i}{z+1}$ around the circle with radius 1 centered at $z=1$, we see that
+	  \item The integral formula makes Example \ref*{ex:estimates}.\ref{ex:estimates3} and its extensions very easy: apply the formula to $f(z)=\frac{2\pi i}{z+1}$ around (say) the circle with radius 1 centered at $z=1$ to see that
   	\[
   		\oint_C \frac 1{z^2-1}\,\dz =\frac 1{2\pi i}\oint_C \frac{2\pi i}{(z+1)(z-1)}\,\dz =f(1) =i\pi 
   	\]
-%   	Suppose we didn't have the integral formula and instead chose to parametrize directly via $z(t)=1+e^{it}$: we'd have to compute the integral
-%   	\[
-%   		\oint_C \frac 1{1-z^2}\,\dz =\int_0^{2\pi} \frac{ie^it}{-e^{it}(2+e^{it})}\,\dt
-%   		=-i\int_0^{2\pi} \frac{\dt}{2+e^{it}}\,\dt
-%   	\]
-  	Combined with Corollary \ref{cor:pathdef}, it follows that $\oint_C \frac 1{z^2-1}\,\dz =i\pi$ around any simple closed curve encircling $z=1$ but not $z=-1$.
+  	Indeed $\oint_C \frac 1{z^2-1}\,\dz =i\pi$ around any simple closed curve encircling $z=1$ but not $z=-1$.
 	  
 	  \item If $C$ is the circle centered at $z=i$ with radius 1, then $f(z)=\frac{3z\sin z}{z+i}$ is holomorphic on an inside $C$, whence
 	  \begin{align*}
@@ -1039,7 +1045,7 @@ We finish with a previously mentioned corollary of the integral formula.
 
 \begin{proof}
 	If $f(z)$ is holomorphic at $w_0$, then it is holomorphic on an open set $D$ containing $w_0$. We may therefore choose a circle $C_r$ centered at $w_0$ lying inside $D$.\par
-	By Cauchy's integral formula, the second derivative $f''(z_0)$ exists at every point $z_0$ inside $C_r$. Otherwise said, the derivative $f'(z)$ is holomorphic at $w_0$.\smallbreak
+	By Cauchy's integral formula, the second derivative $f''(z_0)$ exists at every point $z_0$ inside $C_r$. Otherwise said, the derivative $f'(z)$ is holomorphic at $w_0$.\par
 	Now induct to see the $f''(z)$ is holomorphic at $w_0$, etc.
 \end{proof}
 
@@ -1065,91 +1071,114 @@ Finally, note that if $f$ has an anti-derivative $F$, then $F$ is necessarily ho
 % Let $f$ be continuous on an open set $D$. If $\oint_C f(z)\,\dz=0$ for every closed contour in $D$, then $f$ is holomorphic.
 % \end{cor}
 
-
-
-
 % You might be fooled into thinking that this removes the need for the full version of the Cauchy--Goursat Theorem where we don't assume the continuity of the partial derivatives of $u,v$. You'd be wrong! The first step of the proof of the integral theorem requires Corollary \ref{cor:pathdef}. You could wriggle round this in another way however: first prove the Cauchy integral formula for \emph{circles} centered at each $z_0$ in an open domain, this shows that $f''(z)$ exists on $D$, which shows that $f'(z)$ and thus the partial derivatives of $u,v$ are continuous\ldots 
 
-\begin{exercises*}
-\hangindent\leftmargini
-\textup{1.} \  Apply the Cauchy--Goursat Theorem to show that $\oint_Cf(z)\,\dz=0$ when the contour $C$ is the unit circle $\nm z=1$.
-\begin{enumerate}\setcounter{enumi}{1}
-  \item[]\begin{enumerate}
-    \item $\displaystyle f(z)=\frac{z^2}{z+3}$\qquad (b)\ \ $\displaystyle f(z)=ze^{-z}$\qquad (c)\ \ $\displaystyle f(z)=\Log(z+2)$
-	\end{enumerate}
-	
-	\item Let $C_1$ denote the square with sides along the lines $x=\pm 1,y=\pm 1$, and $C_2$ be the circle $\nm z=4$: explain why
-	\[\oint_{C_1}\frac 1{3z^2+1}\,\dz=\oint_{C_2}\frac 1{3z^2+1}\,\dz\]
-	
-	\item Let $C$ be the square with sides $x=0,1$ and $y=0,1$. Evaluate the integral $\oint_C\frac 1{z-a}\,\dz$ when:
-	\begin{enumerate}
-	  \item $a$ is \emph{exterior} to the square;
-	  \item $a$ is \emph{interior} to the square.
-	\end{enumerate}
-	
-	\item Let $C$ be the positively-oriented boundary of the half-disk $0\le r\le 1$, $0\le\theta\le\pi$ and define $f(z)=\sqrt z=\sqrt re^{i\theta/2}$ and $f(0)=0$ using the branch of $z^{1/2}$ with $-\frac{\pi}2<\theta<\frac{3\pi}2$. Prove that
-	\[\oint_Cf(z)\,\dz=0\]
-	by evaluating three contour integrals: over the semicircle, and over two segments of the real axis joining 0 to $\pm 1$. Why does Cauchy--Goursat not apply here?
-	
-	\item If $C$ is a positively-oriented simple closed contour, prove that the area enclosed by $C$ is
-	\[\frac 1{2i}\oint_C\cl z\,\dz\]
-	(\emph{Hint: Mirror the sketch proof of Cauchy--Goursat, even though $\cl z$ isn't holomorphic\ldots})
-	
-  \item Let $C$ denote the boundary of the square with sides $x=\pm 2,y=\pm 2$. Evaluate the following:
-  \begin{enumerate}
-    \item $\displaystyle\oint_C\frac{e^{-\frac{\pi z}2}\,\dz}{z-i}$\qquad (b)\ \ $\displaystyle\oint_C\frac{e^z+e^{-z}}{z(z^2+10)}\,\dz$\qquad (c)\ \ $\displaystyle\oint_C\frac{z\,\dz}{3z+i}$\qquad (d)\ \ $\displaystyle\oint_C\frac{\sec(z/2)}{(z-1-i)^2}\,\dz$
-  \end{enumerate}
-  
-  \item Evaluate the integral $\oint_C g(z)\,\dz$ around the circle of radius 3 centered at $z=i$ when:
-  \begin{enumerate}
-    \item $\displaystyle g(z)=\frac 1{z^2+9}$\qquad (b)\ \ $\displaystyle g(z)=\frac 1{(z^2+9)^2}$
-  \end{enumerate} 
-  
-  \item Prove that if $f$ is holomorphic on and inside a simple closed contour $C$ and $z_0$ is not on $C$, then
-  \[\oint_C\frac{f'(z)}{z-z_0}\,\dz =\oint_C\frac{f(z)}{(z-z_0)^2}\,\dz\]
-  
-  \item NEED ANSWER!!!!! Properly justify the claim at the end of Example \ref{ex:intformula}.1, that
-  \[
-  	\oint_{C}\frac{1}{z^2-1}\dz=i\pi
-  \]
-  when $C$ is \emph{any} simple closed curve encircling $z=1$ but not $z=-1$. What happens if instead $C$ encircles $z=-1$ but not $z=1$?
-  
-  \item Suppose we have a polynomial $p(z)=\sum\limits_{k=0}^na_k(z-z_0)^k$ centered at $z_0$.
-  Use Cauchy's integral formula to prove that $a_k=\frac{p^{(k)}(z_0)}{k!}$ is the usual Taylor coefficient.
-  
-  \item Let $C$ be the unit circle $z=e^{i\theta}$ where $-\pi<\theta\le\pi$ and suppose $a\in\R$ is constant. By first evaluating $\oint_Cz^{-1}e^{az}\,\dz$, prove that
-  \[\int_0^\pi e^{a\cos\theta}\cos(a\sin\theta)\,\dth=\pi\] 
-	
-	  
-  \item\begin{enumerate}
-     \item Suppose that $f(z)$ is \emph{continuous} on and inside a simple closed contour $C$. Prove that the function $g(z)$ defined by
-    \[g(z_0):=\frac 1{2\pi i}\oint_C\frac{f(z)}{z-z_0}\,\dz\]
-    is holomorphic at every point $z_0$ inside $C$ and that
-    \[g'(z_0):=\frac 1{2\pi i}\oint_C\frac{f(z)}{(z-z_0)^2}\,\dz\]
-    (\emph{Hint: consider the formula in part (b) of the next question, after replacing the first two $f$'s by $g$})
-    
-    \item If $f(z)=x(1-x)(1-y)$ and $C$ is the square with vertices $0,1,1+i,i$ compute $g(z_0)$.
-  \end{enumerate}
 
-  
-	\item\label{exs:cauchyintgeneral} We prove the 1\st\ derivative version of Cauchy's integral formula. As previously, let $\delta>0$ be such that $\nm{w-z_0}<\delta\implies w\in D$.
-	\begin{enumerate}
-	  \item If $\nm{\Delta z}<\delta$ and $z\in C$ explain why
+\begin{exercises*}
+	\exstart Apply the Cauchy--Goursat Theorem to show that $\oint_Cf(z)\,\dz=0$ when the contour $C$ is the unit circle $\nm z=1$.
+	\begin{enumerate}\setcounter{enumi}{1}
+	  \item[]\begin{enumerate}
+	    \item $\displaystyle f(z)=\frac{z^2}{z+3}$\qquad (b)\ \ $\displaystyle f(z)=ze^{-z}$\qquad (c)\ \ $\displaystyle f(z)=\Log(z+2)$
+		\end{enumerate}
+		
+		
+		\item Let $C_1$ be the square with sides the lines $x=\pm 1,y=\pm 1$, and $C_2$ the circle $\nm z=4$. Explain why
+		\[
+			\oint_{C_1}\frac 1{3z^2+1}\,\dz=\oint_{C_2}\frac 1{3z^2+1}\,\dz
+		\]
+		
+		
+		\item Let $C$ be the square with sides $x=0,1$ and $y=0,1$. Evaluate the integral $\oint_C\frac 1{z-a}\,\dz$ when:
+		\begin{enumerate}
+		  \item $a$ is \emph{exterior} to the square;
+		  \item $a$ is \emph{interior} to the square.
+		\end{enumerate}
+		
+		
+		\item Let $C$ be the positively-oriented boundary of the half-disk $0\le r\le 1$, $0\le\theta\le\pi$ and define $f(z)=\sqrt z=\sqrt re^{i\theta/2}$ and $f(0)=0$ using the branch of $z^{1/2}$ with $-\frac{\pi}2<\theta<\frac{3\pi}2$. Prove that
+		\[
+			\oint_Cf(z)\,\dz=0
+		\]
+		by evaluating three contour integrals: over the semicircle, and over two segments of the real axis joining 0 to $\pm 1$. Why does Cauchy--Goursat not apply here?
+		
+		\item If $C$ is a positively-oriented simple closed contour, prove that the area enclosed by $C$ is
+		\[\frac 1{2i}\oint_C\cl z\,\dz\]
+		(\emph{Hint: Mirror the sketch proof of Cauchy--Goursat, even though $\cl z$ isn't holomorphic\ldots})
+		
+		
+	  \item Let $C$ denote the boundary of the square with sides $x=\pm 2,y=\pm 2$. Evaluate the following:
 	  \begin{enumerate}
-	    \item $\nm{z-z_0}\ge \delta$
-	    \item $\nm{z-z_0-\Delta z}>0$ 
+	    \item $\displaystyle\oint_C\frac{e^{-\frac{\pi z}2}\,\dz}{z-i}$\qquad 
+	   	(b)\ \ $\displaystyle\oint_C\frac{e^z+e^{-z}}{z(z^2+10)}\,\dz$\qquad 
+	   	(c)\ \ $\displaystyle\oint_C\frac{z\,\dz}{3z+i}$\qquad 
+	   	(d)\ \ $\displaystyle\oint_C\frac{\sec(z/2)}{(z-1-i)^2}\,\dz$
 	  \end{enumerate}
-	  \item Use the basic integral formula on $C$ to evaluate $f(z_0+\Delta z)-f(z_0)$ and thus prove that
-	  \[\nm{\frac{f(z_0+\Delta z)-f(z_0)}{\Delta z}-\frac 1{2\pi i}\oint_C\frac{f(z)}{(z-z_0)^2}\,\dz} \le \frac{ML}{2\pi(\delta-\Delta z)\delta^2}\nm{\Delta z}\]
-	  where $M$ is an upper bound for $\nm{f(z)}$ on $C$, and $L$ is the length of $C$. Hence conclude that $f'(z_0)=\frac 1{2\pi i}\oint_C\frac{f(z)}{(z-z_0)^2}\,\dz$.
-	\end{enumerate}
-	If you want a challenge, try to do the same thing for higher derivatives!
-	
+	  
+	  
+	  \item Evaluate the integral $\oint_C g(z)\,\dz$ around the circle of radius 3 centered at $z=i$ when:
+	  \begin{enumerate}
+	    \item $\displaystyle g(z)=\frac 1{z^2+9}$\qquad (b)\ \ $\displaystyle g(z)=\frac 1{(z^2+9)^2}$
+	  \end{enumerate} 
+	  
+	  
+	  \item Prove that if $f$ is holomorphic on and inside a simple closed contour $C$ and $z_0$ is not on $C$, then
+	  \[
+	  	\oint_C\frac{f'(z)}{z-z_0}\,\dz =\oint_C\frac{f(z)}{(z-z_0)^2}\,\dz
+	  \]
+	  
+	  
+	  \item Properly justify the claim at the end of Example \ref{ex:intformula}.1, that
+	  \[
+	  	\oint_{C}\frac{1}{z^2-1}\dz=i\pi
+	  \]
+	  when $C$ is \emph{any} simple closed curve encircling $z=1$ but not $z=-1$. What happens if instead $C$ encircles $z=-1$ but not $z=1$?
+	  
+	  
+	  \item Suppose we have a polynomial $p(z)=\sum\limits_{k=0}^na_k(z-z_0)^k$ centered at $z_0$.
+	  Use Cauchy's integral formula to prove that $a_k=\frac{p^{(k)}(z_0)}{k!}$ is the usual Taylor coefficient.
+	  
+	  
+	  \item Let $C$ be the unit circle $z=e^{i\theta}$ where $-\pi<\theta\le\pi$ and suppose $a\in\R$ is constant. By first evaluating $\oint_Cz^{-1}e^{az}\,\dz$, prove that
+	  \[
+	  	\int_0^\pi e^{a\cos\theta}\cos(a\sin\theta)\,\dth=\pi
+	  \] 
+		
+		  
+	  \item\begin{enumerate}
+	     \item Suppose that $f(z)$ is \emph{continuous} on and inside a simple closed contour $C$. Prove that the function $g(z)$ defined by
+	    \[
+	    	g(z_0):=\frac 1{2\pi i}\oint_C\frac{f(z)}{z-z_0}\,\dz
+	    \]
+	    is holomorphic at every point $z_0$ inside $C$ and that
+	    \[
+	    	g'(z_0):=\frac 1{2\pi i}\oint_C\frac{f(z)}{(z-z_0)^2}\,\dz
+	    \]
+	    (\emph{Hint: consider the formula in part (b) of the next question, after replacing the first two $f$'s by $g$})
+	    
+	    \item If $f(z)=x(1-x)(1-y)$ and $C$ is the square with vertices $0,1,1+i,i$ compute $g(z_0)$.
+	  \end{enumerate}
 	
 	  
-%   \item Suppose we attempted to prove Cauchy's integral formula $f(z_0)=\frac 1{2\pi i}\oint_C\frac{f(z)}{z-z_0}\,\dz$ purely for \emph{circular paths} $C$. Explain why we still need the full Cauchy--Goursat Theorem to complete the proof.\\[5pt]
-%   \emph{If we didn't, then the full version would be redundant: Corollary \ref{cor:infdiff} would show that every holomorphic function $f(z)=u+iv$ had continuous partial derivatives $u_x,u_y,v_x,v_y$, whence our sketch proof of Cauchy--Goursat (Theorem \ref{thm:cauchygoursatv1}) relying on Green's Theorem would be enough to establish the complete integral formula\ldots}
-\end{enumerate}
+		\item\label{exs:cauchyintgeneral} We prove the 1\st\ derivative version of Cauchy's integral formula. As previously, let $\delta>0$ be such that $\nm{w-z_0}<\delta\implies w\in D$.
+		\begin{enumerate}
+		  \item If $\nm{\Delta z}<\delta$ and $z\in C$ explain why
+		  \begin{enumerate}
+		    \item $\nm{z-z_0}\ge \delta$
+		    \item $\nm{z-z_0-\Delta z}>0$ 
+		  \end{enumerate}
+		  \item Use the basic integral formula on $C$ to evaluate $f(z_0+\Delta z)-f(z_0)$ and thus prove that
+		  \[
+		  	\nm{\frac{f(z_0+\Delta z)-f(z_0)}{\Delta z}-\frac 1{2\pi i}\oint_C\frac{f(z)}{(z-z_0)^2}\,\dz} \le \frac{ML}{2\pi(\delta-\Delta z)\delta^2}\nm{\Delta z}
+		  \]
+		  where $M$ is an upper bound for $\nm{f(z)}$ on $C$, and $L$ is the length of $C$. Hence conclude that $f'(z_0)=\frac 1{2\pi i}\oint_C\frac{f(z)}{(z-z_0)^2}\,\dz$.
+		\end{enumerate}
+		If you want a challenge, try to do the same thing for higher derivatives!
+		
+		
+		  
+	%   \item Suppose we attempted to prove Cauchy's integral formula $f(z_0)=\frac 1{2\pi i}\oint_C\frac{f(z)}{z-z_0}\,\dz$ purely for \emph{circular paths} $C$. Explain why we still need the full Cauchy--Goursat Theorem to complete the proof.\\[5pt]
+	%   \emph{If we didn't, then the full version would be redundant: Corollary \ref{cor:infdiff} would show that every holomorphic function $f(z)=u+iv$ had continuous partial derivatives $u_x,u_y,v_x,v_y$, whence our sketch proof of Cauchy--Goursat (Theorem \ref{thm:cauchygoursatv1}) relying on Green's Theorem would be enough to establish the complete integral formula\ldots}
+	\end{enumerate}
 \end{exercises*}
   
 
