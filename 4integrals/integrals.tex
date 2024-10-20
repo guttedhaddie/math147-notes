@@ -119,7 +119,7 @@ We want to integrate complex functions along curves. But what sort of curves?
 	A \emph{smooth arc} is an oriented curve $C$ in the complex plane for which there exists a \emph{regular parametrization}; a differentiable function $z:[a,b]\to\C$ such that:\vspace{-2pt}
 	\begin{enumerate}\itemsep2pt
 	  \item $z([a,b])=C$ where $z(a)$ is the \emph{start} of the curve and $z(b)$ is the \emph{end}.
-	  \item $z'(t)$ is \emph{continuous} on $[a,b]$ and \emph{non-zero} on $(a,b)$.
+	  \item $z'(t)$ is \emph{continuous}\footnotemark{} on $[a,b]$ and \emph{non-zero} on $(a,b)$.
 	\end{enumerate}
 	A \emph{contour} is a piecewise smooth arc $C$ consisting of finitely many smooth arcs joined end-to-end. A parametrization $z(t)$ of $C$ is therefore continuous with piecewise continuous derivative.\smallbreak
 	If we \emph{reverse the orientation} of a contour $C$, the resulting contour is labelled $-C$.\smallbreak
@@ -130,6 +130,10 @@ We want to integrate complex functions along curves. But what sort of curves?
 	  \item \emph{Positively oriented} if it is simple, closed and traversed counter-clockwise.
 	\end{itemize}
 \end{defn}
+
+\footnotetext{%
+	Since $\nm{z'(t)}$ is bounded on $[a,b]$, the arc-length $\int_a^b\nm{z'(t)}\,\dt$ is finite. This extends to any contour.
+}
 
 \begin{examples}{}{contourintro}
 	Here are three contours with explicit parametrizations:\vspace{-5pt}
@@ -164,11 +168,10 @@ We want to integrate complex functions along curves. But what sort of curves?
 	\[
 		\int_Cf=\int_Cf(z)\,\dz:=\int_a^bf\bigl(z(t)\bigr) z'(t)\,\dt
 	\]
-	This is often written $\oint_Cf$ if $C$ is positively oriented (simple and closed).%\smallbreak
-	% If the value $\int_Cf$ depends only on the endpoints of $C$ and is otherwise \emph{independent of path,} we may write $\int_{z_1}^{z_2}f(z)\,\dz$ where $z_1,z_2$ are the endpoints of $C$.
+	This is often written $\oint_Cf$ if $C$ is positively oriented (simple and closed).
 \end{defn}
 
-We plainly require, and assume from now on by default, that the function $f\bigl(z(t)\bigr)z'(t)$ is integrable on the \emph{real interval} $[a,b]$; indeed we typically assume that this expression is piecewise continuous. As we'll see shortly, the choice of parametrization $z(t)$ of $C$ is irrelevant.
+We plainly require, and assume from now on by default, that the function $f\bigl(z(t)\bigr)z'(t)$ is integrable on the \emph{real interval} $[a,b]$; indeed we typically assume that this expression is \emph{piecewise continuous}. %As we'll see shortly, the choice of parametrization $z(t)$ of $C$ is irrelevant.
 \goodbreak
 
 
@@ -481,7 +484,7 @@ Before tackling the main result, we tidy up a connection between path independen
 In the above example, the existence of an \emph{anti-derivative} $F(z)=\frac 13z^2+z$ of $f(z)=z^2+1$ demonstrated path-independence, thus facilitating easy computation of the integral. This should seem familiar\ldots 
 
 \begin{thm}{Fundamental Theorem}{ftc2}
-	Let $f$ be continuous on an open domain $D$. Then (on $D$),
+	Let $f$ be continuous on an open domain. Then,
 	\[
 		\text{$f$ has an anti-derivative} \iff \text{all contour integrals $\textstyle\int_Cf$ are path-independent}
 	\]
@@ -489,35 +492,6 @@ In the above example, the existence of an \emph{anti-derivative} $F(z)=\frac 13z
 \end{thm}
 
 The openness and continuity assumptions are necessary and will be used in the proof. In multi-variable calculus, the $(\Rightarrow)$ direction is often known as the Fundamental Theorem of Line Integrals.
-
-% \begin{defn}{}{}
-% A function $f:D\to\C$ has an \emph{anti-derivative} $F:D\to\C$ if $F'(z)=f(z)$ on $D$.
-% \end{defn}
-% 
-% Recall our discussion of holomorphic functions, where we saw that the only functions with zero derivative on an open connected domain are the \emph{constants.} This immediately forces an intuitive result.
-% 
-% \begin{lemm}{}{}
-% Suppose $F$ and $G$ are anti-derivatives of $f$ on an open connected domain $D$. Then $G(z)-F(z)$ is constant on $D$.
-% \end{lemm}
-% 
-% This shows that we could have used \emph{any} anti-derivative $\frac 13z^3+z+k$ to evaluate the previous example.\bigbreak
-
-%We can now state an initial version of a powerful result relating anti-derivatives and the path-independence of contour integrals.
-% 
-% \begin{lemm}{Fundamental Theorem of Line Integrals}{fundthm}
-% If $F$ is an anti-derivative of $f$ on $D$ and $C$ is any contour within $D$ and with start/end points $z_s,z_e$, then the contour integral
-% \[\int_Cf=F(z_e)-F(z_s)\]
-% is path-independent. Moreover, if $C$ is additionally closed, then
-% $\int_C=0$
-% \end{lemm}
-
-% \begin{proof}
-% The result is already true for every smooth arc by Lemma \ref{lemm:chainsubs}. Now let $C=C_1\cup\cdots\cup C_n$ be a contour where the smooth arcs $C_k$ are arranged in order and have start/end points $z_{k-1},z_k$. By Theorem \ref{thm:basiccontour}, part 1, we see that
-% \[\int_Cf=\sum_{k=1}^n\int_{C_k}f =\sum_{k=1}^n\left[F(z_k)-F(z_{k-1})\right] =F(z_n)-F(z_0)\tag*{\qedhere}\]
-% \end{proof}
-% \goodbreak
-
-%Since the proof requires a little work, we postpone it until after some examples.
 
 \begin{examples}{}{}
 	\exstart The function $f(z)=(z+i)^3$ has anti-derivative $F(z)=\frac 14(z+i)^4$. It follows that
@@ -566,14 +540,14 @@ The openness and continuity assumptions are necessary and will be used in the pr
 \goodbreak
 
 
-\boldsubsubsection{Proving the Fundamental Theorem}
+\boldinline{Proving the Fundamental Theorem}
 
-The forward direction is relatively straightforward, though note the importance that a contour consist of only \emph{finitely} many smooth arcs.
+The forward direction is straightforward, though note the importance of a contour consisting of only \emph{finitely} many smooth arcs.
 
 
 \begin{proof}
 	\begin{description}
-		\item[\normalfont ($\Rightarrow$)] Suppose $f$ has an anti-derivative $F$ on $D$. Given a contour $C$ parametrized by a piecewise smooth function $z(t)$, write $C=C_1\cup\cdots\cup C_n$ where each $C_k$ is a smooth arc between endpoints $z_{k-1}=z(t_{k-1}),z_k=z(t_k)$. By \textcolor{red}{Theorem \ref{thm:basiccontour}} and \textcolor{blue}{Lemma \ref{lemm:chainsubs}}, we see that
+		\item[\normalfont ($\Rightarrow$)] Suppose $f$ has an anti-derivative $F$. Given a contour $C$ parametrized by a piecewise smooth function $z(t)$, write $C=C_1\cup\cdots\cup C_n$ where each $C_k$ is a smooth arc between endpoints $z_{k-1}=z(t_{k-1})$ and $z_k=z(t_k)$. By \textcolor{red}{Theorem \ref{thm:basiccontour}} and \textcolor{blue}{Lemma \ref{lemm:chainsubs}}, we see that
 		\[
 			\int_Cf \mathrel{\textcolor{red}{=}} \sum_{k=1}^n\int_{C_k}f
 			=\int_{t_{k-1}}^{t_k}F'\bigl(z(t)\bigr)z'(t)\,\dt
@@ -592,12 +566,12 @@ There are, however, a couple of extra subtleties: we must choose how to travel f
 \begin{tcolorbox}[proofstyle]
 	\begin{description}
 		\begin{minipage}[t]{0.76\linewidth}\vspace{0pt}
-			\item[\normalfont ($\Leftarrow$)] Assume path-independence, fix $z_0\in D$ and \emph{define} $F(z):=\int_{z_0}^zf(\zeta)\,\D\zeta$ where the integral is taken along \emph{any} curve. To complete the proof, we need to show that $\lim\limits_{w\to z}\frac{F(w)-F(z)}{w-z}=f(z)$ on $D$.\smallbreak
+			\item[\normalfont ($\Leftarrow$)] We prove when the domain $D$ is connected.\footnotemark{} Fix $z_0\in D$ and \emph{define} $F(z):=\int_{z_0}^zf(\zeta)\,\D\zeta$ where the integral is taken along \emph{any} curve (path-independence). We need to show that $\lim\limits_{w\to z}\frac{F(w)-F(z)}{w-z}=f(z)$ on $D$.\smallbreak
 			Fix $z\in D$ and let $\epsilon>0$ be given. Since $f$ is continuous and $D$ open,
 			\[
 				\exists \delta>0\ \text{such that}\  \nm{\zeta-z}<\delta\implies \zeta\in D\ \text{and}\ \nm{f(\zeta)-f(z)}<\frac\epsilon 2
 			\]
-			Let $w\in D$ be such that $0<\nm{w-z}<\delta$. Evaluating along any curve (path-independence again) joining $z,w$ we obtain
+			Let $w\in D$ be such that $0<\nm{w-z}<\delta$. Evaluating along any curve joining $z,w$ (path-independence again), we obtain
 			\[
 				F(w)-F(z)=\int_z^wf(\zeta)\,\D\zeta
 			\]
@@ -613,6 +587,8 @@ There are, however, a couple of extra subtleties: we must choose how to travel f
 			\end{align*}
 		\end{description}
 \end{tcolorbox}
+
+\footnotetext{If not, repeat the argument choosing a new $z_0$ for each connected component (`lump') of $D$.}
 
 The second last \textcolor{red}{inequality} should give you pause. We are tempted to argue that
 \[
@@ -1174,226 +1150,190 @@ Finally, note that if $f$ has an anti-derivative $F$, then $F$ is necessarily ho
 		\end{enumerate}
 		If you want a challenge, try to do the same thing for higher derivatives!
 		
-		
-		  
-	%   \item Suppose we attempted to prove Cauchy's integral formula $f(z_0)=\frac 1{2\pi i}\oint_C\frac{f(z)}{z-z_0}\,\dz$ purely for \emph{circular paths} $C$. Explain why we still need the full Cauchy--Goursat Theorem to complete the proof.\\[5pt]
-	%   \emph{If we didn't, then the full version would be redundant: Corollary \ref{cor:infdiff} would show that every holomorphic function $f(z)=u+iv$ had continuous partial derivatives $u_x,u_y,v_x,v_y$, whence our sketch proof of Cauchy--Goursat (Theorem \ref{thm:cauchygoursatv1}) relying on Green's Theorem would be enough to establish the complete integral formula\ldots}
 	\end{enumerate}
 \end{exercises*}
   
-
-% 
-% 
-% Now for the extension. As above, let $\delta>0$ be such that $\nm{w-z_0}<\delta\implies w\in D$, and let $\nm{\Delta z}<\delta$. For any $z\in C$, we have
-% \[\nm{z-z_0}\ge\delta,\quad \nm{z-z_0-\Delta z}\ge \bigl|\nm{z-z_0}-\nm{\Delta z}\bigr|\ge \delta-\nm{\Delta z}>0\] 
-% Then
-% \begin{gather*}
-% \nm{\frac{f(z_0+\Delta z)-f(z_0)}{\Delta z}-\frac 1{2\pi i}\oint_C\frac{f(z)}{(z-z_0)^2}\,\dz}\\
-% \begin{aligned}
-% \qquad\qquad&=\nm{\frac 1{2\pi i}\oint_C\frac{f(z)}{\Delta z}\left(\frac 1{z-z_0-\Delta z}-\frac 1{z-z_0}\right)-\frac{f(z)}{(z-z_0)^2}\,\dz}\\
-% &=\frac 1{2\pi}\nm{\oint_C\frac{f(z)\bigl((z-z_0)^2-(z-z_0)(z-z_0-\Delta z)-\Delta z(z-z_0-\Delta z)\bigr)}{\Delta z(z-z_0-\Delta z)(z-z_0)^2}\,\dz}\\
-% &=\frac 1{2\pi}\nm{\oint_C\frac{f(z)\Delta z}{(z-z_0-\Delta z)(z-z_0)^2}\,\dz}\le \frac{ML}{2\pi(\delta-\Delta z)\delta^2}\nm{\Delta z}
-% \end{aligned}
-% \end{gather*}
-% where $M$ is an upper bound for $\nm{f(z)}$ on $C$, and $L$ is the length of $C$. Clearly this goes to zero as $\Delta z\to 0$: we conclude that $f'(z_0)=\frac 1{2\pi i}\oint_C\frac{f(z)}{(z-z_0)^2}\,\dz$.\\
-% One can repeat this exercise for higher derivatives: for instance,
-% \begin{gather*}
-% \nm{\frac{f'(z_0+\Delta z)-f'(z_0)}{\Delta z}-\frac 2{2\pi i}\oint_C\frac{f(z)}{(z-z_0)^3}\,\dz}\\
-% \begin{aligned}
-% \qquad\qquad&=\nm{\frac 1{2\pi i}\oint_C\frac{f(z)}{\Delta z}\left(\frac 1{(z-z_0-\Delta z)^2}-\frac 1{(z-z_0)^2}\right)-\frac{2f(z)}{(z-z_0)^3}\,\dz}\\
-% &=\frac 1{2\pi}\nm{\oint_C\frac{\bigl(3(z-z_0)-2\Delta z)f(z)\Delta z}{(z-z_0-\Delta z)^2(z-z_0)^3}\,\dz}\le \frac{(3K+2\delta)ML}{2\pi(\delta-\Delta z)^2\delta^3}\nm{\Delta z}
-% \end{aligned}
-% \end{gather*}
-% where $\nm{z-z_0}\le K$ is the largest distance from $z_0$ to a point on $C$. Again this tends to zero as $\Delta z\to 0$.\\[5pt] 
-% The nastier calculations for the higher derivatives are omitted for sanity's sake\ldots
+    
 \clearpage
 
-\iffalse
 
 \subsection{Liouville's Theorem and The Maximum Modulus Principle}
 
-In this section we derive some powerful corollaries of the Cauchy integral formula. The first is easy.
+In this section we deduce several powerful corollaries of Cauchy's integral formula. The first is a straightforward combination of the integral formula with integral estimation (Theorem \ref{thm:intbound}).
 
 \begin{lemm}{Cauchy's Inequality}{}
-If $f$ is holomorphic on and inside the circle $C$ of radius $R$ centered at $z_0$, and $\nm{f(z)}\le M$ on $C$, then
-\[\nm{f^{(n)}(z_0)}=\frac{n!}{2\pi}\nm{\oint_{C}\frac{f(z)}{(z-z_0)^{n+1}}\,\dz}\le \frac{n!M}{R^n}\]
+	If $f$ is holomorphic on and inside the circle $C$ of radius $R$ centered at $z_0$, and $\nm{f(z)}\le M$ on $C$, then
+	\[
+		\nm{f^{(n)}(z_0)}
+		=\frac{n!}{2\pi}\nm{\oint_{C}\frac{f(z)}{(z-z_0)^{n+1}}\,\dz}
+		\le \frac{n!M}{R^n}
+	\]
 \end{lemm}
 
-This seems innocuous, but it has surprising applications. If $f$ is entire and bounded ($\nm{f(z)}\le M$ for all $z$) then Cauchy's inequality applies for \emph{every} circle centered at \emph{every} $z_0$:
-\[\forall z_0,R,\ \nm{f'(z_0)}\le\frac MR \implies \forall z_0,\ f'(z_0)=0\]
-We've therefore proved:
+This seems innocuous, but it has surprising applications. If $f$ is entire and bounded ($\nm{f(z)}\le M$ for all $z$), then Cauchy's inequality applies for \emph{any} circle centered at \emph{any} $z_0$:
+\[
+	\forall z_0\in\C,R>0,\ \nm{f'(z_0)}\le\frac MR 
+	\implies \forall z_0,\ f'(z_0)=0 
+	\overset{\text{Thm}}{\underset{\text{\ref{thm:derivzeroconst}}}{\implies}}
+	f(z)\text{ constant}
+\]
 
 \begin{thm}{Liouville}{}
-The only bounded entire functions are constants.
+	Every bounded, entire function is constant.
 \end{thm}
 
-  
-\def\deg{\operatorname{deg}}
-We now come to perhaps the simplest proof of one of the most famous results in mathematics.
+Liouville's Theorem is the key ingredient in perhaps the simplest proof of a very famous result.
 
-\begin{thm}{Fundamental Thm.\ of Algebra}{}
-Every non-constant polynomial has a root in $\C$. %Moreover, every such $p(z)$ factors uniquely up to ordering as a product of linear factors:
-%\[p(z)=a(z-z_1)\cdots(z-z_n)\] 
-\end{thm}
+\begin{cor}{Fund.{} Thm.{} of Algebra}{}
+	Every non-constant polynomial has a root in $\C$. %Moreover, every such $p(z)$ factors uniquely up to ordering as a product of linear factors:
+	%\[p(z)=a(z-z_1)\cdots(z-z_n)\] 
+\end{cor}
 
 \begin{proof}
-It costs nothing to assume that the polynomial is monic. Suppose $p(z)=z^n+\sum_{k=0}^{n-1}a_kz^k$ has no roots, then $\frac 1{p(z)}$ is entire. Our goal is to prove that $\frac 1{p(z)}$ is also \emph{bounded} on $\C$: since $p(z)$ is non-constant, this contradicts Liouville's Theorem.\smallbreak
-In fact it is enough to bound $\frac 1{p(z)}$ for all \emph{large} $z$: that is we want to find $R>0$ such that
-\[\nm z>R\implies \frac 1{p(z)}\text{ bounded}\]
-This is since $\frac 1{p(z)}$, being continuous, is already bounded on the compact disk $\nm z\le R$. So how do we find $R$? The idea is to use the triangle inequality to write
-\[
-\nm z>R\implies\nm{p(z)}=\nm z^n\nm{1+\sum_{k=0}^{n-1}\frac{a_k}{z^{n-k}}} \ge \nm z^n\nm{1-\nm{\sum_{k=0}^{n-1}\frac{a_k}{z^{n-k}}}}
-\]
-We need only choose $R$ such that $\nm{\sum_{k=0}^{n-1}\frac{a_k}{z^{n-k}}}\le \sum_{k=0}^{n-1}\frac{\nm{a_k}}{\nm z^{n-k}}\le\frac 12$ to complete the proof:
-\[\nm z>R\implies \nm{p(z)}\ge \frac 12R^n\implies \frac 1{\nm{p(z)}}\le \frac 2{R^n}\]
-Forcing each term in the sum to be $\le \frac 1{2n}$ is enough: it is easy to check that this is accomplished by
-\[R:=\max\left\{(2n\nm{a_k})^{\frac 1{n-k}}:k=0,\ldots,n-1\right\}\tag*{\qedhere}\]
+	WLOG suppose a non-constant polynomial $p(z)=z^n+\sum_{k=0}^{n-1}a_kz^k$ is monic. We assume, for contradiction, that $p(z)=0$ has no solutions. It follows that is $\frac 1{p(z)}$ is \emph{entire}. Our strategy is to establish that $\frac 1{p(z)}$ is also \emph{bounded}; since $p(z)$ is non-constant, this contradicts Liouville's Theorem.\par
+	In fact it is enough to bound $\frac 1{p(z)}$ for all \emph{large} $z$: that is, we want to find some $R>0$ such that
+	\[
+		\nm z>R\implies \frac 1{p(z)}\text{ bounded}
+	\]
+	This is since $\frac 1{p(z)}$, being continuous, is automatically bounded on any disk $\nm z\le R$ (compactness, Theorem \ref{thm:compactconnected}). So how do we find a suitable $R$? Everything follows from the triangle inequality,
+	\[
+		\nm z>R \implies
+		\nm{p(z)}=\nm z^n\nm{1+\sum_{k=0}^{n-1}\frac{a_k}{z^{n-k}}} 
+		\ge \nm z^n\nm{1-\nm{\sum_{k=0}^{n-1}\frac{a_k}{z^{n-k}}}}
+	\]
+	To complete the proof, we need only choose $R$ such that $\nm{\sum_{k=0}^{n-1}\frac{a_k}{z^{n-k}}}\le \sum_{k=0}^{n-1}\textcolor{red}{\frac{\nm{a_k}}{\nm z^{n-k}}}\le\frac 12$, for then
+	\[
+		\nm z>R\implies \nm{p(z)}\ge \frac 12R^n\implies \frac 1{\nm{p(z)}}\le \frac 2{R^n}
+	\]
+	is bounded. It is sufficient to force each term in the \textcolor{red}{above sum} to be $\le \frac 1{2n}$, as may be accomplished (see Exercise \ref{exs:fundthmalg}) by defining
+	\[
+		R:=\max_{}\left\{(2n\nm{a_k})^{\frac 1{n-k}}:0\le k<n\right\} \tag*{\qedhere}
+	\]
 \end{proof}
 
-% \begin{proof}
-% It costs nothing to assume that the polynomial is monic. Suppose $p(z)=z^n+\sum_{k=0}^{n-1}a_kz^k$ has no roots, then $\frac 1{p(z)}$ is entire. Our goal is to prove that $\frac 1{p(z)}$ is also \emph{bounded} on $\C$. Since  $p(z)$ is not constant, this contradicts Liouville's Theorem.\smallbreak
-% For each $k\le n-1$, define $R_k:=(2n\nm{a_k})^{\frac 1{n-k}}\ge 0$ and set $R:=\max\{R_0,\ldots,R_{n-1}\}$. Then, if $a_k\neq 0$,
-% \[\nm z>R\implies \frac{\nm{a_k}}{\nm z^{n-k}}<\frac{\nm{a_k}}{R^{n-k}}\le \frac{\nm{a_k}}{R_k^{n-k}}=\frac 1{2n}\]
-% The inequality is trivially true if $\nm{a_k}=0$. But then
-% \begin{align*}
-% \nm z>R&\implies\nm{\sum_{k=0}^{n-1}\frac{a_k}{z^{n-k}}}<\frac 12\\
-% &\implies \nm{p(z)}=\nm z^n\nm{1+\sum_{k=0}^{n-1}\frac{a_k}{z^{n-k}}}  \ge\frac 12\nm z^n>\frac 12R^n
-% \end{align*}
-% whence $\frac 1{\nm{p(z)}}<\frac 2{R^n}$ is bounded whenever $\nm z>R$. Since $\frac 1{p(z)}$ is continuous, it is also bounded on the closed disk $\nm z\le R$, and thus on $\C$. We have our contradiction.
-% \end{proof}
 
 
+The proof used the fact that a continuous function $f$ on a compact (closed, bounded) domain $K$ is bounded (Theorem \ref{thm:compactconnected}). As you should recall from real analysis, the least upper bound is achieved:
+\[
+	\exists z_0\in K\text{ such that } \nm{f(z_0)}=\sup\bigl\{\nm{f(z)}:z\in K\bigr\}
+\] 
+For \emph{holomorphic} functions, something more restrictive and surprising is true: the maximum modulus of a holomorphic function on a compact domain is always and only achieved at an \emph{edge point}.
 
-In the proof, we used the fact that a continuous function $f(z)$ on a compact (closed bounded) domain $K$ is bounded. As you should recall from real analysis, the least upper bound is achieved
-\[\exists z_0\in K\text{ such that } \nm{f(z_0)}=\sup\{\nm{f(z)}:z\in K\}\] 
-For \emph{holomorphic} functions, we can say something more restrictive and surprising. The maximum modulus of an holomorphic function on a compact domain is always and only achieved at an \emph{edge point.}
+\begin{example}{}{}
+	Let $f(z)=e^z$ on the unit disk $\nm z\le 1$. Then $\nm{f(z)}=e^x$, whence the maximum modulus $\nm{f(1)}=e$ occurs at $z=1$, on the edge of the disk.
+\end{example}
 
+The theorem establishing this important observation is usually stated a little differently.
 
 \begin{thm}{Maximum Modulus Principle}{}
-Suppose $f(z)$ is holomorphic and non-constant on an \emph{bounded, open, connected} domain $D$. Then $\nm{f(z)}$ has no maximum value on $D$.
+	Suppose $f$ is holomorphic and non-constant on a \emph{connected, open} domain $D$. Then $\nm{f(z)}$ has no maximum value on $D$.
 \end{thm}
 
 
-\begin{examples}{}{modulusexplicit}
-\hangindent\leftmargini
-\textup{1.} \ Let $f(z)=e^z$ on the unit disk $\nm z\le 1$. Then $\nm{f(z)}=e^x$ which has its maximum at $z=1$, on the edge of the disk.
-\begin{enumerate}\setcounter{enumi}{1}
-  \item Consider $f(z)=2z^2+i$ on the upper semi-disk with radius 1. There are two boundaries:\smallbreak
-\begin{minipage}[t]{0.64\linewidth}\vspace{-15pt}
-$y=0$: plainly $\nm{f(z)}=\sqrt{4x^4+1}$ is maximal at $z=\pm 1$.\smallbreak
-$r=1$: write $f(z)=2e^{2i\theta}+i$ from which\vspace{-5pt}
-  \begin{gather*}
-  \nm{f(z)}=\sqrt{(2\cos 2\theta)^2+(2\sin 2\theta+1)^2} =\sqrt{5+4\sin 2\theta}\\[-25pt]
-  \end{gather*}
-  which is maximal when $\theta=\frac\pi 4$ with $\nm{f(\polar{i\pi}4)} =3$.\smallbreak
-  The color indicates that value of $\nm{f(z)}$, and the arrows its direction of increase on the boundary. 
-\end{minipage}\begin{minipage}[t]{0.36\linewidth}\vspace{-10pt}
-\flushright\includegraphics{maxmod3}
-\end{minipage}
-\end{enumerate}
-
-% \smallbreak
-%   Evaluate using polar co-ordinates and apply the usual method from multi-variable calculus:
-%   \[\nm{f(r,\theta)}^2=\nm{r^2e^{2i\theta}-ire^{i\theta}}^2=r^2(r^2+1-2r\sin\theta)\]
-%   If $(r,\theta)$ is a maximum of $\nm{f(r,\theta)}^2$ inside the domain ($0<r<1$ and $0<\theta<\pi$) then its partial derivatives are zero:
-%   \[\partials\theta\nm{f(r,\theta)}^2=-2r^3\cos\theta=0\iff \theta=\frac\pi 2\]
-%   Only the latter matters, since $r=0$ is on the edge of the domain: for the other derivative
-%   \[\partialsat r{(r,\frac\pi 2)}\nm{f(r,\theta)}^2=2r(2r^2+1-3r\sin\theta)\big|_{(r,\frac\pi 2)}=2r(2r-1)(r-1)=0\iff r=\frac 12\]
-%   Indeed $f(\frac 12,\frac\pi 2)=f(\frac i2)=\frac 14$. On the boundary:
-%   \begin{itemize}
-%     \item $\theta=0,\pi\implies \nm{f(r,\theta)}^2=r^2(r^2+1)$ is maximal when $r=1$.
-%     \item $r=1\implies \nm{f(r,\theta)}^2=2-2\sin\theta$ is maximal when $\theta=\frac\pi 2$.
-%   \end{itemize}
-%   The maximum value is therefore at $z=i$ which yields $f(z)=-1+1=0$. Both of these conditions lie on the edge of the domain.
-\end{examples}
-
-
-\begin{tcolorbox}[proofstyle]
-\begin{minipage}[t]{0.75\linewidth}\vspace{0pt}
-First we prove a special case.\smallbreak
-Fix $\delta>0$, assume $f(z)$ is holomorphic on and inside $B_0=\{z:\nm{z-z_0}\le\delta\}$ and suppose $\nm{f(z)}$ attains its maximum at $z_0$.\smallbreak
-Let $r\le\delta$ and apply the Cauchy integral formula around the circle \textcolor{brown}{$C_{r}$} of radius $r$ centered at $z_0$:
-\end{minipage}\begin{minipage}[t]{0.25\linewidth}\vspace{0pt}
-\flushright\includegraphics[scale=1]{maxmod2}
-\end{minipage}\par
-\vspace{-10pt}
-\begin{align*}
-f(z_0)&=\frac 1{2\pi i}\oint_{C_{r}}\frac{f(z)}{z-z_0}\,\dz =\frac 1{2\pi i}\int_0^{2\pi}\frac{f(z_0+r e^{it})}{r e^{it}}ir e^{it}\,\dt =\frac 1{2\pi}\int_0^{2\pi}f(z_0+r e^{it})\,\dt\\
-\implies \nm{f(z_0)}&\le \frac 1{2\pi}\int_0^{2\pi}\nm{f(z_0+r e^{it})}\dt \tag{Theorem \ref{thm:intbound}}\\
-&\le \frac 1{2\pi}\int_0^{2\pi}\nm{f(z_0)}\,\dt =\nm{f(z_0)} \tag{$\nm{f(z_0)}=\max\{\nm{f(z)}:z\in B_0\}$}
-\end{align*}
-The inequalities are therefore \emph{equalities,} the middle of which now becomes
-\[\int_0^{2\pi}\nm{f(z_0)}-\nm{f(z_0+r e^{it})}\dt=0\]
-Since the integrand is non-negative and continuous, it must be zero. But then $\nm{f(z)}=\nm{f(z_0)}$ on \emph{all circles} $C_r$, whence $\nm{f(z)}$ is \emph{constant} on $B_0$. Since $f(z)$ is holomorphic, it is also constant\footnotemark on $B_0$.
-\end{tcolorbox}
-
-\footnotetext{Recall from chapter 2: $\nm{f(z)}=k\neq 0\implies \cl{f(z)}=\frac{k^2}{f(z)}$ is holomorphic, whence $u-iv$ satisfies the Cauchy--Riemann equations\ldots}
-\pagebreak
-\goodbreak
-\begin{tcolorbox}[proofstyle]
-\begin{minipage}[t]{0.55\linewidth}\vspace{0pt}
-Now suppose that $f$ is holomorphic on some open connected domain $D$ and that it attains its maximum at $z_0\in D$.\par
-Let $w\in D$ be any other point and join $z_0$ to $w$ by a simple contour \textcolor{Green}{$C$}.\smallbreak
-Since $D$ is open, $\exists\delta>0$ such that all points $\le\delta$ distance of $C$ lie within $D$.\smallbreak
-Take points $z_1,\ldots,z_n$ separated by $\delta$ along $C$ and disks $B_k=\{z:\nm{z-z_k}\le\delta\}$ centered at each $z_k$ such that $w\in B_n$: this is possible since $C$ has \emph{finite length.}
-\end{minipage}\begin{minipage}[t]{0.45\linewidth}\vspace{0pt}
-\flushright\includegraphics[scale=0.9]{maxmod}
-\end{minipage}\medbreak
-By the simple case, $f(z)$ is constant on $B_0$. Since $z_1\in B_0$, this shows that $\nm{f(z_1)}=\nm{f(z_0)}$ is also the maximum modulus on $D$. The special case now says that $f(z)$ is constant in $B_0\cup B_1$. By induction, $f$ is constant on all $\bigcup B_k$ and so $f(w)=f(z_0)$.\hfill\qedsymbol
-\end{tcolorbox}
+\begin{proof}
+	We start by demonstrating the contrapositive of a special case.\par
+	\begin{minipage}[t]{0.79\linewidth}\vspace{-6pt}
+		Fix $\delta>0$, assume $f$ is holomorphic on and inside $\cl{B_0}:=\{z:\nm{z-z_0}\le\delta\}$ and that \textcolor{red}{$\nm{f(z)}$ attains its maximum at $z_0$}. We prove that $f(z)$ is \emph{constant} on $\cl{B_0}$.\smallbreak
+		Let $r\le\delta$ and apply the integral formula to the circle \textcolor{Brown}{$C_{r}$} \ ($z(t)=z_0+re^{it}$):
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{0.2\linewidth}\vspace{-21pt}
+		\flushright\includegraphics[scale=0.95]{maxmod2}
+	\end{minipage}\par
+	\vspace{-10pt}
+	\begin{align*}
+		\nm{f(z_0)}
+		&=\frac 1{2\pi}\nm{\oint_{C_{r}}\frac{f(z)}{z-z_0}\,\dz}
+		=\frac 1{2\pi}\nm{\int_0^{2\pi}\frac{f(z_0+r e^{it})}{r e^{it}}ir e^{it}\,\dt}
+		=\frac 1{2\pi}\nm{\int_0^{2\pi}f(z_0+r e^{it})\,\dt}\\
+		&\le \frac 1{2\pi}\int_0^{2\pi}\nm{f(z_0+r e^{it})}\dt \tag{Theorem \ref{thm:intbound}}\\
+		&\mathrel{\textcolor{red}{\le}} \frac 1{2\pi}\int_0^{2\pi}\nm{f(z_0)}\,\dt =\nm{f(z_0)} \tag{$\nm{f(z_0)}$ is the \textcolor{red}{maximum} of $\nm{f(z)}$}
+	\end{align*}
+	Both inequalities are therefore \emph{equalities,} the \textcolor{red}{second} of which now becomes
+	\[
+		\int_0^{2\pi}\nm{f(z_0)}-\nm{f(z_0+r e^{it})}\dt=0
+	\]
+	Since the integrand is \textcolor{red}{non-negative} and continuous, it must be zero. But then $\nm{f(z)}=\nm{f(z_0)}$ on \emph{all such circles} $C_r$, whence $\nm{f(z)}$ is \emph{constant} on $\cl{B_0}$. By Corollary \ref{cor:modimpliesconst}, $f(z)$ is also constant on $B_0$.\medbreak
+	
+	Now suppose $f$ is holomorphic on some connected open set $D$ and that $\nm{f(z)}$ attains its maximum at $z_0$. Let $w\in D$ be any other point and join $z_0$ to $w$ by a smooth arc \textcolor{Green}{$C$}.\par
+	\begin{minipage}[t]{0.62\linewidth}\vspace{-2pt}
+		Following Exercise \ref*{sec:opensets}.\ref{exs:finitesubcover}, we may cover $C$ with \emph{finitely many} closed disks $\cl{B_0},\cl{B_1},\ldots,\cl{B_n}\subset D$ of some radius $\delta$, indexed so that each center $z_k$ lies in one of the previous disks: indeed we need at most $\frac{\text{length}(C)}{\delta}$ disks for this.\smallbreak
+		By the special case, $f(z)$ is constant on $\cl{B_0}$. Since $z_1\in C\cap\cl{B_0}$, we see that $\nm{f(z_1)}=\nm{f(z_0)}$ is also the maximum modulus on $D$. The special case now says that $f(z)$ is constant on $\cl{B_0}\cup \cl{B_1}$.
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{0.36\linewidth}\vspace{-5pt}
+		\flushright\includegraphics[scale=0.95]{maxmod}
+	\end{minipage}\medbreak
+	Continuing in this fashion (essentially induction), we conclude that $f(z)=f(z_0)$ is constant on $\cl{B_0}\cup\cdots\cup\cl{B_n}$. In particular $f(w)=f(z_0)$. Since $w$ was arbitrary, $f(z)$ is constant on $D$.
+\end{proof}
 
 
-% \begin{proof}
-% Let $r\le\delta$ and apply the Cauchy integral formula around the circle \textcolor{brown}{$C_{0,r}$} of radius $r$ centered at $z_0$:
-% \begin{align*}
-% f(z_0)&=\frac 1{2\pi i}\oint_{C_{0,r}}\frac{f(z)}{z-z_0}\,\dz =\frac 1{2\pi i}\int_0^{2\pi}\frac{f(z_0+r e^{it})}{r e^{it}}ir e^{it}\,\dt =\frac 1{2\pi}\int_0^{2\pi}f(z_0+r e^{it})\,\dt\\
-% \implies \nm{f(z_0)}&\le \frac 1{2\pi}\int_0^{2\pi}\nm{f(z_0+r e^{it})}\,\dt \tag{Lemma \ref{lemm:intbound}}\\
-% &\le \frac 1{2\pi}\int_0^{2\pi}\nm{f(z_0)}\,\dt =\nm{f(z_0)} \tag{$\nm{f(z_0)}=\max\{\nm{f(z)}:z\in D\}$}
-% \end{align*}
-% It follows that the inequalities are \emph{equalities,} and so
-% \[\nm{f(z_0)}=\frac 1{2\pi}\int_0^{2\pi}\nm{f(z_0+r e^{it})}\,\dt
-% \implies \int_0^{2\pi}\nm{f(z_0)}-\nm{f(z_0+r e^{it})}\,\dt=0\]
-% Since the integrand is non-negative and continuous, it must be zero. But then $\nm{f(z)}=\nm{f(z_0)}$ on \emph{all circles} of radius $\le\delta$ centered at $z_0$, whence $\nm{f(z)}$ is  \emph{constant} on $B_0$. Since $f(z)$ is holomorphic, it is also constant\footnotemark on $B_0$.\smallbreak
-% To finish the proof, note that $z_1\in B_0\cap B_1\implies f(z_1)=f(z_0)$ and so $\nm{f(z)}\le \nm{f(z_1)}$ on $B_1$. Thus $f(z)=f(z_0)$ on $B_1$ also. Repeating this process $n$ times, we see that $f(z)=f(z_0)$ on every disk $B_k$: in particular, $w\in B_n$ and so $f(w)=f(z_0)$.
-% \end{proof}
-
-
-
+\begin{example}{}{modulusexplicit}
+	Let $f(z)=2z^2+i$ on the upper semi-disk with radius 1. There are two boundaries:\par
+		\begin{minipage}[t]{0.65\linewidth}\vspace{0pt}
+			\begin{itemize}
+			  \item $y=0$: plainly $\nm{f(z)}=\sqrt{4x^4+1}$ is maximal at $z=\pm 1$.
+				\item $r=1$: write $f(z)=2e^{2i\theta}+i$ from which
+			  \[
+			  	\nm{f(z)}=\sqrt{(2\cos 2\theta)^2+(2\sin 2\theta+1)^2} =\sqrt{5+4\sin 2\theta}
+			  \]
+			  which is maximal when $\theta=\frac\pi 4$ with $\nm{f(\polar{i\pi}4)} =3$.
+			\end{itemize}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.32\linewidth}\vspace{-10pt}
+			\flushright\includegraphics[scale=0.95]{maxmod3}
+		\end{minipage}\smallbreak
+		The color indicates the value of $\nm{f(z)}$, and the arrows its direction of increase on the boundary. 
+\end{example}
 
  
-\begin{exercises*}
-\hangindent\doubleind
-\textup{1.} \ (a) \ Suppose $f$ is entire and that $\nm{f(z)}\le c\nm z$ for some constant $c\in\R^+$. Prove that $f(z)=kz$ where $k\in\C$ satisfies $\nm k\le c$.
-\begin{enumerate}\setcounter{enumi}{1} 
-  \item[]\begin{enumerate}\setcounter{enumii}{1} 
-    \item What can you say about $f$ if it is entire and there exists some linear polynomial $cz+d$ with $c\neq 0$ such that $\nm{f(z)}\le\nm{cz+d}$ for all $z\in\C$?
-  \end{enumerate}
-  
-  \item If $f(z)=u+iv$ is entire and $u(x,y)$ is bounded above, apply Liouville's Theorem to $\exp(f(z))$ to prove that $u$ is constant.
-  
-  \item Let $f(z)$ be a non-zero holomorphic function on a closed bounded domain. By considering $g(z)=\frac 1{f(z)}$, show that the minimum value of $\nm{f(z)}$ also occurs on the boundary.
-  
-  \item Find the maximum and minimum values of $\nm{z^2+4i}$ on the unit disk $\nm z\le 1$.
-  
-  \item On the rectangle $0\le x\le\pi$, $0\le y\le 1$, show that $\nm{\sin z}$ is maximal at the point $z=\frac\pi 2+i$.\par
-  (\emph{Hint: first show that $\nm{\sin z}^2=\sin^2\!x+\sinh^2\!y$})
-  
-  \item Revisit the standard method from multivariable calculus (compute $\nabla\nm{f(z)}^2$) to check that the maximum value of $\nm{2z^2+i}$ in Exercise \ref{ex:modulusexplicit} really does occur on the boundary.
+\begin{exercises}
+	\hangindent\doubleind
+	\textup{1.} \ (a) \ Suppose $f$ is entire and that $\nm{f(z)}\le c\nm z$ for some constant $c\in\R^+$. Prove that $f(z)=kz$ where $k\in\C$ satisfies $\nm k\le c$.
+	
+	\begin{enumerate}\setcounter{enumi}{1} 
+	  \item[]\begin{enumerate}\setcounter{enumii}{1} 
+	    \item What can you say about $f$ if it is entire and there exists some linear polynomial $cz+d$ with $c\neq 0$ such that $\nm{f(z)}\le\nm{cz+d}$ for all $z\in\C$?
+	  \end{enumerate}
+	  
+	  
+	  \item If $f(z)=u+iv$ is entire and $u(x,y)$ is bounded above, apply Liouville's Theorem to $\exp(f(z))$ to prove that $u$ is constant.
+	  
+	  
+	  \item Let $f(z)$ be a non-zero holomorphic function on a closed bounded domain. By considering $g(z)=\frac 1{f(z)}$, show that the minimum value of $\nm{f(z)}$ also occurs on the boundary.
+	  
+	  
+	  \item Find the maximum and minimum values of $\nm{z^2+4i}$ on the unit disk $\nm z\le 1$.
+	  
+	  
+	  \item On the rectangle $0\le x\le\pi$, $0\le y\le 1$, show that $\nm{\sin z}$ is maximal at the point $z=\frac\pi 2+i$.\par
+	  (\emph{Hint: first show that $\nm{\sin z}^2=\sin^2\!x+\sinh^2\!y$})
+	  
+	  
+	  \item Revisit the standard method from multivariable calculus (compute $\nabla\nm{f(z)}^2$) to check that the maximum value of $\nm{2z^2+i}$ in Example \ref{ex:modulusexplicit} really does occur on the boundary.
+	
+	
+	  \item\label{exs:fundthmalg} Complete the proof of the fundamental theorem of algebra: 
+	  \begin{enumerate}
+	    \item Verify that $R:=\max\bigl\{(2n\nm{a_k})^{\frac 1{n-k}}:0\le k<n\bigr\}$ is \emph{positive.}
+	    \item Prove that $\nm z>R\implies \forall k,\ \frac{\nm{a_k}}{\nm z^{n-k}}<\frac 1{2n}$.
+	  \end{enumerate}
+	    
+	    
+	  \item\begin{enumerate}
+	    \item Prove the factor theorem: if $p(z_1)=0$, then $p(z)=(z-z_1)q(z)$ for some polynomial $q(z)$.\par
+	    (\emph{Hint: This follows easily from the division algorithm: if $\deg p\ge \deg g$, then there exist unique polynomials $q(z),r(z)$ for which
+	    \[
+	    	p(z)=g(z)q(z)+r(z)\quad\text{and}\quad \deg r<\deg g
+	    \]
+	    For a challenge, prove some version of this sufficient for our needs\ldots)
+	    }
+	    \item Prove that a degree $n\ge 1$ polynomial $p(z)$ factors uniquely over $\C$: up to order, there exist unique $a,z_1,\ldots,z_n\in\C$ such that
+	    \[
+	    	p(z)=a(z-z_1)\cdots(z-z_n)
+	    \]
+	  \end{enumerate}
+	\end{enumerate}
+\end{exercises}
 
-  \item Complete the proof of the fundamental theorem of algebra: 
-  \begin{enumerate}
-    \item Verify that $R:=\max\{(2n\nm{a_k})^{\frac 1{n-k}}\}$ is \emph{positive.}
-    \item Prove that $\nm z>R\implies \forall k,\ \frac{\nm{a_k}}{\nm z^{n-k}}<\frac 1{2n}$.
-  \end{enumerate}
-    
-  \item\begin{enumerate}
-    \item (Hard and long)\quad Prove the factor theorem: if $p(z_1)=0$, then $p(z)=(z-z_1)q(z)$ for some polynomial $q(z)$.\par
-    \emph{For a challenge, prove the full division algorithm: if $\deg f\ge \deg g$, then there exist unique polynomials $q(z),r(z)$ for which
-    \[f(z)=g(z)q(z)+r(z)\quad\text{and}\quad \deg r<\deg g\]}
-    \item Prove that a degree $n\ge 1$ polynomial $p(z)$ factors uniquely over $\C$: up to order, exist unique $z_1,\ldots,z_n\in\C$ such that
-    \[p(z)=a(z-z_1)\cdots(z-z_n)\]
-  \end{enumerate}
-\end{enumerate}
-\end{exercises*}
-
-\fi

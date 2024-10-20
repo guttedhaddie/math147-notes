@@ -332,13 +332,13 @@ Several pieces of part 3 follow from part 2 by considering real and imaginary pa
 In (single-variable) real analysis there are \emph{two} infinities ($\pm\infty$). In complex analysis, the convention is to have only one: for instance, the sequences $z_n=n$ and $w_n=in$ both diverge to the \emph{same} infinity.
 
 \begin{defn}{}{rsphere}
-	The \emph{extended complex plane} (\emph{Riemann sphere}) is the set $\cl\C=\C\cup\{\infty\}$ where $\infty$ denotes the \emph{point at infinity.} The concepts of \emph{neighborhood, openness} and \emph{limit} extend naturally:
-	\begin{enumerate}
-	  \item A \emph{neighborhood} of $\infty$ is any set containing an \emph{open disk} at $\infty$; a subset of the form
+	The \emph{extended complex plane} (\emph{Riemann sphere}) is the set $\cl\C=\C\cup\{\infty\}$ where $\infty$ denotes the \emph{point at infinity.} The concepts of \emph{neighborhood, openness} and \emph{limit} extend naturally:\vspace{-3pt}
+	\begin{enumerate}\itemsep0pt
+	  \item A \emph{neighborhood} of $\infty$ is any set containing an \emph{open disk} at $\infty$, namely a subset of the form\vspace{-3pt}
 		\[
 			\{\infty\}\cup\{z\in\C:\nm{z}>M\}
 		\]
-	  \item $\lim\limits_{z\to z_0}f(z)=\infty$ means: $\forall M>0$, $\exists \delta>0$ such that $0<\nm{z-z_0}<\delta \implies \nm{f(z)}>M$
+	  \item\vspace{-5pt} $\lim\limits_{z\to z_0}f(z)=\infty$ means: $\forall M>0$, $\exists \delta>0$ such that $0<\nm{z-z_0}<\delta \implies \nm{f(z)}>M$
 	  \item $\lim\limits_{z\to \infty}f(z)=w_0$ means: $\forall \epsilon>0$, $\exists N>0$ such that $\nm{z}>N \implies \nm{f(z)-w_0}<\epsilon$
 	  \item $\lim\limits_{z\to\infty}f(z)=\infty$ means: $\forall M>0$, $\exists N>0$ such that $\nm{z}>N\implies \nm{f(z)}>M$
 	\end{enumerate}
@@ -368,7 +368,9 @@ The relationship between limits, zero and infinity feel like the dubious claims 
 \begin{proof}[Sketch Proof]
 	All six results are similar; we prove only the $\Rightarrow$ direction of the second. Suppose $\epsilon>0$ is given. Then $N$ exists according to Definition \ref{defn:rsphere} (part 3). Let $\delta=\frac 1N$ and $\zeta=\frac 1z$, then
 	\[
-		\forall \epsilon>0,\exists \delta>0\text{ such that }0< \nm \zeta<\delta \implies \nm z =\tfrac 1{\nm\zeta}>N\implies \nm{f(\tfrac 1\zeta)-w_0}=\nm{f(z)-w_0}<\epsilon \tag*{\qedhere}
+		0< \nm \zeta<\delta 
+		\implies \nm z =\tfrac 1{\nm\zeta}>N
+		\implies \nm{f(\tfrac 1\zeta)-w_0}=\nm{f(z)-w_0}<\epsilon \tag*{\qedhere}
 	\]
 \end{proof}
 
@@ -376,27 +378,30 @@ The relationship between limits, zero and infinity feel like the dubious claims 
 \begin{example}{}{}
 	Consider $f(z)=\frac{5iz+1}{3z-2i}$. Plainly 
   \begin{gather*}
-  	\lim_{z\to\frac 23i}\frac 1{f(z)}=\lim_{z\to\frac 23i}\frac{3z-2i}{5iz+1}=0\implies \lim_{z\to\frac 23i}f(z)=\infty\\
-  	\lim_{z\to\infty}f(z)= \lim_{z\to\infty}\frac{5i+1/z}{3-2i/z} = \frac{5i+\lim\frac 1z}{3-2i\lim\frac 1z}=\frac 53i
-  \end{gather*}\goodbreak
-% The function $f(z)=\frac 1z$ is a continuous bijection $f:\cl\C\to\cl\C$ satisfying $f(0)=\infty$ and $f(\infty)=0$: indeed it is its own inverse! We can show directly that $f$ is continuous at zero: given $M>0$, let $\delta=\frac 1M$ to see that
-% \[\nm{z-0}<\delta\implies \nm z<\frac 1M\implies \nm{f(z)}=\frac 1{\nm z}>M\]
-% whence $\lim\limits_{z\to 0}f(z)=\infty=f(0)$.
-% \begin{enumerate}\setcounter{enumi}{1}
-%   \item Consider $f(z)=\frac{5iz+1}{3z-2i}$. Since
-%   \[\lim_{z\to\frac 23i}f(z)=\infty\quad\text{and}\quad \lim_{z\to\infty}f(z)= \lim_{z\to\infty}\frac{5i+1/z}{3-2i/z}=\frac 53i\]
-%   we can consider $f$ as a function $f:\cl\C\to\cl\C$ satisfying $f\left(\frac 23i\right)=\infty$ and $f(\infty)=\frac 53i$. 
-% \end{enumerate}
-Because of these calculations, it is common to view $f$ as a continuous bijection $f:\cl\C\to\cl\C$ of the Riemann sphere with itself (exercise):
+  	\lim_{z\to\frac 23i}\frac 1{f(z)}
+  	=\lim_{z\to\frac 23i}\frac{3z-2i}{5iz+1}=0
+  	\implies \lim_{z\to\frac 23i}f(z)=\infty
+  	,\qquad
+  	\lim_{z\to\infty}f(z)%= \lim_{z\to\infty}\frac{5i+\frac 1z}{3-\frac{2i}z} 
+  	=\frac{5i+\lim\frac 1z}{3-2i\lim\frac 1z}
+  	=\frac 53i
+  \end{gather*}
+	Because of this, it is common to view $f$ as a continuous bijection $f:\cl\C\to\cl\C$ (exercise):
+% \[
+% 	f(z):=
+% 	\begin{cases}
+% 		\frac{5iz+1}{3z-2i}&\text{if }z\neq \frac 23i,\infty\\
+% 		\infty&\text{if }z=\frac 23i\\
+% 		\frac 53i&\text{if }z=\infty
+% 	\end{cases}
+% \]
 \[
-	f(z):=
-	\begin{cases}
-		\frac{5iz+1}{3z-2i}&\text{if }z\neq \frac 23i,\infty\\
-		\infty&\text{if }z=\frac 23i\\
-		\frac 53i&\text{if }z=\infty
-	\end{cases}
+	f(z)=\frac{5iz+1}{3z-2i}\quad \bigl(\text{if }z\neq \tfrac 23i,\infty\bigr),\qquad f\left(\frac 23i\right)=\infty,\qquad f(\infty)=\frac 53i
 \]
 \end{example}
+
+\goodbreak
+
 
 \begin{aside}{\bf Aside (non-examinable)}{}
 	The Riemann sphere is merely a fun diversion for us. Unless indicated otherwise, all sets should be assumed to be subsets of the (\emph{finite}) complex plane.\par
@@ -432,9 +437,10 @@ We finish with two further desirable properties of domains.
 	\end{enumerate} 
 \end{defn}
 
-\footnotetext{Loosely speaking, a connected set consists of one `lump.' For topologists: almost all domains of interest in these notes will be open, so there is no benefit to distinguishing between connectedness and path-connectedness.}
+\footnotetext{%
+	Loosely speaking, a connected set consists of one `lump.' If you've studied topology: almost all domains in these notes will be open, so there is no benefit to distinguishing between connectedness and path-connectedness.
+}
 
-\goodbreak
 
 These concepts generalize notions of intervals from single-variable real analysis. In view of this, we translate two familiar results, essentially the \emph{extreme} and \emph{intermediate value theorems} of real analysis.
 
@@ -449,7 +455,7 @@ These concepts generalize notions of intervals from single-variable real analysi
 \begin{proof}{}{}
 	\begin{enumerate}
 	  \item Consider the \emph{real-valued} function $\nm{f}$ and apply the same argument from real analysis:
-		\begin{itemize}\itemsep0pt
+		\begin{itemize}%\itemsep0pt
 		  \item Let $M=\sup\{\nm{f(z)}:z\in K\}$. Then $\exists (z_n)\subseteq K$ such that $\lim\nm{f(z_n)} =M$.
 		  \item $K$ is bounded; Bolzano--Weierstraß says $(z_n)$ has a convergent subsequence $(z_{n_k})$.
 		  \item Let $z_0=\lim z_{n_k}$. Since $K$ is closed we have $z_0\in K$ (Theorem \ref*{thm:compbolzano}.\ref{thm:closedlimit3}), whence $f(z_0)$ is defined.
@@ -460,25 +466,26 @@ These concepts generalize notions of intervals from single-variable real analysi
 	\end{enumerate}
 \end{proof}
 
-\goodbreak
 
-Later on we'll need one final fact about compactness, which we again state without proof.
-
-\begin{thm}{}{opencover}
-	Let $K$ be compact and suppose that a collection of open sets $U_j$ satisfies $K\subseteq \smash[b]{\bigcup\limits_{j\in I} U_j}$.\par
-	Then there exists a \underline{finite} subset $J\subseteq I$ such that $K\subseteq \bigcup\limits_{j\in J} U_j$.
-\end{thm}
-
-This is usually said ``Every open cover has a finite subcover,'' and is taken, in topology, as the definition of compactness. That this is equivalent to being closed and bounded in $\C$ (or any Euclidean space) is the famous Heine--Borel Theorem.\smallbreak
+% Later on we'll need one final fact about compactness, which we again state without proof.
+% 
+% \begin{thm}{}{opencover}
+% 	Let $K$ be compact and suppose that a collection of open sets $U_j$ satisfies $K\subseteq \smash[b]{\bigcup\limits_{j\in I} U_j}$.\par
+% 	Then there exists a \textbf{finite} subset $J\subseteq I$ such that $K\subseteq \bigcup\limits_{j\in J} U_j$.
+% \end{thm}
+% 
+% This is usually said ``Every open cover has a finite subcover,'' and is taken, in topology, as the definition of compactness. That this is equivalent to being closed and bounded in $\C$ (or any Euclidean space) is the famous Heine--Borel Theorem.\smallbreak
 
 The upshot of this section is that continuity and limits are essentially the same in both real and complex analysis and behave as you should expect. Differentiation, however, is another beast entirely\ldots
 
+\vfil\vfil\clearpage
+
 
 \begin{exercises}{}{}
-	\exstart As in Example \ref{ex:easyopen}, prove that the doubly-punctured plane $D:=\C\setminus\{1,-2i\}$ is an open set. State a function whose implied domain is this set.
+	\exstart As in Example \ref{ex:easyopen}, prove that the doubly-punctured plane $D:=\C\setminus\{1,-2i\}$ is an open set. State a function whose implied domain is this set.\vspace{-2pt}
 
 	\begin{enumerate}\setcounter{enumi}{1}
-	  \item Use the $\epsilon$--$\delta$ definition (\ref{defn:limit}) to prove the following.
+	  \item Use the $\epsilon$--$\delta$ definition (\ref{defn:limit}) to prove the following.\vspace{-2pt}
 	  \begin{enumerate}
 	  	\item $\displaystyle\lim\limits_{z\to z_0}\cl z=\cl{z_0}$\qquad
 	  	(b) \ $\displaystyle\lim\limits_{z\to 0}\frac{\cl z^2}z=0$\qquad
@@ -487,41 +494,76 @@ The upshot of this section is that continuity and limits are essentially the sam
 	  \end{enumerate}
 	  
 	  
-	  \item Show that $f(z)=\left(\dfrac z{\cl z}\right)^2$ (denominator $\cl z$!) equals 1 at all non-zero points on the real and imaginary axes, and $-1$ at all non-zero points on the line $y=x$. Explain why $\lim\limits_{z\to 0}f(z)$ doesn't exist.
+	  \item Show that $f(z)=(z/\cl z)^2$ equals 1 at all non-zero points on the real and imaginary axes, and $-1$ at all non-zero points on the line $y=x$. Explain why \smash{$\lim\limits_{z\to 0}f(z)$} doesn't exist.
 	  
 	  
 	  \item Prove part 3(c) of Theorem \ref{thm:basiclimit}.
 	  
 	  
-	  \item Suppose $\lim\limits_{z\to z_0}f(z)=w_0$. Prove that $\lim\limits_{z\to z_0}\nm{f(z)}=\nm{w_0}$.
+	  \item Suppose \smash{$\lim\limits_{z\to z_0}f(z)=w_0$}. Prove that \smash{$\lim\limits_{z\to z_0}\nm{f(z)}=\nm{w_0}$.}
 	   
 	   
-	  \item Use Definition \ref{defn:rsphere} to prove part of Theorem \ref{thm:infty}: $\lim\limits_{z\to z_0}f(z)=\infty \implies \lim\limits_{z\to z_0}\frac 1{f(z)}=0$.
+	  \item Use Definition \ref{defn:rsphere} to prove part of Theorem \ref{thm:infty}: \smash{$\lim\limits_{z\to z_0}f(z)=\infty \implies \lim\limits_{z\to z_0}\frac 1{f(z)}=0$.}
 	  
 	  
-	  \item Use Definition \ref{defn:rsphere} to prove that
-	  \begin{enumerate}
-	    \item $\displaystyle\lim\limits_{z\to 2i}\frac{iz-1}{z-2i}=\infty$ \qquad (b) \ $\displaystyle\lim\limits_{z\to\infty}\frac{iz-1}{z-2i}=i$.
-	  \end{enumerate}
+	  \item Use Definition \ref{defn:rsphere} to prove: (a)\lstsp \smash{$\lim\limits_{z\to 2i}\frac{iz-1}{z-2i}=\infty$, 
+	    \qquad (b) \ $\lim\limits_{z\to\infty}\frac{iz-1}{z-2i}=i$}
+% 	  \begin{enumerate}
+% 	    \item $\displaystyle\lim\limits_{z\to 2i}\frac{iz-1}{z-2i}=\infty$ 
+% 	    \qquad (b) \ $\displaystyle\lim\limits_{z\to\infty}\frac{iz-1}{z-2i}=i$
+% 	  \end{enumerate}
 	  
 	  
 	 	\item\begin{enumerate}
-	    \item Show that $f(z)=\dfrac{5iz+1}{3z-2i}$ defines a bijection of the Riemann sphere $f:\cl\C\to\cl\C$.\par
+	    \item Show that $f(z)=\frac{5iz+1}{3z-2i}$ defines a bijection of the Riemann sphere $f:\cl\C\to\cl\C$.\par
 	  	(\emph{Hint: let $w=f(z)$ and solve for $z\ldots$})
 	  	
-	  	\item More generally, given complex numbers $\alpha,\beta,\gamma,\delta$, consider $f(z)=\dfrac{\alpha z+\beta}{\gamma z+\delta}$.\par
-	  	Prove that this defines a bijection of the Riemann sphere if and only if $\alpha\delta-\beta\gamma\neq 0$. How does this discussion relate to the $2\times 2$ matrix $\begin{smatrix}\alpha&\beta\\\gamma&\delta\end{smatrix}$?
+	  	\item In general: Given $\alpha,\beta,\gamma,\delta\in\C$, prove that $f(z)=\frac{\alpha z+\beta}{\gamma z+\delta}$ defines a bijection of the Riemann sphere if and only if $\alpha\delta-\beta\gamma\neq 0$. How does this relate to the matrix
+	  	$\smash{
+	  		\begin{smatrix}
+	  			\alpha&\beta\\
+	  			\gamma&\delta
+	  		\end{smatrix}
+	  	}$?
 	  \end{enumerate}
 	  
 	  
 	  \item We complete the proof of Theorem \ref{thm:compactconnected}. Suppose $f:K\subseteq\C\to\C$ is continuous.
 	  \begin{enumerate}
-	    \item Let $K$ be compact. Suppose $(w_n)\subseteq K$ is a sequence such that $\bigl(f(w_n)\bigr)$ is convergent in $\C$. Explain why there exists a convergent subsequence $(w_{n_k})$, and use it to show that $\lim f(w_n)\in f(K)$. Hence conclude that $f(K)$ is closed.
+	    \item Let $K$ be compact. Suppose $(w_n)\subseteq K$ is a sequence where $\bigl(f(w_n)\bigr)$ is convergent in $\C$. Explain why there exists a convergent subsequence $(w_{n_k})$, and use it to show that $\lim f(w_n)\in f(K)$. Hence conclude that $f(K)$ is closed.
 	    
 			\item Suppose $K$ is path-connected. If $f(p),f(q)\in f(K)$, show that $\exists w:[0,1]\to f(K)$ continuous such that $w(0)=f(p)$ and $w(1)=f(q)$. Hence conclude that $f(K)$ is path-connected.
 	  \end{enumerate}
+	  
+	  
+	  \item\label{exs:finitesubcover} (Hard)\lstsp ``Every open cover has a finite subcover,'' is a crucial result in topology:\footnotemark{}
+	  \begin{quote}
+	  	\textbf{Theorem}\lstsp Suppose a compact $K$ is a subset of a (possibly infinite) union $\bigcup U_j$ of open sets. Then there are \emph{finitely} many $U_j$ (labelled WLOG) such that $K\subset U_1\cup\cdots\cup U_n$.
+	  \end{quote}
+	  Suppose $z:[0,1]\to D\subseteq\C$ is a \textcolor{red}{path} in an open domain $D$ and define $K=\operatorname{range}{z}$.
+		\begin{enumerate}
+	  	\begin{minipage}[t]{0.66\linewidth}\vspace{-4pt}
+	    	\item Explain why $K$ is compact.
+	    	\item Prove that $K$ may be covered by \emph{finitely} many \emph{closed} balls $\cl{B_k}$ for which $K\subset B_0\cup\cdots\cup B_n\subset\cl{B_0}\cup\cdots\cup\cl{B_n}\subset D$.\par
+	      (\emph{Hint: start by centering a ball at \textbf{every} point of $K$})
+	      \item Prove that $D$ contains a \textcolor{purple}{zig-zag path} (finitely many horizontal/vertical segments) from $z(0)$ to $z(1)$.
+			\end{minipage}
+			\hfill
+			\begin{minipage}[t]{0.33\linewidth}\vspace{-10pt}
+				\flushright\includegraphics[scale=0.95]{analytic-topology4}
+			\end{minipage}\par
+			\item Show that we can fit a `\textcolor{Green}{tube}' around $K$: $\exists\delta>0$ such that $\forall z\in K,\ \nm{z-w}<\delta\Longrightarrow w\in D$.\par
+			(\emph{Hint: following part (b), let $V=\bigcup\cl{B_k}\setminus\bigcup B_k$ and define $\delta:=\inf\bigl\{\nm{z-v}:z\in K,v\in V\bigr\}$})
+		\end{enumerate}
+		
 	\end{enumerate}
 \end{exercises}
+
+\vspace{-10pt}
+
+\footnotetext{%
+	This is often taken as the definition of compactness in topology. Its equivalence to $K$ being closed and bounded in $\C$ (or any Euclidean space) is the famous Heine--Borel Theorem.
+}
 
 \clearpage
 
@@ -794,29 +836,36 @@ We tend to be most interested in functions which are everywhere differentiable.
 Our first general result should seem very familiar.
 
 \begin{thm}{}{derivzeroconst}
-	If $f'(z)=0$ on a (path-)connected open domain $D$, then $f(z)$ is constant.  
+	If $f'(z)=0$ on an open, (path-)connected domain, then $f(z)$ is constant.  
 \end{thm}
 
-The first part of the proof relies on Theorems \ref{thm:compactconnected} and \ref{thm:opencover}. The calculation in the second half should be compared to the corresponding argument in real analysis which also uses the mean value theorem.
+The calculation in the proof should be compared to the corresponding argument from real analysis which also relies on the mean value theorem.
 
 \begin{proof}
-	Choose any $p,q\in D$ and join them with a \textcolor{red}{path}.\par 
-	\begin{minipage}[t]{0.6\linewidth}\vspace{-7pt}
-		Since $D$ is open, at each point of the path we can choose an \textcolor{Green}{open box} lying within $D$ centered on the path.\par
-		The path is compact, so it may be covered by finitely many boxes. A \textcolor{purple}{zigzag path} consisting of finitely many horizontal and vertical segments may now be described within these boxes.\smallbreak
-		Since $f'(z)=u_x+iv_x=v_y-iu_y=0$, we see that all four partial derivatives are zero.
+	Given $p,q\in D=\dom(f)$, join them with a zig-zag path consisting of finitely many \textcolor{red}{horizontal}/\textcolor{Green}{vertical} segments (Exercise \ref*{sec:opensets}.\ref{exs:finitesubcover}).\par
+	\begin{minipage}[t]{0.63\linewidth}\vspace{-4pt}
+		
+		On each \textcolor{red}{horizontal segment} ($x_1\le x\le x_2$, $y$ constant), apply the mean value theorem to the single-valued functions
+		\[
+			x\mapsto u(x,y)
+			\quad\text{and}\quad
+			x\mapsto v(x,y)
+		\]
+		We therefore obtain values $\widehat x,\widetilde x$, both in the interval $(x_1,x_2)$, which satisfy
 	\end{minipage}
 	\hfill
-	\begin{minipage}[t]{0.39\linewidth}\vspace{-10pt}
-		\flushright\includegraphics{analytic-topology}
-	\end{minipage}\medbreak
-	For each horizontal segment of the \textcolor{purple}{zigzag path} ($x_1\le x\le x_2$, $y$ constant), apply the mean value theorem to the functions $x\mapsto u(x,y)$ and $x\mapsto v(x,y)$ to obtain $\widehat x,\widetilde x\in (x_1,x_2)$ with
+	\begin{minipage}[t]{0.34\linewidth}\vspace{-20pt}
+		\flushright\includegraphics[scale=0.95]{analytic-topology}\vspace{-10pt}
+	\end{minipage}\par
 	\[
-		\frac{u(x_2,y)-u(x_1,y)}{x_2-x_1}=u_x(\widehat x,y)=0\quad\text{and}\quad \frac{v(x_2,y)-v(x_1,y)}{x_2-x_1}=v_x(\widetilde x,y)=0
+		\frac{u(x_2,y)-u(x_1,y)}{x_2-x_1}=u_x(\widehat x,y)
+		\quad\text{and}\quad
+		\frac{v(x_2,y)-v(x_1,y)}{x_2-x_1}=v_x(\widetilde x,y)
 	\]
-	It follows that $u$ and $v$, and thus $f(z)$, are constant along any horizontal segment.\smallbreak
-	The same holds along any vertical segment, this time after utilizing $u_y=v_y=0$.\smallbreak
-	We conclude that $f(q)=f(p)$. Since $p,q$ were arbitrary points of $D$, $f$ is constant.
+	By assumption $f'(z)=u_x+iv_x=0$, whence both partial derivatives are everywhere zero.
+	It follows that $f(z)=u+iv$ takes the same value at both endpoints of any \textcolor{red}{horizontal segment}.\smallbreak
+	The same holds along at the endpoints of any \textcolor{Green}{vertical segment}; this time we utilize $u_y=v_y=0$.\smallbreak
+	By stepping along the segments in this fashion, we conclude that $f(q)=f(p)$. Since $p,q$ were arbitrary, $f$ is constant on $D$.
 \end{proof}
 
 
