@@ -806,7 +806,7 @@ In this section we start to extend the fundamental theorem with the goal of more
 	Suppose $C$ is a closed contour in a simply-connected region $D$. If $f$ is holomorphic on $D$, then $\int_Cf(z)\,\dz=0$.
 \end{thm}
 
-The basic proof invokes \emph{Green's Theorem} (from multi-variable calculus) after assuming that the real and imaginary parts of $f$ have continuous partial derivatives. A proof without this assumption is significantly longer and more challenging.
+A basic proof invokes \emph{Green's Theorem} (from multi-variable calculus) after assuming that the real and imaginary parts of $f$ have continuous partial derivatives and that $C$ is simple. A proof without these assumption is significantly longer and more challenging.
 
 \begin{lemm}{Green's Theorem}{}
 	Suppose $D$ is a closed bounded simply-connected domain with boundary $C$ and that $P,Q:D\to\R$ have continuous partial derivatives. Then
@@ -816,7 +816,7 @@ The basic proof invokes \emph{Green's Theorem} (from multi-variable calculus) af
 \end{lemm}
 
 \begin{proof}[Sketch Proof of Cauchy--Goursat]
-	Suppose $f(z)=u+iv$ has continuous partial derivatives and parametrize $C$ (assume WLOG that $C$ is positively oriented). Then
+	Suppose $f(z)=u+iv$ has continuous partial derivatives and that $C$ is simple (assume WLOG that $C$ is positively oriented). Parametrize $C$ by $z(t)$, then
 	\begin{align*}
 		\oint_Cf(z)\,\dz&=\int_a^bf\left(z(t)\right)z'(t)\,\dt =\int_a^b\left(u(z(t))+iv(z(t))\right)\left(x'(t)+iy'(t)\right)\dt\\
 		&=\int_a^bux'-vy'\,\dt+i\int_a^bvx'+uy'\,\dt\\
@@ -982,7 +982,7 @@ The power of this result lies in how it allows us to \emph{compare} integrals ar
   	\]
   	Indeed $\oint_C \frac 1{z^2-1}\,\dz =i\pi$ around any simple closed curve encircling $z=1$ but not $z=-1$.
 	  
-	  \item If $C$ is the circle centered at $z=i$ with radius 1, then $f(z)=\frac{3z\sin z}{z+i}$ is holomorphic on an inside $C$, whence
+	  \item If $C$ is the circle centered at $z=i$ with radius 1, then $f(z)=\frac{3z\sin z}{z+i}$ is holomorphic on and inside $C$, whence
 	  \begin{align*}
 	  	\oint_C\frac{3z\sin z}{z^2+1}\,\dz 
 	  	&=\oint_C\frac{3z\sin z}{(z+i)(z-i)}\,\dz
@@ -1020,9 +1020,9 @@ We finish with a previously mentioned corollary of the integral formula.
 
 
 \begin{proof}
-	If $f(z)$ is holomorphic at $w_0$, then it is holomorphic on an open set $D$ containing $w_0$. We may therefore choose a circle $C_r$ centered at $w_0$ lying inside $D$.\par
-	By Cauchy's integral formula, the second derivative $f''(z_0)$ exists at every point $z_0$ inside $C_r$. Otherwise said, the derivative $f'(z)$ is holomorphic at $w_0$.\par
-	Now induct to see the $f''(z)$ is holomorphic at $w_0$, etc.
+	If $f(z)$ is holomorphic at $w$, then it is holomorphic on an open set $D$ containing $w$. We may therefore choose a circle $C_r$ centered at $w$ lying inside $D$.\par
+	The integral formula with $n=2$ says that the second derivative $f''(z_0)$ exists at every point $z_0$ inside $C_r$. Otherwise said, the derivative $f'(z)$ is holomorphic at $w$.\par
+	Now induct to see the $f''(z)$ is holomorphic at $w$, etc.
 \end{proof}
 
 \goodbreak
@@ -1154,7 +1154,7 @@ Finally, note that if $f$ has an anti-derivative $F$, then $F$ is necessarily ho
 \end{exercises*}
   
     
-\clearpage
+\clearpage\iffalse
 
 
 \subsection{Liouville's Theorem and The Maximum Modulus Principle}
@@ -1337,3 +1337,4 @@ The theorem establishing this important observation is usually stated a little d
 	\end{enumerate}
 \end{exercises}
 
+\fi
