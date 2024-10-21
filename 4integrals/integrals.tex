@@ -30,7 +30,10 @@ We start by considering complex-valued functions of a \emph{real} variable $w:I\
 \begin{examples}{}{basiccurvediff}
 	\exstart If $w(t)=5t^2+it$, then
 	\[
-		w'(t)=10t+i,\qquad \int_1^2w(t)\,\dt=\int_1^25t^2\,\dt+i\int_1^2t\,\dt =\frac 73+\frac i2
+		w'(t)=10t+i,\qquad 
+		\int_1^2w(t)\,\dt
+		=\int_1^25t^2\,\dt+i\int_1^2t\,\dt 
+		=\frac{35}3+\frac{3i}2
 	\]
 	\begin{enumerate}\setcounter{enumi}{1}
 		\item If $w(t)=t^2+e^{it}=t^2+\cos t+i\sin t$, then
@@ -100,7 +103,7 @@ Basic rules of integration are easily verified by separately considering real an
 		This would be horrific if we instead had to multiply out to find the real and imaginary parts!
 		\item Sometimes the real and imaginary part approach is simply not tenable,
 		\[
-			\int_0^1 3it\sqrt{1+it^2}\,\dt =(1+it^2)^{3/2}\Big|_0^1 =(1+i)^{3/2}-1 =2\sqrt 2\polar{3\pi i}8-1
+			\int_0^1 3it\sqrt{1+it^2}\,\dt =(1+it^2)^{3/2}\Big|_0^1 =(1+i)^{3/2}-1 =\sqrt[4] 8\polar{3\pi i}8-1
 		\]
 		We evaluate using the principal square root since $1+it^2$ lies in the first quadrant.
 	\end{enumerate}
@@ -126,7 +129,7 @@ We want to integrate complex functions along curves. But what sort of curves?
 	Additionally, we say that a contour is:\vspace{-2pt}
 	\begin{itemize}\itemsep2pt
 	  \item \emph{Closed} if it starts and ends at the same point, $z(a)=z(b)$;
-	  \item \emph{Simple} if it does not cross itself ($z$ is injective, $z(t)=z(s)\implies t=s$).
+	  \item \emph{Simple} if it does not cross itself (though endpoints can be the same, $z(b)=z(a)$);
 	  \item \emph{Positively oriented} if it is simple, closed and traversed counter-clockwise.
 	\end{itemize}
 \end{defn}
@@ -182,8 +185,11 @@ We plainly require, and assume from now on by default, that the function $f\bigl
 	  \begin{minipage}[t]{0.65\linewidth}\vspace{-5pt}
 		  \item For the contour $\textcolor{Green}{C_1}$ parametrized by $z(t)=t+it^2$, $t\in[0,1]$, we compute
 		  \begin{align*}
-			  \int_{\textcolor{Green}{C_1}}z\,\dz&=\int_0^1z(t)z'(t)\,\dt=\int_0^1(t+it^2)(1+2it)\,\dt\\
-			  &=\int_0^1t-2t^3+3it^2\,\dt=i
+			  \int_{\textcolor{Green}{C_1}}\cl z\,\dz
+			  &=\int_0^1\cl{z(t)}z'(t)\,\dt
+			  =\int_0^1(t-it^2)(1+2it)\,\dt\\
+			  &=\int_0^1t+2t^3+it^2\,\dt
+			  =\frac 12+\frac 24+\frac i3=1+\frac i3
 		  \end{align*}
 		  
 		  \item For the contour $\textcolor{blue}{C_2}$ with $z(t)=e^{it}$ with $t\in[0,\pi]$,
@@ -359,6 +365,7 @@ If a function is multi-valued, we must specify a \emph{branch} before integratin
 	    \item $f(z)=z^2$;\quad $C$ is the straight line from $z=1$ to $z=i$.
 	    \item $f(z)=z$;\quad $C$ consists of the straight lines joining $z=1$ to $1+i$ to $-1+i$ to $-1$.
 	    \item $f(z)=\Log z$; $C$ is the circular arc of radius 3 centered at the origin, oriented counter-clockwise from $-3i$ to $3i$.
+	    \item $f(z)=\exp\cl z$ where $C$ is the straight line from $z=i$ to $z=3-i$.
 		\end{enumerate}
 		
 		
@@ -501,20 +508,26 @@ The openness and continuity assumptions are necessary and will be used in the pr
 	\emph{regardless} of the contour used to travel from $z=0$ to $1-2i$.
 
 	\begin{enumerate}\setcounter{enumi}{1}
-		\item Let $f(z)=z^{1/2}$ where we take the principal value. This has anti-derivative $F(z)=\frac 23z^{3/2}$.\par
 		\begin{minipage}[t]{0.7\linewidth}\vspace{-10pt}
-			If $C$ is any contour joining $z_0=1$ and $z_1=i$, which does not cross the branch cut, then
+		\item The principal root $f(z)=\sqrt{z}$ has anti-derivative $F(z)=\frac 23(\sqrt z)^{3}$.\par
+			If $C$ is any contour from $z_0=1$ and $z_1=i$, which doesn't cross the branch cut, then
 	  	\[
-	  		\int_Cz^{1/2}\,\dz=\frac 23z^{3/2}\Big|_1^i=\frac 23(i^{3/2}-1^{3/2})=\frac 23\left(\polar{3\pi i}{4}-1\right)
+	  		\int_C\sqrt z\,\dz
+	  		=\frac 23(\sqrt z)^3\Big|_1^i
+	  		=\frac 23\bigl((\sqrt i)^3-(\sqrt 1)^3\bigr)
+	  		=\frac 23\bigl(\polar{3\pi i}{4}-1\bigr)
 	  	\]
-	  	It is important to use the \emph{same (principal) branch} to evaluate the anti-derivative: since $z^{1/2}=e^{\frac 12\Log z}$, we also have $z^{3/2}=e^{\frac 32\Log z}$.
+	  	It is important to use the \emph{same (principal) branch} to evaluate the anti-derivative!
+	  	%: since $z^{1/2}=e^{\frac 12\Log z}$, we also have $z^{3/2}=e^{\frac 32\Log z}$.
 		\end{minipage}
 		\hfill
 		\begin{minipage}[t]{0.29\linewidth}\vspace{-10pt}
 			\flushright\includegraphics{contour-branch5}
 		\end{minipage}
 	  
-	  \item Since $f(z)=\sin z$ has an anti-derivative $F(z)=-\cos z$ valid at all $z\in\C$, we see that $\int_C\sin z\,\dz=0$ round any closed curve $C$.
+	  \item Since $f(z)=\sin z$ has an anti-derivative $F(z)=-\cos z$ valid everywhere, we see that $\int_C\sin z\,\dz=0$ round any closed curve $C$.
+	  
+	  \item On the unit circle $\oint_C\cl z\,\dz=\int_{-\pi}^\pi e^{-it}ie^{it}\,\dt=2\pi i\neq 0$. Thus $f(z)=\cl z$ has no anti-derivative!
 	  
 	  \item (Example \ref{ex:int2pii}, cont)\lstsp Around the unit circle, $\oint_C\frac 1z\,\dz=2\pi i$ is non-zero. By the fundamental theorem, $f(z)=\frac 1z$ cannot have an anti-derivative on any domain containing said circle. But this is obvious from our discussion in Section \ref{sec:multivalued}: If an anti-derivative $F(z)$ existed, then
 		\[
@@ -530,7 +543,7 @@ The openness and continuity assumptions are necessary and will be used in the pr
 		\end{minipage}
 		\hfill
 		\begin{minipage}[t]{0.29\linewidth}\vspace{-20pt}
-			\flushright\includegraphics{contour-branch}
+			\flushright\includegraphics[scale=0.95]{contour-branch}
 		\end{minipage}
 	\end{enumerate}
 
@@ -590,7 +603,7 @@ There are, however, a couple of extra subtleties: we must choose how to travel f
 
 \footnotetext{If not, repeat the argument choosing a new $z_0$ for each connected component (`lump') of $D$.}
 
-The second last \textcolor{red}{inequality} should give you pause. We are tempted to argue that
+The second last \textcolor{red}{inequality} should give you pause. At first glance it appears as if we argued
 \[
 	\nm{\int_z^wf(\zeta)-f(z)\,\D\zeta} \le \int_z^w\nm{f(\zeta)-f(z)}\D\zeta \le \int_z^w\frac\epsilon 2\,\D\zeta =\nm{w-z}\frac\epsilon 2
 \]
