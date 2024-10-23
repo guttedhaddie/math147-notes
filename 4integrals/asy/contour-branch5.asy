@@ -9,11 +9,11 @@ texpreamble("\usepackage{amsmath}
 import graph;
 
 
-size(120,0);
+size(110,0);
 
 real al=180;
 
-real R=1.3;
+real R=1.2;
 
 path b=box((-R,-R),(R,R));
 //fill(b,lightblue+opacity(0.3));

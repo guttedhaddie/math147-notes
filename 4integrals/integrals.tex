@@ -508,26 +508,23 @@ The openness and continuity assumptions are necessary and will be used in the pr
 	\emph{regardless} of the contour used to travel from $z=0$ to $1-2i$.
 
 	\begin{enumerate}\setcounter{enumi}{1}
-		\begin{minipage}[t]{0.7\linewidth}\vspace{-10pt}
-		\item The principal root $f(z)=\sqrt{z}$ has anti-derivative $F(z)=\frac 23(\sqrt z)^{3}$.\par
-			If $C$ is any contour from $z_0=1$ and $z_1=i$, which doesn't cross the branch cut, then
+		\begin{minipage}[t]{0.76\linewidth}\vspace{-10pt}
+		\item The principal root $f(z)=\sqrt{z}$ has anti-derivative $F(z)=\frac 23z^{3/2}=\frac 23(\sqrt z)^3$ (also using the principal branch!). If $C$ is any contour from $z_0=1$ to $z_1=i$ which \emph{doesn't cross the branch cut}, then
 	  	\[
 	  		\int_C\sqrt z\,\dz
 	  		=\frac 23(\sqrt z)^3\Big|_1^i
 	  		=\frac 23\bigl((\sqrt i)^3-(\sqrt 1)^3\bigr)
 	  		=\frac 23\bigl(\polar{3\pi i}{4}-1\bigr)
 	  	\]
-	  	It is important to use the \emph{same (principal) branch} to evaluate the anti-derivative!
-	  	%: since $z^{1/2}=e^{\frac 12\Log z}$, we also have $z^{3/2}=e^{\frac 32\Log z}$.
 		\end{minipage}
 		\hfill
-		\begin{minipage}[t]{0.29\linewidth}\vspace{-10pt}
-			\flushright\includegraphics{contour-branch5}
+		\begin{minipage}[t]{0.23\linewidth}\vspace{-10pt}
+			\flushright\includegraphics[scale=0.95]{contour-branch5}
 		\end{minipage}
 	  
-	  \item Since $f(z)=\sin z$ has an anti-derivative $F(z)=-\cos z$ valid everywhere, we see that $\int_C\sin z\,\dz=0$ round any closed curve $C$.
+	  \item Since $f(z)=\sin z$ has an anti-derivative $F(z)=-\cos z$, valid everywhere, we see that $\int_C\sin z\,\dz=0$ round any closed curve $C$.
 	  
-	  \item On the unit circle $\oint_C\cl z\,\dz=\int_{-\pi}^\pi e^{-it}ie^{it}\,\dt=2\pi i\neq 0$. Thus $f(z)=\cl z$ has no anti-derivative!
+	  \item Around the unit circle $\oint_C\cl z\,\dz=\int_{-\pi}^\pi e^{-it}ie^{it}\,\dt=2\pi i\neq 0$. Thus $f(z)=\cl z$ has no anti-derivative on any domain including the unit circle!
 	  
 	  \item (Example \ref{ex:int2pii}, cont)\lstsp Around the unit circle, $\oint_C\frac 1z\,\dz=2\pi i$ is non-zero. By the fundamental theorem, $f(z)=\frac 1z$ cannot have an anti-derivative on any domain containing said circle. But this is obvious from our discussion in Section \ref{sec:multivalued}: If an anti-derivative $F(z)$ existed, then
 		\[
@@ -535,7 +532,7 @@ The openness and continuity assumptions are necessary and will be used in the pr
 		\]
 		for some branch of the logarithm, which contradicts the fact that no branch can be made single-valued on a path encircling the origin.\par
 		\begin{minipage}[t]{0.7\linewidth}\vspace{-10pt}
-			We can, however, use the fundamental theorem to evaluate $\int_C\frac 1z\,\dz$ over any contour staying within the domain of a single logarithm branch. In the picture, given the contour $C$, we choose the \textcolor{blue}{branch cut} shown and the logarithm with $-\frac{5\pi}3<\arg z<\frac\pi 3$:
+			We can, however, use the fundamental theorem to evaluate $\int_C\frac 1z\,\dz$ over a contour within the domain of a single branch. In the picture, given the contour $C$, we choose the \textcolor{blue}{branch cut} shown and the logarithm with $-\frac{5\pi}3<\arg z<\frac\pi 3$:
 			\begin{align*}
 				\int_C\frac 1z\,\dz&=\log(1+i)-\log i =\log\sqrt 2\polar{\pi i}4-\log\polarn{3\pi i}2\\
 				&=\ln\sqrt 2+\frac{\pi i}4-\frac{3\pi i}2=\frac 14(\ln 4+7\pi i)
@@ -1167,7 +1164,7 @@ Finally, note that if $f$ has an anti-derivative $F$, then $F$ is necessarily ho
 \end{exercises*}
   
     
-\clearpage\iffalse
+\clearpage%\iffalse
 
 
 \subsection{Liouville's Theorem and The Maximum Modulus Principle}
@@ -1230,7 +1227,7 @@ The proof used the fact that a continuous function $f$ on a compact (closed, bou
 \[
 	\exists z_0\in K\text{ such that } \nm{f(z_0)}=\sup\bigl\{\nm{f(z)}:z\in K\bigr\}
 \] 
-For \emph{holomorphic} functions, something more restrictive and surprising is true: the maximum modulus of a holomorphic function on a compact domain is always and only achieved at an \emph{edge point}.
+For \emph{holomorphic} functions, a more restrictive and surprising result holds: the maximum modulus of a non-constant such function on a compact domain is always and only achieved at an \emph{edge point}.
 
 \begin{example}{}{}
 	Let $f(z)=e^z$ on the unit disk $\nm z\le 1$. Then $\nm{f(z)}=e^x$, whence the maximum modulus $\nm{f(1)}=e$ occurs at $z=1$, on the edge of the disk.
@@ -1242,9 +1239,10 @@ The theorem establishing this important observation is usually stated a little d
 	Suppose $f$ is holomorphic and non-constant on a \emph{connected, open} domain $D$. Then $\nm{f(z)}$ has no maximum value on $D$.
 \end{thm}
 
+Holomorphicity is critical: see, for instance, Exercise \ref{exs:nonholomaxmod}.
 
 \begin{proof}
-	We start by demonstrating the contrapositive of a special case.\par
+	We start by demonstrating a special case.\par
 	\begin{minipage}[t]{0.79\linewidth}\vspace{-6pt}
 		Fix $\delta>0$, assume $f$ is holomorphic on and inside $\cl{B_0}:=\{z:\nm{z-z_0}\le\delta\}$ and that \textcolor{red}{$\nm{f(z)}$ attains its maximum at $z_0$}. We prove that $f(z)$ is \emph{constant} on $\cl{B_0}$.\smallbreak
 		Let $r\le\delta$ and apply the integral formula to the circle \textcolor{Brown}{$C_{r}$} \ ($z(t)=z_0+re^{it}$):
@@ -1270,7 +1268,7 @@ The theorem establishing this important observation is usually stated a little d
 	
 	Now suppose $f$ is holomorphic on some connected open set $D$ and that $\nm{f(z)}$ attains its maximum at $z_0$. Let $w\in D$ be any other point and join $z_0$ to $w$ by a smooth arc \textcolor{Green}{$C$}.\par
 	\begin{minipage}[t]{0.62\linewidth}\vspace{-2pt}
-		Following Exercise \ref*{sec:opensets}.\ref{exs:finitesubcover}, we may cover $C$ with \emph{finitely many} closed disks $\cl{B_0},\cl{B_1},\ldots,\cl{B_n}\subset D$ of some radius $\delta$, indexed so that each center $z_k$ lies in one of the previous disks: indeed we need at most $\frac{\text{length}(C)}{\delta}$ disks for this.\smallbreak
+		Let $\delta$ be the tube-radius from Exercise \ref*{sec:opensets}.\ref{exs:finitesubcover}. We may therefore cover $C$ with \emph{finitely many} closed disks $\cl{B_0},\cl{B_1},\ldots,\cl{B_n}\subset D$ of radius $\delta$, indexed so that each center $z_k$ lies in one of the previous disks (at most $\frac{\text{length}(C)}{\delta}$ disks are needed).\smallbreak
 		By the special case, $f(z)$ is constant on $\cl{B_0}$. Since $z_1\in C\cap\cl{B_0}$, we see that $\nm{f(z_1)}=\nm{f(z_0)}$ is also the maximum modulus on $D$. The special case now says that $f(z)$ is constant on $\cl{B_0}\cup \cl{B_1}$.
 	\end{minipage}
 	\hfill
@@ -1320,6 +1318,9 @@ The theorem establishing this important observation is usually stated a little d
 	  \item Find the maximum and minimum values of $\nm{z^2+4i}$ on the unit disk $\nm z\le 1$.
 	  
 	  
+	  \item\label{exs:nonholomaxmod} Consider $f(z)=\exp(-\nm z^2)$ defined on the unit disk $\nm z\le 1$. What is its maximum modulus, and where is it found? Why doesn't this contradict the maximum modulus principle?
+	  
+	  
 	  \item On the rectangle $0\le x\le\pi$, $0\le y\le 1$, show that $\nm{\sin z}$ is maximal at the point $z=\frac\pi 2+i$.\par
 	  (\emph{Hint: first show that $\nm{\sin z}^2=\sin^2\!x+\sinh^2\!y$})
 	  
@@ -1350,4 +1351,4 @@ The theorem establishing this important observation is usually stated a little d
 	\end{enumerate}
 \end{exercises}
 
-\fi
+%\fi
