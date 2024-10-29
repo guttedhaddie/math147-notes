@@ -157,7 +157,7 @@ By composing such functions, we can describe arbitrary rotations, reflections an
 
 \subsection{Open sets, Limits and Continuity}\label{sec:opensets}
 
-Since limits and continuity behave similarly to real analysis, this section is mostly for reference and we omit most proofs. If you're only familiar with \emph{single-variable} real analysis, note how our first definition generalizes the notion of an open interval.
+This section is mostly for reference, since limits and continuity behave similarly to real analysis. Indeed proofs are often identical, so we mostly omit them. If you're only familiar with \emph{single-variable} real analysis, note particularly how the first definition generalizes the notion of an \emph{open interval}.
 
 
 \begin{defn}{Disks and Neighborhoods}{disks}
@@ -175,7 +175,7 @@ Since limits and continuity behave similarly to real analysis, this section is m
 	\hfill
 	\begin{minipage}[t]{0.29\linewidth}\vspace{-16pt}
 		\centering%
-		\includegraphics[scale=0.95]{functions-open}\\
+		\includegraphics[scale=0.9]{functions-open}\\
 		An \textcolor{blue}{open neighborhood} of $z_0$
 	\end{minipage}
 	\par\vspace{-5pt}
@@ -189,12 +189,12 @@ Since limits and continuity behave similarly to real analysis, this section is m
 	\end{itemize}
 \end{defn}
 
-\begin{example}[lower separated=false, sidebyside, sidebyside align=top seam, sidebyside gap=0pt, righthand width=0.3\linewidth]{}{easyopen}
+\begin{example}[lower separated=false, sidebyside, sidebyside align=top seam, sidebyside gap=0pt, righthand width=0.25\linewidth]{}{easyopen}
 	The punctured plane $D=\C\setminus\{2+i\}$ is an open set. For instance, given $z_0\in D$, let $\delta=\frac 12\nm{z_0-2-i}$, then $\textcolor{Green}{B_\delta(z_0)}\subset D$.\par
 	(The $\frac 12$ is superfluous, since the disk $B_\delta(z_0)$ does not contain its boundary, it just makes for a clearer picture.)
 	\tcblower
 	\flushright
-	\includegraphics[scale=0.95]{limits-punctured}
+	\includegraphics[scale=0.9]{limits-punctured}
 \end{example}
 
 \begin{defn}{Sequences and Limits}{}{}
@@ -213,19 +213,20 @@ Since limits and continuity behave similarly to real analysis, this section is m
 	\end{enumerate}
 \end{defn}
 
-Indeed $(z_n)=(x_n+iy_n)$ is convergent/Cauchy if and only if its real and imaginary parts are also, as follows from two straightforward inequalities:
-\[
-	\max\{\nm{x_n-x_0},\nm{y_n-y_0} \} \le \nm{z_n-z_0} \le \nm{x_n-x_0}+\nm{y_n-y_0}
-\]
 
-
-\begin{thm}{}{compbolzano}
-	\exstart Cauchy completeness: $(z_n)$ converges if and only if it is Cauchy.\vspace{-2pt}
+\begin{thm}{Useful Facts about Sequences}{compbolzano}
+	\exstart $(z_n)$ is convergent/Cauchy if and only if its real and imaginary parts are also, as follows from two straightforward inequalities:
+	\[
+		%\max\{\nm{x_n-x_0},\nm{y_n-y_0} \} \le 
+		\nm{z_n-z_0} \le \nm{x_n-x_0}+\nm{y_n-y_0} \le 2\nm{z_n-z_0}
+	\]
 	\begin{enumerate}\setcounter{enumi}{1}\itemsep1pt
+	  \item Cauchy completeness: $(z_n)$ converges in $\C$ if and only if it is Cauchy
 	  \item Bolzano--Weierstraß: If $(z_n)$ is bounded, then it has a convergent subsequence.
 	  \item\label{thm:closedlimit3} $D\subseteq\C$ is closed if and only if every Cauchy sequence $(z_n)\subseteq D$ has its limit in $D$.
 	\end{enumerate}
 \end{thm}
+
 
 \goodbreak
 
@@ -281,8 +282,8 @@ Otherwise said, given an $\epsilon$-ball centered at $w_0$, there is a $\delta$-
 \goodbreak
 
 
-\begin{thm}{Basic Limit Results}{basiclimit}
-Let $f,g:D\to\C$ be functions and $z_0=x_0+iy_0$ be a point satisfying the assumptions of Definition \ref{defn:limit}.
+\begin{thm}{Basic Facts about Limits of Functions}{basiclimit}
+Suppose $f,g:D\to\C$ are functions and $z_0=x_0+iy_0$ is a point satisfying the assumptions of Definition \ref{defn:limit}.
 \begin{enumerate}
   \item Limits are unique: If $w_0$ and $\widetilde{w_0}$ satisfy Definition \ref{defn:limit}, then $\widetilde{w_0}=w_0$.
   \item\label{thmbaslim2} If $f(z)=u(x,y)+iv(x,y)$ and $w_0=u_0+iv_0$, then

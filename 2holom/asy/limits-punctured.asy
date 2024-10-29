@@ -10,7 +10,7 @@ texpreamble("\usepackage{amsmath}
 import graph;
 
 
-size(0,65);
+size(0,60);
 
 pair P=2+I;
 pair Q=0.75+0.7I;
@@ -23,6 +23,6 @@ filldraw(shift(Q)*scale(del)*unitcircle,green+opacity(0.5),dashed);
 draw("$\delta$",Q+0.5(P-Q)--Q,dashed);
 dot("$z_0$",Q,SW);
 
-xaxis("$x$",red);
-yaxis("$iy$",red);
+xaxis("$x$",-0.2,red);
+yaxis("$iy$",-0.2,1.35,red);
 	

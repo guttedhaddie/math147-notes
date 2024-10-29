@@ -1,4 +1,3 @@
-settings.prc=false;
 settings.outformat="pdf";
 
 texpreamble("\usepackage{amsmath}
@@ -10,7 +9,7 @@ texpreamble("\usepackage{amsmath}
 import graph;
 
 
-size(120);
+size(100);
 
 //pair w=0.7*dir(70);
 

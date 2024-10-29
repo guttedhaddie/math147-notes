@@ -1,235 +1,293 @@
 \graphicspath{{5series/asy/}}
 \thispagestyle{empty}
 
-%\setcounter{section}{4}
+\section{Series and the Theorems of Taylor \& Laurent}
 
-\section{Series}
-
-The discussion of series in complex analysis differs significantly from the real situation, particularly with regard to two concepts.
+The theory of series in complex analysis differs significantly from the real situation, particularly with regard to two concepts.
 \begin{itemize}
   \item Taylor's Theorem:\quad Holomorphic functions \emph{equal} their Taylor series. This is false in real analysis where differentiable functions need not have, nor equal, a Taylor series.
-  \item Laurent Series: \emph{series} also include negative powers such as $z^{-1}+3z^{-2}+\cdots$
+  \item Laurent Series: series can also include negative powers such as $z^{-1}+3z^{-2}+\cdots$
 \end{itemize}
-First we review the basics of sequences and infinite series (of non-negative powers). Hopefully you are familiar with all of this.
 
-\subsection{A Brief Review of Sequences and Infinite Series}
+Before discussing these concepts, we review the basic ideas of both infinite and power series: as we saw for sequences in Section \ref{sec:opensets}, this is essentially identical to the real situation.
 
 
-Post real analysis, there is little specific to say regarding sequences of complex numbers. The notions of limit, convergence and sequential continuity are essentially identical in $\C$ and $\R^2$. For instance:
+\subsection{A Brief Review of Power Series}
 
-\begin{defn}{}{}
-A sequence $(z_n)$ has limit $z\in\C$, written $\lim z_n=z$, if
-\[\forall\epsilon>0,\ \exists N\text{ such that }n>N\implies \nm{z_n-z}<\epsilon\]
-\end{defn}
 
-Writing $z_n=x_n+ iy_n$ and $z=x+iy$ in real and imaginary parts, we see that
-\[\nm{z_n-z}\le\nm{x_n-x}+\nm{y_n-y}\le 2\nm{z_n-z}\]
-from which:
-
-\begin{lemm}{}{limitcr}
-If $z_n=x_n+iy_n$, then $(z_n)$ converges if and only if both $(x_n)$ and $(y_n)$ converge, in which case
-\[\lim z_n=\lim x_n+i\lim y_n\]
-\end{lemm}
-
-\textcolor{red}{Warning!}\quad While this mostly translates to the polar representation $z_n=r_ne^{i\theta_n}$, there is a caveat: the discontinuity of $\Arg z = \Theta$ when $z$ is a non-positive real number means that $(\Theta_n)$ need not converge even if $(z_n)$ does.
-
-\begin{example}{}{}
-The sequence with $z_n=2i-\frac{1+i}n$ has limit $z=2i$: given $\epsilon>0$, let $N=\sqrt 2\epsilon$, then
-\[n>N\implies \nm{z_n-z}=\frac{\sqrt 2}n<\frac{\sqrt 2}N=\epsilon\]
-The real and imaginary parts are $x_n=-\frac 1n$ and $y_n=2-\frac 1n$ which clearly converge to $x=0$ and $y=2$ respectively. In polar co-ordinates things are also as expected
-\begin{gather*}
-\lim r_n=\lim\sqrt{\frac{1+(2n-1)^2}{n^2}}=\lim\frac 2n\sqrt{n^2-n}=2\\
-\lim\Theta_n=\lim\left(\pi\tan^{-1}\frac{(2n-1)/n}{-1/n}\right) =\pi+\tan^{-1}(1-2n)=\frac\pi 2
-\end{gather*}
-Since $z_n$ lies in the second quadrant and $z=2i$, we never get near the non-negative real axis where $\Theta_n$ is discontinuous.
-\end{example}
+% 
+% Post real analysis, there is little specific to say regarding sequences of complex numbers. The notions of limit, convergence and sequential continuity are essentially identical in $\C$ and $\R^2$. For instance:
+% 
+% \begin{defn}{}{}
+% 	A sequence $(z_n)$ has limit $z\in\C$, written $\lim z_n=z$, if
+% 	\[
+% 		\forall\epsilon>0,\ \exists N\text{ such that }n>N\implies \nm{z_n-z}<\epsilon
+% 	\]
+% \end{defn}
+% 
+% Writing $z_n=x_n+ iy_n$ and $z=x+iy$ in real and imaginary parts, we see that
+% \[
+% 	\nm{z_n-z}\le\nm{x_n-x}+\nm{y_n-y}\le 2\nm{z_n-z}
+% \]
+% from which:
+% 
+% \begin{lemm}{}{limitcr}
+% If $z_n=x_n+iy_n$, then $(z_n)$ converges if and only if both $(x_n)$ and $(y_n)$ converge, in which case
+% \[\lim z_n=\lim x_n+i\lim y_n\]
+% \end{lemm}
+% 
+% \textcolor{red}{Warning!}\quad While this mostly translates to the polar representation $z_n=r_ne^{i\theta_n}$, there is a caveat: the discontinuity of $\Arg z = \Theta$ when $z$ is a non-positive real number means that $(\Theta_n)$ need not converge even if $(z_n)$ does.
+% 
+% \begin{example}{}{}
+% The sequence with $z_n=2i-\frac{1+i}n$ has limit $z=2i$: given $\epsilon>0$, let $N=\sqrt 2\epsilon$, then
+% \[n>N\implies \nm{z_n-z}=\frac{\sqrt 2}n<\frac{\sqrt 2}N=\epsilon\]
+% The real and imaginary parts are $x_n=-\frac 1n$ and $y_n=2-\frac 1n$ which clearly converge to $x=0$ and $y=2$ respectively. In polar co-ordinates things are also as expected
+% \begin{gather*}
+% \lim r_n=\lim\sqrt{\frac{1+(2n-1)^2}{n^2}}=\lim\frac 2n\sqrt{n^2-n}=2\\
+% \lim\Theta_n=\lim\left(\pi\tan^{-1}\frac{(2n-1)/n}{-1/n}\right) =\pi+\tan^{-1}(1-2n)=\frac\pi 2
+% \end{gather*}
+% Since $z_n$ lies in the second quadrant and $z=2i$, we never get near the non-negative real axis where $\Theta_n$ is discontinuous.
+% \end{example}
 
 \begin{defn}{Infinite Series}{}
-Given a sequence\footnote{For brevity, assume the initial term is $z_0$: nothing prevents the initial term being $z_{n_0}$ for any natural number $n_0$.} $(z_n)$, its sequence of \emph{partial sums} $(s_n)$ is
-\[s_n=\sum_{k=0}^nz_k=z_0+\cdots +z_n\]
-The \emph{infinite series} $\sum z_n:= \lim s_n$ is said to converge (diverge) if the sequence $(s_n)$ converges (diverges).\smallbreak
-%If $\sum z_n$ is convergent, then the sequence of \emph{remainders} is defined by $\rho_n= \sum z_n- s_n$.\smallbreak
-The series \emph{converges absolutely} if $\sum \nm{z_n}$ converges.\smallbreak
-The series \emph{converges conditionally} if it converges but not absolutely.
+	The \emph{$n\th$ partial sum} of a sequence $(z_n)_{n=0}^\infty$ is the complex number
+	\[
+		s_n=\sum_{k=0}^nz_k=z_0+\cdots +z_n
+	\]
+	\vspace{-2pt}The \emph{(infinite) series} $\sum z_n:= \lim s_n$ is said to converge/diverge if the sequence $(s_n)$ converges/diverges.\smallbreak
+	%If $\sum z_n$ is convergent, then the sequence of \emph{remainders} is defined by $\rho_n= \sum z_n- s_n$.\smallbreak
+	The series \emph{converges absolutely} if $\sum \nm{z_n}$ converges.\smallbreak
+	The series \emph{converges conditionally} if it converges but not absolutely.
 \end{defn}
+
+By convention, the initial term of the sequence/series is $z_0$. This isn't required: it could be $z_1$, etc.
 
 \begin{thm}{Basic Series Facts}{seriesrc}
-Let $\sum z_n$ and $\sum w_n$ be series of complex numbers.
-\begin{enumerate}\itemsep0pt
-  \item If $z_n=x_n+iy_n$, then $\sum z_n$ converges if and only if $\sum x_n$ and $\sum y_n$ both converge, in which case
-  \[\sum z_n=\sum x_n+i\sum y_n\]
-  \item If $a\in\C$, and $\sum z_n$ and $\sum w_n$ converge, then $\sum az_n+w_n$ converges, in which case
-  \[\sum az_n+w_n=a\sum z_n+\sum w_n\]
-  \item ($n^\text{th}$ term/divergence test)\quad If $\sum z_n$ converges, then $\lim z_n=0$.
-  \item The (real!) comparison, ratio and root tests apply to the series $\sum\nm{z_n}$.
-  \item Absolute convergence implies convergence: moreover $\nm{\sum z_n}\le\sum\nm{z_n}$.
-\end{enumerate}
+	Let $\sum z_n$ and $\sum w_n$ be series of complex numbers.
+	\begin{enumerate}\itemsep0pt
+	  \item If $z_n=x_n+iy_n$, then $\sum z_n$ converges if and only if $\sum x_n$ and $\sum y_n$ both converge, in which case
+	  \[
+	  	\sum z_n=\sum x_n+i\sum y_n
+	  \]
+	  \item\vspace{-3pt} If $a,b\in\C$, and $\sum z_n$ and $\sum w_n$ converge, then $\sum az_n+bw_n$ converges, in which case
+	  \[
+	  	\sum az_n+bw_n=a\sum z_n+b\sum w_n
+	  \]
+	  \item\vspace{-3pt} ($n\th$ term/divergence test)\lstsp If $\sum z_n$ converges, then $\lim z_n=0$.
+	  \item The (real!) comparison, ratio and root tests apply to the series $\sum\nm{z_n}$.
+	  \item Absolute convergence implies convergence; moreover $\nm{\sum z_n}\le\sum\nm{z_n}$.
+	\end{enumerate}
 \end{thm}
 
 \begin{proof}
-\begin{enumerate}\itemsep0pt
-  \item This is immediate from Lemma \ref{lemm:limitcr}.
-  \item[2,]\negthickspace 3. \ These follow from 1 and the corresponding results for the real series $\sum x_n,\sum y_n$.
-  \setcounter{enumi}{3}
-  \item This requires no proof: $\sum \nm{z_n}$ is a series of non-negative real numbers.
-  \item Since $\sum\nm{z_n}$ is a convergent series of non-negative terms and $\nm{x_n}\le\nm{z_n}$, the comparison test proves that $\sum x_n$ is absolutely convergent and thus convergent.
-  Since $\sum y_n$ converges similarly, part 1 shows that $\sum z_n$ converges.\par
-  Finally, apply the triangle inequality \smash[t]{$\nm{\sum\limits_{k=0}^m z_k}\le\sum\limits_{k=0}^m\nm{z_k}\le\sum\limits_{n=0}^\infty\nm{z_n}$} and take limits as $m\to\infty$.\qedhere
-\end{enumerate}
+	\begin{enumerate}\itemsep0pt
+	  \item This is Theorem \ref{thm:compbolzano}, part 1.
+	  \item[2,]\negthickspace 3. \ These follow from 1 and the corresponding results for the real series $\sum x_n,\sum y_n$.
+	  \setcounter{enumi}{3}
+	  \item This requires no proof: $\sum \nm{z_n}$ is a series of non-negative real numbers!
+	  \item Since $\nm{x_n},\nm{y_n}\le\nm{z_n}$, the (real) comparison test says that $\sum x_n$ and $\sum y_n$ are absolutely convergent and thus convergent. By part 1, $\sum z_n$ converges. Finally, apply the triangle inequality $\nm{\sum\limits_{k=0}^m z_k}\le\sum\limits_{k=0}^m\nm{z_k}\le\sum\limits_{n=0}^\infty\nm{z_n}$ and take limits as $m\to\infty$.\qedhere
+	\end{enumerate}
 \end{proof}
 
-\begin{exercises*}
-\hangindent\leftmargini
-\textup{1.} \ Use the $\epsilon$-$N$ definition to prove that $\lim\frac{2+in}n= i$.
-\begin{enumerate}\setcounter{enumi}{1}
-  \item Give a rigorous proof of \ref{lemm:limitcr}. Sketch a proof of the corresponding statement for the polar representation whenever $\lim z_n$ is non-zero and not a negative real number.
-  
-  \item Explicitly prove part 2 of Theorem \ref{thm:seriesrc}.
-  
-  \item Fix $\theta\in (-\pi,\pi]$. Prove that the sequence defined by $z_n =e^{in\theta}$ converges if and only if $\theta = 0$.
-  
-  \item Use the $\epsilon$-$N$ definition to prove that $\lim\sqrt{i+\frac 1n}=\frac{1+i}{\sqrt 2}=\sqrt i$ where we use the principal value.%\par
-  %(\emph{Hint: The usual trick $\sqrt a-\sqrt b=\frac{a-b}{\sqrt a+\sqrt b}$ works, but be careful with complex conjugates!})
-\end{enumerate}
-\end{exercises*}
- 
 \goodbreak
+% 
+% \begin{exercises*}
+% \hangindent\leftmargini
+% \textup{1.} \ Use the $\epsilon$-$N$ definition to prove that $\lim\frac{2+in}n= i$.
+% \begin{enumerate}\setcounter{enumi}{1}
+%   \item Give a rigorous proof of \ref{lemm:limitcr}. Sketch a proof of the corresponding statement for the polar representation whenever $\lim z_n$ is non-zero and not a negative real number.
+%   
+%   \item Explicitly prove part 2 of Theorem \ref{thm:seriesrc}.
+%   
+%   \item Fix $\theta\in (-\pi,\pi]$. Prove that the sequence defined by $z_n =e^{in\theta}$ converges if and only if $\theta = 0$.
+%   
+%   \item Use the $\epsilon$-$N$ definition to prove that $\lim\sqrt{i+\frac 1n}=\frac{1+i}{\sqrt 2}=\sqrt i$ where we use the principal value.%\par
+%   %(\emph{Hint: The usual trick $\sqrt a-\sqrt b=\frac{a-b}{\sqrt a+\sqrt b}$ works, but be careful with complex conjugates!})
+% \end{enumerate}
+% \end{exercises*}
+ 
 
-
-
-\subsection{Power Series, Taylor Series and Taylor's Theorem}
-
-We first make the identical definition to that in real analysis.
-
-
-\begin{defn}{}{}
-A \emph{power series} centered at $z_0\in\C$ is a function of the form
-\[f(z)=\sum_{n=0}^\infty a_n(z-z_0)^n\]
-A function $f:D\to\C$ is \emph{analytic} if every $z_0\in D$ has an open neighborhood on which $f(z)$ equals a power series centered at $z_0$. That is,
-\[\forall z_0\in D,\exists\delta>0,(a_n)\text{ such that }\nm{z-z_0}<\delta\implies f(z)=\smash[t]{\sum_{n=0}^\infty} a_n(z-z_0)^n\]
-To be analytic at a point $z_0$ is to be analytic on some open neighborhood of $z_0$.
+\begin{defn}{Power Series \& Analyticity}{}
+	A \emph{power series centered at $z_0$} is a function of the form
+	\[
+		p(z)=\sum_{n=0}^\infty a_n(z-z_0)^n \tag{$z_0$ and the \emph{coefficients} $a_n$ are constants}
+	\]
+	A function $f:D\to\C$ is \emph{analytic} if every $z_0\in D$ has an open neighborhood on which $f(z)$ equals a power series centered at $z_0$. That is,
+	\[
+		\forall z_0\in D,\ \exists\delta>0,\ (a_n)\text{ such that }\nm{z-z_0}<\delta\implies f(z)=\smash[t]{\sum_{n=0}^\infty} a_n(z-z_0)^n
+	\]
+	To be analytic at a point $z_0$ is to be analytic on some open neighborhood of $z_0$.
 \end{defn}
-The goal of the next two sections is the establishment of a key observation:
-\[\tcbhighmath{\text{A function is analytic if and only if it is holomorphic (differentiable)}}
-\]
 
-Here is the canonical example of a power series.
 
-\begin{example}{}{geomseries}
-(Geometric series)\quad By the $n\th$ term test, the power series $\sum\limits z^n$ diverges if $\nm z\ge 1$. Otherwise, inside the unit circle $\nm z<1$ we have $z^{n+1}\to 0$, and so
-\[s_n-zs_n=1-z^{n+1}\implies s_n=\frac{1-z^{n+1}}{1-z} \implies \sum\limits_{n=0}^\infty z^n =\lim\frac{1-z^{n+1}}{1-z}=\frac 1{1-z}\]
-Now let $z_0\neq 1$; by substituting $z\mapsto\frac{z-z_0}{1-z_0}$ in the above, observe that
-\[\frac 1{1-z} =\frac 1{1-z_0}\cdot \frac 1{1-\frac{z-z_0}{1-z_0}}=\frac 1{1-z_0}\sum_{n=0}^\infty \left(\frac{z-z_0}{1-z_0}\right)^n =\sum_{n=0}^\infty \frac 1{(1-z_0)^{n+1}}(z-z_0)^n\]
-provided $\nm{z-z_0}<\nm{1-z_0}$. It follows that $f(z)=\frac 1{1-z}$ is analytic on its domain $\C\setminus\{1\}$.
+\begin{example}{Geometric series}{geomseries}
+	By the $n\th$ term test, the power series $\sum\limits z^n$ diverges when $\nm z\ge 1$. Otherwise, inside the unit circle $\nm z<1$ we have $z^{n+1}\to 0$, from which
+	\[
+		s_n-zs_n=1-z^{n+1}\implies s_n=\frac{1-z^{n+1}}{1-z} \implies \sum\limits_{n=0}^\infty z^n =\lim s_n=\frac 1{1-z}
+	\]
+	In fact $f(z)=\frac 1{1-z}$ is analytic on its whole domain $\C\setminus\{1\}$: the substitution $z\mapsto\frac{z-z_0}{1-z_0}$ ($z_0\neq 1$) to see that $\frac 1{1-z}$ equals a power series centered at $z_0$:
+	\[
+		\frac 1{1-z} =\frac 1{1-z_0}\cdot \frac 1{1-\frac{z-z_0}{1-z_0}}=\frac 1{1-z_0}\sum_{n=0}^\infty \left(\frac{z-z_0}{1-z_0}\right)^n
+		\quad\text{whenever}\quad
+		\nm{z-z_0}<\nm{1-z_0}
+	\]
 \end{example}
 
-Note how the geometric series converges on a \emph{disk.} As the next result shows, this is the case for \emph{every} power series, analogous to the concept of the interval/radius of convergence in real analysis.
+Regardless of the center $z_0$, observe how the geometric series converges on a \emph{disk} (radius $\nm{1-z_0}$). This behavior in fact happens for \emph{every} power series, analogous to the interval/radius of convergence discussion from real analysis.
 
 
-\begin{thm}[lower separated=false, sidebyside, sidebyside align=top seam, sidebyside gap=0pt, righthand width=0.25\linewidth]{}{absconv}
-Consider a power series $f(z)=\sum a_n(z-z_0)^n$.
-\begin{enumerate}
-	\item If $f$ converges at a point $z_1\neq z_0$, then it is absolutely convergent at every point $\textcolor{red}{z}$ satisfying $\nm{z-z_0}<\nm{z_1-z_0}$.
-	\item Define $R_0:=\sup\left\{\nm{z-z_0}: f(z) \text{ converges}\right\}$.\par
-	Then $f(z)$ converges absolutely whenever $\nm{z-z_0}<R_0$ and diverges whenever $\nm{z-z_0}>R_0$.
-\end{enumerate}
-\tcblower
-\flushright\includegraphics[scale=0.85]{conv}
+\begin{thm}[lower separated=false, sidebyside, sidebyside align=top seam, sidebyside gap=0pt, righthand width=0.23\linewidth]{Radius of Convergence}{absconv}
+	Suppose $p(z)=\sum a_n(z-z_0)^n$.
+	\begin{enumerate}
+	  \item If $p(z)$ converges at $z_1\neq z_0$, then it is absolutely convergent at every \textcolor{red}{every $z$} satisfying $\nm{z-z_0}<\nm{z_1-z_0}$.
+		\item Define the \textbf{radius of convergence} $R_0:=\sup\bigl\{\nm{z-z_0}: p(z) \text{ converges}\bigr\}$. Then $p(z)$ converges absolutely whenever $\nm{z-z_0}<R_0$, and diverges whenever $\nm{z-z_0}>R_0$.
+	\end{enumerate}
+	\tcblower
+	\flushright\includegraphics[scale=0.95]{conv}
 \end{thm}
 
+
+
 \begin{proof}
-\begin{enumerate}\itemsep2pt
-  \item By the $n\th$ term test, the sequence $(a_n(z_1-z_0)^n)$ converges (to 0) and is therefore bounded by some $M\in\R^+$. Thus
-	\[\nm{a_n}\nm{z-z_0}^n =\nm{a_n}\nm{z_1-z_0}^n\left(\frac{\nm{z-z_0}}{\nm{z_1-z_0}}\right)^n \le Mr^n\quad\text{where}\quad r=\frac{\nm{z-z_0}}{\nm{z_1-z_0}}<1\]
-	Since $\sum Mr^n$ converges, we conclude (comparison test) that $\sum\nm{a_n}\nm{z-z_0}^n$ converges.
-	\item By standard properties of the supremum, if $\nm{z-z_0}<R_0$, then $\exists z_1$ such that $f(z_1)$ converges and $\nm{z-z_0}<\nm{z_1-z_0}$: now apply part (a). The remaining part is an exercise.\qedhere
-\end{enumerate}
+	\begin{enumerate}
+	  \item By the $n\th$ term test, the sequence $(a_n(z_1-z_0)^n)$ converges (to 0) and is therefore bounded by some $M\in\R^+$. But then
+		\[
+			\nm{a_n}\nm{z-z_0}^n
+			=\nm{a_n}\nm{z_1-z_0}^n\left(\frac{\nm{z-z_0}}{\nm{z_1-z_0}}\right)^n
+			\le Mr^n
+			\quad\text{where}\quad 
+			r=\frac{\nm{z-z_0}}{\nm{z_1-z_0}}<1
+		\]
+		Since $\sum Mr^n$ converges, the comparison test says that $\sum\nm{a_n}\nm{z-z_0}^n$ converges.
+		\item If $\nm{z-z_0}<R_0$, then $\exists z_1$ such that $\nm{z-z_0}<\nm{z_1-z_0}$ and $f(z_1)$ converges; now apply part (a). The divergence condition is an exercise.\qedhere
+	\end{enumerate}
 \end{proof}
 
-\begin{defn}{}{}
-The value $R_0$ in the theorem is the \emph{radius of convergence} of the power series.
-\begin{itemize}\itemsep2pt
-  \item If $R_0=\infty$, the series is (absolutely) convergent on $\C$;
-  \item If $R_0=0$, the series converges only when $z=z_0$;
-  \item Otherwise, we have a \emph{disk of convergence} with radius $R_0\in\R^+$ centered at $z_0$. The \emph{circle of convergence} is the boundary circle of this disk.
+A power series therefore has a \emph{disk of convergence.} As in real analysis, we have to test convergence separately on the boundary circle $\nm{z-z_0}=R_0$; a key technique for this is \emph{Abel's Test} (Exercise \ref{exs:abeltest}). Note particularly the two extreme cases:
+\begin{itemize}%\itemsep2pt
+	\item If $R_0=\infty$, the series is absolutely convergent on $\C$.
+	\item If $R_0=0$, the series converges only when $z=z_0$.
 \end{itemize}
-\end{defn}
-\goodbreak
+We could also compute $R_0=\liminf\nm{a_n}^{-1/n}$, as in real analysis, though for us this will mostly prove to be redundant (see Exercise 1). %We will typically try to compute a power series representation for a given function $f(z)$ and, as we'll later observe, $R_0$ is simply the distance from $z_0$ to the nearest point at which $f$ fails to be differentiable.
 
-As in real analysis:
-\begin{enumerate}
-  \item If $R_0\in\R^+$, we have to test separately for convergence/divergence on the circle of convergence. A key technique for doing this is \emph{Abel's Test} (see Exercise \ref{exs:abeltest}).
-  \item\label{obs:dist} We could use the ratio/root tests to explicitly compute: $R_0=\liminf\nm{a_n}^{-1/n}$, etc. This is mostly redundant since, as we'll see later, the radius of convergence is usually easier to spot as the distance from $z_0$ to the nearest point at which $f$ fails to be differentiable.
-\end{enumerate}
+\begin{exercises}
+	\exstart Sketch the disks of convergence with centers $z_0=-1$, $1+i$, $3-2i$ for the function $f(z)=\frac 1{1-z}$ (Example \ref{ex:geomseries}). Complete the following observation:\vspace{-5pt}
+	
+	\begin{enumerate}\setcounter{enumi}{1}
+		\item[]\begin{quote}
+			$R_0=\nm{1-z_0}$ is the distance from $z_0$ to the nearest point at which $f(z)$ is \underline{\phantom{undefineddd}}
+		\end{quote}
+		
+	  \item By mimicking Example \ref{ex:geomseries}, find a power series centered at $z_0\neq i$ which equals the function $g(z)=\frac 2{1+iz}$. What is its radius of convergence?
+	  
+  	\item Revisit the proof of Theorem \ref{thm:absconv}.
+  	\begin{enumerate}
+  	  \item Complete part 2: If $\nm{z-z_0}>R_0$, prove that $p(z)=\sum a_n(z-z_0)^n$ diverges.
+  	  \item In part 1, explain why we couldn't simply use the comparison test to say
+	  	\[
+	  		\nm{a_n}\nm{z-z_0}^n<\nm{a_n}\nm{z_1-z_0}^n\implies \sum\nm{a_n}\nm{z-z_0}^n\text{ converges}
+	  	\]
+	  	(\emph{Hint: Think carefully about the hypothesis!})
+	  \end{enumerate}
+	  
+	  \item\label{exs:abeltest} In real analysis, the alternating series test was often used to decide convergence at the endpoints of an interval of convergence. Here is a generalization to the complex situation.\par
+	  Consider the power series $\sum a_nz^n$ where $(a_n)$ is a \emph{real} sequence such that
+	  \[
+	  	a_n\ge 0,\quad a_{n+1}\le a_n,\quad \lim_{n\to\infty}a_n=0
+	  \]
+	  \begin{enumerate}
+	    \item Write $\smash{s_n(z)=\sum\limits_{k=0}^na_kz^k}$ for the partial sum and prove that
+	    \[
+	    	(1-z)s_n(z)=a_0-a_nz^{n+1}+\sum_{k=1}^n(a_k-a_{k-1})z^k
+	    \]
+	    
+	    \item Prove \emph{Abel's Test}: $\sum a_nz^n$ converges on the \emph{closed} disk $\nm z\le 1$, \emph{except perhaps} when $z=1$.\par
+	    (\emph{Hint: Show that $\sum(a_k-a_{k-1})z^k$ converges absolutely by comparison with a telescoping series})
+	    
+	    \item\begin{enumerate}
+	      \item Find the disk of convergence of $\sum\frac{z^n}n$ (all $z\in\C$ at which the series converges).
+	    	\item Prove that the real series $\sum\frac{\cos n\theta}n$ converges except when $\theta$ is divisible by $2\pi$. For what values of $\theta$ does the series $\sum\frac{\sin n\theta}n$ converge?\par
+	    	(\emph{Hint: Use part (i)\ldots})
+	   	\end{enumerate}
+	    
+	    \item Find all values of $z$ for which the series $\sum \frac{1+i}{(n+i)(4+3i)^n}(z-1+2i)^n$ converges and sketch the disk of convergence.\par
+	    (\emph{Hint: Let $w=\frac{z-1+2i}{4+3i}$ and think about real and imaginary parts})
+	  \end{enumerate}
+	\end{enumerate}
+	
+\end{exercises}
 
-Before computing further examples, we first revisit a familiar definition and observe a startling difference between the real and complex case.
+
+\clearpage
+
+
+
+\subsection{Taylor Series and Taylor's Theorem}
+
+The overarching goal of the next two sections is the establishment of a key result:
+\[
+	\tcbhighmath{\text{A function is holomorphic if and only if it is analytic}}
+\]
+Otherwise said, $f(z)$ is differentiable on an open domain $D$ if and only if for each $z_0\in D$ there is some neighborhood of $z_0$ on which it equals a power series $f(z)=\sum a_n(z-z_0)^n$.\smallbreak
+
+If a holomorphic function is to equal a power series, it is natural ask \emph{which one}? The answer revisits a familiar definition and leads to a startling difference between the real and complex cases.
 
 \begin{defn}{}{}
-If a function $f(z)$ is infinitely differentiable at $z_0$, then its \emph{Taylor series} is the power series
-\[\sum_{n=0}^\infty a_n(z-z_0)^n= \sum_{n=0}^\infty \frac{f^{(n)}(z_0)}{n!}(z-z_0)^n\]
-The \emph{Taylor coefficients} are $a_n=\frac{f^{(n)}(z_0)}{n!}$. A \emph{Maclaurin series} is a Taylor series with $z_0=0$.
+	If $f(z)$ is infinitely differentiable at $z_0$, then its \emph{Taylor series} is the power series
+	\[
+		\sum_{n=0}^\infty a_n(z-z_0)^n= \sum_{n=0}^\infty \frac{f^{(n)}(z_0)}{n!}(z-z_0)^n
+	\]
+	The \emph{Taylor coefficients} are $a_n=\frac{f^{(n)}(z_0)}{n!}$. A \emph{Maclaurin series} is a Taylor series centered at $z_0=0$.
 \end{defn}
 
-\begin{tcolorbox}[exstyle,lower separated=false, sidebyside, sidebyside align=top seam, sidebyside gap=0pt, righthand width=0.26\linewidth]
-We continue Example \ref{ex:geomseries}. On the disk $\nm z<1$, the function $f(z)=\frac 1{1-z}$ has 
-  	\[f^{(n)}(z)=\frac{n!}{(1-z)^{n+1}}\implies \sum\limits_{n=0}^\infty\frac{f^{(n)}(0)}{n!}z^n =\sum\limits_{n=0}^\infty z^n\overset{\text{!!}}{=}f(z)\]
-  	The Maclaurin series is therefore the geometric power series representation of $f(z)$ on the open disk $\nm z<1$! %In accordance with the above observation \ref{obs:dist}, its radius of convergence $R_0=1$ is the distance from the center 0 to the nearest point $z=1$ at which $f$ fails to be differentiable.
-  	In fact this situation is completely general\ldots
-\tcblower
-  \flushright\includegraphics{taylorex1}
-\end{tcolorbox}
-\goodbreak
+\begin{example*}[exstyle,lower separated=false, sidebyside, sidebyside align=top seam, sidebyside gap=0pt, righthand width=0.26\linewidth]{\ref{ex:geomseries}, cont.}{}
+	On the disk $\nm z<1$, the function $f(z)=\frac 1{1-z}$ has 
+  \[
+  	f^{(n)}(z)=\frac{n!}{(1-z)^{n+1}}\implies \sum\limits_{n=0}^\infty\frac{f^{(n)}(0)}{n!}z^n =\sum\limits_{n=0}^\infty z^n = f(z)
+  \]
+  The Maclaurin series is precisely the geometric power series representation of $f(z)$ on the open disk $\nm z<1$!\smallbreak
+  In complex analysis, this situation is completely general\ldots
+	\tcblower
+  \flushright\includegraphics[scale=0.9]{taylorex1}
+\end{example*}
+
 
 \begin{thm}{Taylor's Theorem}{taylor}
-If $f(z)$ is holomorphic on a disk $\nm{z-z_0}<R$, then it equals its Taylor series on that disk.
+	Suppose $f(z)$ is holomorphic on a disk $\nm{z-z_0}<R$. Then,
+	\[
+		f(z)=\sum_{n=0}^\infty \frac{f^{(n)}(z_0)}{n!}(z-z_0)^n
+		\quad\text{whenever}\quad
+		\nm{z-z_0}<R
+	\]
 \end{thm}
 
 This is a \emph{very} strong statement in comparison to real analysis, where there exist infinitely differentiable functions which do not equal their Taylor series (see Exercise \ref{ex:maczero}).\smallbreak
-Clearly $R$ cannot be larger than the radius of convergence $R_0$ of the Taylor series. If $f$ is entire, then the result holds for all positive $R$ and the series has radius of convergence is infinity.
+Plainly $R$ cannot be larger than the radius of convergence $R_0$ of the Taylor series. If $f$ is entire, then the result holds for all positive $R$ and the series has infinite radius of convergence.
 
 \begin{examples}{}{}
-Further familiar examples translate over from real analysis.
-\begin{enumerate}
-  %\begin{minipage}[t]{0.7\linewidth}\vspace{-5pt}
-%   	\item On the open disk $\nm z<1$, the function $f(z)=\frac 1{1-z}$ has 
-%   	\[f^{(n)}(z)=\frac{n!}{(1-z)^{n+1}}\implies \frac 1{1-z}=\sum\limits_{n=0}^\infty\frac{f^{(n)}(0)}{n!}z^n =\sum\limits_{n=0}^\infty z^n\]
-%   	The Maclaurin series is therefore the geometric series of Example \ref{ex:geomseries}; its radius of convergence is plainly $R_0=1$. In accordance with the above observation \ref{obs:dist}, this is the distance from the center 0 to the nearest point $z=1$ at which $f$ fails to be differentiable.
-%   \end{minipage}\begin{minipage}[t]{0.3\linewidth}\vspace{-15pt}
-%   \flushright\includegraphics{taylorex1}
-%   \end{minipage}
-% 
-%   
-  \item Since $f(z)=e^z$ is entire and $f^{(n)}(0)=1$ for all $n$, we see that
-  \[e^z=\sum\limits_{n=0}^\infty\frac{z^n}{n!}\quad\text{for all }z\in\C\]
+	Familiar examples translate over from real analysis.
+	\begin{enumerate}
+	  \item If $f(z)=e^z$, then $f^{(n)}(z)=e^z$ for all $n$. The Maclaurin series is therefore
+  	\[
+  		e^z=\sum\limits_{n=0}^\infty\frac{z^n}{n!}
+  	\]
+  	Since $f(z)$ is entire (holomorphic on $\C$), we may take $R=\infty$ in Taylor's Theorem: the function equals the series on $\C$. For 
   
   \item $f(z)=\sin z$ is entire with $f^{(2n)}(z)=(-1)^n\sin z$ and $f^{(2n+1)}(z)=(-1)^n\cos z$. Its Maclaurin series is therefore
   \[\sin z=\sum\limits_{n=0}^\infty\frac{(-1)^n}{(2n+1)!}z^{2n+1}\quad\text{for all }z\in\C\]
   \goodbreak
-  
-  \begin{minipage}[t]{0.7\linewidth}\vspace{0pt}
-		\item $f(z)=\Log z$ is holomorphic on the open disk $\nm{z-i}<1$.\smallbreak
-		Whenever $n\ge 1$, we have
-		\[f^{(n)}(i)=\at{\frac{(-1)^{n-1}(n-1)!}{z^{n}}}{z=i}=-i^n(n-1)!\]
-		and we obtain the Taylor series
-  	\[\Log z=\Log i-\sum_{n=1}^\infty \frac{i^n}{n}(z-i)^n =\frac{\pi i}2-\sum_{n=1}^\infty \frac{(iz+1)^n}n\]
-  \end{minipage}\begin{minipage}[t]{0.3\linewidth}\vspace{0pt}
-  \flushright\includegraphics{taylorex2}
-  \end{minipage}\medbreak
-  
-	Convergence when $\nm{z-i}<1$ can be directly verified using the comparison test:
-	\[\nm{z-i}=r<1\implies\frac{\nm{z-i}^n}n\le r^n\implies \sum\frac{i^n(z-i)^n}n\text{ converges absolutely}\]
-	At $z=0$, we recognize the divergent harmonic series $\sum \frac 1n$: the radius of convergence is $R_0=1$. Exercise \ref{exs:abeltest} shows that the series converges everywhere else on the boundary circle $\nm{z-i}=1$.
   \end{enumerate}
 \end{examples}
 
 We'll see the proof in a moment, but first observe that if $f:D\to\C$ is holomorphic, then, for every $z_0\in D$ it is holomorphic on some disk $\nm{z-z_0}<R$; by Taylor's theorem $f(z)$ equals its Taylor series on this disk and we've therefore proved half of our key observation.
 
 \begin{cor}{}{}
-Every holomorphic function is analytic.
+	Every holomorphic function is analytic.
 \end{cor}
 
-We'll obtain the converse in the next section.
-\goodbreak
+We'll obtain the converse in the next section.\medbreak
+
+
 
 Why is Taylor's Theorem so much more specific in complex analysis? The answer is that we have available a very powerful tool, namely Cauchy's integral formula.
 
@@ -259,52 +317,51 @@ This last plainly converges to zero since $\nm w<r$. Otherwise said
 \[f(w)=\lim_{n\to\infty}\sum_{k=0}^{n-1} \frac{f^{(k)}(0)}{k!}w^k =\sum_{n=0}^{\infty} \frac{f^{(n)}(0)}{n!}w^n\]
 so that $f(z)$ equals its Maclaurin series whenever $\nm z<R$.
 \end{proof}
-\clearpage
 
 
-\begin{exercises*}
-\hangindent\doubleind
-\textup{1.} \ (a) \ Compute the Maclaurin series of $\cos z$ directly from the definition.
-\begin{enumerate}\setcounter{enumi}{1}
-  \item[]\begin{enumerate}\setcounter{enumii}{1}
-    \item Evaluate the Taylor series of $\sin z$ about $z_0=\frac\pi 2$ and confirm that it equals your answer to part (a) when $z$ is replaced with $z-\frac\pi 2$.
-  \end{enumerate} 
+\begin{example}{}{}
+  \begin{minipage}[t]{0.7\linewidth}\vspace{0pt}
+		$f(z)=\Log z$ is holomorphic on the open disk $\nm{z-i}<1$.\smallbreak
+		Whenever $n\ge 1$, we have
+		\[f^{(n)}(i)=\at{\frac{(-1)^{n-1}(n-1)!}{z^{n}}}{z=i}=-i^n(n-1)!\]
+		and we obtain the Taylor series
+  	\[\Log z=\Log i-\sum_{n=1}^\infty \frac{i^n}{n}(z-i)^n =\frac{\pi i}2-\sum_{n=1}^\infty \frac{(iz+1)^n}n\]
+  \end{minipage}\begin{minipage}[t]{0.3\linewidth}\vspace{0pt}
+  \flushright\includegraphics{taylorex2}
+  \end{minipage}\medbreak
   
-  \item Consider $f(z)=\frac 1z$. For any $z_0\neq 0$, find the Taylor series of $f(z)$ about $z_0$. What is its disk of convergence?
-    
-  \item Finish the proof of Theorem \ref{thm:absconv}. Suppose $\nm{z-z_0}>R_0$. Prove that $f(z)$ diverges.
-  
-  
-  \item\label{exs:abeltest} The alternating series test was often useful in real analysis to decide convergence at the endpoints of an interval of convergence. Here is a generalization to the complex situation.\smallbreak
-   Consider the power series $\sum a_nz^n$ where $(a_n)$ is a \emph{real} sequence such that
-    \[a_n\ge 0,\quad a_{n+1}\le a_n,\quad \lim_{n\to\infty}a_n=0\]
-  \begin{enumerate}
-    \item Write $s_n(z)=\sum\limits_{k=0}^na_kz^k$ for the partial sum and prove that
-    \[(1-z)s_n(z)=a_0-a_nz^{n+1}+\sum_{k=1}^n(a_k-a_{k-1})z^k\]
-    
-    \item Prove \emph{Abel's Test}: $\sum a_nz^n$ converges everywhere on the \emph{closed} unit disk $\nm z\le 1$, \emph{except perhaps} when $z=1$.\par
-    (\emph{Hint: show that $\sum(a_k-a_{k-1})z^k$ converges absolutely by comparison with a telescoping series})
-    
-    \item Verify that $\Log z=\frac{\pi i}2-\sum\limits_{n=1}^\infty \frac{(iz+1)^n}n$ converges whenever $\nm{z-i}=1$, except when $z=0$.
-    
-    \item Prove that the real series $\sum\frac{\cos n\theta}n$ converges except when $\theta$ is divisible by $2\pi$. For what values of $\theta$ does the series $\sum\frac{\sin n\theta}n$ converge?
-    
-    \item Find all values of $z$ for which the series $\sum \frac{1+i}{(n+i)(4+3i)^n}(z-1+2i)^n$ converges and sketch the disk of convergence.\par
-    (\emph{Hint: let $w=\frac{z-1+2i}{4+3i}$})
-  \end{enumerate}
-    
-  \item\label{ex:maczero} Consider the function
-  \[f(z)=\begin{cases}
-  e^{-1/z^2}&\text{if }z\neq 0\\
-  0&\text{if }z=0
-  \end{cases}\]
-  When $z\in\R$ this provides the classic example of an infinitely differentiable function whose Maclaurin series (being identically zero) does not equal the original function except at the origin. When $z\in\C$, why $f(z)$ does not contradict Taylor's Theorem.
-  
-  \item Why do we need to introduce $r$ in part 1 of the proof of Theorem \ref{thm:absconv}? That is, explain why can't we use the comparison test to say
-  \[\nm{a_n}\nm{z-z_0}^n<\nm{a_n}\nm{z_1-z_0}^n\implies \sum\nm{a_n}\nm{z-z_0}^n\text{ converges}\]
+	Convergence when $\nm{z-i}<1$ can be directly verified using the comparison test:
+	\[\nm{z-i}=r<1\implies\frac{\nm{z-i}^n}n\le r^n\implies \sum\frac{i^n(z-i)^n}n\text{ converges absolutely}\]
+	At $z=0$, we recognize the divergent harmonic series $\sum \frac 1n$: the radius of convergence is $R_0=1$. Exercise \ref{exs:abel2} shows that the series converges everywhere else on the boundary circle $\nm{z-i}=1$.
+\end{example}
 
-\end{enumerate}
-\end{exercises*}
+
+\begin{exercises}
+	\hangindent\doubleind
+	\textup{1.} \ (a) \ Compute the Maclaurin series of $\cos z$ directly from the definition.
+	\begin{enumerate}\setcounter{enumi}{1}
+	  \item[]\begin{enumerate}\setcounter{enumii}{1}
+	    \item Evaluate the Taylor series of $\sin z$ about $z_0=\frac\pi 2$ and confirm that it equals your answer to part (a) when $z$ is replaced with $z-\frac\pi 2$.
+	  \end{enumerate} 
+	  
+	  \item Consider $f(z)=\frac 1z$. For any $z_0\neq 0$, find the Taylor series of $f(z)$ about $z_0$. What is its disk of convergence?
+	  
+	  
+	  \item More exs: e.g. $\cos z$ centered at $i$?
+	  
+	  
+	  \item\label{exs:abel2} Use Abel's test to verify that $\Log z=\frac{\pi i}2-\sum\limits_{n=1}^\infty \frac{(iz+1)^n}n$ converges whenever $\nm{z-i}=1$, except when $z=0$.
+
+	    
+	  \item\label{ex:maczero} Consider the function
+	  \[f(z)=\begin{cases}
+	  e^{-1/z^2}&\text{if }z\neq 0\\
+	  0&\text{if }z=0
+	  \end{cases}\]
+	  When $z\in\R$ this provides the classic example of an infinitely differentiable function whose Maclaurin series (being identically zero) does not equal the original function except at the origin. When $z\in\C$, explain why $f(z)$ does not contradict Taylor's Theorem.
+	  
+	\end{enumerate}
+\end{exercises}
 \clearpage
 
 
@@ -490,7 +547,7 @@ By uniqueness of representation, we can compute Taylor/Maclaurin series \emph{al
   (\emph{Think carefully about the definitions and what we've proved in the last two sections!})
 	\end{enumerate}
 	
-	\item\label{ex:raddistnonanalytic} Suppose that the series $\sum a_n(z-z_0)^n$ has radius of convergence $R_0$ and that $f(z)=\sum a_n(z-z_0)^n$ whenever $\nm{z-z_0}<R_0$. Prove that
+	\item\label{exs:raddistnonanalytic} Suppose that the series $\sum a_n(z-z_0)^n$ has radius of convergence $R_0$ and that $f(z)=\sum a_n(z-z_0)^n$ whenever $\nm{z-z_0}<R_0$. Prove that
 	\[R_0=\inf\{\nm{\hat z-z_0}:f(z)\text{ non-analytic or undefined at $\hat z$}\}\]
 	(\emph{$R_0$ is essentially the distance from $z_0$ to the nearest point at which $f(z)$ is non-analytic})
 	
@@ -741,3 +798,4 @@ Now all the abstraction is out of the way, we can more easily compute Laurent se
 	\end{enumerate}
 \end{enumerate}
 \end{exercises*}
+
