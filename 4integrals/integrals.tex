@@ -1312,7 +1312,7 @@ Holomorphicity is critical: see, for instance, Exercise \ref{exs:nonholomaxmod}.
 	  \item If $f(z)=u+iv$ is entire and $u(x,y)$ is bounded above, apply Liouville's Theorem to $\exp(f(z))$ to prove that $u$ is constant.
 	  
 	  
-	  \item Let $f(z)$ be a non-zero holomorphic function on a closed bounded domain. By considering $g(z)=\frac 1{f(z)}$, show that the minimum value of $\nm{f(z)}$ also occurs on the boundary.
+	  \item Let $f(z)$ be a \emph{non-zero} holomorphic function on a closed bounded domain. By considering $g(z)=\frac 1{f(z)}$, show that the minimum value of $\nm{f(z)}$ also occurs on the boundary.
 	  
 	  
 	  \item Find the maximum and minimum values of $\nm{z^2+4i}$ on the unit disk $\nm z\le 1$.
@@ -1321,8 +1321,11 @@ Holomorphicity is critical: see, for instance, Exercise \ref{exs:nonholomaxmod}.
 	  \item\label{exs:nonholomaxmod} Consider $f(z)=\exp(-\nm z^2)$ defined on the unit disk $\nm z\le 1$. What is its maximum modulus, and where is it found? Why doesn't this contradict the maximum modulus principle?
 	  
 	  
-	  \item On the rectangle $0\le x\le\pi$, $0\le y\le 1$, show that $\nm{\sin z}$ is maximal at the point $z=\frac\pi 2+i$.\par
-	  (\emph{Hint: first show that $\nm{\sin z}^2=\sin^2\!x+\sinh^2\!y$})
+	  \item\begin{enumerate}
+	    \item On the rectangle $0\le x\le\pi$, $0\le y\le 1$, show that $\nm{\sin z}$ is maximal at the point $z=\frac\pi 2+i$.\par
+	  	(\emph{Hint: first show that $\nm{\sin z}^2=\sin^2\!x+\sinh^2\!y$})
+	  	\item Prove that there exists a sequence $(z_n)\subset\C$ such that $\lim\sin z_n=\infty$.
+	  \end{enumerate} 
 	  
 	  
 	  \item Revisit the standard method from multivariable calculus (compute $\nabla\nm{f(z)}^2$) to check that the maximum value of $\nm{2z^2+i}$ in Example \ref{ex:modulusexplicit} really does occur on the boundary.
