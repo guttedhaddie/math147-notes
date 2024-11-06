@@ -1,11 +1,9 @@
-settings.prc=false;
 settings.outformat="pdf";
 
 texpreamble("\usepackage{amsmath}
 \usepackage{amsthm,amssymb}
 \usepackage{mathpazo}
 \usepackage[svgnames]{xcolor}
-\usepackage{textcomp}
 ");
 import graph;
 
@@ -24,5 +22,7 @@ ytick(Label("$2i$",align=W),2,W,red);
 ytick(Label("$-i$",align=W),-1,W,red);
 ytick(Label("$-2i$",align=W),-2,W,red);
 
-dot((-1,0));
-dot((2,0));
+dot((-1,0),white);
+dot((2,0),white);
+dot((-1,0),UnFill);
+dot((2,0),UnFill);

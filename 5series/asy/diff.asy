@@ -1,21 +1,15 @@
-if(!settings.multipleView) settings.batchView=false;
 settings.tex="pdflatex";
-if(settings.render < 0) settings.render=4;
-settings.outformat="pdf";
-settings.inlineimage=true;
-settings.embed=true;
-settings.toolbar=false;
+
 
 texpreamble("\usepackage{amsmath}
 \usepackage{amsthm,amssymb}
 \usepackage{mathpazo}
 \usepackage[svgnames]{xcolor}
-\usepackage{textcomp}
 ");
 import graph;
 
 
-size(120);
+size(100);
 
 pair w=0.7*dir(70);
 

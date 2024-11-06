@@ -1,11 +1,9 @@
-settings.prc=false;
 settings.outformat="pdf";
 
 texpreamble("\usepackage{amsmath}
 \usepackage{amsthm,amssymb}
 \usepackage{mathpazo}
 \usepackage[svgnames]{xcolor}
-\usepackage{textcomp}
 ");
 import graph;
 

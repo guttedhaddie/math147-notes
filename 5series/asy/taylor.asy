@@ -1,16 +1,14 @@
-settings.prc=false;
 settings.outformat="pdf";
 
 texpreamble("\usepackage{amsmath}
 \usepackage{amsthm,amssymb}
 \usepackage{mathpazo}
 \usepackage[svgnames]{xcolor}
-\usepackage{textcomp}
 ");
 import graph;
 
 
-size(110);
+size(120);
 
 pair w=0.7*dir(70);
 
