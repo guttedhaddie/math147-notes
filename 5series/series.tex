@@ -1,5 +1,4 @@
 \graphicspath{{5series/asy/}}
-\thispagestyle{empty}
 
 \section{Series and the Theorems of Taylor \& Laurent}
 
@@ -289,38 +288,38 @@ Why is Taylor's Theorem so much more specific in complex analysis? The reason is
 
 \begin{proof}[Proof of Taylor's Theorem]
 	By relabelling $\tilde f(z)=f(z-z_0)$, it is enough to prove when $z_0=0$, that is for Maclaurin series. We therefore suppose $f(z)$ is holomorphic when $\nm z<R$.\par
-	\begin{minipage}[t]{0.7\linewidth}\vspace{-2pt}
+	\begin{minipage}[t]{0.74\linewidth}\vspace{-2pt}
 		Let $w$ be given where $\nm w<R$. Apply the geometric series formula (Example \ref{ex:geomseries}), to see that if $z\neq 0$, then
 		\[
 			\frac 1z\sum_{k=0}^{n-1}\left(\frac wz\right)^k
-			=\frac{1-\left(\frac wz\right)^n}{z(1-\frac wz)} 
-			=\frac 1{z-w}-\frac 1{z-w}\left(\frac wz\right)^n
-			\tag{$\ast$}
+			=\frac{1-\left(\frac wz\right)^n}{z-w} 
+			\implies
+			\frac 1{z-w}=\frac 1z\sum_{k=0}^{n-1}\frac{w^k}{z^{k+1}}+\frac 1{z-w}\left(\frac wz\right)^n
 		\]
-		Choose any circle $C_r$ centered at the origin whose radius satisfies $\nm w<r<R$. Since both $0$ and $w$ lie inside $C_r$, we may apply Cauchy's integral formula \emph{twice}:
+		Let $C_r$ be a circle centered at the origin with radius satisfying $\nm w<r<R$. Since 0 and $w$ both lie inside $C_r$, we may apply Cauchy's integral formula \emph{twice}, using the previous expression to substitute. 
 	\end{minipage}
 	\hfill
-	\begin{minipage}[t]{0.29\linewidth}\vspace{-2pt}
+	\begin{minipage}[t]{0.25\linewidth}\vspace{-2pt}
 		\flushright\includegraphics[scale=0.95]{taylor}
 	\end{minipage}\par
-	\vspace{-6pt}
+	\vspace{-3pt}
 	\begin{align*}
 		f(w)
 		&=\frac 1{2\pi i}\oint_{C_r}\frac{f(z)}{z-w}\dz
 			\tag{Cauchy for $C_r$ around $w$}\\
 		&=\sum_{k=0}^{n-1}\frac{w^k}{2\pi i}\oint_{C_r}\frac{f(z)}{z^{k+1}}\,\dz
 			+\frac{w^n}{2\pi i}\oint_{C_r}\frac{f(z)}{z^n(z-w)}\,\dz
-			\tag{subsititute for $\frac 1{z-w}$ using $(\ast)$}\\
+			\tag{subsititute for $\frac 1{z-w}$}\\
 	 	&=\sum_{k=0}^{n-1} \frac{f^{(k)}(0)}{k!}w^k 
 	 		+\frac{w^n}{2\pi i}\oint_{C_r}\frac{f(z)}{z^n(z-w)}\,\dz
 	 		\tag{Cauchy for $C_r$ around $0$}
 	\end{align*}
-	To finish the proof, we must control the final integral. Since $f$ is holomorphic on $C_r$, it is bounded by some $M>0$. Moreover, for $z\in C_r$ we have $\nm{z-w}\ge \nm{\nm z-\nm w}= r-\nm w$. It follows that
+	To finish the proof, we need to control the final integral. Since $f$ is holomorphic on $C_r$, it is bounded by some $M>0$. Moreover, for $z\in C_r$ we have $\nm{z-w}\ge \nm{\nm z-\nm w}= r-\nm w$. It follows that
 	\begin{align*}
 		\nm{f(w)-\sum_{k=0}^{n-1} \frac{f^{(k)}(0)}{k!}w^k}
 			&=\frac{\nm w^n}{2\pi}\nm{\oint_{C_r}\frac{f(z)}{z^n(z-w)}\,\dz}\\
 			&\le\frac{\nm w^nM\cdot 2\pi r}{2\pi r^n(r-\nm w)}
-				=\frac{Mr}{(r-\nm w)}\left(\frac{\nm w}r\right)^n 
+				=\frac{Mr}{r-\nm w}\left(\frac{\nm w}r\right)^n 
 	\end{align*}
 	Since $\nm w<r$, this last converges to zero. Otherwise said
 	\[
