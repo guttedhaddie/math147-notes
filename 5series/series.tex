@@ -392,14 +392,13 @@ Why is Taylor's Theorem so much more specific in complex analysis? The reason is
 
 \subsection{Uniform Convergence: Continuity, Integrability and Differentiability}\label{sec:unifconv}
 
-As in real analysis, we'd like to establish three useful facts:
-\begin{enumerate}
-  \item Representations are unique: if two power series are equal, their coefficients are equal.
-  \item Power series are continuous, indeed differentiable, inside their disk of convergence.
-  \item Power series may be differentiated and integrated term-by-term.
-\end{enumerate}
+As in real analysis, we'd like to establish some useful facts:
+\begin{description}
+  \item[Uniqueness of representation] Equal power series have identical coefficients. Otherwise said, on a given disk $\nm{z-z_0}<R$, a function can only equal at most one power series $\sum a_n(z-z_0)^n$ (its Taylor series).
+  \item[Computability] Power series are continuous, differentiable and integrable inside their disk of convergence. They can moreover be differentiated and integrated term-by-term like polynomials.
+\end{description}
 
-The arguments are intertwined. Since these are often similar or identical to the real case, we will be brief and postpone all examples until the end. The critical ingredient is uniform convergence.
+The arguments are intertwined. Since the first results are identical to the real case, we will be brief, postponing all examples until the end. The critical ingredient is uniform convergence.
 
 \begin{defn}{}{}
 	Suppose $f(z)=\sum a_n(z-z_0)^n$ is a power series with $n\th$ partial sum $s_n(z)$ and remainder $\rho_n(z) = f(z) - s_n(z)$. We say that the series \emph{converges uniformly} on a domain $D$ if
