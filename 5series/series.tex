@@ -1,14 +1,14 @@
 \graphicspath{{5series/asy/}}
 
-\section{Series and the Theorems of Taylor \& Laurent}
+\section[Power Series]{Power Series, Taylor's Theorem \& Analytic Functions}\label{chap:powerseries}
 
 The theory of series in complex analysis differs significantly from the real situation, particularly with regard to two concepts.
 \begin{itemize}
   \item Taylor's Theorem:\quad Holomorphic functions \emph{equal} their Taylor series. This is false in real analysis where differentiable functions need not have, nor equal, a Taylor series.
-  \item Laurent Series: series can also include negative powers such as $z^{-1}+3z^{-2}+\cdots$
+  \item Laurent Series (chapter \ref{chap:residue}): series with negative powers ($z^{-1}+3z^{-2}+\cdots$) are a powerful tool.
 \end{itemize}
 
-Before discussing these concepts, we review the basic ideas of both infinite and power series: as we saw for sequences in Section \ref{sec:opensets}, this is essentially identical to the real situation.
+We start be reviewing the basics of both infinite and power series: as we saw for sequences in Section \ref{sec:opensets}, this is essentially identical to the real situation.
 
 
 \subsection{A Brief Review of Power Series}\label{sec:powerreview}
@@ -106,7 +106,7 @@ By convention, the initial term of the sequence/series is $z_0$. This isn't requ
 % \end{exercises*}
  
 
-\begin{defn}{Power Series \& Analyticity}{}
+\begin{defn}{Power Series \& Analyticity}{analytic}
 	A \emph{power series centered at $z_0$} is a function of the form
 	\[
 		p(z)=\sum_{n=0}^\infty a_n(z-z_0)^n \tag{$z_0$ and the \emph{coefficients} $a_n$ are constants}
@@ -282,7 +282,7 @@ If $f:D\to\C$ is holomorphic, then, for every $z_0\in D$, there exists some disk
 	Every holomorphic function is analytic.
 \end{cor}
 
-We'll obtain the converse in the next section.\bigbreak
+We'll obtain the converse in the next section (Corollary \ref{cor:contintdiff}).\bigbreak
 
 Why is Taylor's Theorem so much more specific in complex analysis? The reason is that we have can apply a powerful tool unavailable in real analysis: Cauchy's integral formula.
 
@@ -390,7 +390,7 @@ Why is Taylor's Theorem so much more specific in complex analysis? The reason is
 
 
 
-\subsection{Uniform Convergence: Continuity, Integrability and Differentiability}\label{sec:unifconv}
+\subsection[Uniform Convergence]{Uniform Convergence: Continuity, Integrability and Differentiability}\label{sec:unifconv}
 
 As in real analysis, we'd like to establish some useful facts:
 \begin{description}
@@ -590,15 +590,134 @@ In Exercise \ref{ex:uniquetaylor} proves unique representation. Since analytic a
 \goodbreak
 
 
+\boldsubsubsection{Zeros of Analytic Functions \& the Analytic Continuation}
+
+The theory we've developed has huge implications. As an example, we apply our discussion to the zeros of an analytic function. If a function is analytic at $z_0$, then (Definition \ref{defn:analytic}, Theorem \ref{thm:taylor}) there is some disk on which it equals its Taylor series: 
+\[
+	\nm{z-z_0}<R\implies f(z)=\sum_{n=0}^\infty \frac{f^{(n)}(z_0)}{n!}(z-z_0)^n \tag{$\ast$}
+\]
+Suppose $f(z_0)=0$. We ask if/when the Taylor series starts to get interesting\ldots
+
+
+% Moreover, by uniqueness of representation (Corollary \ref{cor:contintdiff}), this is the only series to equal $f(z)$ on the disk.
+
+\begin{defn}{}{zeros}
+	Suppose $z_0$ is a zero of an analytic function $f(z)$.
+	\begin{enumerate}\itemsep0pt
+	  \item We say that $z_0$ is a \emph{zero of order $m\ge 1$} if $f^{(m)}(z_0)$ is the first non-zero derivative. A zero of order 1 is also called a \emph{simple zero.}
+ 		\item	If all derivatives are zero, $z_0$ is a \emph{non-isolated zero}: plainly $f(z)\equiv 0$ on some disk $\nm{z-z_0}<R$.
+	\end{enumerate} 
+\end{defn}
+
+
+
+We are used to the idea of a polynomial having a zero $z_0$ if and only if we can factorize out $z-z_0$. The tight link-up with Taylor series makes essentially this observation hold for \emph{any} analytic function!
+
+\begin{thm}{}{zerocategorize}
+	An analytic function $f(z)$ has a zero $z_0$ of order $m$ if and only if $f(z)=(z-z_0)^m\psi(z)$ where $\psi(z)$ is analytic at $z_0$ and $\psi(z_0)\neq 0$. Indeed, on some disk $\nm{z-z_0}<R$,
+	\[
+		f(z)=\sum\limits_{n=m}^\infty\frac{f^{(n)}(z_0)}{n!}(z-z_0)^{n}
+		=(z-z_0)^{m}\psi(z)
+	\]
+\end{thm}
+
+\begin{proof}
+	\begin{description}
+		\item[\normalfont ($\Rightarrow$)] Suppose $z_0$ is a zero of order $m$. Define
+		\[
+			\psi(z)=
+			\begin{cases}
+				\dfrac{f(z)}{(z-z_0)^m}&\text{whenever }z\neq z_0\\[10pt]
+				\dfrac{f^{(m)}(z_0)}{m!}&\text{when }z=z_0
+			\end{cases}
+			%\frac{f(z)}{(z-z_0)^m}\quad \text{whenever $z\neq z_0$, and}\quad \psi(z_0)=\frac{f^{(m)}(z_0)}{m!}
+		\]
+		On the disk $\nm{z-z_0}<R$, ($\ast$) says that this function equals the power series
+		\[
+			\psi(z)=\sum\limits_{n=m}^\infty\frac{f^{(n)}(z_0)}{n!}(z-z_0)^{n-m}
+		\]
+		and is therefore analytic. Moreover, $f(z)=(z-z_0)^m\psi(z)$ everywhere.
+		\item[\normalfont ($\Leftarrow$)] If $\psi(z)$ is analytic at $z_0$, then it equals its Taylor series on some disk $\nm{z-z_0}<R$. But then
+		\[
+			f(z):=(z-z_0)^m\psi(z) %=(z-z_0)^m\psi(z_0)+(z-z_0)^{m+1}\psi'(z_0)+\cdots 
+			=\sum\limits_{n=0m}^\infty\frac{\psi^{(n)}(z_0)}{n!}(z-z_0)^{n+m}
+		\]
+		is a power series on this disk. By uniqueness of representation (Corollary \ref{cor:contintdiff}), this is the Taylor series of $f(z)$. If $\psi(z_0)\neq 0$, then $f^{(m)}(z_0)=m!\psi(z_0)$ is plainly the first non-zero derivative. \qedhere
+	\end{description}
+\end{proof}
+
+\goodbreak
+
+\begin{examples}{}{}
+	\exstart $f(z)=z^4(z-2i)^{10}=z^4\psi_1(z)=(z-2i)^{10}\psi_2(z)$ has two zeros:
+	\begin{enumerate}\setcounter{enumi}{1}
+	  \item[]\begin{description}
+	  	\item[\normalfont\emph{Order four at $z_1=0$}:] $\psi_1(z)=(z-2i)^{10}$ is analytic with $\psi_1(0)=-1024\neq 0$.
+	  	\item[\normalfont\emph{Order ten at $z_2=2i$}:] $\psi_2(z)=z^4$ is analytic with $\psi_2(2i)=16\neq 0$.
+	  \end{description}
+	  
+	  %\goodbreak
+	
+		\item $g(z)=17(z-4i)^3\sin z$ has a zero of order three at $4i$, and simple zeros at each integer multiple of $\pi$. For instance, the Taylor series for sine centered at $z_0=\pi$ yields
+		\begin{align*}
+			g(z)&=17(z-4i)^3\sin(z-\pi+\pi)
+			=-17(z-4i)^3\sin(z-\pi)\\
+			&=-17(z-4i)^3\sum_{n=0}^\infty\frac{(-1)^n}{(2n+1)!}(z-\pi)^{2n+1}
+			=(z-\pi)\psi(z)	
+		\end{align*}
+		where $\smash[t]{\psi(z)=-17(z-4i)^3 \sum\limits_{n=0}^\infty\frac{(-1)^n}{(2n+1)!}(z-\pi)^{2n}}$ is analytic and $\psi(\pi)=-17(\pi-4i)^3\neq 0$.
+	\end{enumerate}
+\end{examples}
+
+
+The examples are typical in that the zeros of an analytic function tend to be \emph{isolated.} Indeed, analytic functions with non-isolated zeros are very boring\ldots
+
+\begin{thm}{}{isolatedzero}
+	Suppose $z_0$ is a zero of an analytic function $f(z)$.
+	\begin{enumerate}\itemsep0pt
+	  \item If $z_0$ has order $m$, then there exists a punctured disk $0<\nm{z-z_0}<R$ on which $f(z)\neq 0$. Otherwise said: $z_0$ is \textbf{isolated.}
+	  \item If $z_0$ is non-isolated and the domain $D$ of $f(z)$ is open and connected, then $f(z)\equiv 0$ on $D$.
+	\end{enumerate}
+\end{thm}
+
+\begin{example}{}{}
+	Analyticity is crucial! For instance, the non-analytic function $f(z)=z+\cl z=2x$ is zero precisely along the real axis: the zero is not isolated but neither is the function identically zero on any open domain. There really is something to prove here!
+\end{example}
+
+
+\begin{proof}
+	\begin{enumerate}\itemsep0pt
+	  \item Write $f(z)=(z-z_0)^m\psi(z)$, where $\psi$ is analytic and non-zero at $z_0$. Since $\psi$ is continuous, it is non-zero on some disk $\nm{z-z_0}<R$.
+	  \item As observed in Definition \ref{defn:zeros}, $f(z)\equiv 0$ on some disk $\nm{z-z_0}<R$.\newline
+	  To finish, we extend by an argument similar to that used to prove the Maximum Modulus Principle (Theorem \ref{thm:maxmod}). Given any $w\neq z_0$, join $z_0$ to $w$ by a path in $D$ which we cover by finitely many disks; since $f(z)\equiv 0$ on all these disks, we conclude that $f(w)=0$.\qedhere 
+	\end{enumerate}
+\end{proof}
+
+By applying part 2 to a function $f-g$, we obtain the proof of a powerful and previously heralded result.
+
+\begin{cor}{Theorem \ref{thm:analyticcont}---Analytic Continuation}{}
+	Suppose $f(z),g(z)$ are analytic on an open connected domain $D$, and that $f(z)=g(z)$ on some contour $C$ in $D$. Then $f(z)=g(z)$ on $D$.
+\end{cor}
+
+As the proof of Theorem \ref{thm:isolatedzero} shows, it is enough that the set of points where $f(z)=g(z)$ have a limit point $z_0\in D$ (i.e., that $f-g$ has a non-isolated zero).
+
+
+\begin{example}{}{}
+	The function $g(z)=\frac 1{1-z}$ is analytic on the punctured plane $D=\C\setminus\{1\}$ and equals $f(z)=\sum z^n$ on the disk $\nm z<1$. Even though the power series $f(z)$ does not converge outside the disk, we conclude that $g(z)$ is the unique \emph{analytic continuation} of $f(z)$ to the larger domain $D$.
+\end{example}
+
+\goodbreak
+
+
 \begin{exercises}
 	\exstart Find a power series representation and the radius of convergence:
 	\begin{enumerate}\setcounter{enumi}{1}
 	  \item[]\begin{enumerate}
-	    \item $f(z)=\dfrac z{4-z}$ about $z_0=0$
+	    \item $f(z)=\frac z{4-z}$ \ about $z_0=0$
 	    \qquad\qquad
-	    (b) \ $f(z)=z\sin z^2$ about $z_0=0$
+	    (b) \ $f(z)=z\sin z^2$ \ about $z_0=0$
 	    \setcounter{enumii}{2}
-	    \item $f(z)=\cosh 3z$ about $z_0=\dfrac{i\pi}9$
+	    \item $f(z)=\cosh 3z$ \ about $z_0=\frac{i\pi}9$
 		\end{enumerate}
 		
 		
@@ -635,7 +754,14 @@ In Exercise \ref{ex:uniquetaylor} proves unique representation. Since analytic a
 		\end{enumerate}
 		
 		
-		\item Consider the Maclaurin series $f(z)=\sum_{n=0}^\infty (-1)^nz^{2n}$ on the disk $\nm z<1$. Show that $h(z)=\frac 1{z^2+1}$ is the analytic continuation (Definition \ref{defn:analyticcont}) of $f(z)$ to $\C\setminus\{i,-i\}$. 
+		\item Suppose $f(z)$ is analytic and non-constant at $z_0$ ($f'(z_0)\neq 0$). Prove that
+		\[
+			\exists R>0\ \text{such that}\ 0<\nm{z-z_0}<\epsilon\implies f(z)\neq f(z_0)
+		\]
+		To what extent can you weaken the hypothesis $f'(z_0)\neq 0$?
+		
+		
+		\item Consider the Maclaurin series $f(z)=\sum_{n=0}^\infty (-1)^nz^{2n}$ on the disk $\nm z<1$. Show that $h(z)=\frac 1{z^2+1}$ is the analytic continuation of $f(z)$ to $\C\setminus\{i,-i\}$. 
 		
 		
 		\item\label{ex:uniquetaylor}\begin{enumerate}
@@ -655,375 +781,11 @@ In Exercise \ref{ex:uniquetaylor} proves unique representation. Since analytic a
 		
 		\item\label{ex:notuniform} (Hard)\lstsp Consider $f(z)=\frac 1{1-z}=\sum\limits_{n=0}^\infty z^n$ on $\nm z<1$.
 		\begin{enumerate}
-		  \item Let $R_1<1$. Explicitly check uniform convergence when $\nm z\le R_1$. That is, given $\epsilon>0$, find an explicit $N$ such that
+		  \item Verify uniform convergence when $\nm z\le R_1<1$: given $\epsilon>0$, find an explicit $N$ such that
 		  \[
 		  	n>N\implies \nm{\rho_n(z)}=\biggl|f(z)-\sum_{k=0}^nz^k\biggr|<\epsilon\text{ whenever }\nm z\le R_1
 		  \]
-		  \item Prove that $f(z)$ is \emph{not} uniformly convergent on $\nm z<1$.\par
-		  (\emph{Hint: Let $\epsilon=1$ and aim for a contradiction\ldots})
+		  \item Prove that $f(z)$ is \emph{not} uniformly convergent on $\nm z<1$ \ (\emph{Let $\epsilon=1$, then\ldots}).
 		\end{enumerate}
 	\end{enumerate}
 \end{exercises}
-
-
-\clearpage
-
-
-\subsection{Laurent Series}
-
-While Taylor series are undeniably useful, they also have weaknesses, not least because their domains are \emph{disks.} We motivate a more general construction with an example.
-
-\begin{example}{}{laurentmotiv}
-	$f(z)=\frac 1{z(2-z)}$ can be written as a Taylor series centered at $z=1$:\par
-	\begin{minipage}[t]{0.7\linewidth}\vspace{-10pt}
-		\[
-			f(z)=\frac 1{1-(z-1)^2} 
-			=\sum_{n=0}^\infty (z-1)^{2n}
-			\quad\text{whenever \ \textcolor{Green}{$\nm{z-1}<1$}}
-		\]
-		However, we are also interested in the behavior of $f(z)$ near the points $z=0,2$. Due to their disk-domains, we can't use Taylor series to loop around these points.\smallbreak
-		As an alternative, start with the Maclaurin series for $\frac 1{2-z}$ (valid when $\nm z<2$) and divide through by $z$ to obtain a new expression:
-	\end{minipage}
-	\hfill
-	\begin{minipage}[t]{0.29\linewidth}\vspace{-10pt}
-		\flushright\includegraphics[scale=0.95]{laurent}
-	\end{minipage}\par\vspace{-10pt}
-	\begin{align*}
-		f(z)&=\frac 1{2z(1-\frac{z}{2})}
-		=\frac 1{2z}\sum_{n=0}^\infty\left(\frac z2\right)^n 
-		=\sum_{n=-1}^\infty\frac{z^n}{2^{n+2}}\\
-		&=\frac 1{2z}+\frac 14+\frac z8+\frac{z^2}{16}+\frac{z^3}{32}+\cdots	
-	\end{align*}
-	By construction, this `series with negative terms' is valid on the \textcolor{blue}{punctured disk $0<\nm z<2$}.
-\end{example}
-
-Series with negative terms are very useful in complex analysis. In the example, note how the larger domain, particularly the fact that it encircles the origin, provides an obvious advantage over the Taylor series.\smallbreak
-
-The fact that such series converges on an \textcolor{blue}{annulus} rather than a disk is typical. It requires some careful book-keeping, but by splitting a general series into positive and negative powers, substituting $w=(z-z_0)^{-1}$, and applying Theorems \ref{thm:absconv}, \ref{thm:unifconv} and \ref{thm:seriescont} to the resulting power series in $w$
-\[
-	\sum\limits_{n=-\infty}^{\infty} a_n(z-z_0)^n=\sum\limits_{n=0}^{\infty} a_n(z-z_0)^n+\sum\limits_{n=-\infty}^{-1} a_n(z-z_0)^n
-	=\sum\limits_{n=0}^{\infty} a_n(z-z_0)^n +\sum\limits_{n=1}^\infty a_{-n}w^n
-\]
-one obtains the generalizations of these theorems.
-
-\begin{thm}{Annulus of convergence}{}
-	Given a series $\smash[b]{f(z)=\sum\limits_{n=-\infty}^{\smash{\infty}} a_n(z-z_0)^n}$, its (open) \emph{annulus of convergence} is the region $R_1<\nm{z-z_0}<R_2$ where
-	\[
-		R_1=\inf\bigl\{\nm{z-z_0}:f(z)\text{ converges}\bigr\},\qquad 
-		R_2=\sup\bigl\{\nm{z-z_0}:f(z)\text{ converges}\bigr\}
-	\]
-	\begin{enumerate}
-	  \item On the open annulus of convergence, $f(z)$ converges absolutely to a continuous function. As with power series, convergence on the boundary circles must be checked separately.
-	  \item The convergence is uniform on any closed sub-annulus.
-	\end{enumerate}
-\end{thm}
-
-As in Example \ref{ex:laurentmotiv}, the inner radius can be $R_1=0$ and the domain a punctured disk. As with Taylor series, the outer radius can be $R_2=\infty$.\smallbreak
-
-\goodbreak
-
-As with Taylor series, our goal is often to find a series representation of a given function.
-
-\begin{defn}[lower separated=false, sidebyside, sidebyside align=top seam, sidebyside gap=0pt, righthand width=0.25\linewidth]{}{laurent}
-	Suppose $f(z)$ is analytic on an \textcolor{Green}{\emph{annulus}} $R_1<\nm{z-z_0}<R_2$. Its \emph{Laurent series} centered at $z_0$ is the expression
-	\[
-		\sum_{n=-\infty}^\infty a_n(z-z_0)^n
-		\ \text{ where }\ 
-		a_n=\frac 1{2\pi i}\oint_C\frac{f(z)}{(z-z_0)^{n+1}}\,\dz
-	\]
-	and \textcolor{red}{$C$} is any simple closed contour encircling $z_0$ within the annulus.
-	\tcblower
-	\flushright\includegraphics[scale=0.95]{laurent2}
-\end{defn}
-
-
-\begin{itemize}
-  \item If you prefer, write $\sum\limits_{n=0}^\infty a_n(z-z_0)^n+\sum\limits_{n=1}^\infty \frac{b_n}{(z-z_0)^n}$ where $b_n=\frac 1{2\pi i}\oint_C(z-z_0)^{n-1}f(z)\,\dz$.\par
-  \begin{minipage}[t]{0.73\linewidth}\vspace{0pt}
-		\item The coefficients $a_n$ are independent of the choice of contour $C$.\smallbreak
-		To see this, suppose $D$ is another simple closed curve encircling $z_0$, and choose a circle $E$ outside both $C$ and $D$. Since $\frac{f(z)}{(z-z_0)^{n+1}}$ is analytic on the annulus, two applications of Cauchy--Goursat yield
-	  \[
-	  	\oint_{\textcolor{red}{C}}\frac{f(z)}{(z-z_0)^{n+1}}\,\dz
-	  	=\oint_{\textcolor{purple}{E}}\frac{f(z)}{(z-z_0)^{n+1}}\,\dz
-	  	=\oint_{\textcolor{blue}{D}}\frac{f(z)}{(z-z_0)^{n+1}}\,\dz
-	  \]
-	\end{minipage}
-	\hfill
-	\begin{minipage}[t]{0.26\linewidth}\vspace{-5pt}
-		\flushright\includegraphics[scale=0.95]{laurent3}
-	\end{minipage}\par
-  
-  \item If $f(z)$ is analytic on the \emph{disk} $\nm{z-z_0}<R_2$, then the Laurent series equals the Taylor series:
-	\[
-		\begin{cases}
-			n\ge 0\implies a_n=\frac{f^{(n)}(z_0)}{n!} \quad &\text{(Cauchy's integral formula)}\\
-			n<0\implies a_n=0 \quad &\text{(Cauchy--Goursat)}
-		\end{cases}
-	\]
-\end{itemize}
-
-\begin{example*}{\ref{ex:laurentmotiv}, cont.}{}
-	$f(z)=\frac 1{z(2-z)}$ is certainly analytic on the \textcolor{blue}{annulus} $0<\nm z<2$.\par
-	\begin{minipage}[t]{0.7\linewidth}\vspace{-4pt}
-		By first writing $f(z)=\frac 12\left(\frac 1{z}+\frac 1{2-z}\right)$ using partial fractions, we compute the Laurent series for $f$ on the annulus using the \textcolor{Green}{unit circle} centered at the origin:
-		\[
-			a_n=\frac 1{2\pi i}\oint_C\frac{f(z)}{z^{n+1}}\,\dz =\frac 1{4\pi i}\oint_C \frac{1}{z^{n+2}}+\frac 1{(2-z)z^{n+1}}\,\dz
-		\]
-		The first integral evaluates to $\frac 12$ when $n=-1$ and to zero otherwise. The second  integral may be found using Cauchy's integral formula:
-	\end{minipage}
-	\hfill
-	\begin{minipage}[t]{0.29\linewidth}\vspace{-4pt}
-		\flushright\includegraphics[scale=0.95]{laurent7}
-	\end{minipage}\par
-	\[
-		\frac 1{4\pi i}\oint_C \frac 1{(2-z)z^{n+1}}\,\dz =
-		\begin{cases}
-			0&\text{if }n\le -1\\
-			\displaystyle\frac 1{2(n!)}\diffat[{}^n]{z^n}{z=0}(2-z)^{-1} =\frac 1{2^{n+2}}&\text{if }n\ge 0
-		\end{cases}
-	\]
-	We conclude that $a_n=\frac 1{2^{n+2}}$: the Laurent series of $f(z)$ is precisely the series computed previously!\smallbreak
-	The Laurent series centered at $z_0=2$ can be computed similarly, both using the integral method and our original approach. 
-\end{example*}
-
-The example is typical. Computing a Laurent series directly from the definition is usually ugly given how many contour integrals must be evaluated! Thankfully, as we'll see shortly, all the standard facts regarding Taylor series translate to this new situation. In particular, if $f(z)=\sum a_n(z-z_0)^n$ equals a series with negative terms, then the series will turn out to be the Laurent series of $f(z)$. We'll deal with the theory shortly, but first a few more examples following from this observation to get used to the idea.
-
-
-
-\begin{examples}{}{laurenteasyex}
-	\exstart On the \textcolor{blue}{disk $\nm z<1$}, we have the Maclaurin series
-	
-	\begin{enumerate}\setcounter{enumi}{1}
-	  \begin{minipage}[t]{0.73\linewidth}\vspace{-13pt}
-		  \item[]%
-		  \[
-		  	\frac 1{z-i}=\frac 1{-i(1-\frac zi)}
-		  	=i\sum_{n=0}^\infty(-iz)^n
-		  	=i+z-iz^2-z^3+iz^4+\cdots
-		  \]
-			On the \textcolor{Green}{annulus $\nm z>1$}, we have the Laurent series
-			\[
-				\frac 1{z-i}=\frac z{(1-\frac iz)}
-				=\sum_{n=0}^\infty i^nz^{-n-1}
-				=\frac iz-\frac 1{z^2}-\frac i{z^3}+\frac 1{z^4}+\cdots
-			\]
-		
-			\item On the \textcolor{orange}{$1<\nm z<2$}, we have the Laurent series
-			\begin{align*}
-				\frac 3{(2-z)(1+z)}
-				&=\frac 1{2-z}+\frac 1{1+z}=\frac 1{2(1-\frac z2)}+\frac 1{z(1+\frac 1z)} \\
-				&=\frac 12\sum_{n=0}^\infty\left(\frac z2\right)^n+\frac 1z\sum_{m=0}^\infty(-z)^{-m}\\
-				&=\cdots +z^{-3}-z^{-2}+z^{-1}+\frac 12+\frac 14z+\frac 18z^2+\cdots
-			\end{align*}
-		\end{minipage}
-		\hfill
-		\begin{minipage}[t]{0.26\linewidth}\vspace{-20pt}
-			\flushright\includegraphics[scale=0.95]{laurent5}\bigbreak
-			\includegraphics[scale=0.95]{laurent6}
-		\end{minipage}\par	
-		
-	
-	  \item Since $e^z=\sum \frac{z^n}{n!}$ is valid on the entire complex plane, we obtain the Laurent series expansion
-	  \[
-	  	e^{\frac 1z}=\sum_{n=0}^\infty\frac{z^{-n}}{n!}=1+\frac 1z+\frac 1{2z^2}+\frac 1{6z^3}+\cdots
-	  \]
-	  valid on the punctured plane $z\neq 0$.
-	  
-	  \item Again by substituting in a known Maclaurin series, we obtain another Laurent series valid on the punctured plane $z\neq 0$:
-	  \[
-	  	\frac 1{z^7}\sin z^2
-	  	=\sum_{n=0}^\infty\frac{(-1)^n}{(2n+1)!}z^{4n-5} 
-	  	=z^{-5}-\frac 16z^{-1}+\frac 1{120}z^3-\frac 1{5040}z^7+\cdots
-	  \]
-	  
-	  \item Multiplying term-by-term, and since we need \emph{both} Maclaurin series to be valid, we obtain (the first few terms of) a Laurent series valid on the punctured disk $0<\nm z<1$:
-	  \begin{align*}
-		  \frac 1{z(z-1)(z-2i)}&=\frac 1z\left(\sum_{n=0}^\infty (-1)^nz^n\right)\left(\sum_{m=0}^\infty\left(\frac i2\right)^mz^m\right)\\
-		  &=\frac 1z\left(1-z+z^2-z^3+\cdots\right)\left(1+\frac i2z-\frac 14z^2-\frac i8z^3+\cdots\right)\\
-		  &=\frac 1z+\left(-1+\frac i2\right)+\left(\frac 34-\frac i2\right)z+\left(-\frac 34+\frac{3i}8\right)z^2+\cdots
-	  \end{align*}
-	\end{enumerate}
-\end{examples}
-
-\goodbreak
-
-
-%\boldsubsubsection{Theory time!}
-
-We now state and prove the main properties of Laurent series. These are very similar to the corresponding statements \& arguments for Taylor series; the additional challenge mostly comes from keeping track of two series at once.
-
-\begin{thm}{Laurent's Theorem}{}
-	An analytic function on an open annulus equals its Laurent series.
-\end{thm}
-
-\begin{proof}
-	It is enough to prove when the annulus is centered at $z_0=0$. Let $w$ in the annulus be given.\par
-	\begin{minipage}[t]{0.73\linewidth}\vspace{-3pt}
-		Since the annulus is open, we may choose three non-overlapping circles $\alpha,\beta,\gamma$ with radii $R_\alpha,R_\beta,R_\gamma$ as in the picture:
-		\begin{itemize}
-		  \item $\gamma$ a \textcolor{Green}{small circle} centered at $w$ inside the annulus;
-		  \item $\alpha,\beta$ centered at 0, \textcolor{red}{$\alpha$ inside} and \textcolor{orange}{$\beta$ outside} $w$ (thus $R_\alpha<\nm w<R_\beta$). 
-		\end{itemize}
-		Since $\frac{f(z)}{z-w}$ is analytic on the region inside $\beta$ with interior boundaries $\alpha$ and $\gamma$, Cauchy--Goursat and the integral formula tell us that
-	\end{minipage}
-	\hfill
-	\begin{minipage}[t]{0.25\linewidth}\vspace{-4pt}
-		\flushright\includegraphics[scale=0.95]{laurent4}
-	\end{minipage}\par
-	\[
-		\left(\oint_\beta-\oint_\alpha-\oint_\gamma\right)\frac{f(z)}{z-w}\,\dz=0\implies f(w)=\frac 1{2\pi i}\oint_\gamma\frac{f(z)}{z-w}\,\dz =\frac 1{2\pi i}\left(\oint_\beta-\oint_\alpha\right)\frac{f(z)}{z-w}\,\dz
-		\tag{$\ast$}
-	\]
-	As in the proof of Taylor's theorem, we expand $\frac 1{z-w}$, this time in two ways:
-	\[
-		\frac 1{z-w}
-		=\frac 1z\sum_{k=0}^{n-1}\left(\frac wz\right)^k +\frac 1{z-w}\left(\frac wz\right)^n 
-		=-\frac 1w\sum_{k=1}^{n}\left(\frac zw\right)^{k-1} +\frac 1{z-w}\left(\frac zw\right)^n
-	\]
-	These expansions allow us to attack the two integrals in ($\ast$):
-	\begin{gather*}
-		\frac 1{2\pi i}\oint_\beta\frac{f(z)}{z-w}\,\dz
-		=\sum_{k=0}^{n-1}\underbrace{\frac{w^k}{2\pi i}\oint_\beta \frac{f(z)}{z^{k+1}}\,\dz}_{a_kw^k} +\frac{w^n}{2\pi i}\oint_\beta \frac{f(z)}{z^n(z-w)}\,\dz\\
-		\frac{-1}{2\pi i}\oint_\alpha\frac{f(z)}{z-w}\,\dz =\sum_{k=1}^{n}\underbrace{\frac 1{2\pi iw^k}\oint_\alpha z^{k-1}f(z)\,\dz}_{a_{-k}w^{-k}} -\frac 1{2\pi i w^n}\oint_\alpha \frac{z^nf(z)}{z-w}\,\dz
-	\end{gather*}
-	We finish by summing and estimating, using the facts that $z\in\alpha\cup\beta\Longrightarrow\nm{z-w}>R_\gamma$, and that $f(z)$ is bounded (by some $M>0$) on the closed bounded annulus between $\alpha,\beta$:
-	\begin{align*}
-		\nm{f(w)-\sum_{k=-n}^{n-1}a_kw^k}
-		&=\nm{\frac{w^n}{2\pi i}\oint_\beta \frac{f(z)}{z^n(z-w)}\,\dz -\frac 1{2\pi iw^n}\oint_\alpha \frac{z^nf(z)}{z-w}\,\dz}\\
-		&\overset{\triangle}{\le} \frac{\nm w^n}{2\pi}\nm{\oint_\beta \frac{f(z)}{z^n(z-w)}\,\dz} +\frac 1{2\pi\nm w^n}\nm{\oint_\alpha \frac{z^nf(z)}{z-w}\,\dz}\\
-		&\le \frac{\nm w^n}{2\pi}\cdot\frac{M}{R_\beta^nR_\gamma}\cdot 2\pi R_\beta +\frac 1{2\pi\nm w^n}\cdot \frac{R_\alpha^nM}{R_\gamma}\cdot 2\pi R_\alpha
-			\tag{Theorem \ref{thm:intbound}}\\
-		&=\frac M{R_\gamma}\left[R_\beta\left(\frac{\nm w}{R_\beta}\right)^n+R_\alpha\left(\frac{R_\alpha}{\nm w}\right)^n\right] \xrightarrow[n\to\infty]{} 0
-		\tag*{\qedhere}
-	\end{align*}
-\end{proof}
-
-\goodbreak
-
-
-% \begin{defn}{}{}
-% 	Given a series $\smash[b]{f(z)=\sum\limits_{n=-\infty}^\infty a_n(z-z_0)^n}$, define
-% 	\[
-% 		R_1=\inf\bigl\{\nm{z-z_0}:f(z)\text{ converges}\bigr\},\qquad 
-% 		R_2=\sup\bigl\{\nm{z-z_0}:f(z)\text{ converges}\bigr\}
-% 	\]
-% 	The region $R_1<\nm{z-z_0}<R_2$ is called the (open) \emph{annulus of convergence.}
-% \end{defn}
-
-Our final corollary summarizes the remaining core properties of Laurent series.
-
-
-\begin{cor}{}{laurenttidy}
-	Let $f(z)=\sum a_n(z-z_0)^n$ be a series. Then:
-	\begin{enumerate}
-% 	  \item On its open annulus of convergence, $f(z)$ converges absolutely to a continuous function. As with power series, convergence on the boundary circles must be checked separately.
-% 	  \item The convergence is uniform on any closed sub-annulus.
-  	\item\label{cor:laurtidy3} (Term-by-term Integration)\quad If $g(z)$ is continuous on a contour $C$ lying inside the annulus, then
-  	\[
-  		\int_C g(z)f(z)\,\dz=\sum_{n=-\infty}^\infty a_n\int_Cg(z)(z-z_0)^n\,\dz
-  	\]
-  	In particular, $f(z)$ may be integrated term-by-term along $C$.
- 
- 		\item\label{cor:laurtidy4} (Analyticity/Derivatives)\quad $f(z)$ is analytic on the annulus and $f'(z)=\sum\limits_{n=-\infty}^\infty a_nn(z-z_0)^{n-1}$
-  	
-  	\item\label{cor:laurtidy5} (Uniqueness)\quad $\sum a_n(z-z_0)^n$ is the Laurent series of $f(z)$ \ (as in Definition \ref{defn:laurent}).
-	\end{enumerate}
-\end{cor}
-
- The remainder are the analogues of Theorems \ref{thm:inttermbyterm} and Corollary \ref{cor:contintdiff}: some details are in Exercise \ref{exs:laurenttidy}.
-
-
-\begin{examples}{}{}
-	The corollary formally justifies Examples \ref{ex:laurenteasyex}. Here are two extensions.
-	\begin{enumerate}
-	  \item In accordance with part \ref*{cor:laurtidy4} of the corollary,
-		\begin{align*}
-			\frac 1{z^2}e^{1/z}
-			&=-\diff ze^{1/z}=\diff z\sum_{n=0}^\infty\frac{z^{-n}}{n!} 
-			=\sum_{n=1}^\infty\frac{z^{-1-n}}{(n-1)!} 
-			=\frac 1{z^2}\sum_{n=1}^\infty\frac{z^{-(n-1)}}{(n-1)!} 
-			=\frac 1{z^2}\sum_{n=0}^\infty\frac{z^{-n}}{n!}\\
-			&=\frac 1{z^2}+\frac 1{z^3}+\frac 1{2z^4}+\frac 1{6z^5}+\frac 1{24z^6}+\cdots
-		\end{align*}
-		We need not have differentiated: by part \ref*{cor:laurtidy5} we could instead simply multiply the known series for $e^{1/z}$ term-by-term to obtain the result!
-		\item We use part \ref*{cor:laurtidy3} to compute the integral around a contour $C$ encircling the origin:
-		\[
-			\oint_C\frac 1{z^7}\sin z^2\,\dz =\sum_{n=0}^\infty\frac{(-1)^n}{(2n+1)!}\oint_Cz^{4n-5}\,\dz =\oint_C\frac{(-1)^1}{(2+1)!}z^{4-5} =-\frac 13\pi i
-		\]
-		since all but one of the integrals evaluates to zero.
-	\end{enumerate}
-\end{examples}
-
-\goodbreak
-
-\begin{exercises}
-	\exstart (Example \ref{ex:laurentmotiv}, cont.)\lstsp $f(z)=\frac 1{z(2-z)}$ is analytic everywhere except $z=0$ and $z=2$.\vspace{-5pt}
-
-	\begin{enumerate}\setcounter{enumi}{1}
-	  \item[]\begin{enumerate}
-	    \item Use Definition \ref{defn:laurent} to directly compute the Laurent series of $f(z)$ on the punctured disk $0<\nm{z-2}<2$ using the circle radius 1 centered at $z_0=2$.
-	    \item Use the Taylor series of $\frac 1z$ centered at $z_0=2$ to more rapidly find the Laurent series in (a).
-	  \end{enumerate}
-	  
-	  
-	  \item Find a Laurent series representation for each function. Also find $\oint_Cf(z)\,\dz$ where $C$ is a simple closed curve in the given domain encircling the origin.
-	  \begin{enumerate}
-	    \item $f(z)=\frac 3{z^2}e^{2z}$ whenever $\nm z>0$
-	   
-	    \item $f(z)=\cos\frac iz$ whenever $\nm z>0$
-	    
-	    \item $f(z)=\frac 1{1+z^3}$ when $1<\nm z$\quad (\emph{Hint: let $w=z^{-1}$})
-	  \end{enumerate}
-	  
-	  \goodbreak
-	  
-	  \item On each domain, find a Laurent series centered at $z_0=0$ for the function
-	  \[
-	  	f(z)=\frac{1}{z(z-2i)}=\frac i2\left(\frac 1z-\frac 1{z-2i}\right)
-	  \]
-	  \begin{enumerate}
-	    \item $D_1=\{z:0<\nm z<2\}$
-	    \qquad\qquad
-	    (b) \ $D_2=\{z:\nm z>2\}$ \ (\emph{again let $w=z^{-1}$})
-		\end{enumerate}
-		
-		
-		\item Repeat the previous question for
-	  \[
-	  	f(z)=\frac{1-2i}{(z-1)(z-2i)}=\frac 1{z-1}-\frac 1{z-2i}
-	  \]
-	  Also find $\oint_Cf(z)\,\dz$ where $C$ is a simple closed curve in the given domain encircling the origin.
-	  \begin{enumerate}
-	    \item $D_1=\{z:0<\nm z<1\}$
-	    \qquad\quad% (\emph{this is a Taylor series})
-	    (b) \ $D_2=\{z:1<\nm{z}<2\}$
-			\qquad\quad
-			(c) \ $D_3=\{z:\nm z>2\}$
-		\end{enumerate}
-	
-	
-		\item Show that when $0<\nm{z-1}<2$,  we have
-		\[
-			\frac z{(z-1)(z-3)}=-\frac 1{2(z-1)}-3\sum_{n=0}^\infty\frac{(z-1)^n}{2^{n+2}}
-		\]
-		
-		
-		\item Let $a$ be complex number. Show that
-		\[
-			\frac a{z-a}=\sum_{n=1}^\infty\frac{a^n}{z^n}
-			\quad\text{whenever }
-			\nm a<\nm z
-		\]
-		
-		
-	  \item\label{exs:laurenttidy} Suppose $f(z)=\sum a_n(z-z_0)^n$ is a series as in Corollary \ref{cor:laurenttidy}.
-	  \begin{enumerate}
-	    \item Suppose part \ref*{cor:laurtidy3} has been proved. Explain why the function $f(z)-a_{-1}(z-z_0)^{-1}$ is analytic on the annulus. Hence conclude that $f(z)$ is analytic on the annulus.\par
-	    (\emph{This is different to Corollary \ref{cor:contintdiff} since $a_{-1}(z-z_0)^{-1}$ has no anti-derivative on the annulus!})
-	    \item In order to mimic the proof of Corollary \ref{cor:contintdiff} to show that $f(z)$ is differentiable term-by-term, what properties must the curve $C$ have?
-	    \item Prove part \ref*{cor:laurtidy5}.\par
-	    (\emph{Hint: Recall Exercise \ref*{sec:unifconv}.\ref{ex:uniquetaylor} - the same hint works!}).
-		\end{enumerate}
-	\end{enumerate}
-\end{exercises}
-

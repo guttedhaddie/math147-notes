@@ -1,16 +1,14 @@
-settings.prc=false;
 settings.outformat="pdf";
 
 texpreamble("\usepackage{amsmath}
 \usepackage{amsthm,amssymb}
 \usepackage{mathpazo}
 \usepackage[svgnames]{xcolor}
-\usepackage{textcomp}
 ");
 import graph;
 
 
-size(360);
+size(380);
 
 
 xaxis(red,RightTicks(new real[]{-1,0,1}));
@@ -37,4 +35,5 @@ draw("$R$",(0,0)--0.2*dir(45),NW,heavygreen);
 draw("$R_1$",(1,0)+0.25*dir(35)--(1,0),blue);
 draw("$R_{-1}$",(-1,0)+0.25*dir(35)--(-1,0),blue);
 
+dotfactor=8;
 dot((0,0),heavygreen);
