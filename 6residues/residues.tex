@@ -443,7 +443,7 @@ To properly develop the idea in the example, some new language is helpful.
 			\quad \text{where}\quad 
 			a_n=\frac 1{2\pi i}\oint_C\frac{f(z)}{(z-z_0)^{n+1}}\,\dz
 		\]
-		and $C$ is encircles $z_0$. Define the \emph{residue} of $f(z)$ at $z_0$ to be the $-1$-coefficient
+		and $C$ encircles $z_0$. The \emph{residue} of $f(z)$ at $z_0$ is the $-1$-coefficient
 		\[
 			\Resl{z=z_0}f(z)=a_{-1}=\frac 1{2\pi i}\oint_C f(z)\,\dz
 		\]
@@ -454,7 +454,7 @@ To properly develop the idea in the example, some new language is helpful.
 	\end{minipage}\bigbreak
 	The type of isolated singularity is determined by the rest of the Laurent series:
 	\begin{description}
-		\item[\normalfont\emph{Removable Singularity}] The Laurent series is a Taylor series (the residue is necessarily zero). There are no negative powers; the series, and thus $f(z)$, extends analytically to $z_0$. 
+		\item[\normalfont\emph{Removable Singularity}] The Laurent series is a Taylor series (the residue is necessarily zero). There are no negative powers; the series $f(z)$ extends analytically to $z_0$. 
 		\item[\normalfont{\emph{Pole of order $m$}}] The highest negative power in the Laurent series is $(z-z_0)^{-m}$. A pole of order 1 is typically called a \emph{simple pole,} order 2 a \emph{double pole,} etc.
 		\item[\normalfont\emph{Essential Singularity}] The Laurent series has infinitely many negative terms.
 	\end{description}
@@ -644,7 +644,7 @@ Revisit Definition \ref{defn:isolated}. A point $z_0$ is said to be a \emph{non-
 		\end{enumerate}
 		
 		
-		\item\label{exs:resinfinity} A function $f(z)$ has an \emph{isolated singularity at $\infty$} if it is analytic on some infinite annulus $\nm{z}>R$. On this domain, we have a Laurent series $f(z)=\sum_{n=-\infty}^\infty a_nz^n$.
+		\item\label{exs:resinfinity} A function $f(z)$ is said to have an \emph{isolated singularity at $\infty$} if it is analytic on some infinite annulus $\nm{z}>R$. On this domain, we have a Laurent series $f(z)=\sum_{n=-\infty}^\infty a_nz^n$.
 		\begin{enumerate}
 		  \item What properties do you think this series should have if we were to describe the singularity at $\infty$ to be:
 		  \begin{enumerate}
@@ -689,7 +689,7 @@ If the order of a pole is known, residues may often be computed quite efficientl
 	\quad\text{where}\quad
 	\phi(z)=\sum_{n=0}^\infty a_{n-m}(z-z_0)^n \tag{$\ast$}
 \]
-Plainly $\phi(z)$ is analytic at $z_0$ and $\phi(z_0)=a_{-m}\neq 0$. In fact this property categorizes poles of order $m$ (analogous to Theorem \ref{thm:zerocategorize} for zeros) and provides a simple formula for the computation of residues. 
+Plainly $\phi(z)$ is analytic at $z_0$ and $\phi(z_0)=a_{-m}\neq 0$. In fact this property categorizes poles of order $m$ (analogous to Theorem \ref{thm:zerocategorize} for zeros), providing a simple formula for the computation of residues. 
 
 
 \begin{thm}{}{polesimple}
@@ -704,7 +704,7 @@ Plainly $\phi(z)$ is analytic at $z_0$ and $\phi(z_0)=a_{-m}\neq 0$. In fact thi
 \footnotetext{\label{fn:bob}The formula works whenever $f(z)=(z-z_0)^{-m}\phi(z)$ with $\phi$ analytic, \textbf{even if $\boldsymbol{\phi(z_0)=0}$}. However, a naïve application means you won't know the order of the pole and you'll have to differentiate more times than necessary!}
 
 \begin{proof}
-	The $(\Rightarrow)$ direction is above. For the converse: $\phi(z)$ equals its Taylor series and so ($\ast$) describes the Laurent series of $f(z)=(z-z_0)^{-m}\phi(z)$ (uniqueness of representation/Corollary \ref{cor:laurenttidy}); this has a pole of order $m$ since $a_{-m}=\phi(z_0)\neq 0$.
+	The $(\Rightarrow)$ direction is above. For the converse: $\phi(z)$ equals its Taylor series and so ($\ast$) describes the Laurent series of $f(z)=(z-z_0)^{-m}\phi(z)$ (Corollary \ref{cor:laurenttidy}, uniqueness), which moreover has a pole of order $m$ since $a_{-m}=\phi(z_0)\neq 0$.
 \end{proof}
 
 \begin{examples}{}{polecalceasy}
