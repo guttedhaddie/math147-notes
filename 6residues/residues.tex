@@ -1187,7 +1187,7 @@ It is often desired, particularly when computing Fourier transforms,\footnote{%
 where $a>0$ is a real constant and $f:\R\to\C$ is a given function. If $f(x)$ is real-valued, then the above breaks the integral into real and imaginary parts. Given reasonable conditions on $f(x)$, the principal-value method can often be employed.
 
 \begin{example}{}{}
-	The function $f(z)=\frac{e^{3iz}}{z^2+4}$ is analytic on the upper half-plane except at the simple pole $z=2i$. With $R>2$ and $C_R$ the usual semi-circle, we see that
+	The function $f(z)=\frac 1{z^2+4}$ is analytic on the upper half-plane except at the simple pole $z=2i$. With $R>2$ and $C_R$ the usual semi-circle, we see that
 	\begin{gather*}
 		\nm{e^{3iz}}=e^{-3y}\le 1
 		\implies \nm{\int_{C_R}f(z)e^{3iz}\,\dz}
@@ -1198,16 +1198,17 @@ where $a>0$ is a real constant and $f:\R\to\C$ is a given function. If $f(x)$ is
 		=2\pi i\frac{e^{-6}}{4i} 
 		=\frac 12\pi e^{-6}
 	\end{gather*}
-	Since this is real, we see that the result is in fact the integral $\int_{-\infty}^\infty \frac{\cos 3x}{x^2+4}\,\dx$. We don't need the Cauchy principal value here since the full improper integral converges. The corresponding imaginary integral is trivially zero since $\frac{\sin x}{x^2+1}$ is an odd function.
+	Since this is real, we see that the result is in fact the integral $\int_{-\infty}^\infty \frac{\cos 3x}{x^2+4}\,\dx$. We don't need the Cauchy principal value here since the full improper integral converges. The corresponding imaginary integral is trivially zero since $\frac{\sin 3x}{x^2+1}$ is an odd function.
 \end{example}
 
-To assist with such computations, we state the following result without proof.
+The following result, which we state without proof, assists with such computations; as usual, for any $R>0$, $C_R=\{z:\nm z=R,\Im z\ge 0\}$ is the counter-clockwise semi-circle in the upper half-plane.
 
 \begin{thm}{Jordan's Lemma}{}
-	Let $a,R_0>0$ be given and suppose $f(z)$ is analytic at all points exterior to the semi-circle $C_{R_0}$ in the upper half-plane. Suppose also that
-	\[
-		\forall R>R_0,\ \exists M_R\text{ such that } \nm z=R\implies \nm{f(z)}\le M_R\text{ and }\lim_{R\to\infty}M_R=0
-	\]
+	Let $a,R_0>0$ be constants and $f(z)$ a function. Suppose:
+	\begin{enumerate}
+	  \item $f(z)$ is analytic on the upper half-plane outside the semi-circle $C_{R_0}$.
+	  \item Whenever $\nm z=R>R_0$, $f(z)$ is bounded by some function $M(R)$ with $\lim\limits_{R\to\infty}M(R)=0$.
+	\end{enumerate}
 	Then $\lim\limits_{R\to\infty}\int_{C_R}f(z)e^{i az}\,\dz=0$. If $f(z)$ moreover satisfies the hypotheses of our method, then
 	\[
 		\text{P.V.}\int_{-\infty}^\infty f(x)e^{i ax}\,\dx
@@ -1216,7 +1217,7 @@ To assist with such computations, we state the following result without proof.
 \end{thm}
 
 \begin{example}{}{}
-	If $f(x)=\frac{x+1}{x^2+9}$ and $R>3$, then
+	If $f(x)=\frac{x+2}{x^2+9}$ and $R>3$, then
 	\begin{gather*}
 		\nm{f(z)}=\frac{\nm{z+2}}{\nm{z^2+9}}
 		\le\frac{R+2}{R^2-9}
